@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ShiftActionDialog</title>
+</head>
+<body>
+    <div data-bind="customControlInternal: 'ShiftActionDialog'">
+        <div>
+            <div data-bind="dialog:
+                {
+                    title: shiftDialogTitle,
+                    message: Commerce.ViewModelAdapter.getResourceString('string_4001'),
+                    visible: visible,
+                    closeOnEscButton:true,
+                    buttonClick: buttonClickHandler,
+                    buttons: [{ label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton', isPrimary: false}],
+                }" class="openShiftDialog">
+                <div id="openShiftDialogButtonGrid" class="scrollX height15" data-bind="tileList: {
+                            iteminvoked: shiftDialogClickHandler,
+                            itemDataSource: shiftDialogMethods,
+                            bottomLeft: { field: 'value' }
+                     }">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

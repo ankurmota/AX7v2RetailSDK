@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8D059762-02A0-4E38-A6A3-7EAF0AFE2FCF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.Runtime.TransactionService</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.Runtime.TransactionService</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Data.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Microsoft.IdentityModel\3.5.0.0\Microsoft.IdentityModel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Principal" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.XDocument" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppInfo\AppInfoTransactionService.cs" />
+    <Compile Include="AsyncService\CommerceDataExchangeService.cs" />
+    <Compile Include="AvailabilityTransactionService.cs" />
+    <Compile Include="AxOrderHistorySearchCriteria.cs" />
+    <Compile Include="AxPurchaseHistorySearchCriteria.cs" />
+    <Compile Include="AxTransactionSearchCriteria.cs" />
+    <Compile Include="Channel\ChannelManagementTransactionService.cs" />
+    <Compile Include="CustomerOrder\CustomerOrderService.cs" />
+    <Compile Include="CustomerOrder\DataModel\AffiliationInfo.cs" />
+    <Compile Include="CustomerOrder\DataModel\AffiliationInfoCollection.cs" />
+    <Compile Include="CustomerOrder\DataModel\ChargeInfo.cs" />
+    <Compile Include="CustomerOrder\DataModel\ChargeInfoCollection.cs" />
+    <Compile Include="CustomerOrder\DataModel\CustomerOrderInfo.cs" />
+    <Compile Include="CustomerOrder\DataModel\DiscountInfo.cs" />
+    <Compile Include="CustomerOrder\DataModel\DiscountInfoCollection.cs" />
+    <Compile Include="CustomerOrder\DataModel\ItemInfo.cs" />
+    <Compile Include="CustomerOrder\DataModel\ItemInfoCollection.cs" />
+    <Compile Include="CustomerOrder\DataModel\PaymentInfo.cs" />
+    <Compile Include="CustomerOrder\DataModel\PaymentInfoCollection.cs" />
+    <Compile Include="CustomerOrder\DataModel\Preauthorization.cs" />
+    <Compile Include="CustomerOrder\DataModel\TaxInfo.cs" />
+    <Compile Include="CustomerOrder\DataModel\TaxInfoCollection.cs" />
+    <Compile Include="CustomerOrder\InvoiceHelper.cs" />
+    <Compile Include="CustomerOrder\SalesOrderHelper.cs" />
+    <Compile Include="CustomerOrder\SalesTransactionSerializationHelper.cs" />
+    <Compile Include="CustomerOrder\Utilities.cs" />
+    <Compile Include="Customer\CustomerTransactionServiceRequestHandler.cs" />
+    <Compile Include="Email\EmailService.cs" />
+    <Compile Include="EmployeeRealtimeService.cs" />
+    <Compile Include="FilteringCriteria.cs" />
+    <Compile Include="HealthCheckTransactionService.cs" />
+    <Compile Include="Inventory\PickingReceivingService.cs" />
+    <Compile Include="Loyalty\LoyaltyTransactionServiceRequestHandler.cs" />
+    <Compile Include="Payments\CreditMemoRealtimeService.cs" />
+    <Compile Include="Payments\GiftCardRealtimeService.cs" />
+    <Compile Include="Product\ProductTransactionServiceRequestHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReturnLocationPrintParameter.cs" />
+    <Compile Include="ReturnLocationPrintParameterCodes.cs" />
+    <Compile Include="SalesOrder\SalesOrderStatus.cs" />
+    <Compile Include="SalesOrder\SalesOrderTransactionService.cs" />
+    <Compile Include="SalesOrder\SalesQuotationStatus.cs" />
+    <Compile Include="Security\DeviceManagementTransactionService.cs" />
+    <Compile Include="Security\MediaStorageSasKeyCacheAccessor.cs" />
+    <Compile Include="Security\MediaStorageSecurityTransactionService.cs" />
+    <Compile Include="Security\Secret.cs" />
+    <Compile Include="Security\UserAuthenticationTransactionService.cs" />
+    <Compile Include="Serialization\CustomerAffiliationInfo.cs" />
+    <Compile Include="Serialization\CustomerAffiliationsInfo.cs" />
+    <Compile Include="Serialization\Device.cs" />
+    <Compile Include="Serialization\InventoryInfo.cs" />
+    <Compile Include="Serialization\ItemReturn.cs" />
+    <Compile Include="Serialization\PickReceiveDocument.cs" />
+    <Compile Include="Serialization\SerializableObject.cs" />
+    <Compile Include="Serialization\SerializationHelper.cs" />
+    <Compile Include="Serialization\TerminalInfo.cs" />
+    <Compile Include="Serialization\TransactionHeader.cs" />
+    <Compile Include="Serialization\TransactionItem.cs" />
+    <Compile Include="ShipmentsTransactionService.cs" />
+    <Compile Include="StockCountRealtimeService.cs" />
+    <Compile Include="TaskRecorder\TaskRecorderTransactionService.cs" />
+    <Compile Include="TransactionServiceClient.AsyncService.cs" />
+    <Compile Include="TransactionServiceClient.Channel.cs" />
+    <Compile Include="TransactionServiceClient.cs" />
+    <Compile Include="TransactionServiceClient.Customer.cs" />
+    <Compile Include="TransactionServiceClient.CustomerOrder.cs" />
+    <Compile Include="TransactionServiceClient.Device.cs" />
+    <Compile Include="TransactionServiceClient.Inventory.cs" />
+    <Compile Include="TransactionServiceClient.Loyalty.cs" />
+    <Compile Include="TransactionServiceClient.Payment.cs" />
+    <Compile Include="TransactionServiceClient.Product.cs" />
+    <Compile Include="TransactionServiceClient.Staff.cs" />
+    <Compile Include="TransactionServiceClient.StockCount.cs" />
+    <Compile Include="TransactionServiceClient.TaskRecorder.cs" />
+    <Compile Include="TransactionServiceClient.TimeClock.cs" />
+    <Compile Include="TransactionServiceClient.Transaction.cs" />
+    <Compile Include="TransactionServiceClient.WishList.cs" />
+    <Compile Include="TransactionServiceProtocol.cs" />
+    <Compile Include="Utilities\ITransactionServiceClientFactory.cs" />
+    <Compile Include="Utilities\TransactionServiceClientFactory.cs" />
+    <Compile Include="Utilities\TransactionServiceClientProxy.cs" />
+    <Compile Include="WishList\CommerceListRealtimeService.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

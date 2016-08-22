@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Address</title>
+</head>
+
+<body>
+    <!--CONTENT_START-->
+    <div class="msax-Address" data-model="Contoso.Retail.Ecommerce.Sdk.Controls.CustomerAddress">
+        <div class="msax-Loading msax-DisplayNone">
+            <div id="LoadingSpinner" class="msax-Spinner msax-MarginTop50"></div>
+            <div id="LoadingText" class="msax-LoadingText msax-MarginTop20"></div>
+        </div>
+
+        <div id="ErrorPanel" class="msax-ErrorPanel msax-DisplayNone" data-bind="foreach: errorMessages">
+            <div data-bind="text: $data"></div>
+        </div>
+        
+        <div id="Address" class="msax-Address">
+            <div data-bind="if: areAddressesLoaded">
+                <div data-bind="visible: addressDisplayEnabled">
+                    <div class="msax-AddressWrapper msax-SecondaryColor msax-ClearBoth" data-bind="foreach: addresses">
+                        <div class="msax-PaddingBottom10 msax-PaddingTop10 msax-PaddingRight20 msax-PaddingLeft10 msax-DisplayInlineBlock">
+                            <div data-bind="text: Name"></div>
+                            <div data-bind="text: Street"></div>
+                            <div>
+                                <span data-bind="text: City"></span>
+                                <span data-bind="text: State"></span>
+                                <span data-bind="text: ZipCode"></span>
+                            </div>
+                            <div data-bind="text: ThreeLetterISORegionName"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="msax-NoAddressesMessage" data-bind="visible: !addressDisplayEnabled()">
+                    <div class="msax-ClearBoth msax-MarginLeft10 msax-MarginTop10" data-bind="resx: {textContent: 'String_235' }"></div> <!-- There are no addresses. -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CONTENT_END-->
+    
+</body>
+</html>

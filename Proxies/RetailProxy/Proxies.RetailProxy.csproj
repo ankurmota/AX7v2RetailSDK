@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB373318-DA97-428E-B217-D519E8841658}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.RetailProxy</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.RetailProxy</AssemblyName>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisAdditionalOptions> /assemblycomparemode:StrongNameIgnoringVersion</CodeAnalysisAdditionalOptions>
+    <RequiresProxyCode>true</RequiresProxyCode>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ActionNames.cs" />
+    <Compile Include="Adapters\AdaptorCaller.cs" />
+    <Compile Include="Adapters\AuthenticationManager.cs" />
+    <Compile Include="Adapters\CartManager.cs" />
+    <Compile Include="Adapters\CategoryManager.cs" />
+    <Compile Include="Adapters\CommerceListManager.cs" />
+    <Compile Include="Adapters\CommerceRuntimeManager.cs" />
+    <Compile Include="Adapters\CustomerManager.cs" />
+    <Compile Include="Adapters\DefaultExceptionHandlingBehavior.cs" />
+    <Compile Include="Adapters\EmployeeManager.cs" />
+    <Compile Include="Adapters\HttpUtility.cs" />
+    <Compile Include="Adapters\HttpValue.cs" />
+    <Compile Include="Adapters\HttpValueCollection.cs" />
+    <Compile Include="Adapters\Interfaces.g.cs">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+      <DependentUpon>Interfaces.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Adapters\OrgUnitManager.cs" />
+    <Compile Include="Adapters\PickingListManager.cs" />
+    <Compile Include="Adapters\ProductCatalogManager.cs" />
+    <Compile Include="Adapters\ProductManager.cs" />
+    <Compile Include="Adapters\PurchaseOrderManager.cs" />
+    <Compile Include="Adapters\SalesOrderManager.cs" />
+    <Compile Include="Adapters\ScanResultManager.cs" />
+    <Compile Include="Adapters\ShiftManager.cs" />
+    <Compile Include="Adapters\StockCountJournalManager.cs" />
+    <Compile Include="Adapters\StoreOperationsManager.cs" />
+    <Compile Include="Adapters\TransferOrderManager.cs" />
+    <Compile Include="Authentication\AcsToken.cs" />
+    <Compile Include="Authentication\ChangePasswordRequest.cs" />
+    <Compile Include="Authentication\ComerceAuthenticationSendingRequestEventArgs.cs" />
+    <Compile Include="Authentication\CommerceAuthenticationManager.cs" />
+    <Compile Include="Authentication\CommerceAuthenticationParameters.cs" />
+    <Compile Include="Authentication\CommerceAuthenticationResult.cs" />
+    <Compile Include="Authentication\CommerceAuthenticationRetailServerContext.cs" />
+    <Compile Include="Authentication\CommerceAuthenticationRuntimeContext.cs" />
+    <Compile Include="Authentication\CommerceRuntimeUserToken.cs" />
+    <Compile Include="Authentication\CommerceUserToken.cs" />
+    <Compile Include="Authentication\IAuthenticationManager.cs" />
+    <Compile Include="Authentication\ICommerceAuthenticationContext.cs" />
+    <Compile Include="Authentication\ResetPasswordRequest.cs" />
+    <Compile Include="Authentication\UserIdToken.cs" />
+    <Compile Include="Authentication\UserToken.cs" />
+    <Compile Include="CommerceEntity.cs" />
+    <Compile Include="Contexts\ActionExecutionPattern.cs" />
+    <Compile Include="Contexts\BatchHelper.cs" />
+    <Compile Include="Contexts\ChainedContext.cs" />
+    <Compile Include="Contexts\ChainedContextState.cs" />
+    <Compile Include="Contexts\ChainedContextStateMachine.cs" />
+    <Compile Include="Contexts\CommerceRuntimeContext.cs" />
+    <Compile Include="Contexts\ContextStatusChangedEventArgs.cs" />
+    <Compile Include="Contexts\IContext.cs" />
+    <Compile Include="Contexts\ParametersCache.cs" />
+    <Compile Include="Contexts\ParametersGroup.cs" />
+    <Compile Include="Contexts\RetailServerContext.cs" />
+    <Compile Include="Contexts\RetailServerContext.g.cs">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Compile>
+    <Compile Include="Contexts\StateTransition.cs" />
+    <Compile Include="Contexts\StateTransitionAction.cs" />
+    <Compile Include="Contexts\StateTransitionEvent.cs" />
+    <Compile Include="Exceptions\AuthenticationErrors.cs" />
+    <Compile Include="Exceptions\AuthenticationException.cs" />
+    <Compile Include="Exceptions\ClientCommunicationErrors.cs" />
+    <Compile Include="Exceptions\CommerceError.cs" />
+    <Compile Include="Exceptions\CommunicationException.cs" />
+    <Compile Include="Exceptions\CommunicationExceptionHelper.cs" />
+    <Compile Include="Exceptions\Exceptions.g.cs">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Compile>
+    <Compile Include="Exceptions\RetailProxyException.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="ICommerceEntity.cs" />
+    <Compile Include="Interfaces.g.cs">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Compile>
+    <Compile Include="ManagerFactory.cs" />
+    <Compile Include="Managers.g.cs">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Compile>
+    <Compile Include="Model.g.cs">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Compile>
+    <Compile Include="OperationParameter.cs" />
+    <Compile Include="PagedResult`1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Client.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Localization.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Resources.Strings.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Resources.Strings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Client.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Microsoft.OData.Client\6.11.0.0\Microsoft.OData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Core.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Microsoft.OData.Core\6.11.0.0\Microsoft.OData.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Edm.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Microsoft.OData.Edm\6.11.0.0\Microsoft.OData.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Spatial.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Microsoft.Spatial\6.11.0.0\Microsoft.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Portable.dll">
+      <HintPath>..\..\References\Newtonsoft.Json.Portable\6.0.0.0\Newtonsoft.Json.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ServiceLibrary Include="$(RetailWebServicesRoot)\RetailServer\Core\bin\$(Configuration)\Microsoft.Dynamics.Retail.RetailServerLibrary.dll">
+      <Visible>false</Visible>
+    </ServiceLibrary>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Adapters\Interfaces.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Interfaces.g.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Adapters\UsingStatements.Extensions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Clean Include="$(MSBuildProjectDirectory)\Adapters\Interfaces.temp;$(MSBuildProjectDirectory)\Contexts\RetailServerContext.g.cs;$(MSBuildProjectDirectory)\Exceptions\Exceptions.g.cs;$(MSBuildProjectDirectory)\Interfaces.g.cs;$(MSBuildProjectDirectory)\Managers.g.cs;$(MSBuildProjectDirectory)\Model.g.cs" />
+  </ItemGroup>
+  <!--
+  Target that generates the Retail proxy files.
+  -->
+  <Target Name="GenerateRetailProxyFiles" BeforeTargets="BeforeBuild" DependsOnTargets="SetupCommerceProxyGenerator" Inputs="$(MSBuildAllProjects);@(CommerceProxyGeneratorOutputFile);$(RetailServerLibraryPathForProxyGeneration)" Outputs="$(MSBuildProjectDirectory)\Adapters\Interfaces.temp;$(MSBuildProjectDirectory)\Contexts\RetailServerContext.g.cs;$(MSBuildProjectDirectory)\Exceptions\Exceptions.g.cs;$(MSBuildProjectDirectory)\Interfaces.g.cs;$(MSBuildProjectDirectory)\Managers.g.cs;$(MSBuildProjectDirectory)\Model.g.cs" Condition="Exists('$(RetailServerLibraryPathForProxyGeneration)')">
+    <Exec Command="&quot;$(CommerceProxyGeneratorOutputLocation)CommerceProxyGenerator.exe&quot; &quot;$(RetailServerLibraryPathForProxyGeneration)&quot; /n:$(CSharpProxyNamespace) /a:csharp /outputpath:$(OutputPath)" />
+    <Copy SourceFiles="$(OutputPath)AdaptersInterfaces.g.cs" DestinationFiles="$(MSBuildProjectDirectory)\Adapters\Interfaces.temp" />
+    <Copy SourceFiles="$(OutputPath)RetailServerContext.g.cs" DestinationFiles="$(MSBuildProjectDirectory)\Contexts\RetailServerContext.g.cs" />
+    <Copy SourceFiles="$(OutputPath)Exceptions.g.cs" DestinationFiles="$(MSBuildProjectDirectory)\Exceptions\Exceptions.g.cs" />
+    <Copy SourceFiles="$(OutputPath)Interfaces.g.cs" DestinationFiles="$(MSBuildProjectDirectory)\Interfaces.g.cs" />
+    <Copy SourceFiles="$(OutputPath)Managers.g.cs" DestinationFiles="$(MSBuildProjectDirectory)\Managers.g.cs" />
+    <Copy SourceFiles="$(OutputPath)Model.g.cs" DestinationFiles="$(MSBuildProjectDirectory)\Model.g.cs" />
+  </Target>
+  <Target Name="TransformOnBuild" AfterTargets="GenerateRetailProxyFiles">
+    <PropertyGroup>
+      <_TransformExe Condition="'$(VisualStudioVersion)' != ''">$(CommonProgramFiles)\Microsoft Shared\TextTemplating\$(VisualStudioVersion)\TextTransform.exe</_TransformExe>
+      <!-- Default to VS2015, if VisualStudioVersion virable is not defined. -->
+      <_TransformExe Condition="!Exists('$(_TransformExe)')">$(CommonProgramFiles)\Microsoft Shared\TextTemplating\14.0\TextTransform.exe"</_TransformExe>
+    </PropertyGroup>
+    <Error Text="Failed to find TextTransform.exe tool at '$(_TransformExe)." Condition="!Exists('$(_TransformExe)')" />
+    <ItemGroup>
+      <_TextTransform Include="@(None)" Condition="'%(None.Generator)' == 'TextTemplatingFilePreprocessor' Or '%(None.Generator)' == 'TextTemplatingFileGenerator'" />
+    </ItemGroup>
+    <!-- Perform task batching for each file -->
+    <Exec Command="&quot;$(_TransformExe)&quot; &quot;@(_TextTransform)&quot;" Condition="'%(Identity)' != ''" />
+  </Target>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

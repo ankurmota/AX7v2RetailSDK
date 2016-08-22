@@ -1,0 +1,18 @@
+
+$page-loader-z-index: 1020; /* should be less than dialog container z-index*/
+
+$dialog-loader-z-index: 1030; /* should be bigger than dialog container z-index*/
+
+$dialog-screen-z-index: 1020;
+
+$dialog-container-z-index:1022;
+
+$taskrecorder-panels-z-index: 1050; /* should be above other UI */
+
+$app-bar-height: 9em;
+
+$content-bottom-padding: 2em;
+
+$content-side-padding: 4em;
+
+$navigation-bar-width: 8em;

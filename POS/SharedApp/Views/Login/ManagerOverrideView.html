@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>ManagerOverrideView</title>
+        <link href="ManagerOverrideView.css" rel="stylesheet" />
+    </head>
+    
+    <body>
+        <div id="loginPanel" class="fragment" data-bind="css: { loginBackgroundImage: !_isPortraitOrientation(), loginBackgroundImagePortrait: _isPortraitOrientation() }">
+
+            <!-- Indeterminate wait -->
+            <div data-bind="loader: { visible: ViewModel.loading }"></div>
+
+            <!--Login panel for accepting user credentials-->
+            <section id="loginSection" role="main" class="full-screen row pad4" data-bind="resx: { ariaLabel: 'string_4454' }">   <!-- Main content -->
+
+                <div class="center">
+                    <div class="width50 pad4 primaryBackgroundColor highContrastBorderThin">
+                        <div>
+                            <h1 class="wrapTextWithoutHyphen" data-bind="resx: { textContent: 'string_510' }">Manager sign in</h1>
+                        </div>
+
+                        <div class="padTop4">
+                            <label data-bind="resx: {textContent: 'string_501'}" for="storeNumberTextBox">Store</label>
+
+                            <h4 id="storeNumberTextBox" data-bind="text: ViewModel.storeId"></h4>
+                        </div>
+
+                        <div class="padTop2">
+                            <label data-bind="resx: {textContent: 'string_502'}" for="overrideOperatorTextBox">Operator ID</label>
+
+                            <input id="overrideOperatorTextBox" type="text"
+                                   data-bind="value: ViewModel.operatorId, 
+                                                valueUpdate: 'afterkeydown',
+                                                hasfocus: true,
+                                                enterKeyPress: signInHandler,   
+                                                validator: {
+                                                    validatorField: 'UserId',
+                                                    validatorType: 'ConnectionRequestValidator'
+                                                }" />
+                        </div>
+
+                        <div class="padTop2">
+                            <label data-bind="resx: {textContent: 'string_503'}" for="passwordBox">Password</label>
+
+                            <input id="passwordBox" type="password" required="required"
+                                   data-bind="value: ViewModel.password, 
+                                                valueUpdate: 'afterkeydown',
+                                                hasfocus: _isPasswordFocused,
+                                                enterKeyPress: signInHandler,
+                                                validator: {
+                                                    validatorField: 'Password',
+                                                    validatorType: 'ConnectionRequestValidator'
+                                                }" />
+                        </div>
+
+                        <div class="padTop4 row">
+                            <button class="primaryButton" data-bind="resx: { textContent: 'string_500' }, click: signInHandler, disable: _disableSignInButton">
+                                Sign in
+                            </button>
+
+                            <div class="textRight padLeft1">
+                                <button class="secondaryButton" data-bind="resx: { textContent: 'string_76' }, click: cancelHandler">
+                                    Cancel
+                                </button>
+
+                                <!-- Since Cancel works as a back button, we must have a nav tag on the page to allow Navigator to identify a back button in the page -->
+                                <nav>
+                                    <!-- Since our Cancel button isn't a back button image, we need a hidden button with class iconNavBack
+                                        to allow Navigator to identify a back button on the page and allow it to save state correctly for the back operation -->
+                                    <button class="iconNavBack" data-bind="visible: false"></button>
+                                </nav>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

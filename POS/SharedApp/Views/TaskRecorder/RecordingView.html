@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="no-shrink row grow">
+        <div class="grow">
+            <h4 class="title"
+                data-bind="resx: { textContent: 'string_10055' }">
+                TASK RECORDER
+            </h4>
+        </div>
+    </div>
+    <div class="padTop1 recordingView">
+        <div class="recordingPanel">
+            <div class="row padBottom1">
+                <h2 data-bind="resx: { textContent: 'string_10021' }"> Recording controls </h2>
+            </div>
+            <div class="controlPanel padTop1 row grow">
+                <div class="col grow" data-bind="enable: !isInRecordingState(), buttonBlock: {
+                        buttonClass: 'iconContinue',
+                        click: continueRecording,
+                        labelTextResx: 'string_10022',       // Continue
+                        ariaLabelResx: 'string_10022',       // Continue
+                    }">
+                </div>
+                <div class="col grow" data-bind="enable: isInRecordingState(), buttonBlock: {
+                        buttonClass: 'iconPause',
+                        click: pauseRecording,
+                        labelTextResx: 'string_10023',       // Pause
+                        ariaLabelResx: 'string_10023',       // Pause
+                    }">
+                </div>
+                <div class="col grow" data-bind="enable: isInRecordingState(), buttonBlock: {
+                        buttonClass: 'iconStop',
+                        click: stopRecording,
+                        labelTextResx: 'string_10024',       // Stop
+                        ariaLabelResx: 'string_10024',       // Stop
+                    }">
+                </div>
+            </div>
+            <div class="row padTop2">
+                <label data-bind="resx: { textContent: 'string_10025' }"> Capture screenshots </label>
+            </div>
+            <div class="genericToggle" data-win-control="WinJS.UI.ToggleSwitch"
+                 data-bind="winControl: {
+                                    labelOn: 'string_1357',
+                                    labelOff: 'string_1358',
+                                    disabled: !screenshotsEnabled(),
+                                    toggleChanged: toggleScreenCapture
+                                }">
+            </div>
+            <div class="row padTop4 padBottom1">
+                <h2 data-bind="resx: { textContent: 'string_10026' }"> Steps </h2>
+            </div>
+            <div class="controlPanel padTop1 row">
+                <div class="col grow" data-bind="buttonBlock: {
+                        buttonClass: 'iconStartTask',
+                        click: startTask,
+                        labelTextResx: 'string_10027',       // Start task
+                        ariaLabelResx: 'string_10027',       // Start task
+                    }">
+                </div>
+                <div class="col grow" data-bind="enable: isTaskCreated(), buttonBlock: {
+                        buttonClass: 'iconEndTask',
+                        click: endTask,
+                        labelTextResx: 'string_10028',       // End task
+                        ariaLabelResx: 'string_10028',       // End task
+                    }">
+                </div>
+            </div>
+        </div>
+
+        <div class="padTop1 width34 padRight2 listSteps">
+            <label data-bind="visible: session().nodes().length === 0, resx: { textContent: 'string_10031' }"> We didn't find anything to show here. </label>
+            <ul data-bind="foreach: session().nodes">
+                <li class="row">
+                    <div class="col grow width3 displayNumber" data-bind="text: displayNumber"> </div>
+                    <div class="col minHeight1 marginBottom2 width18 description" data-bind="text: description"> </div>
+                    <div class="col" data-bind="visible: editable">
+                        <div role="button" style="display: inline-flex; cursor: pointer;">
+                            <button class="iconEditStep" data-bind="click: $parent.editNode.bind($parent, $data)"></button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

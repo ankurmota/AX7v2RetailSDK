@@ -1,0 +1,105 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="Contoso.Commerce.Runtime.WorkflowFoundation.Activities.DeleteCart"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:local="clr-namespace:Contoso.Commerce.Runtime.WorkflowFoundation.Activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mdcr="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Framework"
+ xmlns:mdcrdm="clr-namespace:Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages;assembly=Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages"
+ xmlns:mdcrm="clr-namespace:Microsoft.Dynamics.Commerce.Runtime.Messages;assembly=Microsoft.Dynamics.Commerce.Runtime.Framework"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="RequestContext" Type="InArgument(mdcr:RequestContext)" />
+    <x:Property Name="Response" Type="OutArgument(mdcrm:Response)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Contoso.Commerce.Runtime.WorkflowFoundation.Activities.DeleteCart_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.Messages</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages</x:String>
+      <x:String>Contoso.Commerce.Runtime.Workflow</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.ComponentModel.DataAnnotations</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Runtime</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Contoso.Commerce.Runtime.WorkflowFoundation.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Framework</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Workflow</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.DataAnnotations</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.WorkflowFoundation.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Services.Messages</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Messages</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="mdcrdm:DeleteCartDataRequest" Name="Request" />
+    </Sequence.Variables>
+    <local:DeleteSalesTransaction sap2010:WorkflowViewState.IdRef="DeleteSalesTransaction_1" RequestContext="[RequestContext]" TransactionIds="[Request.SalesTransactionIds]" />
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="mdcrm:Response">[Response]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="mdcrm:Response">[New NullResponse()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <sads:DebugSymbol.Symbol>d4YBZTpcUmFpbk1haW5cU291cmNlXEZyYW1ld29ya3NcUmV0YWlsUmFpblxDb21wb25lbnRzXFBsYXRmb3JtXExpYnJhcmllc1xSdW50aW1lXFdvcmtmbG93Rm91bmRhdGlvbi5BY3Rpdml0aWVzXFdvcmtmbG93c1xEZWxldGVDYXJ0LnhhbWwHTANaDgIBAVAFULEBAgEFUQVYDgIBAlBtUH8CAQdQjwFQrgECAQZWNlZKAgEEUzdTQQIBAw==</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="DeleteSalesTransaction_1" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="264,246">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Contoso.Commerce.Runtime.WorkflowFoundation.Activities.DeleteCart_1" sap:VirtualizedContainerService.HintSize="304,326" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllCatalogsReadCompleted" xml:space="preserve">
+    <value>products='{0}'; Total CRT read time='{1}'.</value>
+    <comment>0 - Total number of products. 1 - CRT read time.</comment>
+  </data>
+  <data name="CatalogReadCompleted" xml:space="preserve">
+    <value>Completed reading catalog '{0}'. Products in catalog='{1}'; Total products='{2}'; Total CRT read time='{3}'.</value>
+    <comment>0 - Catalog Id. 1 - Number of products in catalog. 2 - Total number of products. 3 - duration for CRT read operation.</comment>
+  </data>
+  <data name="Duration_DeleteProducts" xml:space="preserve">
+    <value>DeleteProducts took {0}. Changes detected={1}</value>
+  </data>
+  <data name="Duration_GetNotExistingCatalogs" xml:space="preserve">
+    <value>GetNotExistingCatalogs took {0} and returned {1} SP Lists and {2} catalogs.</value>
+  </data>
+  <data name="Duration_GetNotExistingLanguages" xml:space="preserve">
+    <value>GetNotExistingLanguages took {0} and returned {1} SP Lists and {2} languages.</value>
+  </data>
+  <data name="Duration_LoadListingsMap" xml:space="preserve">
+    <value>LoadAllListingsMap took {0} to load {1} listings for {2} catalogs.</value>
+  </data>
+  <data name="Duration_Manager_DeleteListingsByCatalogs" xml:space="preserve">
+    <value>ChannelCatalogManager.DeleteListingsByCatalogs took {0}.</value>
+  </data>
+  <data name="Duration_Manager_DeleteListingsByCompositeIds" xml:space="preserve">
+    <value>ChannelCatalogManager.DeleteListingsByCompositeIds took {0} to remove {1} listings.</value>
+  </data>
+  <data name="Duration_Processor_DeleteListingsByCatalogs" xml:space="preserve">
+    <value>PublishingProcessor.DeleteListingsByCatalogs took {0}.</value>
+  </data>
+  <data name="Duration_Processor_DeleteListingsByCompositeIds" xml:space="preserve">
+    <value>PublishingProcessor.DeleteListingsByLanguages took {0}.</value>
+  </data>
+  <data name="Duration_Processor_DeleteListingsByLanguage" xml:space="preserve">
+    <value>PublishingProcessor.DeleteListingsByLanguages took {0}.</value>
+  </data>
+  <data name="Duration_Processor_DeleteListingsByLanguages" xml:space="preserve">
+    <value>ChannelCatalogManager.DeleteListingsByLanguages took {0}.</value>
+  </data>
+  <data name="Duration_ReadChangedProducts" xml:space="preserve">
+    <value>ReadChangedProducts took {0} and returned {1} IDs.</value>
+    <comment>Parameter 0 - duration. Parameter 1 - number of changed products' IDs.</comment>
+  </data>
+  <data name="Duration_VerifyProductExistence" xml:space="preserve">
+    <value>VerifyProductExistence took {0} to verify {1} of IDs starting with index {2}. Total number of IDs:{3}. Number of returned IDs:{4}.</value>
+  </data>
+  <data name="ErrorChannelNotInPublishedState" xml:space="preserve">
+    <value>Can not proceed to catalog publishing because channel has not been published successfully. Channel publishing status: {0}. Status message: '{1}'. If you cannot identify the source of the issue by reading this message then look for the error details in Event Viewer around the time specified in the status message. Once you resolve the root cause of the channel publishing issue then re-publish the channel in Microsoft Dynamics AX.</value>
+    <comment>Error situation which idicates that catalog publishing will not be initiated because channel is not in Published state. Parameter 0 - the publishing status of the channel. Parameter 1 - the Status message. Parameter 2 - the time when an error about original channel publishing issue was logged.</comment>
+  </data>
+  <data name="ErrorChannelPublishingFailed" xml:space="preserve">
+    <value>{0}. Time of the failure: {1}</value>
+  </data>
+  <data name="ErrorNoNavigationCategories" xml:space="preserve">
+    <value>The channel doesn't have any categories.</value>
+    <comment>Error situation when channel doesn't have navigational category hierarchy.</comment>
+  </data>
+  <data name="ErrorNoSchemaAttributes" xml:space="preserve">
+    <value>The channel doesn't have any listing attributes. Make sure they are included in AX channel management UI.</value>
+    <comment>Error situation when channel schema doesn't have any listing's attributes.</comment>
+  </data>
+  <data name="NumberOfReadAttributes" xml:space="preserve">
+    <value>Read {0} listing attributes.</value>
+    <comment>Indicates how many listing attributes were read from CRT</comment>
+  </data>
+  <data name="NumberOfReadCategoriesAndTheirAttributes" xml:space="preserve">
+    <value>Read {0} categories and {1} categories' attributes.</value>
+    <comment>Indicates how many categories (and their attributes, in total) were read from CRT</comment>
+  </data>
+  <data name="NumberOfReadProductsInPage" xml:space="preserve">
+    <value>Number of read products in page={0}. Duration={1}.</value>
+    <comment>Reports the number of products read in this page (parameter 0) and duration of the CRT call (parameter 1).</comment>
+  </data>
+  <data name="NumberOfReadProductsInPageSummary" xml:space="preserve">
+    <value>Page of changed products read. Catalog='{0}'; Products in catalog='{1}'; Total products='{2}'; Total CRT read time='{3}'.</value>
+    <comment>0 - Catalog Id. 1 - Number of products in catalog. 2 - Total number of products. 3 - duration for CRT read operation.</comment>
+  </data>
+  <data name="ProductCatalogToPublish" xml:space="preserve">
+    <value>Publishing updated products from catalog '{0}' (name: '{1}', description: '{2}'.)</value>
+    <comment>Logs each of the product catalogs that will be published during the execution of this run. Parameters: 1 = catalog id, 2 = catalog name, 3 = catalog description.</comment>
+  </data>
+  <data name="StartReadProductsFromCatalog" xml:space="preserve">
+    <value>Start retrieving products for the catalog '{0}'.</value>
+    <comment>Parameter 0 represents the Id of the catalog.</comment>
+  </data>
+</root>

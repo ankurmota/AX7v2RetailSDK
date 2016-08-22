@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="Contoso.Retail.Ecommerce.Web.Storefront.MvcApplication" Language="C#" %>

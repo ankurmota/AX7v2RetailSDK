@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects> 
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildProjectFullPath)</MSBuildAllProjects>
+
+    <RetailSdkBuildSettingsHasBeenImported>true</RetailSdkBuildSettingsHasBeenImported>
+
+    <SdkRootPath Condition="'$(SdkRootPath)' == ''">$(MSBuildThisFileDirectory)..\</SdkRootPath>
+    <SdkReferencesPath Condition="'$(SdkReferencesPath)' == ''">$(SdkRootPath)References\</SdkReferencesPath>
+    <SdkAssetsPath Condition="'$(SdkAssetsPath)' == ''">$(SdkRootPath)Assets\</SdkAssetsPath>
+	<CSharpProxyNamespace>Contoso.Commerce.RetailProxy</CSharpProxyNamespace>
+  </PropertyGroup>
+  <Import Project="Customization.settings" />
+  <ItemGroup>
+	<CommerceProxyGeneratorFile Include="$(SdkReferencesPath)\CommerceProxyGenerator.exe" />
+	<CommerceProxyGeneratorFile Include="$(SdkReferencesPath)\Microsoft.OData.Core\6.11.0.0\Microsoft.OData.Core.dll" />
+	<CommerceProxyGeneratorFile Include="$(SdkReferencesPath)\Microsoft.OData.Edm\6.11.0.0\Microsoft.OData.Edm.dll" />
+	<CommerceProxyGeneratorFile Include="$(SdkReferencesPath)\Microsoft.Spatial\6.11.0.0\Microsoft.Spatial.dll" />
+	<CommerceProxyGeneratorFile Include="$(SdkReferencesPath)\System.Web.Http\5.2.2.0\System.Web.Http.dll" />
+	<CommerceProxyGeneratorFile Include="$(SdkReferencesPath)\System.Web.OData\5.5.1.0\System.Web.OData.dll" />
+  </ItemGroup>
+  <ItemGroup>
+	<!-- @(ISV_CommerceRuntime_CustomizableFile) should be defined in Customization.settings -->
+    <CommerceRuntime_CustomizableFile Include="@(ISV_CommerceRuntime_CustomizableFile)" />
+    <CommerceRuntime_CustomizableFile Include="$(SdkAssetsPath)\commerceruntime.config" />
+    <CommerceRuntime_CustomizableFile Include="$(SdkAssetsPath)\workflowfoundation.config" />
+  </ItemGroup>
+  <ItemGroup>
+	<!-- @(ISV_RetailServer_CustomizableFile should be defined in Customization.settings -->
+    <RetailServer_CustomizableFile Include="@(ISV_RetailServer_CustomizableFile)" />
+  </ItemGroup>
+  <ItemGroup>
+    <DatabaseFile_FullSchema Include="$(SdkRootPath)Database\CommerceRuntimeScripts_Create.sql" />
+    <DatabaseFile_Upgrade_Retail Include="$(SdkRootPath)Database\Upgrade\Retail\*.*" />
+    <DatabaseFile_Upgrade_Custom Include="$(SdkRootPath)Database\Upgrade\Custom\Readme.txt" />
+	<!-- @(ISV_CustomDatabaseFile_Upgrade_Custom) should be defined in Customization.settings -->
+    <DatabaseFile_Upgrade_Custom Include="@(ISV_CustomDatabaseFile_Upgrade_Custom)" />
+  </ItemGroup>
+  <ItemGroup>
+	<!-- @(ISV_HardwareStation_CustomizableFile) should be defined in Customization.settings -->
+    <HardwareStation_CustomizableFile Include="@(ISV_HardwareStation_CustomizableFile)" />
+    <HardwareStation_CustomizableFile Include="$(SdkAssetsPath)\Microsoft.Dynamics.Commerce.HardwareStation.WebHost.dll.config" />
+    <HardwareStation_CustomizableFile Include="$(SdkReferencesPath)\$(AssemblyNamePrefix).Commerce.HardwareStation.WebHost.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClientBroker_CustomizableFile Include="@(CommerceRuntime_CustomizableFile)" />
+    <ClientBroker_CustomizableFile Include="@(HardwareStation_CustomizableFile)" />
+    <ClientBroker_CustomizableFile Include="$(SdkAssetsPath)\dllhost.exe.config" />
+    <ClientBroker_CustomizableFile Include="$(SdkReferencesPath)\$(AssemblyNamePrefix).Commerce.RetailProxy.dll" />
+  </ItemGroup>
+ </Project>

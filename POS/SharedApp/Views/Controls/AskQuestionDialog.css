@@ -1,0 +1,5 @@
+.askQuestionDialog .questionArea {
+    min-height: 100px;
+    word-wrap:break-word;
+}
+

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.Default.props" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputPath>bin</OutputPath>
+    <OutputType>Library</OutputType>
+    <AssemblyName>$(AssemblyNamePrefix).Proxies.Retail.TypeScript</AssemblyName>
+    <ProjectGuid>{2121DC41-CB98-4F39-A227-28BBE8030A05}</ProjectGuid>
+    <TypeScriptOutFile>Libraries.Proxies.Retail.TypeScript.js</TypeScriptOutFile>
+    <TypeScriptNoImplicitAny>false</TypeScriptNoImplicitAny>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+    <TypeScriptLibrariesOutDir>$(MsBuildThisFileDirectory)</TypeScriptLibrariesOutDir>
+    <RequiresProxyCode>true</RequiresProxyCode>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="AsyncResult.ts" />
+    <TypeScriptCompile Include="CommerceContext.g.ts">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="DataServiceQuery.ts" />
+    <TypeScriptCompile Include="Entities\CommerceTypes.g.ts">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Exceptions\ErrorHelper.ts" />
+    <TypeScriptCompile Include="Exceptions\ErrorParser.ts" />
+    <TypeScriptCompile Include="Exceptions\NotificationHandler.ts" />
+    <TypeScriptCompile Include="Exceptions\ProxyError.ts" />
+    <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\ObjectExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\StringExtensions.ts" />
+    <TypeScriptCompile Include="FunctionQueueHelper.ts" />
+    <TypeScriptCompile Include="Interfaces\IAsyncResult.ts" />
+    <TypeScriptCompile Include="Interfaces\IDataServiceRequest.ts" />
+    <TypeScriptCompile Include="Interfaces\IDataServiceRequestFactory.ts" />
+    <TypeScriptCompile Include="Interfaces\IManagerFactory.ts" />
+    <TypeScriptCompile Include="Interfaces\IManagers.g.ts">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Managers\ManagerFactory.ts" />
+    <TypeScriptCompile Include="Managers\Managers.g.ts">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="RetailLogger.ts" />
+    <TypeScriptCompile Include="DataServiceRequest.ts" />
+    <TypeScriptCompile Include="RetailServerRequestFactory.ts" />
+    <TypeScriptCompile Include="Tracer.ts" />
+    <TypeScriptCompile Include="XhrHelper.ts" />
+  </ItemGroup>
+  <ItemGroup Label="Libraries">
+    <TypeScriptLibraries Include="Diagnostics.TypeScriptCore.d.ts" />
+    <TypeScriptLibraries Include="DataJS.d.ts" />
+    <TypeScriptLibraries Include="JQuery.d.ts" />
+    <TypeScriptLibraries Include="KnockoutJS.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Clean Include="$(MSBuildProjectDirectory)\Entities\CommerceTypes.g.ts;$(MSBuildProjectDirectory)\CommerceContext.g.ts;$(MSBuildProjectDirectory)\Interfaces\IManagers.g.ts;$(MSBuildProjectDirectory)\Managers\Managers.g.ts" />
+  </ItemGroup>
+  <!-- 
+  Target that generates the Retail proxy files for POS
+  -->
+  <Target Name="GeneratePOSRetailProxyFiles" BeforeTargets="PreComputeCompileTypeScript" DependsOnTargets="SetupCommerceProxyGenerator" Inputs="$(MSBuildAllProjects);@(CommerceProxyGeneratorOutputFile);$(RetailServerLibraryPathForProxyGeneration)" Outputs="$(MSBuildProjectDirectory)\Entities\CommerceTypes.g.ts;$(MSBuildProjectDirectory)\CommerceContext.g.ts;$(MSBuildProjectDirectory)\Interfaces\IManagers.g.ts;$(MSBuildProjectDirectory)\Managers\Managers.g.ts" Condition="Exists('$(RetailServerLibraryPathForProxyGeneration)')">
+    <Exec Command="&quot;$(CommerceProxyGeneratorOutputLocation)CommerceProxyGenerator.exe&quot; &quot;$(RetailServerLibraryPathForProxyGeneration)&quot; /a:typescript /outputpath:$(OutputPath)" />
+    <Copy SourceFiles="$(OutputPath)\CommerceTypes.g.ts" DestinationFiles="$(MSBuildProjectDirectory)\Entities\CommerceTypes.g.ts" />
+    <Copy SourceFiles="$(OutputPath)\CommerceContext.g.ts" DestinationFiles="$(MSBuildProjectDirectory)\CommerceContext.g.ts" />
+    <Copy SourceFiles="$(OutputPath)\IManagers.g.ts" DestinationFiles="$(MSBuildProjectDirectory)\Interfaces\IManagers.g.ts" />
+    <Copy SourceFiles="$(OutputPath)\Managers.g.ts" DestinationFiles="$(MSBuildProjectDirectory)\Managers\Managers.g.ts" />
+  </Target>
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.targets')" />
+  <Target Name="CopyTypeScriptLibraries" BeforeTargets="PreComputeCompileTypeScript;">
+    <Copy SourceFiles="%(TypeScriptLibraries.Identity)" DestinationFiles="$(TypeScriptLibrariesOutDir)%(TypeScriptLibraries.FileName)%(TypeScriptLibraries.Extension)" SkipUnchangedFiles="true" Condition="Exists('%(TypeScriptLibraries.Identity)')" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

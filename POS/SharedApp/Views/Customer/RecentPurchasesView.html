@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Recent Purchases View</title>
+    <link href="RecentPurchasesView.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="fragment recentPurchasesView">
+        <!-- Progress Ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="panoramicGrid col grow" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <!-- Main content -->
+            <div class="row marginBottom1 gridHeader">
+                <div class="grow">
+                    <h2 tabindex="0" data-bind="resx: { textContent: 'string_919' }">Products</h2>
+                </div>
+                <div id="showViewMenu" data-bind="click: ShowViewMenu">
+                    <!-- Change view -->
+                    <button class="iconListView iconButton noBorder iconBig" data-bind="resx: { ariaLabel: 'string_924' }"></button>    
+                </div>
+            </div>
+
+            <div id="recentPurchaseListView" class="standardGrid col" data-bind="visible: _sourceType == Commerce.ViewControllers.CustomerProductsSourceType.RecentPurchases">
+                <div id="productHeader" class="listViewHeader" data-bind="visible: customerDetailsViewModel.recentPurchases().length != 0 || !displayZeroProductsText()">
+                    <div class="ratio2">
+                        <h6 data-bind="resx: { textWithTooltip: 'string_231' }">PRODUCT NUMBER</h6>
+                    </div>
+                    <div class="ratio4 shrink">
+                        <h6 data-bind="resx: { textWithTooltip: 'string_232' }">PRODUCT NAME</h6>
+                    </div>
+                    <div class="ratio2">
+                        <h6 data-bind="resx: { textWithTooltip: 'string_233' }">DATE</h6>
+                    </div>
+                    <div class="ratio2">
+                        <h6 data-bind="resx: { textWithTooltip: 'string_234' }">RECEIPT/ORDERID</h6>
+                    </div>
+                </div>
+                <div id="displayZeroRecentPurchasesText" class="center tableContent" style="display: none">
+                    <div class="height10 width40">
+                        <h3 data-bind="resx: { textContent: 'string_235' }">There are no recent purchases</h3>
+                    </div>
+                </div>
+
+                <div id="recentPurchasesGrid"
+                     class="win-selectionstylefilled grow"
+                     data-win-control="WinJS.UI.ListView"
+                     data-win-options="{
+                            selectionMode: 'multi',
+                            itemTemplate: select('#productRecentPurchasesListTemplate'),
+                            layout: { type: WinJS.UI.ListLayout },
+                        }"
+                     data-bind="winControl: {
+                            incrementalDataSource: {dataManager: customerDetailsViewModel, callerMethod: customerDetailsViewModel.getRecentPurchases,  pageSize: Commerce.ViewModels.CustomerDetailsViewModel.RECENT_PURCHASES_PAGE_SIZE, 
+                                                    afterLoadComplete: '#displayZeroRecentPurchasesText', onLoading: indeterminateWaitVisible},
+                            iteminvoked: recentPurchaseItemInvokedHandler,
+                            templateSwitch: [
+                                    {   buttonId: '#showList',
+                                        templateId: '#productRecentPurchasesListTemplate',
+                                        layoutType: { type: WinJS.UI.ListLayout, assignClassToId :'#recentPurchaseListView', cssClasses: 'standardGrid col' },
+                                        displayElementId: '#productHeader',
+                                    },
+                                    {   buttonId: '#showSmallCards',
+                                        templateId: '#productRecentPurchaseTemplate',
+                                        layoutType: { type: WinJS.UI.GridLayout, assignClassToId :'#recentPurchaseListView', cssClasses: 'browseGrid col marginBottom0' },
+                                    },
+                                    {   buttonId: '#showLargeCards',
+                                        templateId: '#productLargeRecentPurchaseTemplate',
+                                        layoutType: { type: WinJS.UI.GridLayout, assignClassToId :'#recentPurchaseListView', cssClasses: 'browseGrid col marginBottom0' },
+                                    },
+                                ],
+                            selectionchanged: { eventHandlerCallBack: recentPurchaseSelectionChangedEventHandler, appBarId: '#commandAppBar' },
+                        },
+                        resx: { ariaLabel: 'string_925' } ">
+                    <!-- List of products -->
+                </div>
+            </div>
+            <div id="wishlistListView" class="standardGrid col" data-bind="visible: _sourceType == Commerce.ViewControllers.CustomerProductsSourceType.Wishlist">
+                <h3 class="marginLeft12" data-bind="visible: customerDetailsViewModel.recentPurchases().length == 0 && displayZeroProductsText(), resx: { textContent: 'string_253' }">There are no products in your wish list</h3>
+
+                <div id="wishlistHeader" class="listViewHeader" data-bind="visible: customerDetailsViewModel.wishListProducts().length != 0 || !displayZeroProductsText()">
+                    <div class="ratio2">
+                        <h6 data-bind="resx: {textWithTooltip: 'string_1002'}">Product Number</h6>
+                    </div>
+                    <div class="ratio6">
+                        <h6 data-bind="resx: {textWithTooltip: 'string_1003'}">Product Name</h6>
+                    </div>
+                    <div class="ratio2 textRight">
+                        <h6 data-bind="resx: {textWithTooltip: 'string_1004'}">Price</h6>
+                    </div>
+                </div>
+
+                <div id="wishlistProductGrid"
+                     class="win-selectionstylefilled grow"
+                     data-win-control="WinJS.UI.ListView"
+                     data-win-options="{
+                            selectionMode: 'multi',
+                            itemTemplate: select('#productListTemplate'),
+                            layout: { type: WinJS.UI.ListLayout },
+                        }"
+                     data-bind="winControl: {
+                            itemDataSource: customerDetailsViewModel.wishListProducts,
+                            iteminvoked: wishlistItemInvokedHandler,
+                            templateSwitch: [
+                                    {   buttonId: '#showList',
+                                        templateId: '#productListTemplate',
+                                        layoutType: { type: WinJS.UI.ListLayout, assignClassToId :'#wishlistListView', cssClasses: 'standardGrid col' },
+                                        displayElementId: '#wishlistHeader',
+                                    },
+                                    {   buttonId: '#showSmallCards',
+                                        templateId: '#productSmallCardTemplate',
+                                        layoutType: { type: WinJS.UI.GridLayout, assignClassToId :'#wishlistListView', cssClasses: 'browseGrid col' },
+                                    },
+                                    {   buttonId: '#showLargeCards',
+                                        templateId: '#productLargeCardTemplate',
+                                        layoutType: { type: WinJS.UI.GridLayout, assignClassToId :'#wishlistListView', cssClasses: 'browseGrid col' },
+                                    },
+                                ],
+                            selectionchanged: { eventHandlerCallBack: wishlistProductSelectionChangedEventHandler, appBarId: '#commandAppBar' },
+                        },
+                        resx: { ariaLabel: 'string_925' } ">
+                    <!-- List of products -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="recentPurchasesRespondFlyout" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#showViewMenu', placement: 'bottom', alignment: 'left', toggleShowHide: toggleShowHideMenu }">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'showList',label:'Show list'}" data-bind="resx: { label: 'string_900' }"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'showSmallCards',label:'Show small cards'}" data-bind="resx: { label: 'string_901' }"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'showLargeCards',label:'Show large cards'}" data-bind="resx: { label: 'string_902' }"></button>
+    </div>
+
+    <!-- Bottom app bar -->
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+        <!-- Commenting out the compare functionality   -->
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'compare',
+                extraClass: 'winappbar-iconCompare'
+            }"
+                data-bind="winControl: { disabled: compareDisabled, click: compareClicked }, resx: { label: 'string_903' }" /><!-- Compare -->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'addtosale',
+                extraClass: 'winappbar-iconAdd'
+            }"
+                data-bind="winControl: { disabled: addToSaleDisabled, click: addToSaleClick }, resx: { label: 'string_904' }" /><!-- add to sale-->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'addtosale',
+                extraClass: 'winappbar-iconAdd'
+            }"
+                data-bind="winControl: { disabled: addToSaleDisabled, click: sellNowClick }, resx: { label: 'string_922' }" /><!-- sell now-->
+    </div>
+</body>
+</html>

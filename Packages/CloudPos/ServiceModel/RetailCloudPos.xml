@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ServiceModel Name="RetailCloudPos" i:type="WebService" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Certificates>
+    <Certificate Name="RetailServiceSslCertificate" />
+    <Certificate Name="RetailClientCertificate" />
+  </Certificates>
+  <Dependencies>
+    <Dependency Name="Web-Server" Type="WindowsFeature"/>
+    <Dependency Name="Application-Server" Type="WindowsFeature" />
+    <Dependency Name="FileAndStorage-Services" Type="WindowsFeature"/>
+    <Dependency Name="NET-Framework-Features" Type="WindowsFeature"/>
+    <Dependency Name="NET-Framework-45-Features" Type="WindowsFeature"/>
+    <Dependency Name="MSMQ" Type="WindowsFeature"/>
+    <Dependency Name="WAS" Type="WindowsFeature"/>
+    <Dependency Name="Windows-Identity-Foundation" Type="WindowsFeature"/>
+    <Dependency Name="Server-Media-Foundation" Type="WindowsFeature"/>
+  </Dependencies>
+  <Endpoints>
+    <InputEndpoint Name="Https"  Certificate="RetailServiceSslCertificate" ApplicationProtocol="https" Type="External" DnsRecordSet="WebPos">
+      <LoadBalancer  Type="External" ProbePort="443" ProbeProtocol="tcp"/>
+      <EndpointRegistrations>
+        <EndpointRegistration Name="RetailCloudPos" Url="/">
+          <TestEndpointRegistration Name="ExternalPing"  Url="/config.json" IsAvailability="true" />
+        </EndpointRegistration>
+      </EndpointRegistrations>
+      <ValidationEndpoint Name="ValidationEndpoint" Url="/config.json"/>
+      <ApplicationProtocols>
+        <ApplicationProtocol Name="https" LocalPort="443" Certificate="RetailServiceSslCertificate" />
+      </ApplicationProtocols>
+    </InputEndpoint>
+  </Endpoints>
+  <DeploymentTasks>
+    <PreTask Name="InstallRetailCloudPOS" Command="Scripts\RetailCloudPosDSCConfiguration.ps1" Type="PowerShellScript" ParallelOnInstance="true">
+      <Parameter Name="serviceModelXml" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PreTask>
+    <PostTask Name="UpdateCloudPosDeployment" Command="Scripts\UpdateCloudPosDeploymentWithConfigWrapper.ps1" Type="PowerShellScript" ParallelOnInstance="true">
+      <Parameter Name="config" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+    <PostTask Name="SetConfigInstallationInfo" Command="Scripts\SetConfigInstallationInfo.ps1" Type="PowerShellScript" ContinueOnError="true" ParallelOnInstance="true">
+      <Parameter Name="config" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+    <PostTask Name="Call-RetailCloudPOSServicing" Command="Scripts\Call-RetailCloudPOSServicing.ps1" Type="PowerShellScript" ContinueOnError="true" >
+      <Parameter Name="config" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+    <PostTask Name="RunRetailCloudPosDVT" Command="Scripts\RunRetailCloudPosDVT.ps1" Type="PowerShellScript" ContinueOnError="true" ParallelOnInstance="true">
+      <Parameter Name="serviceModelXml" Value="[DeployBinding]"/>
+      <Parameter Name="config" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+    <PostTask Name="RetailPostConfigurationForDSCDeployment" Command="Scripts\RetailPostConfigurationForDSCDeployment.ps1" Type="PowerShellScript" ParallelOnInstance="true">
+      <Parameter Name="serviceModelXml" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+  </DeploymentTasks>
+  <Databases>
+    <Database Name="AxRetailChannel"/>
+  </Databases>
+  <WorkingFolders>
+    <WorkingFolder Name="WebRoot" />
+  </WorkingFolders>
+  <Configuration>
+    <Setting Name="serviceUri" Value="[Topology/Configuration/Setting[@Name='HostHeaders']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="RetailRTSAuthenticationCertificateThumbprint" Value="[ServiceModel/Certificates/Certificate[@Name='RetailClientCertificate']/@Thumbprint]" CopyToServiceConfig="false"/>
+    <Setting Name="AADTokenIssuerPrefix" Value="[Environment/Configuration/Setting[@Name='WIFConfiguration.AADIssuerNameFormat']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="AdminPrincipalName" Value="[Topology/Configuration/Setting[@Name='AxAdminAlias']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="RetailServerUrl" Value="[Topology/Configuration/Setting[@Name='RetailServerUrl']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="RetailCloudPOSPackageMetadata" Value="[Topology/Configuration/Setting[@Name='RetailCloudPOSPackageMetadata']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="AppInsightsInstrumentationKey" Value="[Environment/Configuration/Setting[@Name='Instrumentation.Retail.Client.Cpos.AppInsightsKey']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="EnvironmentId" Value="[Topology/Configuration/Setting[@Name='EnvironmentId']/@Value]" CopyToServiceConfig="false"/> 
+    <Setting Name="LogPath" Value="Temp" CopyToServiceConfig="false"/>
+    <Setting Name="ExpectedDVTServiceName" Value="[Topology/Configuration/Setting[@Name='ServiceName']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="ExpectedDVTAppPoolState" Value="Started" CopyToServiceConfig="false"/>
+    <Setting Name="ExpectedDVTAppPoolName" Value="[Topology/Configuration/Setting[@Name='ServiceName']/@Value]" CopyToServiceConfig="false"/>
+
+    <Setting Name="WebSiteName" Value="[Topology/Configuration/Setting[@Name='ServiceName']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="WebRoot" Value="[ServiceModel/WorkingFolders/WorkingFolder[@Name='WebRoot']/@Directory]" CopyToServiceConfig="false"/>
+    <Setting Name="ConfigurePrerequisites" Value="False" CopyToServiceConfig="false"/>
+    <Setting Name="WebsiteSslCertificateThumbprint" Value="[ServiceModel/Certificates/Certificate[@Name='RetailServiceSslCertificate']/@Thumbprint]" CopyToServiceConfig="false"/>
+    <Setting Name="RetailChannelDatabaseName" Value="[ServiceModel/Databases/Database[@Name='AxRetailChannel']/@DatabaseName]" CopyToServiceConfig="false"/>
+    <Setting Name="TestAssetsRoot" Value="C:\Test\DVD1" CopyToServiceConfig="false"/>
+  </Configuration>
+</ServiceModel>

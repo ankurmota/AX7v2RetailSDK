@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CustomerAddressesView</title>
+
+    <link href="CustomerAddressesView.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="customerAddressesView fragment">
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+        
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">  <!-- Main content -->
+
+            <!-- Primary address -->
+            <div class="no-shrink col">
+                <div class="row marginBottom1 no-shrink">
+                    <h2 data-bind="resx: { textContent: 'string_4809' }">Primary address</h2>
+                </div>
+
+                <div class="col wrap">
+                    <div class="browseGrid">
+                        <!-- The selectionMode property on data-win-options is set on the view controler. -->
+                        <div id="customerPrimaryAddressList" class="win-selectionstylefilled"
+                             data-win-control="WinJS.UI.ListView"
+                             data-win-options="{
+                                    itemTemplate: select('#customerAddressTemplate'),
+                                    layout: { type: WinJS.UI.ListLayout },
+                                    selectionMode: 'none',
+                                    tapBehavior: 'none',
+                                    swipeBehavior: 'none'
+                                 }"
+                             data-bind="winControl: {
+                                    itemDataSource: primaryAddressWrappers
+                                },
+                                resx: { ariaLabel: 'string_4809'}">
+                            <!-- Primary address -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gutter3x3"></div>
+
+            <!-- Addresses -->
+            <div class="col no-shrink">
+                <div class=" row marginBottom1 no-shrink">
+                    <h2 data-bind="resx: { textContent: 'string_4834' }">Addresses</h2>
+                </div>
+
+                <div class="browseGrid noMargin col">
+                    <!-- The selectionMode property on data-win-options is set on the view controler. -->
+                    <div id="customerAddressesList" class="win-selectionstylefilled"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                                itemTemplate: select('#customerAddressTemplate'),
+                                layout: { type: WinJS.UI.GridLayout },
+                                selectionMode: 'none',
+                                tapBehavior: 'none',
+                                swipeBehavior: 'none'
+                                }"
+                         data-bind="winControl: {
+                                    itemDataSource: otherAddressWrappers
+                                },
+                                resx: { ariaLabel: 'string_4834' }">
+                        <!-- Addresses -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

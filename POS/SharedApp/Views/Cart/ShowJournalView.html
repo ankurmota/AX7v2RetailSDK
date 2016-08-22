@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Show Journal View</title>
+    <link href="ShowJournalView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="showJournalView fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <!-- Transaction template -->
+        <div id="transactionListTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="listViewLine" data-win-bind="title: ReceiptId Commerce.Core.Converter.textContentFormatter">
+                <div class="ratio2"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: CreatedDateTime Commerce.Core.Converter.ShortDateAndTime"></h4></div>
+                <div class="ratio1"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: StaffId Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio2"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: TerminalId Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio1"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: TransactionTypeValue Commerce.Core.Converter.TransactionTypeFormatter"></h4></div>
+                <div class="ratio2"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: ReceiptId Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio2 textRight"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: TotalAmount Commerce.Core.Converter.PriceFormatter"></h4></div>
+            </div>
+        </div>
+
+        <!-- Orders template -->
+        <div id="orderListTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="listViewLine" data-win-bind="title: ReceiptId Commerce.Core.Converter.textContentFormatter">
+                <div class="ratio2"><h4 class=" ellipsis primaryFontColor" data-win-bind="textContent: CreatedDateTime Commerce.Core.Converter.ShortDateAndTime"></h4></div>                
+                <div class="ratio1"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: StaffId Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio2"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: TerminalId Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio1"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: TransactionTypeValue Commerce.Core.Converter.TransactionTypeFormatter"></h4></div>
+                <div class="ratio2"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: ReceiptId Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio2 textRight"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: TotalAmount Commerce.Core.Converter.PriceFormatter"></h4></div>
+            </div>
+        </div>
+
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">
+
+            <!-- Main content -->
+            <div class="col grow" data-bind="visible: !_isReceiptPreviewVisible()">
+
+                <!-- Journals -->
+                <div class="col grow">
+                    <div class="no-shrink">
+                        <h2 data-bind="resx: { textContent: 'string_4080' }">Journals</h2>
+                        <div class="gutter1x1"></div>
+                    </div>
+                    <div id="browseGridTransactions" class="standardGrid col">
+
+                        <div class="listViewHeader">
+                            <div class="ratio2">
+                                <h6 data-bind="resx: { textWithTooltip: 'string_4064' }"></h6>
+                            </div>
+                            <div class="ratio1">
+                                <h6 data-bind="resx: { textWithTooltip: 'string_4047' }"></h6>
+                            </div>
+                            <div class="ratio2">
+                                <h6 data-bind="resx: { textWithTooltip: 'string_4043' }"></h6>
+                            </div>
+                            <div class="ratio1">
+                                <h6 data-bind="resx: { textWithTooltip: 'string_4066' }"></h6>
+                            </div>
+                            <div class="ratio2">
+                                <h6 data-bind="resx: { textWithTooltip: 'string_4065' }"></h6>
+                            </div>
+                            <div class="ratio2 textRight">
+                                <h6 data-bind="resx: { textWithTooltip: 'string_4024' }"></h6>
+                            </div>
+                        </div>
+
+                        <!-- ko if: isShowJournalMode -->
+                        <div id="displayZeroTransactionText" class="center listViewEmptyContentPlaceholder" data-bind="style: { display: isShowJournalMode ? 'flex' : 'none' }">
+                            <h3 data-bind="resx: { textContent: 'string_1032' }">We didn't find anything to display here.</h3>
+                        </div>
+                        <div class="win-selectionstylefilled"
+                             data-win-control="WinJS.UI.ListView"
+                             data-win-options="{
+                                    selectionMode: 'single',
+                                    itemTemplate: select('#transactionListTemplate'),
+                                    layout: {type: WinJS.UI.ListLayout},
+                                    tapBehavior: 'toggleSelect',
+                                }"
+                             data-bind="winControl: {
+                             incrementalDataSource: {dataManager: _showJournalViewModel, callerMethod: _showJournalViewModel.getJournalTransactions, pageSize: 20,
+                                                    afterLoadComplete: '#displayZeroTransactionText', onLoading: indeterminateWaitVisible, autoSelectFirstItem : true},
+                             selectionchanged: { eventHandlerCallBack: journalSelectionChangedHandler}
+                             },
+                             resx: { ariaLabel: 'string_1037' }">
+
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: !isCustomerSalesOrdersMode && !isShowJournalMode -->
+                        <div id="displayZeroOrderText" class="center listViewEmptyContentPlaceholder" style="display: none">
+                            <h3 data-bind="resx: { textContent: 'string_1032' }">We didn't find anything to display here.</h3>
+                        </div>
+                        <div class="win-selectionstylefilled"
+                             data-win-control="WinJS.UI.ListView"
+                             data-win-options="{
+                                    selectionMode: 'single',
+                                    itemTemplate: select('#orderListTemplate'),
+                                    layout: {type: WinJS.UI.ListLayout},
+                                    tapBehavior: 'toggleSelect',
+                                }"
+                             data-bind="winControl: {
+                             incrementalDataSource: {dataManager: _showJournalViewModel, callerMethod: _showJournalViewModel.getSalesOrders, pageSize: 20,
+                                                    afterLoadComplete: '#displayZeroOrderText', onLoading: indeterminateWaitVisible, autoSelectFirstItem : true},
+                             selectionchanged: { eventHandlerCallBack: journalSelectionChangedHandler}
+                             },
+                             resx: { ariaLabel: 'string_1037' }">
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: isCustomerSalesOrdersMode -->
+                        <div id="displayZeroCustomerSalesOrderText" class="center listViewEmptyContentPlaceholder" style="display: none">
+                            <h3 data-bind="resx: { textContent: 'string_1032' }">We didn't find anything to display here.</h3>
+                        </div>
+                        <div class="win-selectionstylefilled"
+                             data-win-control="WinJS.UI.ListView"
+                             data-win-options="{
+                                    selectionMode: 'single',
+                                    itemTemplate: select('#orderListTemplate'),
+                                    layout: {type: WinJS.UI.ListLayout},
+                                    tapBehavior: 'toggleSelect',
+                                }"
+                             data-bind="winControl: {
+                             incrementalDataSource: {dataManager: _showJournalViewModel, callerMethod: _showJournalViewModel.getSalesOrdersByCustomerIdAsync, pageSize: 20,
+                                                    afterLoadComplete: '#displayZeroCustomerSalesOrderText', onLoading: indeterminateWaitVisible, autoSelectFirstItem : true},
+                             selectionchanged: { eventHandlerCallBack: journalSelectionChangedHandler}
+                             },
+                             resx: { ariaLabel: 'string_1037' }">
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </div>
+
+                <div class="gutter4x4"></div>
+
+                <!-- Transaction lines -->
+                <div class="col grow">
+                    <div class="row marginBottom1">
+                        <div class="marginRight4"><h2 id="linesTabText" class="tabFontColor outlineFocus" tabindex="0" data-bind="css: { active: _transactionGridViewMode() == Commerce.ViewControllers.CartViewTransactionDetailViewMode.Items }, click: TogglePaymentLineItemGrid, enterKeyPress: TogglePaymentLineItemGrid, resx: { textContent: 'string_181' }">Lines</h2></div>
+                        <div class="marginRight4"><h2 id="paymentsTabText" class="tabFontColor outlineFocus" tabindex="0" data-bind="css: { active: _transactionGridViewMode() == Commerce.ViewControllers.CartViewTransactionDetailViewMode.Payments }, click: TogglePaymentLineItemGrid, enterKeyPress: TogglePaymentLineItemGrid, resx: { textContent: 'string_182' }">Payments</h2></div>
+                    </div>
+                    <!-- Default grid to show -->
+                    <div class="standardGrid transactionLinesGrid">
+                        <div class="col grow" data-bind="visible: _transactionGridViewMode() == Commerce.ViewControllers.CartViewTransactionDetailViewMode.Items">
+                            <div class="standardGrid" data-bind="
+                                    visible: incomeExpenseAccountLines().length == 0 && customerAccountDepositLines().length == 0,
+                                    listView: {
+                                        itemDataSource: salesLines,
+                                        headerRowClass: 'tillLayout-SelectedLinesFields',
+                                        rowClass: 'tillLayout-SelectedLinesFields',
+                                        selectionMode: 'none',
+                                        strikethroughRow: 'IsVoided',
+                                        expandable: true,
+                                        expandableRowConverter: isTransactionGridRowExpandable.bind($root),
+                                        rowExpanded: onLineItemExpand,
+                                        columns: [
+                                            { titleResx: 'string_110', cssClass: 'ratio6' , field: 'ProductName' },
+                                            { titleResx: 'string_111' , cssClass: 'ratio2 textRight' , field: 'Quantity' },
+                                            { titleResx: 'string_112' , cssClass: 'ratio2 textRight' , field: 'NetAmount' , converter: 'Commerce.Core.Converter.PriceFormatter' }
+                                        ]}">
+                            </div>
+
+                            <div class="standardGrid" data-bind="
+                                    visible: incomeExpenseAccountLines().length > 0,
+                                    listView: {
+                                        itemDataSource: incomeExpenseAccountLines,
+                                        headerRowClass: 'tillLayout-SelectedLinesFields',
+                                        rowClass: 'tillLayout-SelectedLinesFields',
+                                        selectionMode: 'none',
+                                        columns: [
+                                            { titleResx: 'string_4131', cssClass: 'ratio5', field: 'AccountTypeValue', converter: 'Commerce.Core.Converter.IncomeExpenseAccountTypeFormatter' },
+                                            { titleResx: 'string_4057', cssClass: 'ratio3 textRight', field: 'IncomeExpenseAccount' },
+                                            { titleResx: 'string_4024', cssClass: 'ratio2 textRight', field: 'Amount', converter: 'Commerce.Core.Converter.PriceFormatter' }
+                                        ]}">
+                            </div>
+
+                            <div class="standardGrid" data-bind="
+                                    visible: customerAccountDepositLines().length > 0,
+                                    listView: {
+                                        itemDataSource: customerAccountDepositLines,
+                                        selectionMode: 'none',
+                                        expandable: true,
+                                        expandableRowConverter: isCustomerAccountDepositGridRowExpandable.bind($root),
+                                        rowExpanded: onCustomerAccountDepositLineItemExpand,
+                                        columns: [
+                                            { titleResx: 'string_110', cssClass: 'ratio7', defaultValueResx: 'string_1927' },
+                                            { titleResx: 'string_4024', cssClass: 'ratio3 textRight', field: 'Amount', converter: 'Commerce.Core.Converter.PriceFormatter' }
+                                        ]}">
+                            </div>
+                        </div>
+                        <div class="standardGrid" data-bind="
+                            visible: _transactionGridViewMode() == Commerce.ViewControllers.CartViewTransactionDetailViewMode.Payments">
+                            <div class="standardGrid" data-bind="
+                                    listView: {
+                                        itemDataSource: tenderLines,
+                                        headerRowClass: 'tillLayout-SelectedLinesFields',
+                                        rowClass: 'tillLayout-SelectedLinesFields',
+                                        strikethroughRowConverter: $root.isPaymentVoided,
+                                        strikethroughEnabled: true,
+                                        selectionMode: 'none',
+                                        columns: [
+                                            { titleResx: 'string_114', cssClass: 'ratio6', field: '$data', converter: 'Commerce.Core.Converter.TenderLineNameFormatter' },
+                                            { titleResx: 'string_115', cssClass: 'ratio2 textRight', field: 'Currency' },
+                                            { titleResx: 'string_116', cssClass: 'ratio2 textRight', field: '$data', converter: 'Commerce.Core.Converter.AmountInTenderedCurrencyFormatter' }
+                                        ]
+                                    }">
+                            </div>
+                        </div>
+
+                        <script type="text/html" id="ShowJournallineItemColspan">
+                                <div class="lineItemVariant secondaryFontColor row" data-bind="visible: $root.getVariantName(originalCartLine).length > 0">
+                                    <h4 data-bind="text: $root.getVariantName(originalCartLine)"></h4>
+                                </div>
+                                <div class="lintItemPriceOverrideText secondaryFontColor" data-bind="visible: originalCartLine.IsPriceOverridden">
+                                    <h4 data-bind="text: $root.getPriceOverrideText(originalCartLine)"></h4>
+                                </div>
+                                <div class="lineItemComment secondaryFontColor row" data-bind="visible: originalCartLine.Comment.length > 0">
+                                    <h4 data-bind="text: originalCartLine.IsGiftCardLine ? '' : originalCartLine.Comment"></h4>
+                                </div>
+                                <div class="lineItemSerialNumber secondaryFontColor row" data-bind="visible: originalCartLine.SerialNumber.length > 0">
+                                    <h4 data-bind="text: originalCartLine.SerialNumber"></h4>
+                                </div>
+                                <div class="secondaryFontColor" data-bind="foreach: { data: originalCartLine.DiscountLines, as: 'discountLine' }">
+                                    <div class="row">
+                                        <h4 data-bind="text: Commerce.DiscountsHelper.getDiscountTypeName(discountLine, originalCartLine.Price, originalCartLine.Quantity)"></h4>
+                                    </div>
+                                </div>
+                        </script>
+                        <script type="text/html" id="ShowJournalCustomerAccountDepositLineItemColspan">
+                            <div class="lineItemComment secondaryFontColor row" data-bind="visible: line.Comment.length > 0">
+                                <h4 data-bind="text: line.Comment"></h4>
+                            </div>
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gutter4x2"></div>
+
+            <div class="flip col no-shrink" data-bind="visible: !_isReceiptPreviewVisible()">
+
+                <div class="col no-shrink grow minWidth26 maxWidth32">
+
+                    <div class="marginBottom1">
+                        <h2 data-bind="resx: { textContent: 'string_136' }">Customer</h2>
+                    </div>
+                    <div class="height21">
+                        <div class="center primaryPanelBackgroundColor highContrastBorder" data-bind="if:!selectedSalesOrder(), visible:!selectedSalesOrder()">
+                            <div class="textCenter margin5">
+                                <h4 data-bind="resx: { textContent: 'string_4165' }">Select a transaction.</h4>
+                            </div>
+                        </div>
+                        <div class="center primaryPanelBackgroundColor highContrastBorder" data-bind="if: selectedSalesOrder(), visible: selectedSalesOrder()?!_isCustomerDetailsVisible():_isCustomerDetailsVisible()">
+                            <div class="textCenter margin5">
+                                <h4 data-bind="resx: { textContent: 'string_4430' },visible: selectedSalesOrder().CustomerId.length==0">There is no customer associated with this sale.</h4>
+                                <h4 data-bind="resx: { textContent: 'string_4170' },visible: selectedSalesOrder().CustomerId.length!=0">Customer cannot be found.</h4>
+                            </div>
+                        </div>
+                        <div data-bind="customerCard: {data: _customerCardViewModel, template: 'customerContactCardTemplate'}, visible: _isCustomerDetailsVisible"></div>
+                    </div>
+                </div>
+
+                <div class="gutter4x2"></div>
+
+                <div class="minWidth25 maxWidth31 col no-shrink grow">
+
+                    <div class="col grow primaryPanelBackgroundColor highContrastBorderThin">
+                        <div class="center" data-bind="visible: !selectedSalesOrder()">
+                            <div class="textCenter margin5">
+                                <h4 data-bind="resx: { textContent: 'string_4165' }">Select a transaction.</h4>
+                            </div>
+                        </div>
+                        <div id="TotalsPanel" class="col grow layoutControl transactionDetails panel"
+                             data-bind="with: selectedSalesOrder, visible: selectedSalesOrder()">
+                            <div class="fields row">
+                                <div class="left grow">
+                                    <div id="DiscountsField" data-bind="visible: DiscountAmount">
+                                        <div class="row pad1 padBottom0">
+                                            <div class="secondaryFontColor"><h6 data-bind="resx: { textContent: 'string_118' }">DISCOUNTS</h6></div>
+                                            <div class="textRight"><h4 data-bind="formatPrice: DiscountAmount"></h4></div>
+                                        </div>
+                                    </div>
+                                    <div id="SubtotalField">
+                                        <div class="row pad1 padBottom0">
+                                            <div class="secondaryFontColor"><h6 data-bind="resx: { textContent: 'string_120' }">SUBTOTAL</h6></div>
+                                            <div class="textRight"><h4 data-bind="formatPrice: SubtotalAmount"></h4></div>
+                                        </div>
+                                    </div>
+                                    <div id="ChargeField" data-bind="visible: ChargeAmount">
+                                        <div class="row pad1 padBottom0">
+                                            <div class="secondaryFontColor"><h6 data-bind="resx: { textContent: 'string_4323' }">CHARGES</h6></div>
+                                            <div class="textRight"><h4 data-bind="formatPrice: ChargeAmount"></h4></div>
+                                        </div>
+                                    </div>
+                                    <div id="TaxField">
+                                        <div class="row pad1 padBottom0">
+                                            <div class="secondaryFontColor"><h6 data-bind="resx: { textContent: 'string_119' }">TAX</h6></div>
+                                            <div class="textRight"><h4 data-bind="formatPrice: TaxAmount"></h4></div>
+                                        </div>
+                                    </div>
+                                    <div id="TotalField">
+                                        <div class="row pad1 padBottom0">
+                                            <div class="secondaryFontColor"><h6 data-bind="resx: { textContent: 'string_140' }">TOTAL</h6></div>
+                                            <div class="textRight"><h4 data-bind="formatPrice: TotalAmount"></h4></div>
+                                        </div>
+                                    </div>
+                                    <div id="EmptyLine">
+                                        <div class="row pad1 padBottom0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row pad1 panel-footer">
+                                <div class="secondaryFontColor height1">
+                                    <h6 data-bind="resx: { textContent: 'string_1818' }">Total paid</h6>
+                                </div>
+                                <div class="textRight height3">
+                                    <h1 data-bind="formatPrice: AmountPaid"></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="receiptPreview grow" data-bind="visible: _isReceiptPreviewVisible">
+                <pre  data-bind="html: receiptText"></pre>
+            </div>
+
+        </section>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+            <!-- Buttons visible in default mode -->
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'advancedSearchCommand', label:'Advanced search', extraClass: 'winappbar-iconSearch', section: 'selection'}"
+                    data-bind="click: advanceSearch, resx: { label: 'string_4567' }, visible: !_isReceiptPreviewVisible() && isShowJournalMode"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'showGiftReceiptCommand', label:'Show gift receipt', extraClass: 'winappbar-iconReceipt'}"
+                    data-bind="click: showGiftReceiptOperation, disable: _disableGiftReceiptButton, resx: { label: 'string_4181' }, visible: !_isReceiptPreviewVisible()"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'showReceiptCommand', label:'Show receipt', extraClass: 'winappbar-iconReceipt'}"
+                    data-bind="click: showReceiptOperation, disable: !selectedSalesOrder(), resx: { label: 'string_4072' }, visible: !_isReceiptPreviewVisible()"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'returnOperationAppBar', label:'Return', extraClass: 'winappbar-iconReturn'}"
+                    data-bind="click: returnOperation, resx: { label: 'string_4071' }, disable: _disableReturnButton, visible: !_isReceiptPreviewVisible()"></button>
+            
+            <!-- Buttons visible in preview mode -->
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'printReceiptsCommand', label:'Print', extraClass: 'winappbar-iconPrint'}"
+                    data-bind="click: printReceipts, resx: { label: 'string_1808' }, disable: _disablePrintReceipt, visible: _isReceiptPreviewVisible"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'cancelShowReceiptCommand', label:'Close', extraClass: 'winappbar-iconCancel'}"
+                    data-bind="click: cancelShowReceiptOperation, resx: { label: 'string_80' }, visible: _isReceiptPreviewVisible"></button>
+        </div>
+    </div>
+</body>
+</html>

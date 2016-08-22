@@ -1,0 +1,43 @@
+@using Contoso.Commerce.RetailProxy;
+@using Contoso.Retail.Ecommerce.Sdk.Core;
+
+@model Contoso.Retail.Ecommerce.Web.Storefront.ViewModels.ProductSearchResultsViewModel
+
+
+@{
+    ViewBag.Title = "Product Search Results - Contoso ";
+}
+
+@section other{
+    <link href="~/Content/CSS/productGallery.css" rel="stylesheet" />
+}
+
+<div class="page-title margin-bottom-20">Search results for '@Model.SearchText'</div>
+
+<div class="col-md-9 col-sm-8 col-xs-12">
+
+    <!-- Go through each product result -->
+    @foreach (ProductSearchResult productSearchResult in Model.ProductSearchResults.Results)
+    {
+            <div class="product-gallery-product-wrapper">
+
+                <div class="product-gallery-img-wrapper">
+
+                    <a href="../ProductDetails?productId=@productSearchResult.RecordId">
+                        <img src="/@productSearchResult.PrimaryImageUrl" class="product-gallery-img" />
+                    </a>
+
+
+                </div>
+                <div class="product-gallery-product-description-wrapper">
+                    <a href="../ProductDetails?productId=@productSearchResult.RecordId" class="product-gallery-product-name">
+                        @productSearchResult.Name
+                    </a>
+
+                        <div class="product-gallery-product-base-price base-price not-on-sale">@productSearchResult.ExtensionProperties.GetPropertyValue("FormattedPrice", ExtensionPropertyTypes.String)</div>
+                </div>
+
+            </div>
+    }
+
+</div>

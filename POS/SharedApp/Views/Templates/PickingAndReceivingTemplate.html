@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Picking and Receiving Templates</title>
+    <link href="PickingAndReceivingTemplate.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="pickAndReceiveDetailsListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="listViewLine row height5" data-win-bind="title: description">
+            <div class="ratio2"><h4 data-win-bind="textContent: productNumber"></h4></div><!-- PRODUCT NUMBER -->
+            <div class="ratio3">
+               
+                <div><h4 data-win-bind="textContent: description"></h4></div><!-- DESCRIPTION -->
+                <div><h4 data-win-bind="textContent: this Commerce.Core.Converter.PickingAndReceivingVariantFormatter"></h4></div><!-- VARIANT VALUES -->
+                
+            </div>
+            <div class="ratio2 textRight"><h4 data-win-bind="textContent: quantityOrdered"></h4></div><!-- ORDERED / TRANSFERRED / TRANSFER QUANTITY -->
+            <div class="ratio1 textRight"><h4 data-win-bind="textContent: quantityReceived"></h4></div><!-- RECEIVED / SHIPPED -->
+            <div class="ratio1 textRight"><h4 data-win-bind="textContent: quantityReceivedNow"></h4></div><!-- RECEIVED NOW / SHIPPED NOW -->
+            <div class="ratio1"><h4 data-win-bind="textContent: unitOfMeasure"></h4></div><!-- UOM -->
+        </div>
+    </div>
+</body>
+</html>

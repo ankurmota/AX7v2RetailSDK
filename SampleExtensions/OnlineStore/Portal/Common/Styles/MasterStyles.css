@@ -1,0 +1,121 @@
+body {
+    font-size: 12px;
+    font-family: "Segoe UI", "Segoe", Tahoma, Helvetica, Arial, sans-serif, "Droid Sans";
+    margin: 0 auto;
+}
+
+.msax-MyAccount .msax-OrderHistoryLink {
+    font-size: 12px;
+}
+
+.msax-OrderHistoryDescription,
+.msax-RecentOrdersDescription {
+    float: left;
+    color: #6A6C6E;
+    margin: 10px 0px 20px 10px;
+}
+
+.msax-OrderDate:hover,
+.msax-OrderStatus:hover {
+    text-decoration: none !important;
+}
+
+.msax-OrderDate,
+.msax-OrderStatus {
+    color: #444 !important;
+}
+
+.msax-NoOrdersMessage,
+.msax-NoAddressesMessage {
+    color: #444;
+}
+
+.msax-NoAddressesMessage {
+    margin-top: 36px;
+}
+
+.msax-HeaderOrderDate {
+    width: 90px;
+}
+
+.msax-PageTitle {
+    margin: 20px 10px 30px;
+    font-size: 18px;
+    color: #272727;
+    font-weight: 400;
+}
+
+.msax-PageTitle > h1 {
+    margin: 20px 10px 30px 0px;
+    font-size: 18px;
+    color: #272727;
+    font-weight: 400;
+}
+
+.msax-PageSubTitle > h1 {
+    margin-top: 0px !important;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #272727;
+    font-weight: 400;
+    float: left;
+}
+
+.msax-PageSubTitle {
+    font-size: 14px;
+    color: #272727;
+    font-weight: 400;
+}
+
+.msax-Link > a {
+    float: right;
+}
+
+.msax-PaddingRight20 {
+    padding-right: 20px;
+}
+
+.msax-PaddingRight5 {
+    padding-right: 5px;
+}
+
+#ProductsGrid {
+    width: 800px;
+    float: left;
+}
+
+.msax-PaddingBottom20 {
+    padding-bottom: 20px;
+}
+
+footer {
+    width:100%;
+	background: grey;
+    bottom: 0;
+    color: white;
+    font-size: 12px;
+    height: 80px;
+    left: 0;
+    margin-top: 100px;
+    position: relative;
+    float:left;
+}
+
+footer > div {
+    padding-top: 5px;
+    padding-left: 30%;
+}
+
+#ctrlShoppingCart {
+    float: left;
+}
+
+#ctrlCheckout {
+    float: left;
+}
+
+#ctrlMiniCart {
+    width: 80px;
+    float: right;
+    margin-bottom: 20px;
+}

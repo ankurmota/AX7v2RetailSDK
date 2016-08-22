@@ -1,0 +1,43 @@
+{
+ "issuer": "https://commerce.dynamics.com/auth",
+ "authorization_endpoint": "",
+ "token_endpoint": "https://commerce.cloud.onebox.dynamics.com/retailserver/token",
+ "userinfo_endpoint": "",
+ "revocation_endpoint": "",
+ "jwks_uri": "~/auth/certs/Certs.json",
+ "response_types_supported": [
+  "token",
+  "id_token",
+  "token id_token",
+  "none"
+ ],
+ "subject_types_supported": [
+  "public"
+ ],
+ "id_token_signing_alg_values_supported": [
+  "RS256"
+ ],
+ "scopes_supported": [
+  "openid",
+  "email",
+  "profile"
+ ],
+ "token_endpoint_auth_methods_supported": [
+  "client_secret_post",
+  "client_secret_basic"
+ ],
+ "claims_supported": [
+  "aud",
+  "email",
+  "email_verified",
+  "exp",
+  "family_name",
+  "given_name",
+  "iat",
+  "iss",
+  "locale",
+  "name",
+  "picture",
+  "sub"
+ ]
+}

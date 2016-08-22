@@ -1,0 +1,316 @@
+@import '../Common/_Constants.scss';
+
+#taskrecorderhost {
+}
+
+.taskRecorderMainPanel {
+    #taskRecorderMainPanelPageHost {
+        height: 100%;
+
+        .pagecontrol {
+            height: 100%;
+
+            .recordingView {
+                height: 100%;
+            }
+        }
+    }
+
+    button, input[type=button], input[type=reset] {
+        color: #008a00;
+    }
+
+    button:hover, 
+    input[type=button]:hover, 
+    input[type=reset]:hover,
+    button:active, 
+    input[type=button]:active, 
+    input[type=reset]:active {
+        color: #FFFFFF;
+    }
+
+    div[role=button] {
+    	cursor: pointer;
+        color: #008a00;
+    }
+
+    div[role=button]:hover {
+
+        button,
+        input[type=button], 
+        input[type=reset] {
+            color: #FFFFFF;
+        }
+
+        .iconAdd {
+    	    border: 2px solid #FFFFFF;
+        }
+
+        background-color: #009E00;
+        color: #FFFFFF;
+    }
+
+    div[role=button]:active {
+
+        button,
+        input[type=button], 
+        input[type=reset] {
+            color: #FFFFFF;
+        }
+
+        .iconAdd {
+    	    border: 2px solid #FFFFFF;
+        }
+
+        background-color: #007600;
+        color: #FFFFFF;
+    }
+
+    div[disabled] {
+        pointer-events: none;
+
+        button, input[type=button], input[type=reset] {
+            color: #A6A6A6;
+        }
+
+        div[role=button] {
+            color: #A6A6A6;
+        }
+
+        div[role=button]:hover {
+
+            button,
+            input[type=button], 
+            input[type=reset] {
+                color: #A6A6A6;
+            }
+
+            background-color: #FFFFFF;
+            color: #A6A6A6;
+        }
+    }
+
+    .tabFontColor {
+         color: #A6A6A6 !important;
+    }
+
+    .tabFontColor.active {
+        color: #1D1D1D !important;
+    }
+
+    input[type=text],
+    textarea, 
+    .win-textarea {
+        background-color: #F6F6F6;
+        border: 1px solid #919395;
+        overflow: hidden;
+    }
+
+    input[type=text]:focus,
+    textarea:focus, 
+    .win-textarea:focus {
+        background-color: #FFFFFF;
+        border: 2px solid #919395;
+    }
+
+    .win-toggleswitch-disabled.win-toggleswitch .win-toggleswitch-track {
+        color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .win-toggleswitch-disabled.win-toggleswitch .win-toggleswitch-fill-lower {
+        background-color: #7e7e7e !important;
+    }
+
+    .win-toggleswitch-disabled.win-toggleswitch .win-toggleswitch-thumb,
+    .win-toggleswitch.win-toggleswitch-disabled .win-toggleswitch-fill-upper {
+        background-color: #7e7e7e !important;
+    }
+
+    .win-toggleswitch-disabled.win-toggleswitch .win-toggleswitch-fill-upper {
+        background-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+    .win-toggleswitch .win-toggleswitch-value {
+        color: #1D1D1D !important;
+        font-size: 2em !important;
+    }
+
+    .win-toggleswitch .win-toggleswitch-track {
+        border-color: #1D1D1D !important;
+    }
+
+    .win-toggleswitch .win-toggleswitch-thumb {
+        background-color: #1D1D1D !important;
+    }
+
+    .win-toggleswitch .win-toggleswitch-fill-lower {
+        background-color: #008B00 !important;
+    }
+
+    .buttonsContainer {
+        position: absolute;
+        top: calc(100% - 8em);
+    }
+
+    .buttonContainer {
+        width: calc(100% - 5em);
+    }
+
+    .closeButton {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        font-family: DynamicsFont;
+        color: black;
+        margin: 0;
+    }
+
+    .primaryButton,
+    .secondaryButton {
+        color: #FFFFFF !important;
+        border: 2px solid #000000 !important;
+    }
+
+    .iconAdd {
+    	border: 2px solid #008a00;
+    }
+
+    .iconAdd:hover,
+    .iconAdd:active {
+    	border: 2px solid #FFFFFF;
+    }    
+
+    .listSteps{
+        height: 60%;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .listSteps ul {
+        padding: 0px;
+        width: 100%;
+
+        flex: 1 1 auto;
+        overflow-y: auto;
+        min-height: 0px;
+
+        .title,
+        .displayNumber,
+        .description {
+            font-size: 1.4em;
+            line-height: 1.4289;
+        }
+    }
+
+    .completeView {
+        padding-bottom: 1em;
+    }
+
+    .editStepContainer {
+        overflow-x: hidden;
+    }
+
+    ul li div {
+        padding: 0;
+    }
+
+    .controlPanel  {
+        border-top: 1px solid #717375;
+    }
+
+    .controlPanel .col div  {
+        padding: 0;
+        height: 4em !important;
+        min-height: 4em !important;
+        max-height: 4em !important;
+    }
+
+    .completeView .col h4 {
+        font-size: 1.8em !important;
+    }
+
+    .iconContinue + div,
+    .iconPause + div,
+    .iconStop + div {
+        margin-left: 0em !important;
+    }
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: $taskrecorder-panels-z-index + 1;
+    width: 40em;
+    padding: 3em 4em 4em;
+    background-color: white;
+    color: #1D1D1D;
+}
+
+.taskRecorderControlPanel {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: $taskrecorder-panels-z-index + 2;
+
+    background-color: #000000;
+
+    button, input[type=button], input[type=reset] {
+        color: #FFFFFF;
+    }
+
+    div[role=button],
+    div[role=button]:hover {
+
+        button,
+        input[type=button], 
+        input[type=reset] {
+            color: #FFFFFF;
+        }
+        color: #FFFFFF;
+    }
+
+    .col:hover {
+        background-color: #009E00;
+        cursor: pointer;
+    }
+
+    .iconRecordingInProgress + div,
+    .iconContinue + div,
+    .iconStop + div,
+    .iconTaskRecorder + div {
+        margin-left: 0em !important;
+    }
+}
+
+.taskRecorderHelp {
+    .clickable {
+        cursor: pointer;
+    }
+
+    .listItem {
+    }
+
+    .listItem * {
+        color: #008A00;
+    }
+
+    .listItem *:hover {
+        color: #008A00;
+    }
+
+    .listItem *:active {
+        color: #007600;
+    }
+
+    .listSteps {
+        height: 50%;
+    }
+
+    height: 100%;
+}
+
+.buttonBlock div {
+    padding: 0;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div data-bind="loader: { visible: _indeterminateWaitVisible, type: Commerce.Controls.LoaderType.Page}"></div>
+    <div class="no-shrink row grow">
+        <div class="grow">
+            <h4 class="title"
+                data-bind="resx: { textContent: 'string_10055' }">
+                TASK RECORDER
+            </h4>
+        </div>
+    </div>
+    <div class="col grow padTop1">
+        <div class="row">
+            <h2 data-bind="resx: { textContent: 'string_10046' }"> Your recording is ready </h2>
+        </div>
+        <div class="padTop1 padBottom2">
+            <label class="row" data-bind="resx: { textContent: 'string_10048' }"> Name </label>
+            <h4 data-bind="text: recordingName"></h4>
+        </div>
+        <div class="completeView">
+            <div class="col grow" data-bind="buttonBlock: {
+                        buttonClass: 'iconSaveRecording',
+                        click: saveToThisPC,
+                        labelTextResx: 'string_10120',       // Save to this PC
+                        ariaLabelResx: 'string_10120',       // Save to this PC
+                    }">
+            </div>
+        </div>
+        <div class="completeView" data-bind="visible: isLcsAvailable()">
+            <div class="col grow" data-bind="buttonBlock: {
+                        buttonClass: 'iconSaveToLifecycleServices',
+                        click: saveToLifecycleServices,
+                        labelTextResx: 'string_10058',       // Save to LCS
+                        ariaLabelResx: 'string_10058',       // Save to LCS
+                    }">
+            </div>
+        </div>
+        <div class="completeView">
+            <div class="col grow" data-bind="buttonBlock: {
+                        buttonClass: 'iconSaveWordDocument',
+                        click: saveWordDocument,
+                        labelTextResx: 'string_10051',       // Export as Word document
+                        ariaLabelResx: 'string_10051',       // Export as Word document
+                    }">
+            </div>
+        </div>
+        <div class="completeView">
+            <div class="col grow" data-bind="buttonBlock: {
+                        buttonClass: 'iconSaveRecording',
+                        click: saveRecording,
+                        labelTextResx: 'string_10049',       // Save as developer recording
+                        ariaLabelResx: 'string_10049',       // Save as developer recording
+                    }">
+            </div>
+        </div>
+        <div class="gutter1x1"></div>
+        <div class="col">
+            <h4 class="secondaryFontColor" data-bind="resx: { textContent: 'string_10226'}">
+                Privacy statement: Any information that you enter into the application while you
+                are recording will be captured and included in the recording file,
+                Training document and BPM package. If you decide to share the recording file,
+                training document or BPM package others may be able to see the information that was captured.
+            </h4>
+        </div>
+        <div class="buttonsContainer row">
+            <div class="buttonContainer col no-shrink">
+                <button class="primaryButton" type="button" data-bind="resx: { textContent: 'string_10060' }, click: closeRecording">Done</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

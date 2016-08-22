@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <ProjectGuid>{387A27A8-D273-4E1E-BF5C-D278C69FB43B}</ProjectGuid>
+    <PackageName>RetailSelfService</PackageName>
+    <InputManifest>Scripts\InstallationInfo.xml</InputManifest>
+    <OutputManifest>content.folder\$(PackageName)\Scripts\InstallationInfo.xml</OutputManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <CustomizedModernPosSetupExe Include="$(SdkReferencesPath)\$(AssemblyNamePrefix).ModernPOSSetup.exe" />
+    <CustomizedModernPosOfflineSetupExe Include="$(SdkReferencesPath)\$(AssemblyNamePrefix).ModernPOSSetupOffline.exe" />
+    <CustomizedHardwareStationSetupExe Include="$(SdkReferencesPath)\$(AssemblyNamePrefix).HardwareStationSetup.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomManifestAttributes Include="ModernPosExeName">
+      <Value>@(CustomizedModernPosSetupExe->'%(Filename)%(Extension)')</Value>
+    </CustomManifestAttributes>
+    <CustomManifestAttributes Include="ModernPosOfflineExeName">
+      <Value>@(CustomizedModernPosOfflineSetupExe->'%(Filename)%(Extension)')</Value>
+    </CustomManifestAttributes>
+    <CustomManifestAttributes Include="HardwareStationExeName">
+      <Value>@(CustomizedHardwareStationSetupExe->'%(Filename)%(Extension)')</Value>
+    </CustomManifestAttributes>
+  </ItemGroup>
+  <ItemGroup>
+    <_Scripts_File Include="$(SdkAssetsPath)\AutoETWManifestUpdate.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Configuration.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Web.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\SetConfigInstallationInfo.ps1" />
+    <_Scripts_File Include="..\..\References\Microsoft.Dynamics.AX.AXInstallationInfo.dll" />
+    <_Scripts_File Include="Scripts\AutoETWManifestRestore.ps1" />
+    <_Scripts_File Include="Scripts\Call-RetailSelfServiceServicing.ps1" />
+    <_Scripts_File Include="Scripts\CommonDVTHelperModule.psm1" />
+    <_Scripts_File Include="Scripts\DeleteRetailSelfServicePackages.ps1" />
+    <_Scripts_File Include="Scripts\DeployRetailSelfService.ps1" />
+    <_Scripts_File Include="Scripts\InstallationInfo.xml" />
+    <_Scripts_File Include="Scripts\RunRetailSelfServiceDVT.ps1" />
+    <_Scripts_File Include="Scripts\SelfServiceConfiguration.psm1" />
+    <_Scripts_File Include="Scripts\Start-RetailSelfService.ps1" />
+    <_Scripts_File Include="Scripts\Stop-RetailSelfService.ps1" />
+    <_Scripts_File Include="Scripts\Uninstall.ps1" />
+    <_Scripts_File Include="Scripts\UploadRetailSelfServicePackages.ps1" />
+    <_Scripts_File Include="Scripts\ValidateRetailSelfService.ps1" />
+    <_Scripts_Upgrade_File Include="Scripts\Upgrade\UpdateRetailSelfService.ps1" />
+    <_ServiceModel_File Include="ServiceModel\RetailSelfService.xml" />
+    <_ServiceModel_File Include="ServiceModel\ServiceComponent.xml" />
+  </ItemGroup>
+  <Target Name="Build" Inputs="$(MSBuildAllProjects);@(_Update_Installer_Files);@(CustomizedModernPosSetupExe);@(CustomizedModernPosOfflineSetupExe);@(CustomizedHardwareStationSetupExe);@(_Code_bin_File);@(_Code_bin_ProductInfo_File);@(_Code_File);@(_Data_File);@(_ETWManifest_File);@(_Instructions_File);@(_Packages_File);@(_Scripts_File);@(_Scripts_Upgrade_File);@(_ServiceModel_File);@(__File)" Outputs="$(OutputPath)content.zip">
+    <CallTarget Targets="CopyPackageFiles" />
+    <Delete Files="$(OutputPath)content.zip" />
+    <GenerateHotfixInstallationInfo ContentFolder="$(OutputPath)content.folder" />
+    <Zip OutputFileName="$(OutputPath)content.zip" InputFolder="$(OutputPath)content.folder" />
+  </Target>
+  <Target Name="CopyPackageFiles">
+    <RemoveDir Directories="$(OutputPath)content.folder" />
+    <Copy SourceFiles="@(CustomizedModernPosSetupExe)" DestinationFolder="$(OutputPath)content.folder\$(PackageName)\Packages" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(CustomizedModernPosOfflineSetupExe)" DestinationFolder="$(OutputPath)content.folder\$(PackageName)\Packages" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(CustomizedHardwareStationSetupExe)" DestinationFolder="$(OutputPath)content.folder\$(PackageName)\Packages" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Update_Installer_Files)" DestinationFolder="$(OutputPath)content.folder" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\Code\bin" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_ProductInfo_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\Code\bin\ProductInfo" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\Code" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Data_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\Data" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ETWManifest_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\ETWManifest" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Instructions_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\Instructions" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Packages_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\Packages" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\Scripts" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_Upgrade_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\Scripts\Upgrade" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ServiceModel_File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\ServiceModel" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(__File)" DestinationFolder="$(OutputPath)content.folder\RetailSelfService\" SkipUnchangedFiles="true" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+  <Target Name="BuildGenerated" />
+  <Target Name="BuildCompiled" />
+  <Target Name="BuildLinked" />
+  <Target Name="Rebuild">
+    <CallTarget Targets="Clean" />
+    <CallTarget Targets="Build" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(OutputPath)content.folder" />
+    <Delete Files="$(OutputPath)content.zip" />
+  </Target>
+</Project>

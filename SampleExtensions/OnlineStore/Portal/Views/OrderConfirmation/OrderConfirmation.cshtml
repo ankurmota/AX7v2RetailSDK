@@ -1,0 +1,11 @@
+@using Contoso.Retail.Ecommerce.Web.Storefront.Models;
+
+@{
+    ViewBag.Title = "Confirmation - Contoso";
+}
+
+<h2>@ResourceHelper.GetLocalString("OrderConfirmation")</h2>
+<h4>@ResourceHelper.GetLocalString("ThanksForYourOrder") @Request.QueryString["confirmationId"]</h4>
+
+
+

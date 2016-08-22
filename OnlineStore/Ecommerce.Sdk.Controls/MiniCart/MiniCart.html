@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Mini Cart</title>
+</head>
+
+<body>
+    <!--CONTENT_START-->
+    <div class="msax-MiniShoppingCart" data-model="Contoso.Retail.Ecommerce.Sdk.Controls.MiniCart">
+        <script id="MiniCartItemCount" type="text/html">
+            <button id="MiniCartButton" class="msax-MiniCartButton" data-bind="click: viewCartClick, event: { mouseover: showMiniCart, mouseout: hideMiniCart }">
+                <div class="msax-MiniCartContainer msax-PaddingLeft25" data-bind="with: cart">
+                    <span class="msax-MiniCartButtonCount" data-bind="text: CartLines.length"></span>
+                </div>
+                <div class="msax-MiniCartContainer msax-PaddingLeft25" data-bind="if: cart() == null">
+                    <span class="msax-MiniCartButtonCount">0</span>
+                </div>
+            </button>
+        </script>
+
+        <div id="MiniCartControl" class="msax-MiniCartControl" data-bind="template: 'MiniCartItemCount'"></div>
+
+        <div class="msax-MiniCart" data-bind="event: { mouseover: showMiniCart, mouseout: hideMiniCart }">
+            <div id="ErrorPanel" class="msax-ErrorPanel msax-DisplayNone" data-bind="foreach: errorMessages">
+                <div data-bind="text: $data"></div>
+            </div>
+
+            <div data-bind="visible: isShoppingCartEnabled">
+                <div>
+                    <div class="msax-Table">
+                        <div class="msax-Top msax-Row">
+                            <span class="msax-OuterHeaderText msax-UpperCase msax-VerticalMiddle" data-bind="resx: {textContent: 'String_175' }"></span> <!-- Added to your cart: -->
+                            <button id="CloseMiniCart" class="msax-Close" data-bind="click: hideMiniCart">
+                                <span class="msax-ButtonText">X</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="ShoppingCartWrapper" class="msax-ShoppingCartWrapper msax-Table" data-bind="with: cart">
+                        <div class="msax-ItemsGrid">
+                            <div data-bind="foreach: CartLines">
+                                <div class="msax-PaddingTop5">
+                                    <div class="msax-Remove msax-FloatLeft msax-PaddingRight10 msax-PaddingLeft10 msax-PaddingTop5">
+                                        <button class="msax-Delete16" data-bind="click: $root.removeFromCartClick.bind($root)"></button>
+                                    </div>
+                                    <div class="msax-ProductDetails">
+                                        <div class="msax-Row">
+                                            <a class="msax-ProductImage msax-MarginRight10" data-bind="attr: { href: ProductUrl }">
+                                                <div class="msax-ImageWrapper" data-bind="html: ImageMarkup50px"></div>
+                                            </a>
+                                            <div class="msax-PaddingLeft20">
+                                                <div class="msax-ProductNameWrapper">
+                                                    <a class="msax-ProductName" data-bind="attr: { href: ProductUrl }, text: ProductName"></a>
+                                                    <div class="msax-ProductDimensions" data-bind="text: ProductDimension"></div>
+                                                </div>
+                                                <div class="msax-PaddingTop5">
+                                                    <span data-bind="resx: {textContent: 'String_174' }"></span> <!-- Quantity: -->
+                                                    <span data-bind="text: Quantity "></span>
+                                                </div>
+                                                <div class="msax-LineTotal msax-Bold msax-PaddingTop5" data-bind="text: $root.formatCurrencyString.call($root, $data.NetAmountWithoutTax)"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="msax-CartSummary msax-Row">
+                            <h5 class="msax-CartFooterLabel msax-WidthRatio100" data-bind="resx: {textContent: 'String_172' }"></h5> <!-- Cart order total -->
+                            <h5 id="OrderTotal" class="msax-CartFooterValue msax-Bold" data-bind="text: $root.formatCurrencyString.call($root, $data.TotalAmount)"></h5>
+                        </div>
+                    </div>
+
+                    <div class="msax-Table">
+                        <div class="msax-Bottom msax-Row">
+                            <div class="msax-VerticalMiddle msax-PaddingRight25">
+                                <a id="ViewFullCartContents" class="msax-ViewCart" href="#" data-bind="click: viewCartClick, resx: {textContent: 'String_173' }"></a> <!-- View full cart contents -->
+                            </div>
+                            <div class="msax-VerticalMiddle" data-bind="visible: !isCheckoutCart()">
+                                <button id="CheckoutButton" type="submit" class="msax-CheckoutButtonSmall msax-FloatRight" data-bind="submitIfValid: { submit: shoppingCartNextClick, containerSelector: '.msax-MiniCart' }, enabled: isShoppingCartEnabled"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-bind="visible: !isShoppingCartEnabled()">
+                <div>
+                </div>
+                <div>
+                    <div class="msax-Table">
+                        <div class="msax-Top msax-Row">
+                            <span class="msax-OuterHeaderText msax-UpperCase msax-VerticalMiddle" data-bind="resx: {textContent: 'String_175' }"></span> <!-- Added to your cart: -->
+                            <button id="CloseMiniCart2" class="msax-Close" data-bind="click: hideMiniCart">
+                                <span class="msax-ButtonText">X</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="msax-ShoppingCartWrapper msax-Table msax-PaddingTop10 msax-PaddingBottom10 msax-PaddingRight10 msax-PaddingLeft10">
+                        <span data-bind="resx: {textContent: 'String_15' }"></span> <!-- There are no items in your shopping cart. Please add items to the cart. -->
+                    </div>
+                    <div class="msax-Table">
+                        <div class="msax-Bottom msax-Row">
+                            <div class="msax-VerticalMiddle msax-PaddingRight25">
+                                <a id="ViewFullCartContents2" class="msax-ViewCart" href="#" data-bind="click: viewCartClick, resx: {textContent: 'String_173' }"></a> <!-- View full cart contents -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>    
+    <!--CONTENT_END-->
+</body>
+</html>

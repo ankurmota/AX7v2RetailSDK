@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="no-shrink row grow">
+        <div class="grow">
+            <h4 class="title"
+                data-bind="resx: { textContent: 'string_10055' }">
+                TASK RECORDER
+            </h4>
+        </div>
+    </div>
+    <div class="padTop1 width100Percent">
+        <div class="row">
+            <h2 data-bind="resx: { textContent: 'string_10034' }"> Current step </h2>
+        </div>
+        <div class="scrollY height56 padRight2 editStepContainer">
+            <div class="padTop2">
+                <h4 data-bind="text: storedTaskRecorderStepViewModel.text"> </h4>
+            </div>
+            <div class="padTop1">
+                <label for="stepTextId" data-bind="resx: { textContent: 'string_10035' }"> Text </label>
+                <textarea id="stepTextId" class="row" rows="3" data-bind="value: text"> </textarea>
+            </div>
+            <div class="padTop3">
+                <label for="textareaNotesId" data-bind="resx: { textContent: 'string_10038' }"> Notes </label>
+                <textarea id="textareaNotesId" class="row" rows="4" data-bind="value: notes"> </textarea>
+            </div>
+        </div>
+        <div class="buttonsContainer row">
+            <div class="buttonContainer col no-shrink">
+                <button class="primaryButton" type="button" data-bind="resx: { textContent: 'string_10040' }, click: saveStep">Save</button>
+            </div>
+            <div class="col width2"></div>
+            <div class="buttonContainer col no-shrink">
+                <button class="secondaryButton" type="button" data-bind="resx: { textContent: 'string_10041' }, click: cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

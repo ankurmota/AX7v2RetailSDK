@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AutocompleteComboboxDialog</title>
+    <link href="AutocompleteComboboxDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'AutocompleteComboboxDialog'">
+
+        <div class="autocompleteComboboxDialog">
+
+            <div id="listTextTemplate" data-win-control="WinJS.Binding.Template">
+                <div class="row pad1 padBottom0">
+                    <div class="ratio4"><h4 data-win-bind="innerText: value"></h4></div>
+                    <div class="ratio6"><h4 data-win-bind="innerText: description"></h4></div>
+                </div>
+            </div>
+
+            <div data-bind="dialog:
+                {
+                    title: title,
+                    message: subTitle,
+                    visible: visible,
+                    buttonClick: buttonClickHandler,
+                    buttons: [
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_75'), disable: _oKButtonDisabled, operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK },
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK }
+                    ],
+                }">
+
+                <!-- dialog content -->
+                <div class="dialogSplitColumn positionRelative height11">
+                    <input type="search" autofocus="autofocus" autocomplete="off" data-bind="hasfocus: true, value: _searchText, valueUpdate: 'afterkeydown', event: { keyup: searchClick }, clearMark: true" />
+                    <div class="itemPicker positionAbsolute height10 border marginTop01 win-selectionstylefilled" data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                                 selectionMode: 'none',
+                                 itemTemplate: select('#listTextTemplate'),
+                                 layout: { type: WinJS.UI.ListLayout } }"
+                         data-bind="winControl: {
+                                itemDataSource: _displaySuggestionList,
+                                iteminvoked: suggestionItemInvokedHandler
+                        }, visible: _suggestionListVisible">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ output extension=".g.cs" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#
+ // Find adapter inferfaces temp file within current project.
+ var linesFromInterfacesTempFile = File.ReadAllLines(this.Host.ResolvePath("Interfaces.temp"));
+ var newLines = new List<string>();
+ bool inUsingSection = false;
+ foreach(string line in linesFromInterfacesTempFile)
+ {
+    if (!string.IsNullOrWhiteSpace(line) && line.TrimStart(' ').StartsWith("using "))
+    {
+        inUsingSection = true;
+    }
+    else if (inUsingSection)
+    {
+        inUsingSection = false;
+
+        // Add using statements for extensions.
+        newLines.AddRange(File.ReadAllLines(this.Host.ResolvePath("UsingStatements.Extensions.txt")));
+    }
+
+    newLines.Add(line);
+ }
+#>
+<#
+foreach(string line in newLines)
+{
+#>
+<#= line #>
+<#
+}
+#>

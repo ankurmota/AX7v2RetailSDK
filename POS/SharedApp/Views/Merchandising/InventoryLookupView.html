@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>InventoryLookupView</title>
+    <link href="InventoryLookupView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="fragment inventoryLookupView">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row grow" data-bind="resx: { ariaLabel: 'string_4454' }"> <!-- Main content -->
+
+            <!-- Views for Stores Grid -->
+            <div class="col minWidth57 grow">
+                <h2 data-bind="resx: {textContent: 'string_2605'}"></h2> <!-- Stores -->
+
+                <div class="col grow" data-bind="listView: {
+                        itemDataSource: inventoryLookupViewModel.stores,
+                        selectionMode: 'single',
+                        selectionchanged: { eventHandlerCallBack: storeSelectionChanged, appBarId: '#commandAppBar' },
+                        emptyListViewTemplate: 'emptyInventoryLookupStoreGridMessage',
+                        tapBehavior: 'toggleSelect',
+                        columns: [
+                            { titleResx: 'string_2601', cssClass: 'ratio4', field: 'OrgUnitLocation.OrgUnitName' },
+                            { titleResx: 'string_2603', cssClass: 'ratio3 textRight', field: 'ItemAvailabilities', converter: 'Commerce.Core.Converter.QuantityFromStoreInventory' },
+                            { titleResx: 'string_2604', cssClass: 'ratio3 textRight', field: 'ItemAvailabilities', converter: 'Commerce.Core.Converter.UnitOfMeasureFromStoreInventory' }
+                        ]
+                    }"></div>
+
+                <script type="text/html" id="emptyInventoryLookupStoreGridMessage">
+                    <div class="textCenter">
+                        <h4 data-bind="visible: startScanVisible, resx: { textContent: 'string_2619' }">Scan or search for a product to get started</h4>
+                        <h4 data-bind="visible: zeroStoresResult, resx: { textContent: 'string_2625' }">This product is not available at nearby stores</h4>
+                    </div>
+                </script>
+
+            </div>
+
+            <div class="gutter4x4"></div>
+
+            <div class="row">
+
+                <!-- Views for Product Details -->
+                <div class="col width24">
+
+                    <h2 data-bind="resx: { textContent: 'string_2608' }"></h2> <!-- Product -->
+                    <!-- Product content when product is chosen -->
+
+                    <div class="maxHeight23 col highContrastBorder" data-bind="visible:inventoriesVisible, if: inventoriesVisible">
+                        <div class="height16">
+                            <img class="height23 center" src="#" data-bind="attr: { src: Commerce.Formatters.ImageUrlFormatter(inventoryLookupViewModel.productImageRelativeUrl(), Commerce.DefaultImages.ProductLarge) }, setImageOnError: Commerce.DefaultImages.ProductLarge"/>
+                        </div>
+                        <div class="padLeft1 height7 padRight1 padTop1 primaryBackgroundColor overLayZIndex">
+                            <h4 class="ellipsis" data-bind="text: inventoryLookupViewModel.product().ProductName"></h4>
+                            <div class="height1 padTop02">
+                                <h6 class="secondaryFontColor ellipsis" data-bind="text: inventoryLookupViewModel.product().ItemId"></h6>
+                            </div>
+                            <div class="padTop08">
+                                <h3 class="textRight ellipsis" data-bind="formatPrice: priceCheckViewModel.productPrice"></h3>
+                            </div>
+                        </div>
+                        <div class="padTop2">
+                            <h4 class="ellipsis" data-bind="text: inventoryLookupViewModel.variantDimensionValues"></h4>
+                        </div>
+                    </div>
+                    <div class="height23 col highContrastBorder grow primaryPanelBackgroundColor" data-bind="visible: !inventoriesVisible()">
+                        <div class="center pad3">
+                            <div class="textCenter">
+                                <h4 data-bind="resx: { textContent: 'string_2619' }">Scan or search for a product to get started</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gutter4x4"></div>
+                    <!-- Quantity for the given product -->
+                    <div class="col width24 height5" data-bind="visible: inventoriesVisible, if: inventoriesVisible">
+                        <div class="row">
+                            <label data-bind="resx: { textContent: 'string_2824' }"></label>
+                        </div>
+                        <div class="row">
+                            <h1 data-bind="text: Commerce.Formatters.QuantityFromStoreInventoryFormatter(inventoryLookupViewModel.currentStore().ItemAvailabilities)"></h1>
+                        </div>
+                    </div>
+                    <div class="gutter4x4"></div>
+                    <!-- Uom for the given product -->
+                    <div class="col width24 height5" data-bind="visible: inventoriesVisible() && inventoryLookupViewModel.currentStore().ItemAvailabilities && inventoryLookupViewModel.currentStore().ItemAvailabilities.length > 0">
+                        <div class="row">
+                            <label data-bind="resx: { textContent: 'string_2825' }"></label>
+                        </div>
+                        <div class="row">
+                            <h1 data-bind="text: Commerce.Formatters.UnitOfMeasureFromStoreInventoryFormatter(inventoryLookupViewModel.currentStore().ItemAvailabilities)"></h1>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col grow">
+                    <div class="gutter4x4"></div>
+                </div>
+
+                <!-- Views for Numpad -->
+                <div class="col">
+                    <h2 data-bind="resx: { textContent: 'string_2620' }"></h2> <!-- Search products -->
+
+                    <input id="inventoryLookupProductSearch" class="numPadTextbox" type="text" 
+                           data-bind="resx: { ariaLabel: 'string_2620' }"/> <br/> <!-- Search products -->
+                    <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                         data-win-options="{uri: 'Controls/numberPad/NumPad.html'}"
+                         data-bind="alphanumericNumpad: {
+                            textBoxId: 'inventoryLookupProductSearch',
+                            onEnter: findInventoriesByKeywordNumpad,
+                            value: searchKeyword,
+                            disableDecimalSeparator: true
+                         }">
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl"
+         data-win-options="{ sticky : true }">
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'searchForProduct',
+                    extraClass: 'winappbar-iconSearchProducts',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: searchForProduct}, resx: { label: 'string_2609' }" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'showStoreLocation',
+                    extraClass: 'winappbar-iconLocation',
+                    section:'global',
+                }"
+                data-bind="winControl: { disabled: showStoreLocationDisabled, click: showStoreLocation }, resx: { label: 'string_2610' }" />
+
+        <hr data-win-control="WinJS.UI.AppBarCommand" data-win-options="{type:'separator'}" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'pickUpInStore',
+                    extraClass: 'winappbar-iconPickupInStore',
+                    section:'global',
+                }"
+                data-bind="winControl: { disabled: pickUpInStoreDisabled, click: pickUpInStore }, resx: { label: 'string_2611' }" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'addToTransaction',
+                    extraClass: 'winappbar-iconAdd',
+                    section:'global',
+                }"
+                data-bind="winControl: { disabled: addToTransactionDisabled, click: addToTransaction }, resx: { label: 'string_2612' }" />
+    </div>
+</body>
+</html>

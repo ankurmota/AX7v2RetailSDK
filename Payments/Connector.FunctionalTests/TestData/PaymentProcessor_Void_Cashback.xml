@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+
+  <PaymentProcessor_Void_Cashback>
+    <TestDescriptor>Success</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Debit</CardType>
+    <Track2>;4111111111111111=2512=0123456789?</Track2>
+    <EncryptedPin>1234</EncryptedPin>
+    <AdditionalSecurityData>0123456789</AdditionalSecurityData>
+    <CurrencyCode>USD</CurrencyCode>
+    <Amount>1.00</Amount>
+    <IndustryType>Retail</IndustryType>
+    <IsSwipe>True</IsSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <TerminalId>0001</TerminalId>
+    <Description>Authorization</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+    <CashBackAmount>10.00</CashBackAmount>
+  </PaymentProcessor_Void_Cashback>
+
+  <PaymentProcessor_Void_Cashback>
+    <TestDescriptor>Success</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Debit</CardType>
+    <Track2>;4111111111111111=2512=0123456789?</Track2>
+    <EncryptedPin>1234</EncryptedPin>
+    <AdditionalSecurityData>0123456789</AdditionalSecurityData>
+    <CurrencyCode>USD</CurrencyCode>
+    <Amount>1.00</Amount>
+    <IndustryType>Retail</IndustryType>
+    <IsSwipe>True</IsSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <TerminalId>0001</TerminalId>
+    <Description>Authorization</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+    <CashBackAmount>10.00</CashBackAmount>
+    <ExpectedAuthorizationResult>Success</ExpectedAuthorizationResult>
+  </PaymentProcessor_Void_Cashback>
+  
+</TestData>

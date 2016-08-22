@@ -1,0 +1,122 @@
+body[dir=rtl] .commerceTabControl
+{
+    direction: ltr;
+}
+
+body[dir=rtl] .commerceTabControl .tabContent
+{
+    direction: rtl;
+}
+
+.commerceTabControl .tabContent {
+    position: relative;
+}
+
+.commerceTabControl .tabsContainer {
+    overflow: hidden;
+}
+
+.commerceTabControl.righttabs .tabsContainer,
+.commerceTabControl.lefttabs .tabsContainer {
+    width: 80px;
+}
+
+.commerceTabControl.righttabs .tabsContainer {
+    margin-left: 1em;
+}
+
+.commerceTabControl.lefttabs .tabsContainer {
+    margin-right: 1em;
+}
+
+.commerceTabControl .tab {
+    overflow: hidden;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.commerceTabControl.lefttabs .tab,
+.commerceTabControl.righttabs .tab {
+    min-width: 80px;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 5px;
+}
+
+.commerceTabControl.lefttabs .tab .indicator {
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 10px;
+}
+
+.commerceTabControl.righttabs .tab .indicator {
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 10px;
+}
+
+.commerceTabControl .tab > div {
+    position: absolute;
+}
+
+.commerceTabControl .tab .icon {
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.commerceTabControl.lefttabs .tab .icon {
+    left: 10px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.commerceTabControl.righttabs .tab .icon {
+    left: 0px;
+    top: 0px;
+    right: 10px;
+    bottom: 0px;
+}
+
+.commerceTabControl .tab .text {
+    padding-left: 4px;
+    padding-right: 4px;
+    overflow: hidden;
+    line-height: 10px;
+    max-height: 20px;
+}
+
+.commerceTabControl.lefttabs .tab .text {
+    left: 10px;
+    right: 0px;
+    bottom: 7px;
+}
+
+.commerceTabControl.righttabs .tab .text {
+    left: 0px;
+    right: 10px;
+    bottom: 7px;
+}
+
+.commerceTabControl .tabsContainer button {
+    border: none;
+}
+
+.commerceTabControl.lefttabs .tabContent {
+    margin-right: 0px;
+    order: 2;
+}
+
+.commerceTabControl.righttabs .tabContent {
+    margin-left: 0px;
+}
+
+/* High contrast mode */
+@media screen and (-ms-high-contrast) {
+    .commerceTabControl .tabsContainer button {
+        border-style: solid;
+    }
+}

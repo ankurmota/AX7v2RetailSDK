@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>DeviceDeactivationView</title>
+        <link href="DeviceDeactivation.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div id="deviceDeactivationSettingsFlyout" class="col" data-bind="customControlInternal: 'DeviceDeactivation'">
+            <!-- ToDo: resx -->
+            <div class="marginBottom2">
+                <h2 data-bind="resx: { textContent: 'string_1419' }">Device activation</h2>
+            </div>
+            <div class="marginBottom2" data-bind="visible: Commerce.StringExtensions.isNullOrWhitespace(Commerce.Config.onlineDatabase)">
+                <!-- Retail server -->
+                <label data-bind="resx: { textContent: 'string_6604' }"></label>
+                <h4 class="ellipsis" data-bind="text: Commerce.Config.retailServerUrl"></h4>
+            </div>
+            <div class="marginBottom1" data-bind="visible: !Commerce.StringExtensions.isNullOrWhitespace(Commerce.Config.onlineDatabase)">
+                <label data-bind="resx: { textContent: 'string_6612' }"></label>
+                <h4 data-bind="text: Commerce.Config.onlineDatabase"></h4>
+            </div>
+            <div class="marginBottom1">
+                <label data-bind="resx: { textContent: 'string_1409' }"></label>
+                <h4 data-bind="text: viewModel.storeId"></h4>
+            </div>
+            <div class="marginBottom1">
+                <!-- Register -->
+                <label data-bind="resx: { textContent: 'string_1410' }"></label>
+                <h4 data-bind="text: viewModel.registerId"></h4>
+            </div>
+            <div class="marginBottom1">
+                <!-- Device -->
+                <label data-bind="resx: { textContent: 'string_1411' }"></label>
+                <h4 data-bind="text: viewModel.deviceId"></h4>
+            </div>
+            <div class="marginBottom1">
+                <!-- Deactivate -->
+                <label class="marginBottom1" data-bind="resx: { textContent: 'string_1412' }">Deactivate device</label>
+                <button class="primaryButton"
+                        data-bind="resx: { textContent: 'string_1413' }, click:deactivateDeviceHandler"></button>
+                <label class="marginTop1" data-bind="resx: { textContent: 'string_1414' }"></label>
+            </div>
+        </div>
+    </body>
+</html>

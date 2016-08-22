@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Checkout>
+  <Address>
+    <Name>Jane Doe</Name>
+    <Country>USA</Country>
+    <Street>One Microsoft Way</Street>
+    <City>Redmond</City>
+    <State>WA</State>
+    <Zipcode>98052</Zipcode>
+  </Address>
+  <Email>JaneDoe@demo.com</Email>
+  <Payment>
+    <CardNumber>4111111111111111</CardNumber>
+    <CCID>456</CCID>
+  </Payment>
+</Checkout>

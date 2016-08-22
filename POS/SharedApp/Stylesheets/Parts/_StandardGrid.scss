@@ -1,0 +1,531 @@
+﻿@import '../Common/_Constants.scss';
+
+.standardGrid {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+    align-self: stretch;
+    flex-grow: 1; /*flex 1 1 0 is not working for IE*/
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-height: 0px; /* forces proper space distribution for flex items.*/
+}
+
+.standardGrid .tableContent.listViewPlaceholder {
+	flex-direction: column;
+	display: flex;
+}
+	
+.standardGrid .win-viewport.win-vertical {
+	flex-shrink: 1;
+    flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+    flex-basis: 0;
+}
+
+.standardGrid .win-listlayout {
+	width: 100% !important; /* this removes the style width from the element set by javascript (winjs) */
+}
+	
+.standardGrid > div {
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: 0;
+
+}
+
+.standardGrid > .win-listview {
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 0;
+}
+
+.standardGrid .listViewEmptyContentPlaceholder {
+    display: none;
+}
+
+.standardGrid > .dataRows {
+    overflow-y: auto;
+    height: 40em; /* without height panel does not scale and scroll, although it is fixed size flex resizes it (CartView)*/
+}
+
+.standardGrid .listViewFooter,
+.standardGrid .listViewHeader,
+.standardGrid .listViewLine {
+   padding-right: 4em;
+}
+
+.no-select .standardGrid .listViewFooter,
+.no-select .standardGrid .listViewHeader,
+.no-select .standardGrid .listViewLine {
+   padding-right: 0em;
+}
+
+body[dir=rtl] .standardGrid .listViewFooter,
+body[dir=rtl] .standardGrid .listViewHeader,
+body[dir=rtl] .standardGrid .listViewLine {
+    padding-left: 4em;
+    padding-right: 0;
+}
+
+body[dir=rtl] .no-select .standardGrid .listViewFooter,
+body[dir=rtl] .no-select .standardGrid .listViewHeader,
+body[dir=rtl] .no-select .standardGrid .listViewLine {
+    padding-left: 0em;
+}
+
+.standardGrid .listViewFooter,
+.standardGrid .listViewHeader,
+.standardGrid .listViewLine {
+    flex: 0 1 auto; /* Shrink header and footer to content*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    width: 100%;
+}
+
+.standardGrid > .listViewFooter > div,
+.standardGrid > .listViewHeader > div,
+.standardGrid .listViewLine > div {
+    flex: 1 0 auto;
+}
+
+.standardGrid .listViewHeader {
+    max-height: 3em;
+    min-height: 3em;
+}
+
+.standardGrid .listViewHeader > div,
+/* Used for reports total footer outside the grid. 
+   Should follow the same pattern
+*/
+.listViewTotal > div  {
+    padding: 1em 1em 0 1em;
+    margin: 0;
+}
+
+.standardGrid .listViewHeader.expandable,
+.standardGrid .listViewLine.expandable {
+    padding-left: 4em;
+}
+
+
+body[dir=rtl] .standardGrid {
+
+    .listViewHeader.expandable,
+    .listViewLine.expandable {
+        padding-right: 4em;
+        padding-left: 0;
+    }
+
+    /* hide WinJS checkbox to allow click through for expand button */
+    .listViewLine.expandable .win-selectioncheckmarkbackground {
+        display: none;
+    }
+
+    .colspanRow {
+        padding-right: 5em;
+    }
+
+    .win-container.win-selected .win-selectioncheckmark {
+        right: auto;
+        left: calc(1em/1.4);
+    }
+
+    .win-horizontal .win-itemsblock .win-container {
+        margin: 0em 0em 1em 1em;
+    }
+}
+
+.standardGrid .listViewLine {
+    min-height: 3.9em; //win container adds 0.1em margin-top.
+}
+
+.standardGrid .listViewHeader h6 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+// this padding addded specifically to align the row with expandable icon.
+.standardGrid .listViewLine > div:not(.row),
+.standardGrid .listViewLine > .row > div {
+    padding-top: 1.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.standardGrid.countingGrid .listViewLine > div:not(.row),
+.standardGrid.countingGrid .listViewLine > .row > div {
+    padding-top: 1em;
+}
+
+.standardGrid .colspanRow {
+    padding-right: 1em;
+    padding-left: 5em;
+}
+
+.standardGrid .listViewLine.expandable > .expandButton:first-child {
+    display: block;
+}
+
+.standardGrid .listViewLine.expandable > .expandButton:first-child,
+.standardGrid:not(.countingGrid) .win-container.win-selected .listViewLine,
+.standardGrid .win-container.win-selected .colspanRow {
+    background-color: transparent;
+}
+
+.standardGrid .win-listview .win-itembox, .standardGrid .win-itemcontainer .win-itembox {
+    background-color: transparent;
+}
+
+
+.standardGrid .win-container {
+    margin: 0 !important;
+    margin-top: 0.1em !important;
+}
+
+.standardGrid .win-horizontal .win-itemsblock .win-container {
+    margin: 0em 1em 1em 0em;
+}
+
+.standardGrid .win-container.win-selected .win-selectioncheckmark {
+    font-size: 1.4em;
+    top: calc(1em/1.4 - 0.3em);
+    right: calc(1em/1.4);
+    padding: 0.2em;
+}
+
+.standardGrid .win-horizontal .win-itemsblock {
+    margin: 0em !important;
+    padding: 0em !important;
+}
+
+.standardGrid .win-listview .win-horizontal .win-itemscontainer {
+    margin: 0em !important;
+    padding: 0 0 0 0 !important;
+}
+
+.standardGrid .win-listview .win-horizontal .win-itemsblock:not(.win-clip) {
+    margin: 0em !important;
+    padding: 0em !important;
+}
+
+.standardGrid .win-listview.win-selectionstylefilled .win-container.win-selected .win-itembox a {
+    color: #FFFFFF !important;
+}
+
+/* .standardGrid.countingGrid is a type of standardGrid specialized for counting as seen
+    on stock counts, total tender screens. In most implementations, only once cell (.acentBorder)
+    is highlighted when the entire row is selected */
+.standardGrid.countingGrid {
+    .listViewLine > div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .listViewFooter > div {
+        padding: 1em;
+    }
+
+    .win-itemsblock .win-container.win-selected .listViewLine:after {
+        content: "";
+    }
+
+    .win-selectionbackground,
+    .win-selectionborder,
+    .win-selectioncheckmark,
+    .win-selectioncheckmarkbackground {
+        display: none;
+    }
+
+    .win-itemsblock > div:not(.win-selected) .accentBorder {
+        border: none !important;
+    }
+}
+
+/* browseGrid */
+.browseGrid {
+    height: 100%;
+    flex: 1 auto;
+}
+
+.browseGrid .win-groups.win-listview > .win-horizontal {
+    margin: 0 !important;
+}
+    
+.browseGrid .win-listview {
+    height: auto !important;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.browseGrid.noMargin .win-listview .win-horizontal .win-surface,
+body[dir=rtl] .browseGrid.noMargin .win-listview .win-horizontal .win-surface,
+.browseGrid .win-listview > .win-vertical .win-listlayout.win-surface,
+.browseGrid .win-listview .win-vertical .win-surface.win-gridlayout {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.browseGrid .win-horizontal .win-gridlayout .win-container,
+.browseGrid .win-listview > .win-vertical .win-container {
+    margin: 0em 1em 1em 0em;
+}
+
+.browseGrid .win-listview .win-groupheader {
+    padding: 0 !important;
+}
+
+.browseGrid.plainSelectionBorder .win-listview .win-selectioncheckmarkbackground,
+.browseGrid.plainSelectionBorder .win-listview .win-selectioncheckmark {
+    display: none;
+}
+
+body[dir=rtl] .browseGrid .win-horizontal .win-gridlayout .win-container,
+body[dir=rtl] .browseGrid .win-listview > .win-vertical .win-container {
+    margin: 0em 0em 1em 1em;
+}
+
+.browseGrid .win-listview .win-horizontal .win-surface {
+    flex:1 1 auto;
+}
+
+.browseGrid .win-listview .win-viewport{
+    flex: 1 1 auto;
+}
+
+.browseGrid .win-listview-supports-cross-slide.win-listview .win-vertical .win-itemscontainer,
+.browseGrid .win-listview-supports-cross-slide.win-listview .win-horizontal .win-itemscontainer {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.browseGrid .win-listview .win-vertical .win-itemscontainer,
+.browseGrid .win-listview .win-horizontal .win-itemscontainer {
+    margin-left: 0px !important;
+}
+
+ .browseGrid .win-horizontal :not(.win-clip).win-itemsblock , 
+ .browseGrid .win-listview .win-vertical :not(.win-clip).win-itemsblock
+ .browseGrid .win-horizontal :not(.win-clip).win-itemsblock {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+/* Must use listview to apply to all grid types and card sized */
+.win-listview .win-focusedoutline,
+.win-itemcontainer .win-focusedoutline{
+    width: calc(100% - 0.4em);
+    height: calc(100% - 0.4em);
+    left: 0.2em;
+    top: 0.2em;
+}
+
+/* Must use listview to apply to all grid types and card sized */
+.win-listview .win-focusedoutline,
+.win-itemcontainer .win-focusedoutline {
+    outline: #ccc dotted 0.2em;    
+}
+
+.win-itemcontainer {
+    outline-color: transparent; /* Chrome default color fix. */
+}
+
+.browseGrid .win-groupheadercontainer.win-laidout.win-groupleader {
+    margin:0px !important
+}
+
+body[dir=rtl] .browseGrid .win-listview .win-groupheader {
+    float: right;
+}
+
+.browseGrid .win-listview.win-selectionstylefilled .win-horizontal .win-selected .win-selectionbackground,
+.browseGrid .win-listview.win-selectionstylefilled .win-selected.win-container:hover .win-itembox{
+	background-color: transparent !important;
+}
+
+.standardGrid .strikethrough {
+    text-decoration: line-through;
+}
+
+.standardGrid .extendedInfo,
+.standardGrid .expandButton,
+.standardGrid .colspanRow {
+    display: none;
+}
+
+.standardGrid .expanded .extendedInfo,
+.standardGrid .expanded .expandButton,
+.standardGrid .expanded .colspanRow {
+    display: block;
+}
+
+.standardGrid .colspanRow, .standardGrid .expanded .colspanRow {
+    overflow: hidden;
+}
+
+.browseGrid .win-selectioncheckmarkbackground {
+    border-width: 2.2em;
+}
+
+.browseGrid .win-selectioncheckmark {
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: 0.4em;
+    padding: 0;
+}
+
+/* Styling for the list item hover */
+.browseGrid .win-listview .win-container,
+.browseGrid .win-itemcontainer.win-container,
+.standardGrid .win-listview .win-container,
+.standardGrid .win-itemcontainer.win-container {
+
+    .cardHover {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        display: none;
+    }
+
+    .cardHover.accentBorder {
+        border-width: 0.4em;
+    }
+}
+
+.browseGrid .win-listview .win-container:hover,
+.browseGrid .win-itemcontainer.win-container:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: none !important;
+
+    .cardHover {
+        display: block;
+    }
+}
+
+html.win-hoverable {
+    .standardGrid, .browseGrid {
+        .win-listview .win-container:hover, 
+        .win-container.win-itemcontainer:hover,
+        .win-listview.win-selectionstylefilled .win-container:hover .win-itembox,
+        .win-itemcontainer.win-selectionstylefilled.win-container:hover .win-itembox {
+            background-color: transparent;
+            outline: none;
+        }
+    }
+}
+
+/* High contrast mode */
+@media screen and (-ms-high-contrast) {
+
+    .browseGrid .win-selectionstylefilled.win-listview .win-container .win-itembox .win-item,
+    .browseGrid .win-container.win-selectionstylefilled.win-itemcontainer .win-itembox .win-item {
+        border-style: solid;
+        color: WindowText;
+        border-width: 1px;
+    }
+
+    .browseGrid .win-selectionstylefilled.win-listview .win-container:hover .win-itembox .win-item,
+    .browseGrid .win-container.win-selectionstylefilled.win-itemcontainer:hover .win-itembox .win-item {
+        border-color: Highlight;
+        color: WindowText;
+        border-style: solid;
+    }
+
+    .browseGrid .win-selectionstylefilled.win-listview .win-selected.win-container .win-selectionborder, 
+    .browseGrid .win-selected.win-container.win-selectionstylefilled.win-itemcontainer .win-selectionborder {
+        border-style: solid;
+        border-color: Highlight;
+    }
+
+    .standardGrid .listViewHeader,
+    .standardGrid .listViewFooter,
+    .standardGrid.countingGrid .listViewFooter,
+    .standardGrid.countingGrid .listViewHeader {
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    .standardGrid .listViewLine {
+        border-bottom-style: dashed;
+        border-bottom-width: 1px;
+    }
+
+    .standardGrid .win-container:hover .listViewLine,
+    .standardGrid .win-container:hover .colspanRow {
+        background-color: Highlight;
+        color: HighlightText;
+    }
+
+    .win-listview.win-selectionstylefilled .win-selectioncheckmarkbackground,
+    .win-itemcontainer.win-selectionstylefilled .win-selectioncheckmarkbackground {
+        border-color: transparent;
+        border-right-color: Highlight;
+        border-top-color: Highlight;
+    }
+}
+
+.panoramicGrid {
+
+    .standardGrid {
+        margin-bottom: $content-bottom-padding;
+        margin-left: 4em;
+        margin-right: 4em;
+    }
+
+    .browseGrid {
+
+        .win-surface.win-nocssgrid.win-gridlayout,
+        .win-groups.win-listview > .win-horizontal .win-surface,
+        .win-listview .win-horizontal .win-surface {
+            margin-left: 4em;
+            margin-right: 3em;
+        }
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+	    flex-direction: column;
+	    flex-wrap: nowrap;
+	    justify-content: flex-start; 
+	    align-content: flex-start;
+	    align-items: stretch;
+	    align-self: stretch;  /*to-do:  stretch causes unintended wrapping with listview...it has to do with scrollY */
+    }
+    
+    .gridHeader {
+        width: calc(100% - 7.5em);
+        margin-left: 4em;
+        margin-right: 3em;
+    }
+}
+
+/* For panoramic page we don't need additional right/left margin for grid content */
+
+
+.browseGrid.oneColumn .win-horizontal .win-gridlayout .win-container,
+.browseGrid.oneColumn .win-listview > .win-vertical .win-container {
+     margin-right: 0em;
+}
+
+
+body[dir=rtl]  {
+
+    .browseGrid.oneColumn .win-horizontal .win-gridlayout .win-container,
+    .browseGrid.oneColumn .win-listview > .win-vertical .win-container {
+        margin-left: 0em;
+    }
+}

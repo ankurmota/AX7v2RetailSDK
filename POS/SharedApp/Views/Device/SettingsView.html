@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>SettingsView</title>
+</head>
+<body>
+<div class="fragment settingsView">
+    <!-- Page header -->
+    <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+    <section role="main" class="panoramic marginLeft8 padLeft4 padRight4 margin0" data-bind="resx: { ariaLabel: 'string_4454' }">
+        <!-- Main content -->
+        <!-- About -->
+        <div class="col width32">
+            <div class="marginBottom2">
+                <h2 data-bind="resx: { textContent: 'string_7402'}"></h2>
+            </div>
+            <div>
+                <label data-bind="text: applicationName"></label>
+            </div>
+            <div>
+                <label data-bind="text: applicationPublisher"></label>
+            </div>
+            <div>
+                <label data-bind="text: applicationVersion"></label>
+            </div>
+            <div class="marginTop1" data-bind="visible: !Commerce.Session.instance.isLoggedOn">
+                <h4 class="marginBottom1" data-bind="resx: { textContent: 'string_1422' }">Reset application</h4>
+                <button id="resetApplicationButton" class="primaryButton"
+                        data-bind="resx: { textContent: 'string_1423' }, click:resetApplicationHandler">
+                    Reset
+                </button>
+                <label class="marginTop1" data-bind="resx: { textContent: 'string_1424' }"></label>
+            </div>
+        </div> <!-- end about -->
+
+        <div class="gutter4x4"></div>
+
+        <!-- Session -->
+        <div class="col width32">
+            <div class="marginBottom2" >
+                <h2 data-bind="resx: { textContent: 'string_7403' }"></h2> <!-- Session information -->
+            </div>
+            <div class="marginBottom2">
+                <label data-bind="resx: { textContent: 'string_7404' }"></label> <!-- Application session ID -->
+                <h4 class="selectable" data-bind="text: appSessionId"></h4>
+            </div>
+            <div class="marginBottom2">
+                <label data-bind="resx: { textContent: 'string_7405' }"></label> <!-- User session ID -->
+                <h4 class="selectable" data-bind="text: userSessionId"></h4>
+            </div>
+        </div> <!-- end Session -->
+
+        <div class="gutter4x4"></div>
+
+        <!-- Device Deactivation -->
+        <div class="width32 col" data-bind="visible: Commerce.Session.instance.isLoggedOn">
+            <div class="col grow" data-bind="userControl: { uri: 'Views/Login/DeviceDeactivation.html' }"></div>
+        </div> <!-- end Device Deactivation -->
+
+        <div class="gutter4x4"></div>
+
+        <!-- Task Recorder -->
+        <div class="width32 col" data-bind="visible: isTaskRecorderVisible">
+            <div class="marginBottom2">
+                <h2 data-bind="resx: { textContent: 'string_10011'}">Task Recorder</h2>
+            </div>
+            <div class="marginBottom1">
+                <label data-bind="resx: { textContent: 'string_10054' }">Use task recorder to create new scenario recordings that can be turned into downloadable documents or played back as tutorials later.</label>
+            </div>
+            <div class="marginBottom1">
+                <div class="buttonBlock" data-bind="buttonBlock: {
+                        buttonClass: 'iconOpenTaskRecorder',
+                        click: activateTaskRecorder,
+                        labelTextResx: 'string_10056',       // Open task recorder
+                        ariaLabelResx: 'string_10056',       // Open task recorder
+                    }">
+                </div>
+            </div>
+        </div> <!-- end Task Recorder -->
+
+        <div class="gutter4x4"></div>
+
+        <!-- Developer mode -->
+        <div class="width35 col" data-bind="visible: Commerce.Config.isDebugMode">
+            <div class="no-shrink col grow" data-bind="userControl: { uri: 'Views/Controls/DeveloperMode.html' }"></div>
+        </div> <!-- end developer mode -->
+
+        <div class="gutter4x4"></div>
+
+        <!-- Application help -->
+        <div class="width32 col" data-bind="visible: Commerce.UI.Tutorial.isTutorialModeEnabled()">
+            <div class="marginBottom2">
+                <h2 data-bind="resx: { textContent: 'string_7407' }">Application help</h2>
+            </div>
+            <div>
+                <h4 data-bind="resx: { textContent: 'string_7408' }">Show app tour after sign in</h4>
+                <div class="genericToggle pad1" data-win-control="WinJS.UI.ToggleSwitch"
+                     data-bind="winControl: {
+                            labelOn: 'string_7411',
+                            labelOff: 'string_7412',
+                            toggleOnOff: enableBubbleTour,
+                        }, 
+                        click: toggleBubbleTour,
+                        resx: { ariaLabel: 'string_7408' }">    <!-- Show app tour after sign in -->
+
+                </div>
+            </div>
+            <div class="marginTop1 padTop1">
+                <h4 data-bind="resx: { textContent: 'string_7409' }">Show app introduction after sign in</h4>
+                <div class="genericToggle pad1" data-win-control="WinJS.UI.ToggleSwitch"
+                     data-bind="winControl: {
+                            labelOn: 'string_7411',
+                            labelOff: 'string_7412',
+                            toggleOnOff: enableVideoTutorial,
+                        }, 
+                        click: toggleVideoTutorial,
+                        resx: { ariaLabel: 'string_7409' }">    <!-- Show app introduction after sign in -->
+                </div>
+            </div>
+            <div class="marginTop1 padTop1">
+                <button data-bind="click: Commerce.UI.Tutorial.startVideoTutorial, resx: { textContent: 'string_7410' }"
+                        class="primaryButton">
+                    Open app introduction
+                </button>
+            </div>
+        </div> <!-- end application help -->
+
+    </section>
+</div>
+</body>
+</html>

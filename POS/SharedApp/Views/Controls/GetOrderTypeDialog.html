@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>GetOrderTypeDialog</title>
+
+</head>
+<body>
+    <div data-bind="customControlInternal: 'GetOrderTypeDialog'">
+
+        <div data-bind="dialog:
+                {
+                    title: Commerce.ViewModelAdapter.getResourceString('string_7100'),
+                    subTitle: Commerce.ViewModelAdapter.getResourceString('string_7111'),
+                    visible: visible,
+                    buttonClick: dialogButtonClick,
+                    buttons: [
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, isPrimary: false }
+                    ]
+                }">
+            <div class="height15 scrollX" data-bind="tileList: { itemDataSource: _orderTypeList, iteminvoked: orderTypeListInvokedHandler, bottomLeft: { field: 'operationName' } }">
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

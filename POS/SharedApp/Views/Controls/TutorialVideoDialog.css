@@ -1,0 +1,39 @@
+
+#tutorial-dialog #videoPlayer {
+    object-fit: inherit;
+}
+
+#tutorial-dialog a.video-link {
+    color: #0066CC;
+}
+
+#tutorial-dialog button.explore-button {
+    background-color: #0066cc;
+    color: white;
+    width: 100%;
+    height: 64px;
+    font-size: 2.4em;
+}
+
+#tutorial-dialog .closeButton {
+    font-family: DynamicsFont;
+    color: black;
+}
+
+#tutorial-dialog .playButton-wrapper {
+    text-align: center;
+}
+
+#tutorial-dialog .playButton {
+    font-family: DynamicsFont;
+    color: #0066cc
+}
+
+#tutorial-dialog input[type=checkbox] {
+    width: 1.4em;
+    height: 1.4em;
+}
+
+#tutorial-dialog .label-checkbox {
+    color: #717375
+}

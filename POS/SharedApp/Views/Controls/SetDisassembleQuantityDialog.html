@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SetDisassembleQuantityDialog</title>
+
+    <!-- WinJS references -->
+    <link href="SetDisassembleQuantityDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'SetDisassembleQuantityDialog'">
+
+        <div data-bind="dialog:
+            {
+                title: _title,
+                visible: visible,
+                buttonClick: setItemDisassembleQuantityInvokedHandler,
+                buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_5365'), disable: _OKButtonDisabled, operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, cssClass: 'okButton' },
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }]
+            }">
+
+
+            <!-- dialog content -->
+            <div class="row">
+                <div class="row ratio5">
+                    <img class="height7 width7" src="#" data-bind="attr: { src: Commerce.Formatters.ImageUrlFormatter(_productImageUrl()) }, setImageOnError: Commerce.DefaultImages.ProductSmall" />
+                    <div class="col marginLeft1 marginTop1">
+                        <h4 data-bind="text: _productDescription"></h4>
+                        <h4 class="secondaryFontColor" data-bind="text: _productNumber"></h4>
+                    </div>
+                </div>
+
+                <div class="ratio5">
+                    <label data-bind="resx: { textContent: 'string_5306' }" for="quantityNumberText">Quantity</label>
+                    <input type="number" 
+                           id="quantityNumberText"
+                           step="any"
+                           data-bind="numeric: true, value: _itemQuantity,
+                                    textInput: { select: selectDisassembleQuantityNumberInput },
+                                    event: { keyup: quantityChanged },
+                                    hasFocus: _setFocusDisassembleQuantityNumberInput,
+                                    validator: {
+                                        field: '_itemQuantity',
+                                        validatorField: 'ItemQuantity',
+                                        validatorType: 'CartLineValidator'
+                                    }" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

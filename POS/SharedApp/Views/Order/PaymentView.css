@@ -1,0 +1,33 @@
+/*
+ * Denominations grid
+ */
+
+.paymentView .denominationsArea .win-listview .win-itemscontainer .win-container .win-item,
+.paymentView .denominationsArea .win-listview .win-itemscontainer .win-container .win-item > div {
+    height: inherit;
+}
+
+/* Overwrite the margin and padding settings in ui-dark and ui-light */
+.paymentView .denominationsArea .win-listview .win-horizontal .win-itemscontainer,
+.paymentView .denominationsArea .win-listview .win-horizontal :not(.win-clip).win-itemsblock {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Fix for denomination section in Chrome. CellSpanningLayout feature will only be supported in IE (IE10+).  */
+.paymentView  .denominationsArea .win-itemscontainer-padder {
+    display: none;
+}
+
+/* Chrome ignore -ms-grid style and cells are cut off. Following styles fixed it for Chrome */
+.paymentView .denominationsArea .win-cellspanninggridlayout.win-itemscontainer.win-laidout {
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    -webkit-flex-direction: column;
+}
+
+/* Override width from iconWarning */
+.paymentView .viewDisclaimerLink {
+    min-width: 25em;
+    max-width: 32em;
+}

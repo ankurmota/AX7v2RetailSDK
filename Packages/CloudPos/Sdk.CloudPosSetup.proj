@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <ProjectGuid>{2F11703D-09E3-4257-9CA2-76C2031E8DF0}</ProjectGuid>
+    <PackageName>RetailCloudPos</PackageName>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <PackageTmpFolder>$(SdkRootPath)\Pos\Web\obj\$(Configuration)\Package\PackageTmp</PackageTmpFolder>
+    <InputManifest>Scripts\InstallationInfo.xml</InputManifest>
+    <OutputManifest>content.folder\$(PackageName)\Scripts\InstallationInfo.xml</OutputManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <_ETWManifest_File Include="$(SdkAssetsPath)\Microsoft.Dynamics.Retail.Diagnostics.Sinks.man" />
+    <_ETWManifest_File Include="..\..\References\Microsoft.Dynamics.AX7Deployment.Instrumentation.dll" />
+    <_ETWManifest_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll" />
+    <_ETWManifest_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll" />
+    <_ETWManifest_File Include="ETWManifest\Microsoft.Dynamics.AX7Deployment.instrumentation.man" />
+    <_Scripts_File Include="$(SdkAssetsPath)\AutoETWManifestUpdate.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Configuration.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Database.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Upgrade.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Web.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Deploy-Databases.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Register-PerfCounters.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\SetConfigInstallationInfo.ps1" />
+    <_Scripts_File Include="..\..\References\Microsoft.Dynamics.AX.AXInstallationInfo.dll" />
+    <_Scripts_File Include="Scripts\AutoETWManifestRestore.ps1" />
+    <_Scripts_File Include="Scripts\Backup-RetailCloudPos.ps1" />
+    <_Scripts_File Include="Scripts\Call-RetailCloudPOSServicing.ps1" />
+    <_Scripts_File Include="Scripts\CallRetailPostDeploymentConfigurationService.ps1" />
+    <_Scripts_File Include="Scripts\CallRetailPostDeploymentConfigurationServiceWrapper.ps1" />
+    <_Scripts_File Include="Scripts\channeldb-settings-test.xml" />
+    <_Scripts_File Include="Scripts\channeldb-settings.xml" />
+    <_Scripts_File Include="Scripts\channeldb-topology.xml" />
+    <_Scripts_File Include="Scripts\Common-Patching.ps1" />
+    <_Scripts_File Include="Scripts\Common-Servicing.psm1" />
+    <_Scripts_File Include="Scripts\Common-WinService.ps1" />
+    <_Scripts_File Include="Scripts\CommonDVTHelperModule.psm1" />
+    <_Scripts_File Include="Scripts\CommonRollbackUtilities.psm1" />
+    <_Scripts_File Include="Scripts\CreateRetailCloudPosDSCConfiguration.ps1" />
+    <_Scripts_File Include="Scripts\InstallationInfo.xml" />
+    <_Scripts_File Include="Scripts\RebuildFullTextCatalogAndWait.sql" />
+    <_Scripts_File Include="Scripts\Restore-RetailCloudPos.ps1" />
+    <_Scripts_File Include="Scripts\RetailCloudPosDSCConfiguration.ps1" />
+    <_Scripts_File Include="Scripts\RetailPostConfigurationForDSCDeployment.ps1" />
+    <_Scripts_File Include="Scripts\RetailTenantUpdateTool.ps1" />
+    <_Scripts_File Include="Scripts\RunRetailCloudPosDVT.ps1" />
+    <_Scripts_File Include="Scripts\RunRetailPostDeploymentConfig.ps1" />
+    <_Scripts_File Include="Scripts\ServiceModelUtilities.psm1" />
+    <_Scripts_File Include="Scripts\Setup-SettingsForDatabaseDeployment.ps1" />
+    <_Scripts_File Include="Scripts\Start-RetailCloudPos.ps1" />
+    <_Scripts_File Include="Scripts\Stop-RetailCloudPos.ps1" />
+    <_Scripts_File Include="Scripts\Uninstall.ps1" />
+    <_Scripts_File Include="Scripts\UpdateCloudPosDeployment.ps1" />
+    <_Scripts_File Include="Scripts\UpdateCloudPosDeploymentWithConfigWrapper.ps1" />
+    <_Scripts_File Include="Scripts\ValidateRetailCloudPos.ps1" />
+    <_Scripts_File Include="Scripts\ValidateRetailDeployment.ps1" />
+    <_Scripts_Upgrade_Core_File Include="$(SdkAssetsPath)\Common-Configuration.ps1" />
+    <_Scripts_Upgrade_Core_File Include="$(SdkAssetsPath)\Common-Upgrade.ps1" />
+    <_Scripts_Upgrade_Core_File Include="$(SdkAssetsPath)\Common-Web.ps1" />
+    <_Scripts_Upgrade_Core_File Include="Scripts\Upgrade\Core\UpdateCloudPos.ps1" />
+    <_Scripts_xDynamics_DSCResources_RetailChannelDatabase_File Include="Scripts\xDynamics\DSCResources\RetailChannelDatabase\RetailChannelDatabase.psm1" />
+    <_Scripts_xDynamics_DSCResources_RetailChannelDatabase_File Include="Scripts\xDynamics\DSCResources\RetailChannelDatabase\RetailChannelDatabase.schema.mof" />
+    <_Scripts_xDynamics_File Include="Scripts\xDynamics\CommonDatabaseHelper.psm1" />
+    <_Scripts_xDynamics_File Include="Scripts\xDynamics\CommonLoggingHelper.psm1" />
+    <_Scripts_xDynamics_File Include="Scripts\xDynamics\CommonRetailDSCConfiguration.ps1" />
+    <_ServiceModel_File Include="ServiceModel\RetailCloudPos.xml" />
+    <_ServiceModel_File Include="ServiceModel\ServiceComponent.xml" />
+  </ItemGroup>
+  <Target Name="Build">
+    <MSBuild Projects="$(SdkRootPath)\POS\Web\Pos.Web.csproj" BuildInParallel="False" SkipNonexistentProjects="False" Targets="Build" Properties="DeployOnBuild=true" />
+    <CreateItem Include="$(PackageTmpFolder)\**\*.*">
+      <Output TaskParameter="Include" ItemName="All_Code_Files" />
+    </CreateItem>
+  </Target>
+  <Target Name="IncrementalBuild" AfterTargets="Build" Inputs="$(MSBuildAllProjects);@(All_Code_Files);@(_Update_Installer_Files);@(_Data_File);@(_ETWManifest_File);@(_Instructions_File);@(_Packages_File);@(_Scripts_File);@(_Scripts_Upgrade_Core_File);@(_Scripts_Upgrade_File);@(_Scripts_xDynamics_DSCResources_File);@(_Scripts_xDynamics_DSCResources_RetailChannelDatabase_File);@(_Scripts_xDynamics_File);@(_ServiceModel_File);@(__File)" Outputs="$(OutputPath)content.zip">
+    <CallTarget Targets="CopyPackageFiles" />
+    <Delete Files="$(OutputPath)content.zip" />
+    <GenerateHotfixInstallationInfo ContentFolder="$(OutputPath)content.folder" />
+    <Zip OutputFileName="$(OutputPath)content.zip" InputFolder="$(OutputPath)content.folder" />
+  </Target>
+  <Target Name="CopyPackageFiles">
+    <RemoveDir Directories="$(OutputPath)content.folder" />
+    <Error Text="CloudPOS has not been build yet." Condition="'@(All_Code_Files)' == ''" />
+    <Copy SourceFiles="@(All_Code_Files)" DestinationFiles="@(All_Code_Files-&gt;Replace('$(PackageTmpFolder)', 'Code')-&gt;'$(OutputPath)content.folder\$(PackageName)\%(RelativeDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Update_Installer_Files)" DestinationFolder="$(OutputPath)content.folder" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Data_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\Data" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ETWManifest_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\ETWManifest" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Instructions_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\Instructions" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Packages_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\Packages" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\Scripts" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_Upgrade_Core_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\Scripts\Upgrade\Core" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_Upgrade_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\Scripts\Upgrade" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_xDynamics_DSCResources_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\Scripts\xDynamics\DSCResources" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_xDynamics_DSCResources_RetailChannelDatabase_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\Scripts\xDynamics\DSCResources\RetailChannelDatabase" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_xDynamics_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\Scripts\xDynamics" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ServiceModel_File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\ServiceModel" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(__File)" DestinationFolder="$(OutputPath)content.folder\RetailCloudPos\" SkipUnchangedFiles="true" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+  <Target Name="BuildGenerated" />
+  <Target Name="BuildCompiled" />
+  <Target Name="BuildLinked" />
+  <Target Name="Rebuild">
+    <CallTarget Targets="Clean" />
+    <CallTarget Targets="Build" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(OutputPath)content.folder" />
+    <Delete Files="$(OutputPath)content.zip" />
+  </Target>
+</Project>

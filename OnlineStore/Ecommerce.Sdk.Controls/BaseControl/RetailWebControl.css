@@ -1,0 +1,770 @@
+.msax-Control {
+    font-size: 12px;
+    font-family: "Segoe UI";
+    line-height: normal;
+}
+
+    .msax-Control * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    
+    .msax-Control h5 {
+        background-color: #F3F4F4;
+        text-transform: uppercase;
+        vertical-align: middle;
+        font-size: 11px;
+        padding: 10px;
+        text-align: left;
+        color: #5d5d5e;
+        font-weight: normal;
+        margin: 20px 0;
+    }
+
+    .msax-Control h4 {
+        background-color: none;
+        text-transform: none;
+        vertical-align: middle;
+        font-size: 14px;
+        margin-bottom: 20px;
+        margin-top: 30px;
+        text-align: left;
+        color: #272727;
+        font-weight: normal;
+    }
+
+    .msax-Control h2 {
+        font-weight: 400;
+        margin: 12px 0;
+    }
+
+    .msax-Control .msax-CursorPointer {
+        cursor: pointer;
+    } 
+
+    .msax-Control .msax-DisplayNone {
+        display: none;
+    } 
+
+    .msax-Control .msax-FloatLeft {
+        float: left;
+    }    
+
+    .msax-Control .msax-FloatRight {
+        float: right;
+    }
+
+    .msax-Control .msax-FloatNone {
+        float: none;
+    }
+
+    .msax-Control .msax-AlignRight {
+        text-align: right;
+    }
+
+    .msax-Control .msax-AlignCenter {
+        text-align: center;
+    }
+
+    .msax-Control .msax-VerticalAlignMiddle {
+        vertical-align: middle;
+    }
+
+    .msax-Control .msax-SecondaryColor {
+        color: #999999;
+    }
+
+    .msax-Control input,
+    .msax-Control select {
+        height: 28px;
+        border: 1px solid #90989F;
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.input_bg.png")%>') repeat-x scroll 0 0 transparent;            
+        font-size: 12px;
+        font-family: "Segoe UI";
+    }
+
+    .msax-Control input {
+        padding: 2px 7px;
+        border-bottom-left-radius: 0px;
+        border-top-left-radius: 0px;
+    }
+
+    .msax-Control select {
+        padding: 0 0 0 7px;
+    }
+
+    .msax-Control textarea {
+        font-family: "Segoe UI";
+        font-size: 12px;
+        padding: 2px 7px;
+        border: 1px solid #90989F;        
+    }
+
+        .msax-Control input:focus,
+        .msax-Control select:focus {
+            border: 1px solid #257EE2;
+            box-shadow: 0px 0px 3px 0px #CCC;
+        }
+
+        .msax-Control input[msax-isValid=false],
+        .msax-Control select[msax-isValid=false],
+        .msax-Control .msax-FieldPanel label[msax-isValid=false] {                    
+            background: #F7FABB;
+            border-color: #FFD700;
+        }
+
+        .msax-Control input[type=radio],
+        .msax-Control input[type=radio]:focus,
+        .msax-Control input[type=checkbox],
+        .msax-Control input[type=checkbox]:focus {
+            background: none;
+            height: 16px;
+            width: 16px;
+            box-shadow: none;
+            border: none;
+            margin-top: 4px;
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+
+        /* Disabling standard chrome and firebox Input=number behavior*/
+        .msax-Control input[type=number]::-webkit-outer-spin-button, 
+        .msax-Control input[type=number]::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+        .msax-Control input[type=number] {
+            -moz-appearance:textfield;
+            width: 40px;
+            text-align: center;
+        }
+
+        .msax-Control .msax-FieldPanel {
+            margin-bottom: 5px;
+        }
+
+        .msax-Control .msax-FieldPanel > * {
+        }
+
+        .msax-Control .msax-FieldPanel > input[type=text] {
+        }
+
+        .msax-Control .msax-FieldPanel > input[type=radio],
+        .msax-Control .msax-FieldPanel > input[type=checkbox] {
+            width: 16px;
+            float: left;
+        }
+
+        .msax-Control .msax-FieldPanel label {
+            border: solid 1px #fff; /* keep 1 px border placeholder for validation error on radio/checkbox styles */
+            background: none;
+            display: block;
+            padding: 5px 0;
+            line-height: 12px;
+            min-width: 150px;
+            font-weight: 400;
+        }
+
+    .msax-Control a {
+        color: #0066CC;
+        text-decoration: none;
+    }
+
+        .msax-Control a:hover {
+            text-decoration: underline;
+        }
+
+    .msax-Control button {
+        cursor: pointer;
+        margin: 0;
+        color: #fff;
+        font-size: 14px;
+        font-family: "Segoe UI";
+        text-decoration: none;
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_lrg_bl_left.png")%>') no-repeat scroll left center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_lrg_bl_right.png")%>') no-repeat scroll right center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_lrg_bl_bg.png")%>') repeat-x scroll center center;
+        border: none;
+        height: 38px;
+        text-align: center;
+        min-width: 100px;
+    }
+
+    .msax-Control button.msax-Grey {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_lrg_gr_left.png")%>') no-repeat scroll left center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_lrg_gr_right.png")%>') no-repeat scroll right center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_lrg_gr_bg.png")%>') repeat-x scroll center center;
+    }
+
+        .msax-Control button.msax-CheckoutButton, .msax-Control button.msax-Previous, .msax-Control button.msax-Next, .msax-Control button.msax-SubmitOrder {
+            padding: 0 0 0 15px;
+        }
+
+            .msax-Control button.msax-CheckoutButton > span, .msax-Control button.msax-Next > span {
+                background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_i_forward_lrg.png")%>') no-repeat 80px 0;
+                width: 130px;
+                height: 38px;
+                text-align: left;
+                padding-top: 10px;
+                padding-left: 10px;
+                display: block;
+            }
+
+            .msax-Control button.msax-SubmitOrder > span {
+                background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_i_forward_lrg.png")%>') no-repeat 100px 0;
+                width: 150px;
+                height: 38px;
+                text-align: left;
+                padding-top: 10px;
+                padding-left: 10px;
+                display: block;
+            }
+
+            .msax-Control button.msax-Previous > span {
+                background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_i_back_lrg.png")%>') no-repeat 0 0;
+                width: 150px;
+                height: 38px;
+                text-align: right;
+                padding-top: 10px;
+                padding-right: 20px;
+                display: block;
+            }
+
+        .msax-Control button.msax-CheckoutButtonSmall {
+            padding: 0px;
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_Checkout_sm.png")%>') no-repeat 0 0;
+            width: 120px;
+            height: 25px;
+        }
+
+        .msax-Control button.msax-MiniCartButton {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.ShoppingCart.Images.i_ShoppingCart_24.png")%>') no-repeat 15% 50%;
+        }
+
+        .msax-Control .msax-Spinner {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.loading_animation_lg.gif")%>');
+            background-size: contain;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+        }
+
+        .msax-Control button.msax-Close48 {
+             background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Close_48_on.png")%>') no-repeat 0 0;
+             height: 48px;
+             min-width: 48px;
+        }
+
+        .msax-Control .msax-Info {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.i_Info_16.png")%>') no-repeat 0 0;
+            background-size: contain;
+            width: 16px;
+            height: 16px;
+        }
+
+        .msax-Control button.msax-ArrowLeft16,
+        .msax-Control button.msax-Delete16,
+        .msax-Control button.msax-Minus16,
+        .msax-Control button.msax-Plus16,
+        .msax-Control button.msax-Edit19,
+        .msax-Control button.msax-Update24,
+        .msax-Control button.msax-Arrow24 {
+            height: 16px;
+            padding: 0;
+            padding-left: 16px;
+            min-width: 16px;
+            background-color: transparent;
+            border: 0 none transparent;
+            text-decoration: none;
+            color: #0066CC;
+            font-size: 11px;
+        }
+
+            .msax-Control button.msax-ArrowLeft16:hover,
+            .msax-Control button.msax-Delete16:hover,
+            .msax-Control button.msax-Minus16:hover,
+            .msax-Control button.msax-Plus16:hover,
+            .msax-Control button.msax-Edit19:hover,
+            .msax-Control button.msax-Update24:hover,
+            .msax-Control button.msax-Arrow24:hover {
+                text-decoration: underline;
+            }
+
+        .msax-Control button.msax-WithText {
+            padding-left: 21px;
+        }
+
+        .msax-Control button.msax-WithText.msax-Update24, button.msax-WithText.msax-Arrow24 {
+            padding-left: 31px;
+            padding-top: 8px;
+        }
+
+        .msax-Control button.msax-ArrowLeft16 {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Arrow_Left_16_on.png")%>') no-repeat 0 0;
+        }
+
+        .msax-Control button.msax-Delete16 {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Delete_16_on.png")%>') no-repeat 0 center;
+        }
+
+        .msax-Control button.msax-Minus16 {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Minus_16_on.png")%>') no-repeat center;
+        }
+
+        .msax-Control button.msax-Plus16 {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Plus_16_on.png")%>') no-repeat 0 0;
+        }
+
+        .msax-Control button.msax-Edit19 {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Edit_19_on.png")%>') no-repeat 0 0;
+            height: 21px;
+            width: 21px;
+        }
+
+        .msax-Control button.msax-Update24 {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Update_24_on.png")%>') no-repeat 0 0;
+            height: 26px;
+        }
+
+        .msax-Control button.msax-Arrow24 {
+            background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Arrow_Left_24_on.png")%>') no-repeat 0 center;
+            height: 26px;
+        }
+
+    /* Div layout */
+    .msax-Control .msax-Table {
+        display: table;
+        width: 100%;
+    }
+
+    .msax-Control .msax-Row {
+        display: table-row;
+        width: 100%;
+        vertical-align: top;
+    }
+
+        .msax-Control .msax-Row > * {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+    .msax-Control .msax-BorderTop1 {
+        border-top: solid 1px #F3F4F4;
+    }
+
+    .msax-Control .msax-MarginLeft0 {
+        margin-left: 0px;
+    }
+
+    .msax-Control .msax-MarginLeft5 {
+        margin-left: 5px;
+    }
+
+    .msax-Control .msax-MarginLeft10 {
+        margin-left: 10px;
+    }
+
+    .msax-Control .msax-MarginLeft20 {
+        margin-left: 20px;
+    }
+
+     .msax-Control .msax-MarginLeft30 {
+        margin-left: 30px;
+    }
+
+    .msax-Control .msax-MarginRight0 {
+        margin-right: 0px;
+    }
+
+    .msax-Control .msax-MarginRight10 {
+        margin-right: 10px;
+    }
+
+    .msax-Control .msax-MarginRight20 {
+        margin-right: 20px;
+    }
+
+    .msax-Control .msax-MarginTop0 {
+        margin-top: 0px;
+    }
+
+    .msax-Control .msax-MarginTop10 {
+        margin-top: 10px;
+    }
+
+    .msax-Control .msax-MarginTop12 {
+        margin-top: 12px;
+    }
+
+    .msax-Control .msax-MarginTop20 {
+        margin-top: 20px;
+    }
+
+    .msax-Control .msax-MarginTop30 {
+        margin-top: 30px;
+    }
+
+    .msax-Control .msax-MarginBottom0 {
+        margin-bottom: 0px;
+    }
+
+    .msax-Control .msax-MarginBottom12 {
+        margin-bottom: 12px;
+    }
+
+    .msax-Control .msax-MarginBottom20 {
+        margin-bottom: 20px;
+    }
+
+    .msax-Control .msax-MarginTop50 {
+        margin-top: 50px;
+    }
+
+    .msax-Control .msax-PaddingTop5 {
+        padding-top: 5px;
+    }
+
+    .msax-Control .msax-PaddingTop9 {
+        padding-top: 9px;
+    }
+
+    .msax-Control .msax-PaddingTop10 {
+        padding-top: 10px;
+    }
+
+    .msax-Control .msax-PaddingTop20 {
+        padding-top: 20px;
+    }
+
+    .msax-Control .msax-PaddingTop25 {
+        padding-top: 25px;
+    }
+
+    .msax-Control .msax-PaddingTop30 {
+        padding-top: 30px;
+    }
+
+     .msax-Control .msax-PaddingTop40 {
+        padding-top: 40px;
+    }
+
+    .msax-Control .msax-PaddingBottom1 {
+        padding-bottom: 1px;
+    }
+
+    .msax-Control .msax-PaddingBottom5 {
+        padding-bottom: 5px;
+    }
+
+     .msax-Control .msax-PaddingBottom10 {
+        padding-bottom: 10px;
+    }
+
+    .msax-Control .msax-PaddingBottom15 {
+        padding-bottom: 15px;
+    }
+
+    .msax-Control .msax-PaddingBottom20 {
+        padding-bottom: 20px;
+    }
+
+    .msax-Control .msax-PaddingBottom50 {
+        padding-bottom: 50px;
+    }
+
+    .msax-Control .msax-PaddingRight10 {
+        padding-right: 10px;
+    }
+
+    .msax-Control .msax-PaddingRight20 {
+        padding-right: 20px;
+    }
+
+    .msax-Control .msax-PaddingRight25 {
+        padding-right: 25px;
+    }
+
+    .msax-Control .msax-PaddingRight50 {
+        padding-right: 50px;
+    }
+
+    .msax-Control .msax-PaddingLeft10 {
+        padding-left: 10px;
+    }
+
+    .msax-Control .msax-PaddingLeft20 {
+        padding-left: 20px;
+    }
+
+    .msax-Control .msax-PaddingLeft25 {
+        padding-left: 25px;
+    }
+
+    .msax-Control .msax-PaddingLeft30 {
+        padding-left: 30px;
+    }
+
+    .msax-Control .msax-PaddingLeft40 {
+        padding-left: 40px;
+    }
+
+    .msax-Control .msax-PaddingLeft50 {
+        padding-left: 50px;
+    }
+
+    .msax-Control .msax-PaddingLeft60 {
+        padding-left: 60px;
+    }
+
+    .msax-Control .msax-WidthRatio20 {
+        width: 20%;
+    }
+
+    .msax-Control .msax-WidthRatio23 {
+        width: 23%;
+    }
+
+    .msax-Control .msax-WidthRatio25 {
+        width: 25%;
+    }
+
+    .msax-Control .msax-WidthRatio30 {
+        width: 30%;
+    }
+
+    .msax-Control .msax-WidthRatio40 {
+        width: 40%;
+    }
+
+    .msax-Control .msax-WidthRatio45 {
+        width: 45%;
+    }
+
+    .msax-Control .msax-WidthRatio50 {
+        width: 50%;
+    }
+
+    .msax-Control .msax-WidthRatio75 {
+        width: 75%;
+    }
+
+    .msax-Control .msax-WidthRatio100 {
+        width: 100%;
+    }    
+
+    .msax-Control .msax-Bold {
+        font-weight: bold;
+    } 
+
+    .msax-Control .msax-VerticalMiddle {
+        vertical-align: middle;
+    } 
+
+    .msax-Control .msax-UpperCase {
+        text-transform: uppercase;
+    } 
+
+    .msax-Control .msax-ClearBoth {
+        clear: both;
+    } 
+
+    .msax-Control .msax-Justify {
+        text-align: justify;
+    }
+
+    .msax-Control .msax-DisplayInline {
+        display: inline;
+    }
+
+    .msax-Control .msax-DisplayInlineBlock {
+        display: inline-block;
+    }
+
+    .msax-Control progress.indeterminateWait {
+        position: absolute;
+        z-index: 1000;
+        top: 10%;
+        left: 40%;
+        color: #5D5D5E;
+    }
+    
+    .msax-Control .msax-ErrorPanel {
+        border: solid 1px;
+        margin-bottom: 15px;
+        padding: 5px 14px;
+        line-height: 18px;        
+        background-color: #F7FABB;
+        margin-top: 20px;
+        border-radius: 5px;
+        border-color: #FFD700;
+    }
+
+    .msax-Control .msax-ErrorPanel.msax-Error {
+        background-color: #F8D4D4;
+        border-color: #F5A6A7;
+    }
+
+/* Styles for jqueryUI dialog */
+.ui-widget-overlay {
+    background: #121314;
+    opacity: 0.90;
+}
+
+.ui-widget-overlay.msax-LoadingOverlay {
+    background: none;
+}
+
+.msax-Control.ui-dialog {
+    padding: 0px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: white;
+    padding: 20px;
+}
+
+.msax-Control.ui-dialog.msax-LoadingOverlay {
+    padding: 0px;
+}
+
+.msax-Control .ui-widget-header {
+    border: none;
+    height: 48px; /* To fit the close button */
+    background-color: white;
+}
+
+.msax-Control.ui-dialog.msax-NoTitle .ui-widget-header {
+    display: none;
+}
+
+    .msax-Control .ui-widget-header .ui-dialog-title {
+        font-size: 20px;
+        font-weight: normal;
+        color: black;
+    }
+
+    .msax-Control .ui-widget-header .ui-dialog-titlebar-close {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Close_48_on.png")%>') no-repeat 0 0;
+        height: 48px;
+        min-width: 48px;
+        border: none;
+        top: 6px;
+    }
+
+    .msax-Control .ui-widget-content.msax-Loading {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.update_bg.png")%>') no-repeat 0 0;
+        opacity: 0.9;
+        color: white;
+        text-align: center;
+    }
+
+    .msax-Control.ui-dialog .msax-ButtonSection {
+        position: absolute;
+        bottom: 0px;
+    }
+
+    .ui-tooltip-content {
+        font-size: 12px;
+        font-family: "Segoe UI";
+        line-height: normal;
+    }
+
+    .msax-Control .msax-ItemLevelPreferenceSelection .msax-ButtonSection {
+        left: 380px;
+    }
+
+    .msax-Control .msax-EditRewardCard .msax-ButtonSection, .msax-Control .msax-AddDiscountCodeDialog .msax-ButtonSection {
+        left: 130px;
+    }
+
+/* Promotion banner */
+.msax-Control .msax-PromotionBanner {
+     background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.banner_burst.png")%>') no-repeat 10px center #7BA1EA;
+     border: #0066CC;
+     border-radius: 5px;
+     color: white;
+     line-height: 22px;
+}
+
+.msax-Control .msax-GridHeader {
+    background-color: #F3F4F4;
+    text-transform: uppercase;
+    vertical-align: middle;
+    font-size: 11px;
+    padding: 10px;
+    text-align: left;
+    color: #5d5d5e;
+    font-weight: normal;
+}
+
+.table-responsive {
+    border: 0px !important;
+}
+
+@media (max-width: 480px) { 
+    .msax-ProductImage {
+        width: 180px;
+        height: 180px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .msax-ImageWrapper50px {
+        display: none;
+    }
+
+    .msax-FullView,
+    .msax-FullView > *,
+    .msax-View480,
+    .msax-View480 > * {
+        display: none !important;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 760px) { 
+    .msax-ProductImage {
+        width: 180px;
+        height: 180px;
+        display: block;
+    }
+
+    .msax-ImageWrapper50px {
+        display: none;
+    }
+
+    .msax-FullView,
+    .msax-FullView > *,
+    .msax-View320,
+    .msax-View320 > *
+    {
+        display: none;
+    }
+}
+
+@media (min-width: 760px) { 
+    .msax-ProductImage {
+        width: 50px;
+        height: 50px;
+        display: block;
+    }
+
+    .msax-ImageWrapper180px {
+        display: none;
+    }
+
+    .msax-View480,
+    .msax-View480 > *,
+    .msax-View320,
+    .msax-View320 > * {
+        display: none;
+    }
+}
+
+.msax-ImageWrapper50px {
+    width: 50px;
+    height: 50px;
+}
+
+.msax-ImageWrapper180px {
+    width: 180px;
+    height: 180px;
+}

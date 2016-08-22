@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+  <PaymentProcessor_GetMerchantAccountPropertyMetadata_Success>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GetMerchantAccountPropertyMetadata_Success>
+  <PaymentProcessor_GetMerchantAccountPropertyMetadata_Success>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GetMerchantAccountPropertyMetadata_Success>
+  
+  <PaymentProcessor_GetMerchantAccountPropertyMetadata_NullRequest>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GetMerchantAccountPropertyMetadata_NullRequest>
+  <PaymentProcessor_GetMerchantAccountPropertyMetadata_NullRequest>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GetMerchantAccountPropertyMetadata_NullRequest>
+  
+</TestData>

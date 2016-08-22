@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+
+  <PaymentProcessor_SupportedCountries_Success>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_SupportedCountries_Success>
+  <PaymentProcessor_SupportedCountries_Success>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_SupportedCountries_Success>
+  
+</TestData>

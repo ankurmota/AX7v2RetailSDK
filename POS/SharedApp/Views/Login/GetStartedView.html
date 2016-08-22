@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>GetStartedView</title>
+</head>
+<body>
+    <div id="getStartedPanel" class="fragment dynamicsBackground center">
+
+        <div id="getStartedSection" role="main" class="row">
+            <div class="center">
+                <div class="width50 margin4 panelBackgroundColor highContrastBorderThin">
+
+                    <!-- Logo -->
+                    <div class="center">
+                        <img src="#" data-bind="attr: { src: 'Assets/WideLogo.scale-100.png' }" />
+                    </div>
+
+                    <div class="padLeft4 padRight4 padBottom4">
+
+                        <!-- Title -->
+                        <div class="padBottom4">
+                            <div class="headerFont wrapTextWithoutHyphen" data-bind="text: appTitle">Activate Retail Modern POS</div>
+                        </div>
+
+                        <!-- Initial message -->
+                        <div>
+                            <div class="padBottom1">
+                                <h3 data-bind="resx: {textContent: 'string_8001'}">Before you start</h3>
+                            </div>
+
+                            <div>
+                                <div class="row padBottom2">
+                                    <div class="iconWorldBig iconBig"></div>
+                                    <div class="marginLeft2">
+                                        <h4 data-bind="resx: {textContent: 'string_8002'}"></h4>
+                                    </div>
+                                </div>
+                                <div class="row padBottom2">
+                                    <div class="iconPersonBig iconBig"></div>
+                                    <div class="marginLeft2">
+                                        <h4 data-bind="resx: {textContent: 'string_8003'}"></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="iconCheckMarkBig iconBig"></div>
+                                    <div class="marginLeft2">
+                                        <h4 data-bind="resx: {textContent: 'string_8004'}"></h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Button to navigate to activation view -->
+                            <div class="padTop4 textRight">
+                                <button id="nextButton" class="primaryButton dynamicsBackground"
+                                        data-bind="resx: { textContent: 'string_8005' }, click: navigateToActivationPage">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+           </div>
+        </div>
+           
+</div>
+</body>
+</html>

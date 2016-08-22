@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cost Accounts View</title>
+    <link href="CostAccountView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="costAccountView fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <!-- Main content -->
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <div class="col grow" data-bind="visible: viewMode() == Commerce.ViewControllers.CostAccountViewMode.AccountSelection">
+                <div class="col grow" data-bind="listView: {
+                    itemDataSource: accounts, 
+                    selectionMode: 'single',
+                    tapBehavior: 'toggleSelect',
+                    selectionchanged: { eventHandlerCallBack: selectionChangedHandler, appBarId: '#commandAppBar' },
+                    columns: [
+                        { titleResx: 'string_4057', cssClass: 'ratio3', field: 'AccountNumber' },
+                        { titleResx: 'string_4058', cssClass: 'ratio3', field: 'AccountName' },
+                        { titleResx: 'string_4059', cssClass: 'ratio4 textRight', field: 'AccountNameAlias' },
+                    ]
+                }"></div>
+            </div>
+            <div data-bind="visible: viewMode() == Commerce.ViewControllers.CostAccountViewMode.AmountEntry">
+                <div class="numPadTitle">
+                    <h2 data-bind="resx: { textContent: 'string_4011' }">Enter amount</h2>
+                </div>
+                <input id="costAccountAmountInput" class="numPadTextbox" type="text" 
+                       data-bind="resx: { ariaLabel: 'string_4011' }" />  <!-- Enter amount -->
+                <!-- Num pad -->
+                <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                     data-win-options="{ uri: 'Controls/numberPad/NumPad.html' }"
+                     data-bind="numpad: {
+                        textBoxId: 'costAccountAmountInput',
+                        onEnter: saveAccount,
+                        decimalPrecision: Commerce.NumberExtensions.getDecimalPrecision(Commerce.ApplicationContext.Instance.deviceConfiguration.Currency),
+                        parser: new Commerce.DecimalNotRequiredParser(),
+                        value: amountInput
+                     }">
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'selectAccountAppBar', label:'OK', extraClass: 'winappbar-iconAccept'}"
+                    data-bind="click: selectAccount, resx: { label: 'string_4051' }, visible: viewMode() == Commerce.ViewControllers.CostAccountViewMode.AccountSelection, winControl: { disabled: isOKDisabled }"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'saveAppBar', label:'Save', extraClass: 'winappbar-iconSave'}"
+                    data-bind="click: saveAccount, resx: { label: 'string_4016' }, visible: viewMode() == Commerce.ViewControllers.CostAccountViewMode.AmountEntry"></button>
+        </div>
+    </div>
+</body>
+</html>

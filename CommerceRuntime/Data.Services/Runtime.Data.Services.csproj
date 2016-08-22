@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{18D20BA6-901B-4EDF-B89F-80122F4B9E0C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.Runtime.DataServices</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.Runtime.DataServices</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AddressDataService.cs" />
+    <Compile Include="AffiliationDataService.cs" />
+    <Compile Include="BarcodeDataService.cs" />
+    <Compile Include="ChannelDataService.cs" />
+    <Compile Include="ChargeDataService.cs" />
+    <Compile Include="CurrencyDataService.cs" />
+    <Compile Include="CustomerDataService.cs" />
+    <Compile Include="EmployeeDataService.cs" />
+    <Compile Include="HardwareProfileDataService.cs" />
+    <Compile Include="HealthCheckDataService.cs" />
+    <Compile Include="IndiaTaxDataService.cs" />
+    <Compile Include="InventoryDataService.cs" />
+    <Compile Include="ItemDataService.cs" />
+    <Compile Include="OfflineProvisioningDataService.cs" />
+    <Compile Include="PaymentConnectorDataService.cs" />
+    <Compile Include="PricingDataService.cs" />
+    <Compile Include="ProductDataService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReasonCodeDataService.cs" />
+    <Compile Include="RetailServiceConfigurationDataService.cs" />
+    <Compile Include="SalesTransactionDataService.cs" />
+    <Compile Include="ShiftDataService.cs" />
+    <Compile Include="ShippingDataService.cs" />
+    <Compile Include="SimpleProductDataService.cs" />
+    <Compile Include="StockCountDataService.cs" />
+    <Compile Include="StorageLookupDataService.cs" />
+    <Compile Include="TaxDataService.cs" />
+    <Compile Include="TerminalDataService.cs" />
+    <Compile Include="TillLayoutDataService.cs" />
+    <Compile Include="TransactionLogDataService.cs" />
+    <Compile Include="UnitOfMeasureDataService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Data.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

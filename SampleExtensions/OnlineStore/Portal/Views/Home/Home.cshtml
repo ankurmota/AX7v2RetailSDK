@@ -1,0 +1,48 @@
+@using Contoso.Retail.Ecommerce.Web.Storefront.Models;
+@using Contoso.Commerce.RetailProxy;
+@using System.Collections.ObjectModel;
+
+@model Collection<Product>
+
+    <script>
+        function updateCarousel() {
+            if ($(window).width() <= 440) {
+                $("#Carousel").hide();
+                $("#CarouselSmall").show();
+            } else {
+                $("#CarouselSmall").hide();
+                $("#Carousel").show();
+            }
+        }
+
+        $(document).ready(function () {
+            updateCarousel();
+
+            $(window).resize(function () {
+                updateCarousel();
+            });
+        });
+    </script>
+
+    @section other{
+        <!-- Load CSS for Selected Products specifically, you can add the CSS needed for each partial view here -->
+        <link href="~/Content/CSS/SelectedProductGallery.css" rel="stylesheet" />
+    }
+
+    @{
+        ViewBag.Title = "Contoso";
+    }
+
+    <!-- Create an image carousel with a list of image urls -->
+    <div id="CarouselSmall">
+        @Html.Partial("ImageCarousel", new string[] { "../Content/IMG/PromotionImages/promotion_1.jpg", "../Content/IMG/PromotionImages/promotion_2.jpg", "../Content/IMG/PromotionImages/promotion_3.jpg" })
+    </div>
+    <div id="Carousel">
+        @Html.Partial("ImageCarousel", new string[] { "../Content/IMG/PromotionImages/promo_1.jpg", "../Content/IMG/PromotionImages/promo_2.jpg", "../Content/IMG/PromotionImages/promo_3.jpg" })
+    </div>
+
+    <hr class="line-break" />
+
+    @Html.Partial("SelectedProductGallery2", new SelectedProductGalleryModel2(@Model, @Resources.RecommendedProducts))
+
+

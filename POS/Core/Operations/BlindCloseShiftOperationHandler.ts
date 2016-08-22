@@ -1,0 +1,68 @@
+/**
+ * SAMPLE CODE NOTICE
+ * 
+ * THIS SAMPLE CODE IS MADE AVAILABLE AS IS.  MICROSOFT MAKES NO WARRANTIES, WHETHER EXPRESS OR IMPLIED,
+ * OF FITNESS FOR A PARTICULAR PURPOSE, OF ACCURACY OR COMPLETENESS OF RESPONSES, OF RESULTS, OR CONDITIONS OF MERCHANTABILITY.
+ * THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS SAMPLE CODE REMAINS WITH THE USER.
+ * NO TECHNICAL SUPPORT IS PROVIDED.  YOU MAY NOT DISTRIBUTE THIS CODE UNLESS YOU HAVE A LICENSE AGREEMENT WITH MICROSOFT THAT ALLOWS YOU TO DO SO.
+ */
+
+///<reference path='OperationHandlerBase.ts' />
+
+module Commerce.Operations {
+    "use strict";
+
+    /**
+     * Options passed to the BlindCloseShift operation.
+     */
+    export interface IBlindCloseShiftOperationOptions extends IOperationOptions {
+    }
+
+    /**
+     * Handler for the BlindCloseShift operation.
+     */
+    export class BlindCloseShiftOperationHandler extends OperationHandlerBase {
+        /**
+         * Executes the BlindCloseShift operation.
+         * @param {IBlindCloseShiftOperationOptions} options The operation options.
+         * @return {IAsyncResult<IOperationResult>} The async result containing the operation result, if any.
+         */
+        public execute(options: IBlindCloseShiftOperationOptions): IAsyncResult<IOperationResult> {
+            // sanitize options
+            options = options || { shift: undefined };
+
+            var asyncQueue: AsyncQueue = new AsyncQueue()
+                .enqueue((): IAsyncResult<any> => {
+                    if (!Session.instance.Shift.IsShared) {
+                        return VoidAsyncResult.createResolved();
+                    }
+
+                    var message: string = ViewModelAdapter.getResourceString("string_4176");
+                    return ViewModelAdapter.displayMessage(message, MessageType.Info, MessageBoxButtons.YesNo)
+                        .done((result: DialogResult) => {
+                            if (result === DialogResult.No) {
+                                asyncQueue.cancel();
+                                this.operationsManager.revertToSelf().run().fail((errors: Proxy.Entities.Error[]) => {
+                                    RetailLogger.operationBlindCloseSharedShiftFailedOnRevertToSelfDuringCancellation(
+                                        Session.instance.Shift.ShiftId,
+                                        Session.instance.Shift.CurrentStaffId);
+                                });
+                            }
+                        });
+                }).enqueue(() => {
+                    return this.storeOperationsManager.blindCloseShiftAsync(Session.instance.Shift.TerminalId, Session.instance.Shift.ShiftId);
+                }).enqueue(() => {
+                    // Make sure revert back from the elevated state before invoking the logoff; otherwise, the logoff operation will be performed
+                    // using the elevated identity.
+                    return asyncQueue.cancelOn(this.operationsManager.revertToSelf().run());
+                }).enqueue(() => {
+                    Session.instance.Shift = null;
+                    ShiftHelper.saveCashDrawerOnStorage(null);
+
+                    return this.operationsManager.runOperation(RetailOperation.LogOff, <ILogoffOperationOptions>{});
+                });
+
+            return asyncQueue.run();
+        }
+    }
+}

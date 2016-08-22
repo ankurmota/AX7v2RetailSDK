@@ -1,0 +1,15 @@
+@using Contoso.Retail.Ecommerce.Sdk.Controls
+
+@{
+    ViewBag.Title = "Cart - Contoso";
+}
+
+@section other {
+    @MvcHelperExtension.GetShoppingCartControlHeader("/Checkout", "/")
+}
+
+@MvcHelperExtension.GetShoppingCartControl()
+
+
+
+

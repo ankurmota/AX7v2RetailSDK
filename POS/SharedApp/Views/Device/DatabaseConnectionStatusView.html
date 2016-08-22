@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Databse connection status view</title>
+</head>
+<body>
+    <div class="fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row overflowYVisible" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <!-- Main content -->
+            <!-- Overview area -->
+            <div class="col width40">
+
+                <h2 data-bind="resx: { textContent: 'string_6602' }">Device activation</h2>
+
+                <div class="padTop2">
+                    <label data-bind="resx: { textContent: 'string_6603' }" for="connectionStatusBox">Connected</label>
+                    <h4 id="connectionStatusBox" data-bind="text: viewModel.status" />
+                </div>
+
+                <div class="padTop2" data-bind="visible: Commerce.StringExtensions.isNullOrWhitespace(Commerce.Config.onlineDatabase)">
+                    <label data-bind="resx: { textContent: 'string_6604' }" for="serviceURLBox">Retail server</label>
+                    <h4 id="serviceURLBox" class="wrapTextWithoutHyphen" data-bind="text: Commerce.Config.retailServerUrl" />
+                </div>
+
+                <div class="padTop2" data-bind="visible: !Commerce.StringExtensions.isNullOrWhitespace(Commerce.Config.onlineDatabase)">
+                    <label data-bind="resx: { textContent: 'string_6612' }" for="connectionStringBox">Store database</label>
+                    <h4 id="connectionStringBox" data-bind="text: Commerce.Config.onlineDatabase" />
+                </div>
+
+                <div class="padTop2">
+                    <label data-bind="resx: { textContent: 'string_6620' }" for="connectionStatusBox">Pending transactions in offline database</label>
+                    <h4 id="connectionStatusBox" data-bind="text: viewModel.pendingTransactionCount" />
+                </div>
+
+                <div class="padTop2">
+                    <label data-bind="resx: { textContent: 'string_6638' }" for="connectionStatusBox">Pending downloads</label>
+                    <h4 id="connectionStatusBox" data-bind="text: viewModel.pendingDownloadSessionCount" />
+                </div>
+
+                <div class="padTop2">
+                    <label data-bind="resx: { textContent: 'string_6623' }" for="connectionStatusBox">Offline sync status</label>
+                    <h4 id="connectionStatusBox" data-bind="text: viewModel.offlineSyncStatus" />
+                </div>
+
+                <div class="marginTop3 height4">
+                    <button id="connectionButton" class="primaryButton"
+                            data-bind="text: connectionButtonText, click: toggleConnection">
+                        Disconnect
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="syncButton" class="primaryButton"
+                            data-bind="resx: { textContent: 'string_6624' }, click: syncOfflineData">
+                        Sync
+                    </button>
+                </div>
+            </div>
+
+            <div class="gutter4x4"></div>
+
+            <!-- Overview area -->
+            <div class="col grow minWidth40">
+                <div class="row">
+                    <div class="shrink marginRight4">
+                        <h2 id="downloadSessionPivot" tabindex="0" class="tabFontColor outlineFocus" data-bind="resx: { textContent: 'string_7300' },
+                                css: { active: viewDownload }, click: showDownloadViewHandler, enterKeyPress: showDownloadViewHandler"></h2>
+                    </div>
+                    <div>
+                        <h2 id="uploadSessionPivot" tabindex="0" class="tabFontColor outlineFocus" data-bind="resx: { textContent: 'string_7301' },
+                                css: { active: !viewDownload() }, click: showUploadViewHandler, enterKeyPress: showUploadViewHandler"></h2>
+                    </div>
+                </div>
+
+                <div class="tabsContent grow positionRelative col">
+                    <!-- ko if: viewDownload -->
+                    <div class="grow" data-bind="
+                            listView: {
+                                itemDataSource: viewModel.downloadSessionStatusTable,
+                                columns: [
+                                    { titleResx: 'string_6614', cssClass: 'ratio4', field: 'JobDescription' },
+                                    { titleResx: 'string_6616', cssClass: 'ratio2', field: 'Status' },
+                                    { titleResx: 'string_6619', cssClass: '', field: 'LastSyncDateTime', converter: 'Commerce.Core.Converter.ShortDateAndTime' },
+                                    { titleResx: 'string_7302', cssClass: 'ratio1 textRight', field: 'FileSize' },
+                                ]
+                            }">
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: !viewDownload() -->
+                    <div class="grow" data-bind="
+                                listView: {
+                                    itemDataSource: viewModel.uploadSessionStatusTable,
+                                    columns: [
+                                        { titleResx: 'string_6614', cssClass: 'ratio4', field: 'JobDescription' },
+                                        { titleResx: 'string_6616', cssClass: 'ratio2', field: 'Status' },
+                                        { titleResx: 'string_6619', cssClass: '', field: 'LastSyncDateTime', converter: 'Commerce.Core.Converter.ShortDateAndTime' },
+                                        { titleResx: 'string_7302', cssClass: 'ratio1 textRight', field: 'FileSize' },
+                                    ]
+                                }">
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

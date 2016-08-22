@@ -1,0 +1,1 @@
+This folder should contain channel database upgrade scripts.

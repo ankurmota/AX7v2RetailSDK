@@ -1,0 +1,56 @@
+.NavBar_zoomOut, .NavBar_zoomIn, .NavBar_compass {
+    display: none !important;
+}
+
+.MicrosoftMap .Infobox2 .infobox-body {
+    font-size: 10px !important;
+}
+
+    .MicrosoftMap .Infobox2 .infobox-body a,
+    .MicrosoftMap .Infobox2 .infobox-body a:active,
+    .MicrosoftMap .Infobox2 .infobox-body a:hover {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+.MicrosoftMap .Infobox2 .infobox-stalk {
+    width: 100% !important;
+}
+
+.MicrosoftMap .closeButton {
+    font-family: DynamicsFont;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    cursor: pointer;
+    z-index: 4000;
+}
+
+body[dir=rtl] .MicrosoftMap .closeButton {
+    left: 1em;
+    right: auto;
+}
+
+.MicrosoftMap .infobox-body .row h3,
+.MicrosoftMap .infobox-body .row h4,
+.MicrosoftMap .infobox-body h4.ellipsis {
+    font-family: 'Segoe UI'; /*infobox have their own font style needs to override*/
+}
+
+/* High contrast mode */
+@media screen and (-ms-high-contrast) {
+    #mapDiv > div {
+        border-style: solid !important; /*set border style for bing map*/
+        border-width: 1px;
+    }
+
+    .MicrosoftMap .Infobox2 .infobox-body{
+        border-width: 0 !important;
+    }
+
+    .MicrosoftMap > button {
+        left: auto !important; /*override left style for bing map*/
+        top: auto !important; /*override border style for bing map*/
+    }
+
+}

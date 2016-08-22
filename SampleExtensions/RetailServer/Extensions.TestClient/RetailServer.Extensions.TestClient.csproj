@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{277CB9CB-528C-4EAD-99E2-5BF5247BCF52}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Contoso.RetailServer.TestClient</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).RetailServer.TestClient</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Client.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Localization.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Messages.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Resources.Strings.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Retail.Resources.Strings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.dll">
+      <HintPath>..\..\..\References\Microsoft.IdentityModel.Clients.ActiveDirectory\2.14.0.0\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll">
+      <HintPath>..\..\..\References\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms\2.14.0.0\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Client.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.OData.Client\6.11.0.0\Microsoft.OData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Core.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.OData.Core\6.11.0.0\Microsoft.OData.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Edm.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.OData.Edm\6.11.0.0\Microsoft.OData.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Spatial.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Spatial\6.11.0.0\Microsoft.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Portable.dll">
+      <HintPath>..\..\..\References\Newtonsoft.Json.Portable\6.0.0.0\Newtonsoft.Json.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ObjectModel" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AADToken.cs" />
+    <Compile Include="ActivationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActivationForm.Designer.cs">
+      <DependentUpon>ActivationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationStorage.cs" />
+    <Compile Include="AzureActiveDirectoryHelper.cs" />
+    <Compile Include="DebugForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DebugForm.Designer.cs">
+      <DependentUpon>DebugForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceActivationInformation.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers.cs" />
+    <Compile Include="LogOnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogOnForm.Designer.cs">
+      <DependentUpon>LogOnForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ActivationForm.resx">
+      <DependentUpon>ActivationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DebugForm.resx">
+      <DependentUpon>DebugForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogOnForm.resx">
+      <DependentUpon>LogOnForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="$(SdkAssetsPath)\commerceruntime.mposoffline.config">
+      <Link>CommerceRuntime.MPOSOffline.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Cache.MemoryCache.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.ConfigurationProviders.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataAccess.SqlServer.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.SqlServer.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.NotSupported.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Desktop.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.PricingEngine.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Workflow.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.Notification.Contracts.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.Notification.Proxy.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.PaymentManager.Reference.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.PaymentProcessor.Common.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Extensions.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.PaymentTerminal.Contracts.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.Resources.Strings.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.SDKManager.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.Security.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Proxies\RetailProxy\Proxies.RetailProxy.csproj">
+      <Project>{AB373318-DA97-428E-B217-D519E8841658}</Project>
+      <Name>Proxies.RetailProxy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

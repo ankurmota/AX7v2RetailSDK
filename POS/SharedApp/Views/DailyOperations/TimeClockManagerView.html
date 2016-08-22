@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Time Clock Manager View</title>
+    <link href="TimeClockManagerView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="timeClockManagerView fragment">
+
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <!-- Main content -->
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <div class="col grow" data-bind="listView: {
+                itemDataSource: timeRegistrations,
+                selectionChanged: { eventHandlerCallBack: selectionChangedHandler },
+                columns: [
+                    { titleResx: 'string_4097', cssClass: 'ratio2', field: 'StaffName' },
+                    { titleResx: 'string_4098', cssClass: 'ratio2', field: 'StaffId' },
+                    { titleResx: 'string_4064', cssClass: 'ratio3', field: 'ActivityDateTimeOffset', converter: 'Commerce.Core.Converter.ShortDateAndTime' },
+                    { titleResx: 'string_4091', cssClass: 'ratio2', field: 'Activity' },
+                    { titleResx: 'string_4092', cssClass: 'ratio1 textRight', field: 'StoreNumber' },
+                ]
+            }">
+            </div>
+        </section>
+
+        <!-- Show activity flyout menu options -->
+        <div id="showActivityFlyout" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#showActivity', placement: 'top', alignment: 'left' }">
+            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id: 'setClockInFilter'}" data-bind="resx: { label: 'string_4084' }, click: setClockIn "></button>
+            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id: 'setClockOutFilter'}" data-bind="resx: { label: 'string_4085' }, click: setClockOut "></button>
+            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id: 'setBreakForLunchFilter'}" data-bind="resx: { label: 'string_4087' }, click: setBreakForLunch "></button>
+            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id: 'setBreakFromWorkFilter'}" data-bind="resx: { label: 'string_4086' }, click: setBreakFromWork "></button>
+        </div>
+
+        <!-- Show store flyout menu options -->
+        <div id="showStoreFlyout" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#showStore', placement: 'top', alignment: 'left' }">
+            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id: 'setAllStoresFilter'}" data-bind="resx: { label: 'string_5503' }, click: setStoreFilterAll "></button>
+            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id: 'setStoreFilter'}" data-bind="resx: { label: 'string_4096' }, click: setStoreFilter "></button>            
+        </div>
+
+        <!-- Bottom app bar --> 
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{
+                    id:'showActivity',
+                    extraClass: 'winappbar-iconActions',
+                    section:'selection',
+                    type: 'flyout',
+                    flyout:select('#showActivityFlyout')
+                }"
+                    data-bind="resx: { label: 'string_4157' }" />
+
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{
+                    id:'showStore',
+                    extraClass: 'winappbar-iconActions',
+                    section:'selection',
+                    type: 'flyout',
+                    flyout:select('#showStoreFlyout')
+                }"
+                    data-bind="resx: { label: 'string_4100' }" />
+        </div>
+    </div>
+</body>
+</html>

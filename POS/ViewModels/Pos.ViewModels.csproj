@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.Default.props" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputPath>bin</OutputPath>
+    <OutputType>Library</OutputType>
+    <AssemblyName>$(AssemblyNamePrefix).Pos.ViewModels</AssemblyName>
+    <ProjectGuid>{43C9ED1E-CAB7-466D-B58D-0E49AB3ADD94}</ProjectGuid>
+    <TypeScriptOutFile>Commerce.ViewModels.js</TypeScriptOutFile>
+    <TypeScriptNoImplicitAny>false</TypeScriptNoImplicitAny>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+    <TypeScriptLibrariesOutDir>$(MsBuildThisFileDirectory)</TypeScriptLibrariesOutDir>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ActivationViewModel.ts" />
+    <TypeScriptCompile Include="AffiliationsViewModel.ts" />
+    <TypeScriptCompile Include="AddressAddEditViewModel.ts" />
+    <TypeScriptCompile Include="AsyncServiceViewModel.ts" />
+    <TypeScriptCompile Include="CartViewModel.ts" />
+    <TypeScriptCompile Include="CatalogViewModel.ts" />
+    <TypeScriptCompile Include="CategoriesViewModel.ts" />
+    <TypeScriptCompile Include="ChangePasswordViewModel.ts" />
+    <TypeScriptCompile Include="CompareProductsViewModel.ts" />
+    <TypeScriptCompile Include="CustomerAddEditViewModel.ts" />
+    <TypeScriptCompile Include="CustomerCardViewModel.ts" />
+    <TypeScriptCompile Include="CustomerDetailsViewModel.ts" />
+    <TypeScriptCompile Include="CustomerSearchViewModel.ts" />
+    <TypeScriptCompile Include="CustomersViewModel.ts" />
+    <TypeScriptCompile Include="DatabaseConnectionStatusViewModel.ts" />
+    <TypeScriptCompile Include="HardwareStationViewModel.ts" />
+    <TypeScriptCompile Include="HomeViewModel.ts" />
+    <TypeScriptCompile Include="InventoryLookupViewModel.ts" />
+    <TypeScriptCompile Include="InventoryOperationHandlers.ts" />
+    <TypeScriptCompile Include="IssueLoyaltyCardViewModel.ts" />
+    <TypeScriptCompile Include="KitDisassemblyViewModel.ts" />
+    <TypeScriptCompile Include="LoginViewModel.ts" />
+    <TypeScriptCompile Include="ManagerOverrideViewModel.ts" />
+    <TypeScriptCompile Include="OperationsMap.ts" />
+    <TypeScriptCompile Include="PaymentHistoryViewModel.ts" />
+    <TypeScriptCompile Include="PaymentViewModel.ts" />
+    <TypeScriptCompile Include="PickingAndReceivingDetailsViewModel.ts" />
+    <TypeScriptCompile Include="PriceCheckViewModel.ts" />
+    <TypeScriptCompile Include="ProductDetailsViewModel.ts" />
+    <TypeScriptCompile Include="ProductSearchViewModel.ts" />
+    <TypeScriptCompile Include="ProductsViewModel.ts" />
+    <TypeScriptCompile Include="ReceiptViewModel.ts" />
+    <TypeScriptCompile Include="ReportDetailsViewModel.ts" />
+    <TypeScriptCompile Include="ReportResultsViewModel.ts" />
+    <TypeScriptCompile Include="ReportsViewModel.ts" />
+    <TypeScriptCompile Include="ResumeCartViewModel.ts" />
+    <TypeScriptCompile Include="SalesInvoiceDetailsViewModel.ts" />
+    <TypeScriptCompile Include="SalesInvoicesViewModel.ts" />
+    <TypeScriptCompile Include="SearchOrdersViewModel.ts" />
+    <TypeScriptCompile Include="SearchPickingAndReceivingViewModel.ts" />
+    <TypeScriptCompile Include="SearchReceiptsViewModel.ts" />
+    <TypeScriptCompile Include="SearchStockCountViewModel.ts" />
+    <TypeScriptCompile Include="SearchViewModel.ts" />
+    <TypeScriptCompile Include="SelectVariantViewModel.ts" />
+    <TypeScriptCompile Include="ShiftViewModel.ts" />
+    <TypeScriptCompile Include="ShippingViewModel.ts" />
+    <TypeScriptCompile Include="ShowJournalViewModel.ts" />
+    <TypeScriptCompile Include="StockCountDetailsViewModel.ts" />
+    <TypeScriptCompile Include="StoreDetailsViewModel.ts" />
+    <TypeScriptCompile Include="StoreOperationsViewModel.ts" />
+    <TypeScriptCompile Include="ExtendedLogOnViewModel.ts" />
+    <TypeScriptCompile Include="StoreViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\CompleteRecordingViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\ControlPanelViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\EditStepViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\EditTaskViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\HelpViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\MainPanelViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\NewRecordingViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\NewTaskViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\RecordingViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\StartTaskGuideViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\WelcomeViewModel.ts" />
+    <TypeScriptCompile Include="ViewModelBase.ts" />
+  </ItemGroup>
+  <ItemGroup Label="Libraries">
+    <TypeScriptLibraries Include="..\Core\Commerce.Core.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="Core.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="DataJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="Diagnostics.TypeScriptCore.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="JQuery.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="KnockoutJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="moment.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="moment-node.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="moment-timezone.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="RetailLogger.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="WinRT.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="globalize.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="WinJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptCompile Include="@(TypeScriptLibraries -&gt; '%(Filename)%(Extension)')" />
+  </ItemGroup>
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.targets')" />
+  <Target Name="CopyTypeScriptLibraries" BeforeTargets="PreComputeCompileTypeScript;">
+    <Copy SourceFiles="%(TypeScriptLibraries.Identity)" DestinationFiles="$(TypeScriptLibrariesOutDir)%(TypeScriptLibraries.FileName)%(TypeScriptLibraries.Extension)" SkipUnchangedFiles="true" Condition="Exists('%(TypeScriptLibraries.Identity)')" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

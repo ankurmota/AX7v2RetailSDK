@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CategoriesView</title>
+
+    <link href="CategoriesView.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- These templates are used to display each item in the ListView declared below. -->
+    <div id="headertemplate" data-win-control="WinJS.Binding.Template">
+        <div class="baseFont maxWidth40 minHeight4 padBottom1" data-win-bind="selectedCategory: SelectedGroupHeader">
+            <h2 class="ellipsis" data-win-bind="textContent: this Commerce.Core.Converter.GroupHeaderFormatter"></h2>
+        </div>
+    </div>
+
+    <div class="fragment groupedItemsPage">
+        <!-- Progress Ring -->
+        <div data-bind="loader: { visible: IndeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{ uri: 'Views/Controls/CommonHeader.html' }"></div>
+
+        <section role="main" class="col grow marginBottom0 panoramicGrid" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <!-- Main content -->
+                <div class="browseGrid">
+                    <div class="win-selectionstylefilled browseGrid"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                            selectionMode: 'none',
+                            groupHeaderTemplate: select('#headertemplate'),
+                            itemTemplate: select('#categoryCatalogTemplate'),
+                            layout: { type: WinJS.UI.GridLayout, groupHeaderPosition: 'top'}
+                        }"
+                         data-bind="winControl: {
+                            groupedDataSource: { itemList: ViewModel.Categories, groupKeySelector: 'ParentCategory', groupDataSelector: 'RecordId', parentId: ViewModel.RootCategoryRecordId, keyName: 'Name' },
+                            iteminvoked: itemInvokedHandler,
+                            groupheaderinvoked: categoriesCommand
+                        },
+                        resx: { ariaLabel: 'string_612' }">
+                    </div>
+                </div>
+        </section>
+    </div>
+</body>
+</html>

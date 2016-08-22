@@ -1,0 +1,237 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="Contoso.Commerce.Runtime.WorkflowFoundation.Activities.CalculateTotals"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mdcr="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Framework"
+ xmlns:mdcrd="clr-namespace:Microsoft.Dynamics.Commerce.Runtime.DataModel;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities"
+ xmlns:mdcrsm="clr-namespace:Microsoft.Dynamics.Commerce.Runtime.Services.Messages;assembly=Microsoft.Dynamics.Commerce.Runtime.Services.Messages"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Mode" Type="InArgument(mdcrd:CalculationModes)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="Context" Type="InArgument(mdcr:RequestContext)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="Transaction" Type="InOutArgument(mdcrd:SalesTransaction)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Contoso.Commerce.Runtime.WorkflowFoundation.Activities.CalculateTotals_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.DataModel</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.Data</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.Services.Messages</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.ComponentModel.DataAnnotations</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Runtime</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Contoso.Commerce.Runtime.WorkflowFoundation.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Entities</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Framework</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.DataManagers</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Services.Messages</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.DataAnnotations</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.WorkflowFoundation.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <local:ThrowIfNull ArgumentName="ServiceRequestContext" ObjectToValidate="[Context]" sap2010:WorkflowViewState.IdRef="ThrowIfNull_1" xmlns:local="clr-namespace:Contoso.Commerce.Runtime.WorkflowFoundation.Activities" xmlns:mdcr1="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" />
+    <If Condition="[Mode.HasFlag(CalculationModes.None) = False]" sap2010:WorkflowViewState.IdRef="If_6">
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <If Condition="[Mode.HasFlag(CalculationModes.Prices)]" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="mdcrsm:GetPriceServiceResponse" Name="response" />
+                </Sequence.Variables>
+                <local:RequestHandlerActivity x:TypeArguments="mdcrsm:GetPriceServiceResponse" Request="[New UpdatePriceServiceRequest(Transaction)]" RequestContext="[Context]" Result="[response]" sap2010:WorkflowViewState.IdRef="RequestHandlerActivity`1_1" xmlns:local="clr-namespace:Contoso.Commerce.Runtime.WorkflowFoundation.Activities" xmlns:mdcr1="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" />
+              </Sequence>
+            </If.Then>
+          </If>
+          <If Condition="[Mode.HasFlag(CalculationModes.Discounts)]" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="mdcrsm:GetPriceServiceResponse" Name="response" />
+                </Sequence.Variables>
+                <local:RequestHandlerActivity x:TypeArguments="mdcrsm:GetPriceServiceResponse" Request="[New CalculateDiscountsServiceRequest(Transaction)]" RequestContext="[Context]" Result="[response]" sap2010:WorkflowViewState.IdRef="RequestHandlerActivity`1_2" xmlns:local="clr-namespace:Contoso.Commerce.Runtime.WorkflowFoundation.Activities" xmlns:mdcr1="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" />
+              </Sequence>
+            </If.Then>
+          </If>
+          <If Condition="[Mode.HasFlag(CalculationModes.Charges)]" sap2010:WorkflowViewState.IdRef="If_3">
+            <If.Then>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="mdcrsm:GetChargesServiceResponse" Name="response" />
+                </Sequence.Variables>
+                <local:RequestHandlerActivity x:TypeArguments="mdcrsm:GetChargesServiceResponse" Request="[New GetChargesServiceRequest(Transaction)]" RequestContext="[Context]" Result="[response]" sap2010:WorkflowViewState.IdRef="RequestHandlerActivity`1_3" xmlns:local="clr-namespace:Contoso.Commerce.Runtime.WorkflowFoundation.Activities" xmlns:mdcr1="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" />
+              </Sequence>
+            </If.Then>
+          </If>
+          <If Condition="[Mode.HasFlag(CalculationModes.Taxes)]" sap2010:WorkflowViewState.IdRef="If_4">
+            <If.Then>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="mdcrsm:CalculateTaxServiceResponse" Name="response" />
+                </Sequence.Variables>
+                <local:RequestHandlerActivity x:TypeArguments="mdcrsm:CalculateTaxServiceResponse" Request="[New CalculateTaxServiceRequest(Transaction)]" RequestContext="[Context]" Result="[response]" sap2010:WorkflowViewState.IdRef="RequestHandlerActivity`1_4" xmlns:local="clr-namespace:Contoso.Commerce.Runtime.WorkflowFoundation.Activities" xmlns:mdcr1="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" />
+              </Sequence>
+            </If.Then>
+          </If>
+          <If Condition="[Mode.HasFlag(CalculationModes.Totals)]" sap2010:WorkflowViewState.IdRef="If_5">
+            <If.Then>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="mdcrsm:CalculateTotalsServiceResponse" Name="totalsResponse" />
+                  <Variable x:TypeArguments="mdcrsm:GetRoundedValueServiceResponse" Name="roundingResponse" />
+                  <Variable x:TypeArguments="mdcrd:ChannelConfiguration" Default="[Context.GetChannelConfiguration()]" Name="channelConfiguration" />
+                </Sequence.Variables>
+                <local:RequestHandlerActivity x:TypeArguments="mdcrsm:CalculateTotalsServiceResponse" Request="[New CalculateTotalsServiceRequest(Transaction)]" RequestContext="[Context]" Result="[totalsResponse]" sap2010:WorkflowViewState.IdRef="RequestHandlerActivity`1_5" xmlns:local="clr-namespace:Contoso.Commerce.Runtime.WorkflowFoundation.Activities" xmlns:mdcr1="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" />
+                <local:RequestHandlerActivity x:TypeArguments="mdcrsm:GetRoundedValueServiceResponse" Request="[New GetRoundedValueServiceRequest(Transaction.TotalAmount, channelConfiguration.Currency, 0, True)]" RequestContext="[Context]" Result="[roundingResponse]" sap2010:WorkflowViewState.IdRef="RequestHandlerActivity`1_6" xmlns:local="clr-namespace:Contoso.Commerce.Runtime.WorkflowFoundation.Activities" xmlns:mdcr1="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" />
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Decimal">[Transaction.TotalAmount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Decimal">[roundingResponse.RoundedValue]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="mdcrd:SalesTransaction">[Transaction]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="mdcrd:SalesTransaction">[Transaction]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <sads:DebugSymbol.Symbol>d4gBZTpcUmFpbk1haW5cU291cmNlXEZyYW1ld29ya3NcUmV0YWlsUmFpblxDb21wb25lbnRzXFBsYXRmb3JtXExpYnJhcmllc1xSdW50aW1lXFdvcmtmbG93Rm91bmRhdGlvbi5BY3Rpdml0aWVzXE9yZGVyc1xDYWxjdWxhdGVUb3RhbHMueGFtbBpSA6ABDgIBAVQFlgEKAgEFlwEFngEOAgECVBNUQgIBBlYJlAEUAgEHnAE+nAFdAgEEmQE/mQFMAgEDVwtgEAIBHWELahACARlrC3QQAgEVdQt+EAIBEX8LkwEQAgEIVxlXQgIBHlkPXhoCAR9hGWFFAgEaYw9oGgIBG2sZa0MCARZtD3IaAgEXdRl1QQIBEncPfBoCARN/GX9CAgEJgQEPkQEaAgEKhQFShQF3AgELiQERkAEaAgEMjgE9jgFcAgEOiwE+iwFpAgEN</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="ThrowIfNull_1" sap:VirtualizedContainerService.HintSize="611,22" />
+      <sap2010:ViewStateData Id="ErrorActivity_1" sap:VirtualizedContainerService.HintSize="647,55" />
+      <sap2010:ViewStateData Id="RequestHandlerActivity`1_1" sap:VirtualizedContainerService.HintSize="218,22" />
+      <sap2010:ViewStateData Id="ErrorActivity_2" sap:VirtualizedContainerService.HintSize="353,55" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="375,179">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="500,327" />
+      <sap2010:ViewStateData Id="RequestHandlerActivity`1_2" sap:VirtualizedContainerService.HintSize="218,22" />
+      <sap2010:ViewStateData Id="ErrorActivity_3" sap:VirtualizedContainerService.HintSize="353,55" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="375,179">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="500,327" />
+      <sap2010:ViewStateData Id="RequestHandlerActivity`1_3" sap:VirtualizedContainerService.HintSize="218,22" />
+      <sap2010:ViewStateData Id="ErrorActivity_4" sap:VirtualizedContainerService.HintSize="353,55" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="375,179">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="500,327" />
+      <sap2010:ViewStateData Id="RequestHandlerActivity`1_4" sap:VirtualizedContainerService.HintSize="218,22" />
+      <sap2010:ViewStateData Id="ErrorActivity_5" sap:VirtualizedContainerService.HintSize="353,55" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="375,179">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="500,327" />
+      <sap2010:ViewStateData Id="RequestHandlerActivity`1_5" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="ErrorActivity_6" sap:VirtualizedContainerService.HintSize="353,55" />
+      <sap2010:ViewStateData Id="RequestHandlerActivity`1_6" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="ErrorActivity_7" sap:VirtualizedContainerService.HintSize="353,55" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="353,60" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="375,374">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="500,522" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="522,2114">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="647,2262" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="647,60" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="669,2581">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Contoso.Commerce.Runtime.WorkflowFoundation.Activities.CalculateTotals_1" sap:VirtualizedContainerService.HintSize="709,2661" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

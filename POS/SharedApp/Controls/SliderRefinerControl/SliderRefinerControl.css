@@ -1,0 +1,9 @@
+.slider {
+    width: calc(100% - 1em);
+    margin-left: 0.5em;
+    background-color: #e6edf3;
+}
+
+.slider.ui-slider .ui-slider-handle {
+    margin-left: -0.5em;
+}

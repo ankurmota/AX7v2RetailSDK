@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Shopping Cart</title>
+</head>
+
+<body>
+    <!--CONTENT_START-->
+    <div id="ShoppingCartControl container" class="msax-ShoppingCart" data-model="Contoso.Retail.Ecommerce.Sdk.Controls.Cart">
+        <div class="msax-Loading msax-DisplayNone">
+            <div id="LoadingSpinner" class="msax-Spinner msax-MarginTop50"></div>
+            <div id="LoadingText" class="msax-LoadingText msax-MarginTop20"></div>
+        </div>
+
+        <div id="ErrorPanel" class="msax-ErrorPanel msax-DisplayNone" data-bind="foreach: errorMessages">
+            <div data-bind="text: $data"></div>
+        </div>
+
+        <div id="ShoppingCart" class="msax-ShoppingCart" data-bind="template: 'ShoppingCartContent'"></div>
+
+        <script id="ShoppingCartContent" type="text/html">
+            <div data-bind="if: isShoppingCartLoaded">
+                <div data-bind="visible: isShoppingCartEnabled">
+                    <div>
+                        <div>
+                            <div class="msax-FloatLeft">
+                                <h2 data-bind="resx: {textContent: 'String_1' }"></h2> <!-- Shopping cart -->
+                            </div>
+                            <!-- Continue shopping and Checkout buttons -->
+                            <div class="msax-FloatRight msax-MarginBottom12 msax-MarginTop12">
+                                <button class="msax-ArrowLeft16 msax-VerticalMiddle msax-CursorPointer" data-bind="click: $root.continueShoppingClick.bind($root)"></button>
+                                <a id="ContinueShopping" class="msax-VerticalMiddle msax-MarginRight10" data-bind="click: $root.continueShoppingClick.bind($root), resx: {textContent: 'String_171' }"></a> <!-- Continue shopping -->
+                                <button id="CheckoutButton" type="submit" class="msax-CheckoutButton msax-PaddingLeft20" data-bind="submitIfValid: { submit: shoppingCartNextClick, containerSelector: '.msax-ShoppingCart' }, enabled: isShoppingCartEnabled">
+                                    <span data-bind="resx: {textContent: 'String_49' }"></span> <!-- Checkout -->
+                                </button>
+                            </div>
+                        </div>
+                        <div id="CartWrapper" class="msax-ShoppingCartWrapper msax-ClearBoth table-responsive" data-bind="with: cart">
+                            <!-- ko if: $data.PromotionLines && $data.PromotionLines.length -->
+                            <div id="CartPromotionBanner" class="msax-PromotionBanner msax-PaddingTop5 msax-PaddingBottom5" data-bind="foreach: PromotionLines">
+                                <span class="msax-CartPromotionBanner msax-PaddingLeft20" data-bind="text: $data"></span>
+                            </div>
+                            <!-- /ko -->
+                            <div id="CartGrid" class="msax-ItemsGrid">
+                                <div class="row msax-GridHeader hidden-xs">
+                                    <div class="col-sm-6 hidden-xs" data-bind="resx: {textContent: 'String_2' }"></div> <!-- Product details -->
+                                    <div class="col-sm-2 hidden-xs" data-bind="resx: {textContent: 'String_3' }"></div> <!-- Each -->
+                                    <div class="col-sm-2 hidden-xs" data-bind="resx: {textContent: 'String_4' }"></div> <!-- Quantity -->
+                                    <div class="col-sm-2 hidden-xs" data-bind="resx: {textContent: 'String_5' }"></div> <!-- Line total -->
+                                </div>
+
+                                <div data-bind="foreach: CartLines">
+                                    <div class="row" style="padding-top:10px;">
+                                        <div class="col-sm-6">
+                                            <div class="msax-Row msax-FullView msax-View480">
+                                                <a class="msax-ProductImage msax-MarginRight10" data-bind="attr: { href: ProductUrl }">
+                                                    <div class="msax-ImageWrapper50px" data-bind="html: ImageMarkup50px"></div>
+                                                    <div class="msax-ImageWrapper180px" data-bind="html: ImageMarkup180px"></div>
+                                                </a>
+                                                <div class="msax-PaddingLeft20">
+                                                    <div class="msax-ProductNameWrapper">
+                                                        <a class="msax-ProductName" data-bind="attr: { href: ProductUrl }, text: ProductName"></a>
+                                                        <div class="msax-ProductDimensions msax-PaddingBottom5 msax-PaddingTop5" data-bind="text: ProductDimension"></div>
+                                                        <div class="msax-ProductNumber msax-SecondaryColor" data-bind="text: ItemId"></div>
+                                                    </div>
+                                                    <div class="msax-View480">
+                                                        <div class="msax-ItemPrice msax-MarginTop20" data-bind="text: $root.formatCurrencyString.call($root, $data.Price)"></div>
+                                                        <div class="msax-DiscountNames msax-MarginTop10 msax-SecondaryColor" data-bind="if: OfferNames">
+                                                            <div data-bind="text: OfferNames"></div>
+                                                        </div>
+                                                        <div class="msax-MarginTop20">
+                                                            <button class="msax-Minus16" data-bind="click: $root.quantityMinusClick.bind($root)"></button>
+                                                            <input type="number" class="msax-QuantityTextBox" data-bind="event: {change: $root.quantityTextBoxChanged.bind($root) }, validator: { validatorType: 'ShoppingCartItemValidator', field: 'Quantity' }" />
+                                                            <button class="msax-Plus16" data-bind="click: $root.quantityPlusClick.bind($root)"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msax-View480">
+                                                <div class="msax-FloatLeft">
+                                                    <button class="msax-Delete16 msax-WithText" data-bind="click: $root.removeFromCartClick.bind($root), resx: {textContent: 'String_6' }"></button> <!-- Remove -->
+                                                </div>
+                                                <div class="msax-FloatRight">
+                                                    <div>
+                                                        <span data-bind="resx: {textContent: 'String_238' }"></span> <!-- Line total: -->
+                                                        <span class="msax-LineTotal" data-bind="text: $root.formatCurrencyString.call($root, $data.NetAmountWithoutTax)"></span>
+                                                    </div>
+                                                    <div class="msax-LineDiscount msax-SecondaryColor" data-bind="if: DiscountAmount != 0">
+                                                        <span data-bind="resx: {textContent: 'String_7' }"></span>&nbsp;<span data-bind="text: $root.formatCurrencyString.call($root, $data.DiscountAmount)"></span> <!-- Savings -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msax-View320">
+                                                <a class="msax-ProductImage" data-bind="attr: { href: ProductUrl }">
+                                                    <div class="msax-ImageWrapper50px" data-bind="html: ImageMarkup50px"></div>
+                                                    <div class="msax-ImageWrapper180px" data-bind="html: ImageMarkup180px"></div>
+                                                </a>
+                                                <div class="msax-Row msax-PaddingLeft20">
+                                                    <div class="msax-ProductNameWrapper">
+                                                        <a class="msax-ProductName" data-bind="attr: { href: ProductUrl }, text: ProductName"></a>
+                                                        <div class="msax-ProductDimensions msax-PaddingBottom5 msax-PaddingTop5" data-bind="text: ProductDimension"></div>
+                                                        <div class="msax-ProductNumber msax-SecondaryColor" data-bind="text: ItemId"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="msax-MarginTop10">
+                                                    <div class="msax-ItemPrice msax-MarginTop10" data-bind="text: $root.formatCurrencyString.call($root, $data.Price)"></div>
+                                                    <div class="msax-DiscountNames msax-MarginTop10 msax-SecondaryColor" data-bind="if: OfferNames">
+                                                        <div data-bind="text: OfferNames"></div>
+                                                    </div>
+                                                    <div class="msax-FloatLeft msax-MarginTop10">
+                                                        <button class="msax-Minus16" data-bind="click: $root.quantityMinusClick.bind($root)"></button>
+                                                        <input type="number" class="msax-QuantityTextBox" data-bind="event: {change: $root.quantityTextBoxChanged.bind($root) }, validator: { validatorType: 'ShoppingCartItemValidator', field: 'Quantity' }" />
+                                                        <button class="msax-Plus16" data-bind="click: $root.quantityPlusClick.bind($root)"></button>
+                                                    </div>
+                                                    <div class="msax-FloatRight msax-MarginTop10">
+                                                        <div>
+                                                            <span data-bind="resx: {textContent: 'String_238' }"></span> <!-- Line total: -->
+                                                            <span class="msax-LineTotal" data-bind="text: $root.formatCurrencyString.call($root, $data.NetAmountWithoutTax)"></span>
+                                                        </div>
+                                                        <div class="msax-LineDiscount msax-SecondaryColor" data-bind="if: DiscountAmount != 0">
+                                                            <span data-bind="resx: {textContent: 'String_7' }"></span>&nbsp;<span data-bind="text: $root.formatCurrencyString.call($root, $data.DiscountAmount)"></span> <!-- Savings -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="msax-ClearBoth">
+                                                    <button class="msax-Delete16 msax-WithText msax-MarginTop10" data-bind="click: $root.removeFromCartClick.bind($root), resx: {textContent: 'String_6' }"></button> <!-- Remove -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 msax-FullView">
+                                            <div class="msax-ItemPrice" data-bind="text: $root.formatCurrencyString.call($root, $data.Price)"></div>
+                                            <div class="msax-DiscountNames msax-SecondaryColor" data-bind="if: OfferNames">
+                                                <div data-bind="text: OfferNames"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 msax-FullView">
+                                            <div>
+                                                <button class="msax-Minus16" data-bind="click: $root.quantityMinusClick.bind($root)"></button>
+                                                <input type="number" class="msax-QuantityTextBox" data-bind="event: {change: $root.quantityTextBoxChanged.bind($root) }, validator: { validatorType: 'ShoppingCartItemValidator', field: 'Quantity' }" />
+                                                <button class="msax-Plus16" data-bind="click: $root.quantityPlusClick.bind($root)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2 msax-FullView">
+                                            <div class="msax-LineTotal" data-bind="text: $root.formatCurrencyString.call($root, $data.NetAmountWithoutTax)"></div>
+                                            <div class="msax-LineDiscount msax-SecondaryColor" data-bind="if: DiscountAmount != 0">
+                                                <span data-bind="resx: {textContent: 'String_7' }"></span>&nbsp;<span data-bind="text: $root.formatCurrencyString.call($root, $data.DiscountAmount)"></span> <!-- Savings -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row msax-MarginBottom20">
+                                        <div class="col-sm-12 msax-FullView">
+                                            <button class="msax-Delete16 msax-WithText" data-bind="click: $root.removeFromCartClick.bind($root), resx: {textContent: 'String_6' }"></button> <!-- Remove -->
+                                        </div>
+                                    </div>
+                                   
+                                    <!-- ko if: ProductType === $root.kitVariantProductType() -->
+                                    <div class="msax-NoOfComponentsInKit row">
+                                        <div class="col-sm-12">
+                                            <span class="msax-KitComponentsCount" data-bind="text: KitComponentCount"></span>
+                                        </div>
+                                    </div>
+                                    <!-- /ko -->
+                                    <!-- ko foreach: KitComponents -->
+                                    <div class="msax-KitComponents row">
+                                        <div class="msax-ProductDetails msax-PaddingLeft60 col-sm-6">
+                                            <div class="msax-Row">
+                                                <a class="msax-ProductImage50px msax-MarginRight10" data-bind="attr: { href: ProductUrl }">
+                                                    <div class="msax-ImageWrapper" data-bind="html: ImageMarkup50px"></div>
+                                                </a>
+                                                <div class="msax-PaddingLeft20">
+                                                    <div class="msax-ProductNameWrapper">
+                                                        <a class="msax-ProductName" data-bind="attr: { href: ProductUrl }, text: ProductName"></a>
+                                                        <div class="msax-ProductDimensions msax-PaddingBottom5 msax-PaddingTop5" data-bind="text: ProductDimension"></div>
+                                                    </div>
+                                                    <div class="msax-ProductNumber msax-SecondaryColor" data-bind="text: ItemId"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <span class="msax-ItemPrice" data-bind="text: $root.formatCurrencyString.call($root, $data.KitComponentPrice)"></span>
+                                        </div>
+                                        <div class="msax-Quantity col-sm-3">
+                                            <span class="msax-Quantity" data-bind="text: Quantity"></span>
+                                        </div>
+                                    </div>
+                                    <!-- /ko -->
+
+                                    <!-- ko if: $data.PromotionLines && $data.PromotionLines.length -->
+                                    <div class="row">
+                                        <div colspan="4" class="msax-PromotionBanner msax-PaddingTop5 msax-PaddingBottom5 col-sm-12" data-bind="foreach: PromotionLines">
+                                            <span class="msax-ItemPromotionBanner msax-PaddingLeft20" data-bind="text: $data"></span>
+                                        </div>
+                                    </div>
+                                    <!-- /ko -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ko if: supportDiscountCodes -->
+                        <div id="CartPromotionCodes" class="msax-PromotionCodeWrapper" data-bind="with: cart">
+                            <h5 class="msax-PromotionCodeLabel" data-bind="resx: {textContent: 'String_96' }"></h5> <!-- Promotion Codes -->
+                            <table class="msax-Table">
+                                <tbody class="msax-PromotionCodes" data-bind="if: $root.isPromotionCodesEnabled">
+                                    <!-- ko foreach: DiscountCodes -->
+                                    <tr class="msax-Row">
+                                        <td class="msax-PaddingLeft20 msax-PaddingTop10 msax-PaddingBottom10">
+                                            <button class="msax-Delete16 msax-Remove msax-PaddingLeft50 msax-VerticalMiddle" data-bind="click: $root.removePromotionCode.bind($root)"></button>
+                                            <span class="msax-PromotionCodeText msax-VerticalMiddle msax-PaddingLeft10" data-bind="text: $data"></span>
+                                        </td>
+                                    </tr>
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                            <div class="msax-PromotionCodesEmpty msax-Row msax-PaddingLeft20" data-bind="ifnot: $root.isPromotionCodesEnabled">
+                                <span class="msax-PaddingLeft20 msax-PaddingTop10 msax-PaddingBottom10 msax-SecondaryColor" data-bind="resx: {textContent: 'String_50' }"></span> <!-- You have not added any promotion code to your order -->
+                            </div>
+                            <div class="msax-ApplyPromotionCodeBlock msax-PaddingRight10 msax-PaddingTop10">
+                                <input id="PromotionCodeTextBox" type="text" maxlength="100" class="msax-PromotionCodeTextBox msax-MarginLeft20" />
+                                <a id="ApplyPromotionCode" class="msax-ApplyPromotionCode msax-PaddingLeft20" href="#" data-bind="click: $root.applyPromotionCode.bind($root), resx: {textContent: 'String_95' }"></a> <!-- Apply -->
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: supportLoyaltyReward -->
+                        <div id="CartRewardCard" class="msax-RewardCard">
+                            <div class="msax-RewardCard msax-PaddingTop20" data-bind="with: cart">
+                                <div>
+                                    <h5 class="msax-WidthRatio100"><span data-bind="resx: {textContent: 'String_130' }"></span></h5> <!-- Loyalty card -->
+                                </div>
+                                <div class="msax-SecondaryColor msax-PaddingLeft20" data-bind="if: LoyaltyCardId">
+                                    <span id="RewardCardId" class="msax-RewardCardNumber" data-bind="text: LoyaltyCardId"></span>
+                                    <a id="ShowEditRewardCardDialog" class="msax-Edit msax-PaddingTop10 msax-PaddingLeft10" href="#" data-bind="click: $root.showEditRewardCardDialog.bind($root), resx: {textContent: 'String_47' }"></a> <!-- Edit -->
+                                </div>
+                                <div class="msax-SecondaryColor msax-PaddingLeft20" data-bind="ifnot: LoyaltyCardId">
+                                    <span data-bind="resx: {textContent: 'String_162' }"></span> <!-- You have not added loyalty card number to your order -->
+                                    <a id="ShowEditRewardCardDialogLink" class="msax-Edit msax-PaddingTop10 msax-PaddingLeft10" href="#" data-bind="click: $root.showEditRewardCardDialog.bind($root), resx: {textContent: 'String_47' }"></a> <!-- Edit -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+
+                        <div class="row">
+                            <div class="msax-ShoppingCartOrderInfo col-sm-6">
+                                <h5 data-bind="resx: {textContent: 'String_46' }"></h5> <!-- Order information -->
+                                <div>
+                                    <span class="msax-SecondaryColor msax-PaddingLeft20" data-bind="resx: {textContent: 'String_46' }"></span> <!-- Order information -->
+                                    <div class="msax-PaddingTop20  msax-PaddingLeft20">
+                                        <a class="msax-OrderingFaq" href="#" data-bind="resx: {textContent: 'String_168' }"></a> | <!-- Ordering FAQ -->
+                                        <a class="msax-OrderReturnPolicy" href="#" data-bind="resx: {textContent: 'String_169' }"></a> | <!-- Return policy -->
+                                        <a class="msax-OrderStoreLocatorTool" href="#" data-bind="resx: {textContent: 'String_170' }"></a> <!-- Store locator tool -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="ShoppingCartSummary" class="msax-ShoppingCartSummary col-sm-4 col-sm-offset-2" data-bind="with: cart">
+                                <h5 data-bind="resx: {textContent: 'String_9' }"></h5> <!-- Order Summary -->
+                                <div>
+                                    <div class="msax-SubTotal msax-Row">
+                                        <div class="msax-FooterLabel msax-SecondaryColor" data-bind="resx: {textContent: 'String_10' }"></div> <!-- Subtotal: -->
+                                        <div class="msax-FooterValue" data-bind="text: $root.formatCurrencyString.call($root, $data.SubtotalAmountWithoutTax)"></div>
+                                    </div>
+                                    <div class="msax-ChargeAmount msax-Row">
+                                        <div class="msax-FooterLabel msax-SecondaryColor" data-bind="resx: {textContent: 'String_11' }"></div> <!-- Shipping and handling: -->
+                                        <a class="msax-FooterValue" href="#" data-bind="text: $root.getResx('String_166'), attr: { title: $root.getResx('String_207') } "></a> <!-- TBD -->
+                                    </div>
+                                    <div class="msax-TaxAmount msax-Row">
+                                        <div class="msax-FooterLabel msax-SecondaryColor" data-bind="resx: {textContent: 'String_51' }"></div> <!-- Tax -->
+                                        <a class="msax-FooterValue" href="#" data-bind="text: $root.getResx('String_166'), attr: { title: $root.getResx('String_206') } "></a> <!-- TBD -->
+                                    </div>
+                                    <div class="msax-GrandTotal msax-Row">
+                                        <div class="msax-FooterLabel msax-SecondaryColor" data-bind="resx: {textContent: 'String_205' }"></div> <!-- Estimated total: -->
+                                        <div class="msax-FooterValue" data-bind="text: $root.formatCurrencyString.call($root, $data.TotalAmount)"></div>
+                                    </div>
+                                    <div class="msax-DiscountTotal msax-Row">
+                                        <div class="msax-FooterLabel msax-SecondaryColor" data-bind="resx: {textContent: 'String_13' }"></div> <!-- Total savings: -->
+                                        <div class="msax-FooterValue" data-bind="text: $root.formatCurrencyString.call($root, $data.DiscountAmount)"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Continue shopping and Checkout buttons -->
+                    <div class="msax-ButtonSection msax-FloatRight msax-PaddingBottom20">
+                        <button class="msax-ArrowLeft16 msax-VerticalMiddle msax-CursorPointer" data-bind="click: $root.continueShoppingClick.bind($root)"></button>
+                        <a id="ContinueShopping2" class="msax-VerticalMiddle msax-MarginRight10" data-bind="click: $root.continueShoppingClick.bind($root), resx: {textContent: 'String_171' }"></a> <!-- Continue shopping -->
+                        <button id="CheckoutButton2" type="submit" class="msax-CheckoutButton msax-PaddingLeft20" data-bind="submitIfValid: { submit: shoppingCartNextClick, containerSelector: '.msax-ShoppingCart' }, enabled: isShoppingCartEnabled">
+                            <span data-bind="resx: {textContent: 'String_49' }"></span> <!-- Checkout -->
+                        </button>
+                    </div>
+                </div>
+                <div class="msax-MarginTop20" data-bind="visible: !isShoppingCartEnabled()">
+                    <h2 data-bind="resx: {textContent: 'String_1' }"></h2> <!-- Shopping cart -->
+                    <span data-bind="resx: {textContent: 'String_15' }"></span> <!-- There are no items in your shopping cart. Please add items to the cart. -->
+                </div>
+            </div>
+        </script>
+
+        <!-- Edit reward card dialog -->
+        <div id="EditRewardCardDialog" class="msax-EditRewardCard msax-DisplayNone" data-bind="with: cart">
+
+            <!-- dialog content -->
+            <div class="msax-Table msax-WidthRatio100">
+                <span class="msax-SecondaryColor" data-bind="resx: {textContent: 'String_163' }"></span> <!-- Enter a reward card for the current order. You can include only one reward card per order -->
+                <div class="msax-PaddingTop30">
+                    <label class="msax-PaddingRight20" for="RewardCardTextBox" data-bind="resx: {textContent: 'String_187' }"></label> <!-- Reward card -->
+                    <input id="RewardCardTextBox" type="text" class="msax-RewardCardTextBox" data-bind="validator: { validatorType: 'LoyaltyCardTypeValidator', validatorField: 'CardNumber' }" />
+                </div>
+
+                <!-- Done cancel buttons -->
+                <div class="msax-ButtonSection">
+                    <button id="UpdateLoyaltyCardId" class="msax-Done msax-MarginRight20" data-bind="submitIfValid: { submit: $root.updateLoyaltyCardId.bind($root), containerSelector: '.msax-EditRewardCard' }, resx: {textContent: 'String_124' }"></button> <!-- Done -->
+                    <button id="CancelEditRewardCard" class="msax-Cancel msax-Grey" data-bind="click: $root.closeEditRewardCardDialog.bind($root), resx: {textContent: 'String_123' }"></button> <!-- Cancel -->
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!--CONTENT_END-->
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ReportsDetailsView</title>
+    <link href="ReportDetailsView.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment reportdetailsview">
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+        <section role="main" class="scrollY marginTop1" data-bind="resx: { ariaLabel: 'string_4454' }">   <!-- Main content -->
+            <!-- The below commented knockout syntax is used by knockout for containerless control flow syntax -->
+            <!-- ko foreach: { data: ViewModel.Parameters, afterRender: Commerce.ViewModelAdapterWinJS.bindReportParameters } -->
+            <div class="padTop0 padBottom1" data-bind="visible: $index() > 0"></div>
+            <div class="col wrap padTop2">
+                <label class="ellipsis" data-bind="text: Label, attr: {for: 'reportDetailControl' + $index()}"></label>
+                <div class="controlPlaceholder" data-bind="attr: {internalControlId: 'reportDetailControl' + $index()}"></div>
+            </div>
+            <!-- /ko -->
+            <div class="padTop6">
+                <button data-bind="resx: { textContent: 'string_2401' }, click: RunReportHandler" class="primaryButton">Run</button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

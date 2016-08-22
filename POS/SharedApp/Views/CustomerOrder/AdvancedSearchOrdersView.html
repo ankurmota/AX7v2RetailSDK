@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>AdvancedSearchOrdersView</title>
+
+        <link href="AdvancedSearchOrdersView.css" rel="stylesheet" />
+    </head>
+    <body>
+        <form autocomplete="off">
+            <div class="fragment advancedSearchOrdersView">
+
+                <!-- Page header -->
+                <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{ uri: 'Views/Controls/CommonHeader.html' }"></div>
+
+                <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">
+                    <script type="text/html" id="searchTemplate">
+                        <div class="col height60 minWidth40 maxWidth70">
+
+                            <div class="height20">
+                                <!-- Sales information -->
+                                <div class="row marginBottom1">
+                                    <h2 data-bind="resx: { textContent: 'string_4547' }">Sales information</h2>
+                                </div>
+
+                                <div class="row">
+
+                                    <!--Transaction number -->
+                                    <div class="height5 marginBottom2 minWidth15 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4553' }, attr: { for: 'transactionId' }">Transaction number</label>
+                                        <input tabindex="1" type="text" id="transactionId" autofocus="autofocus" data-bind="value: TransactionIds()[0], valueUpdate: 'afterkeydown'" />
+                                    </div>
+
+                                    <div class="gutter4x4"></div>
+
+                                    <!--Receipt number-->
+                                    <div class="height5 marginBottom2 minWidth15 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4554', attr: { for: 'receiptId' } }">Receipt number</label>
+                                        <input tabindex="2" type="text" id="receiptId" data-bind="value: ReceiptId, valueUpdate: 'afterkeydown'" />
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+
+                                    <!--Sales order number-->
+                                    <div class="height5 marginBottom2 minWidth15 maxWidth32 marginRight4">
+                                        <label data-bind="resx: { textContent: 'string_4556', attr: { for: 'salesId' } }">Sales order number</label>
+                                        <input tabindex="3" type="text" id="salesId" data-bind="value: SalesId, valueUpdate: 'afterkeydown'" />
+                                    </div>
+
+                                    <div class="gutter4x4"></div>
+
+                                    <div class="height5 marginBottom2 minWidth15 maxWidth32">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="height20">
+
+                                <!--Customer information-->
+                                <div class="row marginBottom1">
+                                    <h2 data-bind="resx: { textContent: 'string_4548' }">Customer information</h2>
+                                </div>
+
+                                <div class="row">
+                                    <!--First name-->
+                                    <div class="height5 marginBottom2 minWidth15 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4557', attr: { for: 'firstName' } }">First name</label>
+                                        <input tabindex="4" type="text" id="firstName" data-bind="value: CustomerFirstName, valueUpdate: 'afterkeydown'" />
+                                    </div>
+
+                                    <div class="gutter4x4"></div>
+
+                                    <!--Last name-->
+                                    <div class="height5 marginBottom2 minWidth15 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4558' }, attr: {for: 'lastName' }">Last name</label>
+                                        <input tabindex="5" type="text" id="lastName" data-bind="value: CustomerLastName, valueUpdate: 'afterkeydown' " />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!--Customer account number-->
+                                    <div class="height5 marginBottom2 minWidth15 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4559', attr: { for: 'customerAccountNumber' } }">Customer account number</label>
+                                        <input tabindex="6" type="text" id="customerAccountNumber" data-bind="value: CustomerAccountNumber, valueUpdate: 'afterkeydown'" />
+                                    </div>
+
+                                    <div class="gutter4x4"></div>
+
+                                    <!--Receipt email address-->
+                                    <div class="height5 marginBottom2 minWidth15 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4560', attr: { for: 'receiptEmailAddress' } }">Receipt email address</label>
+                                        <input tabindex="7" type="text" id="receiptEmailAddress" data-bind="value: ReceiptEmailAddress, valueUpdate: 'afterkeydown'" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <!--Store information-->
+                                <div class="row marginBottom1">
+                                    <h2 data-bind="resx: { textContent: 'string_4549' }">Store information</h2>
+                                </div>
+
+                                <div class="row">
+                                    <!--Store number-->
+                                    <div class="height5 marginBottom2 minWidth13 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4561', attr: { for: 'storeId' } }">Store number</label>
+                                        <input tabindex="8" type="text" id="storeId" data-bind="value: StoreId, valueUpdate: 'afterkeydown'" />
+                                    </div>
+
+                                    <div class="gutter4x4"></div>
+
+                                    <!--Register number-->
+                                    <div class="height5 marginBottom2 minWidth13 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4562', attr: { for: 'terminalId' }  }">Register number</label>
+                                        <input tabindex="9" type="text" id="terminalId" data-bind="value: TerminalId, valueUpdate: 'afterkeydown'" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!--Operator Id-->
+                                    <div class="height5 minWidth13 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4563', attr: { for: 'staffId' } }">Operator Id</label>
+                                        <input tabindex="10" type="text" id="staffId" data-bind="value: StaffId, valueUpdate: 'afterkeydown'" />
+                                    </div>
+
+                                    <div class="gutter4x4"></div>
+
+                                    <!--Channel reference number-->
+                                    <div class="height5 minWidth13 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4564', attr: { for: 'channelReferenceId' } }">Channel reference number</label>
+                                        <input tabindex="11" type="text" id="channelReferenceId" data-bind="value: ChannelReferenceId, valueUpdate: 'afterkeydown'" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gutter4x4"></div>
+
+                        <div class="col minWidth38 marginBottom2">
+
+                            <div class="height13">
+                                <!-- Product information -->
+                                <div class="row marginBottom1">
+                                    <h2 data-bind="resx: { textContent: 'string_4550' }">Product information</h2>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Product number -->
+                                    <div class="height5 marginBottom2 minWidth13 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4565', attr: { for: 'itemId' } }">Product number</label>
+                                        <input tabindex="12" type="text" id="itemId" data-bind="value: ItemId, valueUpdate: 'afterkeydown'" />
+                                    </div>
+
+                                    <div class="gutter4x4"></div>
+
+                                    <!-- Bar code -->
+                                    <div class="height5 marginBottom2 minWidth13 maxWidth32">
+                                        <label data-bind="resx: { textContent: 'string_4566', attr: { for: 'barcode' } }">Bar code</label>
+                                        <input tabindex="13" type="text" id="barcode" data-bind="value: Barcode, valueUpdate: 'afterkeydown'" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="height17 minWidth38">
+
+                                <!--Start date-->
+                                <div class="row marginBottom1">
+                                    <h2 data-bind="resx: { textContent: 'string_4551' }">Start date</h2>
+                                </div>
+
+                                <!--On / Off-->
+                                <div tabindex="14" class="manual-toggle marginBottom2"
+                                     data-bind="toggleSwitch: { checked: $parent._isStartDateEnabled },
+                                                resx: { ariaLabel: 'string_4118' }">    <!-- Start date -->
+                                </div>
+
+                                <!--Date picker dropdown-->
+                                <div id="startDate" tabindex="15" class="row" 
+                                     data-bind="datePicker:{ datePattern: '{day.integer(2)} {dayofweek.full}', 
+                                        current: StartDateTime, 
+                                        disabled: $parent._isStartDateDisabled }, 
+                                        resx: { ariaLabel: 'string_4118'}"></div>   <!-- Start date -->
+                            </div>
+
+                            <div class="height17 minWidth38">
+
+                                <!--End date-->
+                                <div class="row marginBottom1">
+                                    <h2 data-bind="resx: { textContent: 'string_4552' }">End date</h2>
+                                </div>
+
+                                <!--On / Off-->
+                                <div tabindex="16" class="manual-toggle marginBottom2"
+                                     data-bind="toggleSwitch: { checked: $parent._isEndDateEnabled },
+                                                resx: { ariaLabel: 'string_4119' }">    <!-- End date -->
+                                </div>
+
+                                <!--Date picker dropdown-->
+                                <div id="endDate" tabindex="17" class="row" 
+                                     data-bind="datePicker:{ datePattern: '{day.integer(2)} {dayofweek.full}', 
+                                        current: EndDateTime,
+                                        disabled: $parent._isEndDateDisabled }, 
+                                        resx: { ariaLabel: 'string_4119' }">  <!-- End date -->
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="gutter4x4"></div>
+                    </script>
+                    <div class="scrollY row flip heightAuto" data-bind="template:{ name:'searchTemplate', data:_searchCriteria}">
+                    </div>
+                </section>
+            </div>
+
+            <!-- Bottom app bar -->
+            <div id="commandAppBar" data-win-control="Commerce.AppBarControl" data-win-options="{ sticky: true }">
+                <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{ id: 'clearAdvancedSearchOrderFields', label:'Clear', extraClass: 'winappbar-iconUndo', section: 'global' }"
+                        data-bind="click: clearClicked, resx: { label: 'string_4579' }"></button>
+                <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{ id: 'advancedSearchOrder', label:'Search', extraClass: 'winappbar-iconSearch', section: 'global' }"
+                        data-bind="invokeValidate: searchClicked, resx: { label: 'string_4578' }"></button>
+            </div>
+
+        </form>
+    </body>
+</html>

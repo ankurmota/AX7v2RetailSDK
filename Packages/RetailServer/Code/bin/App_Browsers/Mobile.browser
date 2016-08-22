@@ -1,0 +1,27 @@
+﻿<!--
+  Before adding a new entry in this file, take a look at the definitions at:
+    <windir>\Microsoft.NET\Framework\<ver>\CONFIG\Browsers  
+-->
+<browsers>
+
+  <!--IPhone-->
+  <browser id="IPhone" parentID="Mozilla">
+    <identification>
+      <userAgent match="iPhone" />
+    </identification>
+    <capabilities>
+      <capability name="cookies" value="true" />
+    </capabilities>
+  </browser>
+
+  <!--IPad-->
+  <browser id="IPad" parentID="Mozilla">
+    <identification>
+      <userAgent match="iPad" />
+    </identification>
+    <capabilities>
+      <capability name="cookies" value="true" />
+    </capabilities>
+  </browser>
+
+</browsers>

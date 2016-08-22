@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>GetSalesPersonDialog</title>
+
+</head>
+<body>
+    <div data-bind="customControlInternal: 'GetSalesPersonDialog'">
+        <div data-bind="dialog: {
+                title: Commerce.ViewModelAdapter.getResourceString('string_5730'), /* Choose a sales person */
+                visible: visible,
+                buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_75'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, disable: _isOKButtonDisabled },
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_1204'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK },
+                ],
+                buttonClick: dialogButtonClick
+            }">
+            <div data-bind="loader: { visible: indeterminateWaitVisible, type: Commerce.Controls.LoaderType.Dialog }"></div>
+
+            <div>
+                <div class="dialogSplitColumn">
+                    <label for="GetSalesPersonDialogSalesPersonList" data-bind="resx: {textContent: 'string_5731'}">Sales person</label>
+                    <select id="GetSalesPersonDialogSalesPersonList" data-bind="
+                                options: _employees,
+                                optionsText: 'Name',
+                                optionsValue: 'StaffId',
+                                value: _staffId"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

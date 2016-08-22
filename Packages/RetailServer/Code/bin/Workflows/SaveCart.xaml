@@ -1,0 +1,173 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="Contoso.Commerce.Runtime.WorkflowFoundation.Activities.SaveCart"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:local="clr-namespace:Contoso.Commerce.Runtime.WorkflowFoundation.Activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mdcr="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Framework"
+ xmlns:mdcrd="clr-namespace:Microsoft.Dynamics.Commerce.Runtime.DataModel;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities"
+ xmlns:mdcrm="clr-namespace:Microsoft.Dynamics.Commerce.Runtime.Messages;assembly=Microsoft.Dynamics.Commerce.Runtime.Framework"
+ xmlns:mdcrm1="clr-namespace:Microsoft.Dynamics.Commerce.Runtime.Messages;assembly=Microsoft.Dynamics.Commerce.Runtime.Messages"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="RequestContext" Type="InArgument(mdcr:RequestContext)" />
+    <x:Property Name="Response" Type="OutArgument(mdcrm:Response)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Contoso.Commerce.Runtime.WorkflowFoundation.Activities.SaveCart_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>Contoso.Commerce.Runtime.WorkflowFoundation.Activities</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.DataModel</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.Data</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.Entities</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.Framework</x:String>
+      <x:String>Microsoft.Dynamics.Commerce.Runtime.Messages</x:String>
+      <x:String>Contoso.Commerce.Runtime.Workflow</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.ComponentModel.DataAnnotations</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Runtime</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.WorkflowFoundation.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Entities</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Framework</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Messages</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Workflow</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.DataAnnotations</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.Services.Messages</AssemblyReference>
+      <AssemblyReference>Microsoft.Dynamics.Commerce.Runtime.DataManagers</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="mdcrm1:SaveCartRequest" Name="request" />
+      <Variable x:TypeArguments="mdcrd:SalesTransaction" Name="transaction" />
+    </Sequence.Variables>
+    <local:ThrowIfNull ArgumentName="RequestContext" sap2010:WorkflowViewState.IdRef="ThrowIfNull_1" ObjectToValidate="[RequestContext]" />
+    <local:ThrowIfNull ArgumentName="RequestContext.Request" sap2010:WorkflowViewState.IdRef="ThrowIfNull_2" ObjectToValidate="[request]" />
+    <local:TypeCastActivity x:TypeArguments="mdcrm1:SaveCartRequest" sap2010:WorkflowViewState.IdRef="TypeCastActivity`1_1" ObjectToCast="[request]" Result="[request]" />
+    <local:ThrowIfNull ArgumentName="RequestContext.Request.Cart" sap2010:WorkflowViewState.IdRef="ThrowIfNull_3" ObjectToValidate="[request.Cart]" />
+    <local:LoadSalesTransaction sap2010:WorkflowViewState.IdRef="LoadSalesTransaction_1" RequestContext="[RequestContext]" Result="[transaction]" TransactionId="[request.Cart.Id]" />
+    <If Condition="[transaction Is Nothing]" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <If Condition="[request.Cart.CartType = CartType.None]" sap2010:WorkflowViewState.IdRef="If_3">
+            <If.Then>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="mdcrd:CartType">[request.Cart.CartType]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="mdcrd:CartType">[CartType.Shopping]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Then>
+          </If>
+          <local:CreateSalesTransaction CustomerId="[request.Cart.CustomerId]" sap2010:WorkflowViewState.IdRef="CreateSalesTransaction_1" RequestContext="[RequestContext]" Result="[transaction]" TransactionId="[request.Cart.Id]" />
+        </Sequence>
+      </If.Then>
+    </If>
+    <If Condition="[String.IsNullOrEmpty(transaction.CustomerId)]" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[transaction.CustomerId]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[request.Cart.CustomerId]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Then>
+    </If>
+    <local:ValidateUpdateCartRequest ReturnTransaction="{x:Null}" Transaction="{x:Null}" sap2010:WorkflowViewState.IdRef="ValidateUpdateCartRequest_1" Request="[request]" RequestContext="[requestContext]" />
+    <local:PerformSaveCartOperations sap2010:WorkflowViewState.IdRef="PerformSaveCartOperations_1" Request="[request]" xmlns:mdcr="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime" xmlns:mdcr1="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Entities" xmlns:mdcr2="clr-namespace:Microsoft.Dynamics.Commerce.Runtime;assembly=Microsoft.Dynamics.Commerce.Runtime.Framework" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" />
+    <local:SetSalesLineInventory Transaction="{x:Null}" sap2010:WorkflowViewState.IdRef="SetSalesLineInventory_1" RequestContext="[requestContext]" />
+    <local:CalculateTotals mva:VisualBasic.Settings="{x:Null}" Context="[requestContext]" sap2010:WorkflowViewState.IdRef="CalculateTotals_1" Mode="[CalculationModes.All]" Transaction="[transaction]" />
+    <local:SaveSalesTransaction Transaction="{x:Null}" sap2010:WorkflowViewState.IdRef="SaveSalesTransaction_1" RequestContext="[requestContext]" />
+    <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="mdcrm:Response">[Response]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="mdcrm1:SaveCartResponse">[New SaveCartResponse(CartWorkflowHelper.ConvertToCart(RequestContext, transaction))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <sads:DebugSymbol.Symbol>d4QBZTpcUmFpbk1haW5cU291cmNlXEZyYW1ld29ya3NcUmV0YWlsUmFpblxDb21wb25lbnRzXFBsYXRmb3JtXExpYnJhcmllc1xSdW50aW1lXFdvcmtmbG93Rm91bmRhdGlvbi5BY3Rpdml0aWVzXFdvcmtmbG93c1xTYXZlQ2FydC54YW1sMVEDiAEOAgEBVgVWjAECATBXBVeNAQIBLVgFWKsBAgEqWQVZlwECASdaBVq3AQIBI1sFbQoCARZuBXkKAgERegV60AECAQ58BXyXAQIBC30FfcsBAgEHfgV+lQECAQV/BYYBDgIBAlYlVjUCATJWd1aJAQIBMVclVz0CAS9Xf1eKAQIBLliKAViVAQIBLFidAVioAQIBK1klWUICASlZhAFZlAECAShagwFakgECASZaaVp7AgElWqEBWrQBAgEkWxNbLQIBF10JaxQCARhuE25DAgEScAl3EgIBE3qgAXqrAQIBEHq7AXrNAQIBD3yCAXyUAQIBDH2UAX2sAQIBCn25AX3IAQIBCX1IfVoCAQh+gAF+kgECAQaEAT+EAZQBAgEEgQE3gQFBAgEDXgtpEAIBHmoLaugBAgEZdTR1TQIBFXI1ck0CARReGV5CAgEfYA9nGAIBIGo0ak8CAR1qtAFqwwECARxqmgFqrAECARtq0gFq5QECARplQGVTAgEiYkFiWAIBIQ==</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="ThrowIfNull_1" sap:VirtualizedContainerService.HintSize="611,22" />
+      <sap2010:ViewStateData Id="ThrowIfNull_2" sap:VirtualizedContainerService.HintSize="611,22" />
+      <sap2010:ViewStateData Id="TypeCastActivity`1_1" sap:VirtualizedContainerService.HintSize="611,22" />
+      <sap2010:ViewStateData Id="ThrowIfNull_3" sap:VirtualizedContainerService.HintSize="611,22" />
+      <sap2010:ViewStateData Id="LoadSalesTransaction_1" sap:VirtualizedContainerService.HintSize="611,22" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="CreateSalesTransaction_1" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="486,394">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="611,542" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="611,208" />
+      <sap2010:ViewStateData Id="ValidateUpdateCartRequest_1" sap:VirtualizedContainerService.HintSize="611,22" />
+      <sap2010:ViewStateData Id="PerformSaveCartOperations_1" sap:VirtualizedContainerService.HintSize="589,22" />
+      <sap2010:ViewStateData Id="SetSalesLineInventory_1" sap:VirtualizedContainerService.HintSize="589,22" />
+      <sap2010:ViewStateData Id="CalculateTotals_1" sap:VirtualizedContainerService.HintSize="589,22" />
+      <sap2010:ViewStateData Id="SaveSalesTransaction_1" sap:VirtualizedContainerService.HintSize="589,22" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="611,60" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="633,1632">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Contoso.Commerce.Runtime.WorkflowFoundation.Activities.SaveCart_1" sap:VirtualizedContainerService.HintSize="673,1712" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

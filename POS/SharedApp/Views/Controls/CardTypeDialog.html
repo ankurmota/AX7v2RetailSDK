@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CardTypeDialog</title>
+</head>
+<body>
+    <div data-bind="customControlInternal: 'CardTypeDialog'">
+        <div data-bind="dialog:
+            {
+                title: Commerce.ViewModelAdapter.getResourceString('string_1140'), // Payment card type
+                message: Commerce.ViewModelAdapter.getResourceString('string_1141'), // Select a payment card type
+                visible: visible,
+                buttonClick: cardTypeDialogButtonClickHandler,
+                buttons: [{ label: Commerce.ViewModelAdapter.getResourceString('string_107'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, isPrimary: false }] // Cancel
+            }" class="CardTypeDialog modalWindowContentSection">
+
+            <!-- dialog content -->
+            <div class="height15 scrollX" data-bind="tileList: { itemDataSource: cardTypes, iteminvoked: cardTypeListButtonClickHandler, bottomLeft: { field: 'Name' } }"></div>
+        </div>
+    </div>
+</body>
+</html>

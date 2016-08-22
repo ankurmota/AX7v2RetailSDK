@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Resume Shift View</title>
+    <link href="ResumeShiftView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="resumeShiftView fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+        
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+            <div class="col grow" data-bind="listView: {
+                    itemDataSource: availableShifts,
+                    selectionMode: 'single',
+                    selectionchanged: { eventHandlerCallBack: shiftSelectionChangedHandler, appBarId: '#commandAppBar' },
+                    columns: [
+                        { titleResx: 'string_4047', cssClass: 'ratio2', field: 'StaffId' },
+                        { titleResx: 'string_4043', cssClass: 'ratio2', field: 'TerminalId' },
+                        { titleResx: 'string_4135', cssClass: 'ratio1', field: 'StatusValue', converter: 'Commerce.Core.Converter.shiftStatusEnumFormatter' },
+                        { titleResx: 'string_4052', cssClass: 'ratio2', field: 'StatusDateTime', converter: 'Commerce.Core.Converter.ShortDateAndTime' },
+                        { titleResx: 'string_4264', cssClass: 'ratio1', field: 'CashDrawer' },
+                        { titleResx: 'string_4265', cssClass: 'ratio1', field: 'IsShared' },
+                        { titleResx: 'string_4044', cssClass: 'ratio1 textRight', field: 'ShiftId' },
+                    ]
+                }"></div>
+        </section>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{ id:'cancelAppBar', label:'Cancel', extraClass: 'winappbar-iconCancel' }"
+                data-bind="click: cancelUseExistingShift, resx: { label: 'string_4015' }">
+            </button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{ id:'okAppBar', label:'OK', extraClass: 'winappbar-iconAccept' }"
+                data-bind="click: useExistingShift, resx: { label: 'string_4051' }, enable: isShiftSelected">
+            </button>
+        </div>
+    </div>
+</body>
+</html>

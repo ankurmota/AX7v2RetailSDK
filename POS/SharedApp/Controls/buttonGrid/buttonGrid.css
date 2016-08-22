@@ -1,0 +1,27 @@
+.commerceButtonGrid {
+    flex: none;
+}
+
+.commerceButtonGrid button {
+    width: 70px;
+    height: 70px;
+    font-size: 10px; /* Reset font size to base font size. */
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-width: 70px;
+    min-height: 70px;
+    border: none;
+    cursor: pointer;
+}
+
+.commerceButtonGrid button:active {
+    transform: translate(2px, 2px);
+    opacity: 0.9;
+}
+
+/* High contrast mode */
+@media screen and (-ms-high-contrast) {
+    .commerceButtonGrid button {
+        border-style: solid;
+    }
+}

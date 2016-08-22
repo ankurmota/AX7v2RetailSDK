@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+
+  <PaymentProcessor_Void_NullRequest>
+    <TestDescriptor>Null request</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_Void_NullRequest>
+  <PaymentProcessor_Void_NullRequest>
+    <TestDescriptor>Null request</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_Void_NullRequest>
+
+</TestData>

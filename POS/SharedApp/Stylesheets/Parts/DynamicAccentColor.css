@@ -1,0 +1,196 @@
+/*This file is loaded in runtime and placeholders are replaced with specific values.
+    %%ACCENT_COLOR%% - replaced by accent color setting which is got from device configuration;
+    %%LOGIN_BACKGROUND_IMAGE%% - replaced by login background image setting;
+    %%LOGIN_BACKGROUND_IMAGE_PORTRAIT%% - replaced by login background image for portrait mode setting;
+    %%BACKGROUND_IMAGE%% - replaced by background image setting.
+
+Loading DynamicAccentColor.css and css rules updating happens in CSSHelpers.applyAccentColor() method. Then style tag is added to document head.
+*/
+
+.accent {
+    cursor: pointer;
+    color: %%ACCENT_COLOR%%;
+}
+
+progress.win-ring, .win-listview .win-progress {
+    color: %%ACCENT_COLOR%% ;
+}
+
+a, a:active, a:hover, a:hover:active {
+    cursor: pointer;
+    color: %%ACCENT_COLOR%%;
+}
+
+button.primaryButton,
+button.primaryButton[type=button],
+button.primaryButton[type=submit],
+input.primaryButton[type=button],
+input.primaryButton[type=submit],
+.accentBackground, 
+.accentBackground:hover, 
+.accentBackground:active,
+.accentBackground:active:hover, 
+button[type=submit], 
+input[type=submit],
+.win-listview.win-selectionstylefilled .win-selected .win-selectionbackground,
+.win-listview.win-selectionstylefilled.win-selected.win-selectionbackground,
+.win-listview.win-selectionstylefilled .win-selected:hover .win-selectionbackground,
+html.win-hoverable .win-listview.win-selectionstylefilled .win-selected:hover .win-selectionbackground,
+.win-itemcontainer.win-selectionstylefilled.win-container.win-selected:hover .win-itembox,
+html.win-hoverable .win-itemcontainer.win-selectionstylefilled.win-selected:hover .win-selectionbackground,
+.win-itemcontainer.win-selectionstylefilled.win-selected .win-selectionbackground,
+option:checked, option:checked:hover,  select:focus option:checked:hover,
+option:hover:active, select:focus option:hover:active,
+option:hover:active, option:checked:hover:active,
+.itemPicker.win-listview .win-focused {
+    background-color: %%ACCENT_COLOR%%;
+    color: #ffffff;
+}
+
+/*Selection color for text inputs. */
+input[type=submit]::selection,
+input[type=text]::selection,
+input[type=number]::selection,
+input[type=search]::selection,
+input[type=tel]::selection,
+input[type=email]::selection,
+textarea::selection {
+    background: %%ACCENT_COLOR%%;
+}
+
+.itemPicker.win-listview .win-itembox .win-item:hover,
+.itemPicker.win-listview :not(.win-focused).win-itembox .win-item:hover,
+html.win-hoverable .win-toggleswitch-enabled.win-toggleswitch:hover .win-toggleswitch-fill-lower,
+.win-listview.win-selectionstylefilled .win-selected:hover .win-selectionbackground,
+html.win-hoverable .win-listview.win-selectionstylefilled .win-selected:hover .win-selectionbackground,
+html.win-hoverable .win-itemcontainer.win-selectionstylefilled.win-selected:hover .win-selectionbackground,
+.standardGrid .win-container:nth-child(2n+1):not(.win-selected):hover .listViewLine,
+.standardGrid .win-container:nth-child(2n):not(.win-selected):hover .listViewLine,
+.standardGrid .win-container:nth-child(2n+1):not(.win-selected):hover .colspanRow ,
+.standardGrid .win-container:nth-child(2n):not(.win-selected):hover .colspanRow  {
+    background-color: %%ACCENT_COLOR_LIGHT_20%%;
+}
+
+.standardGrid .win-container:nth-child(2n+1):not(.win-selected):hover .colspanRow .secondaryFontColor,
+.standardGrid .win-container:nth-child(2n):not(.win-selected):hover .colspanRow .secondaryFontColor,
+.standardGrid .win-container:nth-child(2n+1):not(.win-selected):hover .listViewLine *,
+.standardGrid .win-container:nth-child(2n):not(.win-selected):hover .listViewLine *,
+.itemPicker.win-listview :not(.win-focused).win-itembox .win-item:hover h4 {
+    color: #fff !important;
+}
+    .standardGrid .win-container:nth-child(2n+1):not(.win-selected):hover .listViewLine .win-interactive,
+    .standardGrid .win-container:nth-child(2n):not(.win-selected):hover .listViewLine .win-interactive {
+        border-color: #fff !important;
+    }
+
+    button.primaryButton:hover,
+    button.primaryButton[type=button]:hover,
+    button.primaryButton[type=submit]:hover,
+    input.primaryButton[type=button]:hover,
+    input.primaryButton[type=submit]:hover,
+    button.accentBackground[type=button]:hover,
+    button.accentBackground[type=button]:focus,
+    .tileList .itemContainer.accentBackground:hover,
+    .tileList .itemContainer.accentBackground:focus  {
+        background-color: %%ACCENT_COLOR_LIGHT_20%%;
+    }
+
+    button.primaryButton:active,
+    button.primaryButton[type=button]:active,
+    button.primaryButton[type=submit]:active,
+    input.primaryButton[type=button]:active,
+    input.primaryButton[type=submit]:active, 
+    button.accentBackground[type=button]:active,
+    .tileList .itemContainer.accentBackground:active {
+        background-color: %%ACCENT_COLOR_DARK_20%%;
+    }
+
+
+.accentBackground .accent,
+.win-selected .accent {
+    color: inherit !important;
+}
+
+.genericDialog.confirmButton {
+    background-color: %%ACCENT_COLOR%%;
+    color: #ffffff;
+}
+
+.win-selected.win-selectionborder,
+.refinerMultiSelectBorderColor {
+    border-color: %%ACCENT_COLOR%%;
+}
+
+.ui-widget-header,
+.win-toggleswitch .win-toggleswitch-fill-lower {
+    background-color: %%ACCENT_COLOR%%;
+}
+
+body[dir=rtl] .win-listview .win-horizontal .win-selectioncheckmarkbackground,
+body[dir=rtl] :not(.win-selectionstylefilled).win-listview .win-selected.win-container .win-selectioncheckmarkbackground,
+body[dir=rtl] :not(.win-selectionstylefilled).win-selected.win-container.win-itemcontainer .win-selectioncheckmarkbackground {
+    border-left-color: %%ACCENT_COLOR%%;
+    border-right-color: transparent;
+}
+
+body[dir=rtl] .win-listview .win-horizontal .win-container.win-selected:hover .win-selectioncheckmarkbackground,
+body[dir=rtl] :not(.win-selectionstylefilled).win-listview .win-selected.win-container:hover .win-selectioncheckmarkbackground,
+body[dir=rtl] :not(.win-selectionstylefilled).win-selected.win-container.win-itemcontainer:hover .win-selectioncheckmarkbackground {
+    border-left-color: %%ACCENT_COLOR_LIGHT_20%%;
+}
+
+.win-listview .win-horizontal .win-selectioncheckmarkbackground,
+:not(.win-selectionstylefilled).win-listview .win-container.win-selected .win-selectioncheckmarkbackground, 
+:not(.win-selectionstylefilled).win-itemcontainer.win-container.win-selected .win-selectioncheckmarkbackground {
+    border-top-color: %%ACCENT_COLOR%%;
+    border-right-color: %%ACCENT_COLOR%%;
+}
+
+.win-listview .win-horizontal .win-container.win-selected:hover .win-selectioncheckmarkbackground,
+:not(.win-selectionstylefilled).win-listview .win-container.win-selected:hover .win-selectioncheckmarkbackground, 
+:not(.win-selectionstylefilled).win-itemcontainer.win-container.win-selected:hover .win-selectioncheckmarkbackground {
+    border-top-color: %%ACCENT_COLOR_LIGHT_20%%;
+    border-right-color: %%ACCENT_COLOR_LIGHT_20%%;
+}
+
+.win-horizontal .win-container.win-selected .win-selectionborder,
+.win-listview.win-selectionstylefilled .win-container.win-selected .win-selectionborder,
+:not(.win-selectionstylefilled).win-listview .win-selected.win-container .win-selectionborder,
+:not(.win-selectionstylefilled).win-selected.win-container.win-itemcontainer .win-selectionborder {
+    border: 0.4em solid %%ACCENT_COLOR%%;
+}
+
+.win-listview.win-selectionstylefilled .win-container.win-selected:hover .win-selectionborder {
+    border-color: %%ACCENT_COLOR_LIGHT_20%%;
+}
+
+.accentBorder {
+    border: 0.2em solid %%ACCENT_COLOR%%;
+}
+
+.countingGrid .win-selected .accent {
+    color: %%ACCENT_COLOR%%;
+}
+
+input[type=range]::-ms-fill-lower,
+option:checked, select:focus::-ms-value,
+::selection {
+    background-color: %%ACCENT_COLOR%%;
+    color: #ffffff;
+}
+
+.loginBackgroundImage {
+    background-image: url(data:image/gif;base64,%%LOGIN_BACKGROUND_IMAGE%%);
+    background-size: cover; 
+    background-attachment: fixed
+}
+
+.loginBackgroundImagePortrait {
+    background-image: url(data:image/gif;base64,%%LOGIN_BACKGROUND_IMAGE_PORTRAIT%%);
+    background-size: cover; 
+    background-attachment: fixed
+}
+
+.bodyBackgroundImage {
+    background-image: url(data:image/gif;base64,%%BACKGROUND_IMAGE%%);
+}

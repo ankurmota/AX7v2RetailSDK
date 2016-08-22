@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E35F693C-366F-4B8B-A8D9-6490927E903A}</ProjectGuid>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>$(AssemblyNamePrefix).ModernPOSSetupOffline</AssemblyName>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>uac.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(SdkReferencesPath)\$(AssemblyNamePrefix).Retail.Deployment.SelfService.BootstrapperLibrary.dll">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)content.zip">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <_ar_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_cs_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_da_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_de-AT_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_de-CH_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_de_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_en-AU_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_en-CA_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_en-GB_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_en-IE_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_en-IN_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_en-MY_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_en-NZ_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_en-SG_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_en-ZA_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_es-MX_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_es_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_et_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_fi_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_fr-BE_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_fr-CA_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_fr-CH_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_fr_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_hu_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_is_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_it-CH_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_it_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_ja_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_lt_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_lv_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_nb-NO_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_nl-BE_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_nl_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_pl_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_pt-BR_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_ru_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_sv_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_th_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_tr_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_zh-Hans_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <__File Include="$(SdkAssetsPath)\CommerceRuntime.MPOSOffline.config" />
+    <__File Include="$(SdkAssetsPath)\DLLHost.exe.config" />
+    <__File Include="$(SdkAssetsPath)\Microsoft.Dynamics.Commerce.ClientBroker.man" />
+    <__File Include="..\..\References\EntityFramework\5.0.0.0\EntityFramework.dll" />
+    <__File Include="..\..\References\Interop.OposCashDrawer\5.0.0.0\Interop.OposCashDrawer.dll" />
+    <__File Include="..\..\References\Interop.OposConstants\5.0.0.0\Interop.OposConstants.dll" />
+    <__File Include="..\..\References\Interop.OposLineDisplay\5.0.0.0\Interop.OposLineDisplay.dll" />
+    <__File Include="..\..\References\Interop.OposPinPad\5.0.0.0\Interop.OposPinPad.dll" />
+    <__File Include="..\..\References\Interop.OposPOSPrinter\5.0.0.0\Interop.OposPOSPrinter.dll" />
+    <__File Include="..\..\References\Interop.OposScale\5.0.0.0\Interop.OposScale.dll" />
+    <__File Include="..\..\References\Interop.OposSigCap\5.0.0.0\Interop.OposSigCap.dll" />
+    <__File Include="..\..\References\Microsoft.ApplicationInsights.Extensibility.PerfCollector\0.15.0.187\Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll" />
+    <__File Include="..\..\References\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry\0.15.0.179\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll" />
+    <__File Include="..\..\References\Microsoft.ApplicationInsights.Extensibility.Web\0.15.0.179\Microsoft.ApplicationInsights.Extensibility.Web.dll" />
+    <__File Include="..\..\References\Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll" />
+    <__File Include="..\..\References\Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll" />
+    <__File Include="..\..\References\Microsoft.ApplicationInsights.PersistenceChannel\0.15.0.187\Microsoft.ApplicationInsights.PersistenceChannel.dll" />
+    <__File Include="..\..\References\Microsoft.ApplicationInsights\0.15.0.179\Microsoft.ApplicationInsights.dll" />
+    <__File Include="..\..\References\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept\0.14.0.8007\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll" />
+    <__File Include="..\..\References\Microsoft.Diagnostics.Tracing.EventSource\1.1.16.0\Microsoft.Diagnostics.Tracing.EventSource.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.ClientBroker.winmd" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.ClientBrokerProxy.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Core.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Contracts.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Desktop.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Entities.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Network.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Opos.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.OposLibrary.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.PaymentTerminalLibrary.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.PrinterLibrary.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.SampleMx925Library.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Security.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.RetailProxy.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Cache.MemoryCache.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Client.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.ConfigurationProviders.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataAccess.SqlServer.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.SqlServer.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Messages.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.NotSupported.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Desktop.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.PricingEngine.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Workflow.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.WorkflowFoundation.Activities.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.WorkflowFoundation.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Diagnostics.Sinks.Portable.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.CommerceDataExchange.AsyncClient.Business.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.CommerceDataExchange.AsyncClient.Core.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.CommerceDataExchange.AsyncClient.DataManager.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Core.Desktop.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Proxies.Desktop.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.Notification.Contracts.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.Notification.Proxy.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentManager.Reference.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentProcessor.Common.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Extensions.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentTerminal.Contracts.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentTerminal.L5300.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.Resources.Strings.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.SDKManager.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.Security.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.SynchLibrary.dll" />
+    <__File Include="..\..\References\Microsoft.Dynamics.Retail.TestConnector.Portable.dll" />
+    <__File Include="..\..\References\Microsoft.OData.Client\6.11.0.0\Microsoft.OData.Client.dll" />
+    <__File Include="..\..\References\Microsoft.OData.Core\6.11.0.0\Microsoft.OData.Core.dll" />
+    <__File Include="..\..\References\Microsoft.OData.Edm\6.11.0.0\Microsoft.OData.Edm.dll" />
+    <__File Include="..\..\References\Microsoft.Practices.Prism.Interactivity\4.1.0.0\Microsoft.Practices.Prism.Interactivity.dll" />
+    <__File Include="..\..\References\Microsoft.Practices.Prism\4.1.0.0\Microsoft.Practices.Prism.dll" />
+    <__File Include="..\..\References\Microsoft.Spatial\6.11.0.0\Microsoft.Spatial.dll" />
+    <__File Include="..\..\References\Microsoft.Threading.Tasks.Extensions.Desktop\1.0.168.0\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+    <__File Include="..\..\References\Microsoft.Threading.Tasks.Extensions\1.0.12.0\Microsoft.Threading.Tasks.Extensions.dll" />
+    <__File Include="..\..\References\Microsoft.Threading.Tasks\1.0.12.0\Microsoft.Threading.Tasks.dll" />
+    <__File Include="..\..\References\Newtonsoft.Json.Portable\6.0.0.0\Newtonsoft.Json.Portable.dll" />
+    <__File Include="..\..\References\Newtonsoft.Json\6.0.0.0\Newtonsoft.Json.dll" />
+    <__File Include="..\..\References\sqlite3.dll" />
+    <__File Include="..\..\References\SQLitePCL.Ext\3.8.5.0\SQLitePCL.Ext.dll" />
+    <__File Include="..\..\References\SQLitePCL\3.8.5.0\SQLitePCL.dll" />
+    <__File Include="..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll" />
+    <__File Include="..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll" />
+    <__File Include="..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll" />
+    <__File Include="..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll" />
+    <__File Include="..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll" />
+    <__File Include="..\..\References\System.Net.Http.Formatting\5.2.2.0\System.Net.Http.Formatting.dll" />
+    <__File Include="..\..\References\System.Threading.Tasks.Dataflow\4.5.25.0\System.Threading.Tasks.Dataflow.dll" />
+    <__File Include="..\..\References\System.Web.Http.WebHost\5.2.2.0\System.Web.Http.WebHost.dll" />
+    <__File Include="..\..\References\System.Web.Http\5.2.2.0\System.Web.Http.dll" />
+    <__File Include="..\..\References\System.Web.Mvc\5.0.0.0\System.Web.Mvc.dll" />
+    <__File Include="..\..\References\System.Web.WebPages.Deployment\3.0.0.0\System.Web.WebPages.Deployment.dll" />
+    <__File Include="..\..\References\System.Web.WebPages.Razor\3.0.0.0\System.Web.WebPages.Razor.dll" />
+    <__File Include="..\..\References\System.Web.WebPages\3.0.0.0\System.Web.WebPages.dll" />
+    <__File Include="ApplicationInsights.config" />
+    <ProjectReference Include="..\BootstrapperLibrary\Setup.BootStrapperLibrary.csproj">
+      <Project>{92062E43-123C-423E-9C74-1B60D1EC474E}</Project>
+      <Name>Setup.BootstrapperLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <OriginalSetupExe Include="$(SdkReferencesPath)\ModernPOSSetupOffline.exe" />
+    <AppXFile Include="$(SdkRootPath)\Pos\App\AppPackages\RetailModernPOS_x86_Test\RetailModernPOS_x86.appx" />
+    <_Database_File Include="@(DatabaseFile_FullSchema)" />
+    <_Database_Upgrade_Custom_File Include="@(DatabaseFile_Upgrade_Custom)" />
+    <_Database_Upgrade_Retail_File Include="@(DatabaseFile_Upgrade_Retail)" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Target Name="CopyPackageFiles">
+    <Copy SourceFiles="@(OriginalSetupExe)" DestinationFolder="$(OutputPath)content.folder\" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(AppXFile)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ClientBroker_CustomizableFile)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Database_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\Database" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Database_Upgrade_Custom_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\Database\Upgrade\Custom" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Database_Upgrade_Retail_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\Database\Upgrade\Retail" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ar_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\ar" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_cs_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\cs" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_da_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\da" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_de-AT_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\de-AT" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_de-CH_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\de-CH" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_de_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\de" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_en-AU_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\en-AU" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_en-CA_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\en-CA" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_en-GB_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\en-GB" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_en-IE_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\en-IE" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_en-IN_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\en-IN" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_en-MY_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\en-MY" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_en-NZ_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\en-NZ" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_en-SG_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\en-SG" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_en-ZA_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\en-ZA" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_es-MX_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\es-MX" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_es_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\es" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_et_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\et" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_fi_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\fi" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_fr-BE_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\fr-BE" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_fr-CA_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\fr-CA" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_fr-CH_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\fr-CH" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_fr_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\fr" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_hu_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\hu" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_is_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\is" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_it-CH_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\it-CH" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_it_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\it" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ja_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\ja" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_lt_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\lt" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_lv_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\lv" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_nb-NO_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\nb-NO" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_nl-BE_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\nl-BE" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_nl_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\nl" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_pl_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\pl" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_pt-BR_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\pt-BR" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ru_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\ru" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_sv_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\sv" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_th_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\th" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_tr_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\tr" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_zh-Hans_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\zh-Hans" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(__File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\ClientBroker\" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="AfterResGen" Inputs="$(MSBuildAllProjects);@(OriginalSetupExe);@(AppXFile);@(ClientBroker_CustomizableFile);@(_Database_File);@(_Database_Upgrade_Custom_File);@(_Database_Upgrade_Retail_File);@(_ar_File);@(_cs_File);@(_da_File);@(_de-AT_File);@(_de-CH_File);@(_de_File);@(_en-AU_File);@(_en-CA_File);@(_en-GB_File);@(_en-IE_File);@(_en-IN_File);@(_en-MY_File);@(_en-NZ_File);@(_en-SG_File);@(_en-ZA_File);@(_es-MX_File);@(_es_File);@(_et_File);@(_fi_File);@(_fr-BE_File);@(_fr-CA_File);@(_fr-CH_File);@(_fr_File);@(_hu_File);@(_is_File);@(_it-CH_File);@(_it_File);@(_ja_File);@(_lt_File);@(_lv_File);@(_nb-NO_File);@(_nl-BE_File);@(_nl_File);@(_pl_File);@(_pt-BR_File);@(_ru_File);@(_sv_File);@(_th_File);@(_tr_File);@(_zh-Hans_File);@(__File)" Outputs="$(OutputPath)content.zip">
+    <CallTarget Targets="CopyPackageFiles" />
+    <Delete Files="$(OutputPath)content.zip" />
+    <Zip OutputFileName="$(OutputPath)content.zip" InputFolder="$(OutputPath)content.folder" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

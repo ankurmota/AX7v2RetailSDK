@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- NOTE: manifest attribute enables HTML5 application cache. -->
+<html manifest="pos.appcache">
+<head>
+    <!--
+        NOTE: mPOS and cloudPOS have separate Pos.html. Make sure you update both accordingly to your changes.
+    -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+
+    <title>Dynamics Retail POS</title>
+    <link rel="icon" href="Assets/Icons/dyn-favicon.ico" />
+
+    <link rel="stylesheet" href="Stylesheets/SplashScreen.min.css" />
+
+    <!--
+        NOTE: -axretail-stylesheet-async is supported by Commerce.CSSHelpers.
+        It adds these two features for better UI experience:
+        - 1. Non blocking async load of css files.
+        - 2. CSSHelpers know when a stylesheet is loaded by browser.
+
+        (!) Please use it for any new css file so the splash screen rendering won't be blocked.
+    -->
+
+    <link rel="-axretail-stylesheet-async" href="Stylesheets/Vendor/jQueryUI/1.11.2/jquery-ui.min.css" />
+    <link rel="-axretail-stylesheet-async" href="Stylesheets/Main.min.css" />
+    <link rel="-axretail-stylesheet-async" href="Controls/dialog/dialog.min.css" />
+    <link rel="-axretail-stylesheet-async" href="Controls/buttonGrid/buttonGrid.css" />
+    <link rel="-axretail-stylesheet-async" href="Controls/tabControl/tabControl.css" />
+
+    <script src="Libraries/winjs/js/WinJS.min.js" defer="defer"></script>
+    <script src="Libraries/globalize/0.1.0/globalize.min.js" defer="defer"></script>
+    <script src="Libraries/globalize/0.1.0/globalize.cultures.min.js" defer="defer"></script>
+    <script src="Libraries/jQuery.min.js" defer="defer"></script>
+    <script src="Libraries/jQueryUI/1.11.2/jquery-ui.min.js" defer="defer"></script>
+    <script src="Libraries/knockout-2.2.1.js" defer="defer"></script>
+    <script src="Libraries/datajs-1.1.0.min.js" defer="defer"></script>
+
+    <!-- App Insights -->
+    <script src="Libraries/AppInsights/ai.0.15.0-build12287.min.js" defer="defer"></script>
+
+    <!-- Azure Active Directory -->
+    <script src="Libraries/adal.js/adal.min.js" defer="defer"></script>
+
+    <script src="Libraries/highcharts.src.js" defer="defer"></script>
+
+    <script src="Libraries/moment/moment-with-locales.min.js" defer="defer"></script>
+    <script src="Libraries/moment-timezone/moment-timezone-with-data.min.js" defer="defer"></script>
+
+    <script src="Diagnostics.TypeScriptCore.js" defer="defer"></script>
+    <script src="RetailLogger.js" defer="defer"></script>
+    <script src="Commerce.Core.js" defer="defer"></script>
+    <script src="Commerce.ViewModels.js" defer="defer"></script>
+
+    <!--
+    // BEGIN SDKSAMPLE_STOREHOURS (do not remove this)
+    <script src="Custom.Extension.js" defer="defer"></script>
+    // END SDKSAMPLE_STOREHOURS (do not remove this)
+    -->
+
+    <!--
+    // BEGIN SDKSAMPLE_CROSSLOYALTY (do not remove this)
+    <script src="Custom.Extension.js" defer="defer"></script>
+    // END SDKSAMPLE_CROSSLOYALTY (do not remove this)
+    -->
+
+    <script src="Pos.js" defer="defer"></script>
+
+    <style title="TillLayoutStyles"></style>
+</head>
+<body class="bodyBackgroundImage">
+    <div data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Pos.Shared.html'}"></div>
+    <div id="contenthost" data-win-control="Commerce.ViewNavigator" data-win-options="{home: 'LoginView'}">
+        <div class="splash-screen">
+            <div class="splash-screen-frame">
+                <div class="splash-screen-logo"></div>
+                <div class="splash-screen-spinner"></div>
+            </div>
+        </div>
+    </div>
+    <div id="taskRecorderHost" data-win-control="Commerce.Taskrecorder.TaskRecorderViewManager"></div>
+    <div id="helpViewHost"></div>
+</body>
+</html>

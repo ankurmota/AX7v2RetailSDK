@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA32817B-51AD-4597-9D55-F4179CAA1F48}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Retail.Connector.FunctionalTests</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Retail.Connector.FunctionalTests</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ColumnName.cs" />
+    <Compile Include="PaymentHelper.cs" />
+    <Compile Include="PaymentProcessorFunctionalTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestContextExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\MerchantAccount_TestConnectorDesktop_InvalidProperties.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\MerchantAccount_TestConnectorDesktop.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\MerchantAccount_TestConnectorPortable_InvalidProperties.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\MerchantAccount_TestConnectorPortable.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_AVS.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_Basic.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_Cashback.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_CVV2.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_FailureResult.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_InvalidInput.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_PartialAuthorization.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_SupportCardTokenization.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_VoiceAuthorization.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Authorize_WithCardToken.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Capture_FailureResult.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Capture_InvalidInput.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Capture_Level2Level3.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Copyright.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_GenerateCardToken.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_GetMerchantAccountPropertyMetadata.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_GetPaymentAcceptPoint_Basic.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_GetPaymentAcceptPoint_InvalidInput.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_GetPaymentProcessor.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Name.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Refund_Basic.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Refund_InvalidInput.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Refund_Level2Level3.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Refund_LinkedRefundWithCardToken.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Refund_LinkedRefundWithoutCardToken.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Refund_SupportCardTokenization.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Refund_WithCardToken.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_RetrievePaymentAcceptResult_InvalidInput.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_SupportedCountries.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_ValidateMerchantAccount.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Void_Basic.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Void_Cashback.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Void_FailureResult.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Void_InvalidInput.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Void_PartialAuthorization.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Void_VoiceAuthorization.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\PaymentProcessor_Void_WithCardToken.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Tests.Utilities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Tests.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Notification.Contracts.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Notification.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Notification.Proxy.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Notification.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.PaymentSDK.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.SDKManager.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.SDKManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.SDKManager.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Security.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.dll">
+      <HintPath>..\..\References\Microsoft.Practices.Prism\4.1.0.0\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity.dll">
+      <HintPath>..\..\References\Microsoft.Practices.Prism.Interactivity\4.1.0.0\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MS.Dynamics.TestTools.Metadata.dll">
+      <HintPath>..\..\References\MS.Dynamics.TestTools.Metadata\1.0.0.0\MS.Dynamics.TestTools.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.PaymentProcessor.Common.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Extensions.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.TestConnector.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.TestConnector.Portable.dll" />
+    <RuntimeDependencies Include="..\..\References\Newtonsoft.Json.Portable\6.0.0.0\Newtonsoft.Json.Portable.dll" />
+  </ItemGroup>
+  <ItemGroup></ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>StoresView</title>
+        <link href="AllStoresView.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div class="fragment allStoresView">
+        
+            <!-- Indeterminate wait -->
+            <div data-bind="loader: { visible: _indeterminateWaitVisible }"></div>
+
+            <!-- Page header -->
+            <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+        
+            <section role="main" class="col grow" data-bind="resx: { ariaLabel: 'string_4454' }">
+                <!-- Main content -->
+                <div class="grow" data-bind="listView: {
+                    itemDataSource: _locations,
+                    selectionchanged: { eventHandlerCallBack: storeSelectionChanged, appBarId: '#commandAppBar' },
+                    loadingstatechanged: loadingStateChanged,
+                    iteminvoked: invokeStore,
+                    selectionMode: 'single',
+                    tapBehavior: 'toggleSelect',
+                    columns: [
+                        { titleResx: 'string_6402', cssClass: 'ratio2', field: 'OrgUnitNumber' },
+                        { titleResx: 'string_6403', cssClass: 'ratio2', field: 'OrgUnitName' },
+                        { titleResx: 'string_6404', cssClass: 'ratio6', field: 'OrgUnitFullAddress' },
+                   ]
+                }">
+
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+
+            <!-- Commenting out the compare functionality -->
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{ id: 'selectstore', extraClass: 'winappbar-iconApply' }"
+                    data-bind="click: confirmStoreSelection, winControl: { disabled: _selectCommandDisabled }, resx: { label: 'string_6405' }" /><!-- Select -->
+        </div>
+    </body>
+</html>

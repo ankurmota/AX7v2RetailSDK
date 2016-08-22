@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Show Blind Closed Shifts View</title>
+    <link href="BlindCloseView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="blindCloseView fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <!-- Main content -->
+            <div class="col grow" data-bind="listView: {
+                    itemDataSource: blindClosedShifts,
+                    selectionMode: 'single',
+                    tapBehavior: 'toggleSelect',
+                    selectionchanged: { eventHandlerCallBack: shiftSelectionChangedHandler, appBarId: '#commandAppBar' },
+                    columns: [
+                        { titleResx: 'string_4043', cssClass: 'ratio1', field: 'TerminalId' },
+                        { titleResx: 'string_4044', cssClass: 'ratio1 textRight', field: 'ShiftId' },
+                        { titleResx: 'string_4045', cssClass: 'ratio3', field: 'StartDateTime', converter: 'Commerce.Core.Converter.ShortDateAndTime' },
+                        { titleResx: 'string_4046', cssClass: 'ratio3', field: 'StatusDateTime', converter: 'Commerce.Core.Converter.ShortDateAndTime' },
+                        { titleResx: 'string_4047', cssClass: 'ratio2 textRight', field: 'StaffId' },
+                    ]
+                }"></div>
+
+        </section>
+
+        <div id="declareFlyout" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#declareAppBar', placement: 'top', alignment: 'left', toggleShowHide: _toggleShowHideDeclareMenu }">
+
+            <button data-win-control="WinJS.UI.MenuCommand"
+                    data-win-options="{
+                    id:'declareStartAmount',
+                    label: 'Declare starting amount'
+                }"
+                    data-bind="resx: { label: 'string_4008' }, click: declareStartAmount"></button>
+
+            <button data-win-control="WinJS.UI.MenuCommand"
+                    data-win-options="{
+                    id:'tenderDeclaration',
+                    label: 'string_4029'
+                }"
+                    data-bind="resx: { label: 'string_4029' }, click: tenderDeclaration"></button>
+        </div>
+
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl" data-win-options="{sticky:true}" data-bind="winControl: { visible: _appBarVisible }">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'declareAppBar', label:'Declare', extraClass: 'winappbar-iconCreateList'}"
+                    data-bind="click: declareClick, resx: { label: 'string_4174' }, winControl: {disabled:_isShiftCommandDisabled}"></button>
+
+            <hr data-win-control="WinJS.UI.AppBarCommand" data-win-options="{type:'separator'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'printXAppBar', label:'Print X report', extraClass: 'winappbar-iconPrint'}"
+                    data-bind="click: printX, resx: { label: 'string_4040' }, winControl: {disabled:_isShiftCommandDisabled}"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'closeShiftAppBar', label:'Close shift', extraClass: 'winappbar-iconCloseShift'}"
+                    data-bind="click: closeShift, resx: { label: 'string_4036' }, winControl: {disabled:_isShiftCommandDisabled}"></button>
+        </div>
+    </div>
+</body>
+</html>

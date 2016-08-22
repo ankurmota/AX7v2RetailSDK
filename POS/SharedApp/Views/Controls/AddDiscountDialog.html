@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>AddDiscountDialog</title>
+
+        <link href="AddDiscountDialog.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div data-bind="customControlInternal: 'AddDiscountDialog'">
+            <div data-bind="dialog: {
+            title: title,
+            subTitle: subTitle,
+            visible: visible,
+            buttonClick: addDiscountButtonClick,
+            showProgressIndicator: indeterminateWaitVisible,
+            closeOnEscButton:true,
+            buttons: [
+                { label: Commerce.ViewModelAdapter.getResourceString('string_79'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, cssClass: 'okButton', isPrimary:true },
+                { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' },
+            ],
+        }">
+                <!-- dialog content -->
+                <div class="row">
+                    <div class="col width33">
+                        <label data-bind="text: _discountInputLabel" for="discountValueInput"></label>
+                        <input id="dicountValueInput" type="number" autofocus="autofocus" step="any" data-bind="
+                    numeric: true,
+                    hasFocus: _setFocusDiscountValueInput,
+                    textInput: { select: selectDiscountValueInput },
+                    valueUpdate: 'afterkeydown',
+                    validator: {
+                        field: '_discountValue',
+                        validatorField: 'LineManualDiscountAmount',
+                        validatorType: 'CartLineValidator'
+                    }" />    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

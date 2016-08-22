@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Sales Invoice Details View</title>
+    <link href="SalesInvoiceDetailsView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="fragment salesInvoiceDetailsView">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: _indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="col grow" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+            <div class="col grow" data-bind="with: _viewModel">
+                <div class="standardGrid" data-bind="listView: {
+                    itemDataSource: _cartLinesForDisplay,
+                    selectionchanged: { eventHandlerCallBack: _handleSelection, appBarId: '#commandAppBar' },
+                    loadingstatechanged: $root.loadingStateChanged.bind($root),
+                    selectionMode: 'multi',
+                    tapBehavior: 'toggleSelect',
+                    columns: [
+                        { titleResx: 'string_5006', cssClass: 'ratio2', field: 'ItemId' },
+                        { titleResx: 'string_5007', cssClass: 'ratio2', field: 'ProductName' },
+                        { titleResx: 'string_5008', cssClass: 'ratio2 textRight', field: 'Price', converter: 'Commerce.Core.Converter.PriceFormatter' },
+                        { titleResx: 'string_5009', cssClass: 'ratio2 textRight', field: 'Quantity', converter: 'Commerce.Core.Converter.QuantityFormatter' },
+                        { titleResx: 'string_5010', cssClass: 'ratio2 textRight', field: 'ExtendedPrice', converter: 'Commerce.Core.Converter.PriceFormatter' },
+                   ]
+                }"></div>
+            </div>
+
+        </section>
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl" 
+        data-win-options="{ sticky : true }">
+             
+        <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{
+                id:'selectAll', 
+                label:'Select all', 
+                extraClass: 'winappbar-iconSelectAll', 
+                section: 'selection'}"
+            data-bind="winControl: { click: selectAllClick }, resx: { label: 'string_4537' }" >
+         </button>
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{
+                id:'returnButton',
+                extraClass: 'winappbar-iconReturn'
+            }"
+            data-bind="winControl: { click: returnSalesInvoice, disabled: _viewModel._returnSalesInvoiceDisabled }, resx: { label: 'string_5013' }" >
+
+         </button>
+
+    </div>
+</body>
+</html>

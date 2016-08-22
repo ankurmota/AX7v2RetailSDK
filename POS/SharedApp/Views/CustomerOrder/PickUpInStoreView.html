@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>PickUpInStoreView</title>
+    <link href="PickUpInStoreView.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Date pick dialog -->
+    <div data-bind="
+    dialog: {
+        title: Commerce.ViewModelAdapter.getResourceString('string_2505'),
+        visible: _selectedLocation,
+        buttonClick: pickUpDialogButtonClick,
+        closeOnEscButton:true,
+        buttons: [
+            { label: Commerce.ViewModelAdapter.getResourceString('string_75'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, type:'submit' },
+            { label: Commerce.ViewModelAdapter.getResourceString('string_107'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK }],
+    }"
+        class="pickUpDialog">
+        <!-- dialog content -->
+        <div class="row">
+            <div class="width22" data-bind="with: _selectedLocation">
+                <label data-bind="resx: { textContent: 'string_2506' }">Pick-up location</label>
+                <h3><strong data-bind="text: store.OrgUnitName"></strong></h3>
+                <div data-bind="html: Commerce.Formatters.CommonAddressFormatterWithHtmlEscape(orgUnit.OrgUnitAddress)"></div>
+            </div>
+            <div>
+                <label data-bind="resx: { textContent: 'string_2507' }" for="pickupInStoreView_datePicker">Pick-up date</label>
+                <div id="pickupInStoreView_datePicker" data-win-control="WinJS.UI.DatePicker"
+                     data-win-options="{datePattern: '{day.integer(2)} {dayofweek.full}'}"
+                     data-bind="winControl: { minYear: _minYear, toggleChanged: dateChangeHandler, current: _requestedPickupDate }, css: { invalid: _isShippingDateInvalid }">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- view -->
+    <div class="pickUpInStoreView fragment">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: _indeterminateWaitVisible }"></div>
+
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+
+            <div id="pickupInStoreMapContent" class="col minWidth50 height50">
+                <div class="row no-shrink marginBottom1">
+                    <h2 data-bind="resx: { textContent: 'string_2509' }">Find a store</h2>
+                </div>
+
+                <!-- Input text and search button -->
+
+                <div class="row height3 searchBoxColor marginBottom2" >
+                    <input class="searchBoxColor noBorder" type="text" data-bind="hasfocus: true, value: _searchText, enterKeyPress: searchClick, resx: { ariaLabel: 'string_2509' }" />   <!-- Find a store -->
+                    <button class="iconSearch noBorder margin0 storeSearchButton" data-bind="click: searchClick, resx: { ariaLabel: 'string_50' }"></button> <!-- Search -->
+                </div>
+
+                <!-- Bing Maps will be located here, created dynamically by Bing.Maps.ts -->
+            </div>
+
+            <div class="gutter4x4"></div>
+
+            <div class="col stretch">
+                <div class="row shrink marginBottom1">
+                    <h2 data-bind="resx: { textContent: 'string_2510' }">Available stores</h2>
+                </div>
+
+                <!-- Url to show all stores -->
+                <a href="#" class="h4" data-bind="text: _showAllResults, click: showAllClick"></a>
+
+                <!-- Text to show no results on search address -->
+                <div class="marginTop1" data-bind="visible: errorMessageSearchResultVisible">
+                    <h4 class="secondaryFontColor" data-bind="text: errorMessageSearchResult"></h4>
+                </div>
+
+                <div class="browseGrid storeList noMargin col test">
+                    <div class="win-selectionstylefilled"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                                layout: {type: WinJS.UI.GridLayout },
+                                itemTemplate: select('#storeListTemplate'),
+                                selectionMode: 'none',
+                                tapBehavior: 'none',
+                                swipeBehavior: 'none'
+                            }"
+                         data-bind="winControl: { itemDataSource: _locations },
+                                    resx: { ariaLabel: 'string_2510' }">    <!-- Available stores -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- Center Map menu -->
+    <div id="centerMapFlyout" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#centerMapAppBar', placement: 'top', alignment: 'left', toggleShowHide: toggleShowHideMenu }">
+        <button data-win-control="WinJS.UI.MenuCommand"
+                data-win-options="{id: 'searchPreferredShippingMenu'}"
+                data-bind="click: searchPreferredShipping, resx: { label: 'string_2513' }, winControl: { disabled: disablePreferredShipping }">
+        </button>
+        <button data-win-control="WinJS.UI.MenuCommand"
+                data-win-options="{id: 'searchCurrentStoreMenu'}"
+                data-bind="click: searchCurrentStore, resx: { label: 'string_2512' }">
+        </button>
+
+    </div>
+
+    <!-- Bottom app bar -->
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+        <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{id:'centerMapAppBar', extraClass: 'winappbar-iconLocation', section: 'selection'}"
+            data-bind="click: showCenterMapMenu, resx: { label: 'string_2530' }">
+        </button>
+    </div>
+</body>
+</html>

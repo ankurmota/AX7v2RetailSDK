@@ -1,0 +1,9 @@
+<Project ToolsVersion="14.0" DefaultTargets="Build" BuildInParallel="false" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+    <ItemGroup>
+        <ProjectFiles Include="Proxies.Retail.TypeScript\Libraries.Proxies.Retail.TypeScript.csproj" />
+        <ProjectFiles Include="RetailProxy\Proxies.RetailProxy.csproj" />
+    </ItemGroup>
+    <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.traversal.targets" />
+</Project>

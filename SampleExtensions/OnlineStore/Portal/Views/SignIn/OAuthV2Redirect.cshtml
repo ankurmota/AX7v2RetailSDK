@@ -1,0 +1,92 @@
+@model Contoso.Retail.Ecommerce.Web.Storefront.ViewModels.SignUpViewModel
+
+<script>
+  $(document).ready(function(){
+      $(".form-new-account input[name='SignUpRadioButton']").click(function () {
+
+          if ($('input:radio[name=SignUpRadioButton]:checked').val() == "NewAccount") {
+              $(".new-account-fields :input").attr("disabled", false);
+              $(".link-account-fields :input").attr("disabled", true);
+              $("#SubmitAccount").text("@Resources.Done");
+          } else {
+              $(".new-account-fields :input").attr("disabled", true);
+              $(".link-account-fields :input").attr("disabled", false);
+              $("#SubmitAccount").text("@Resources.LinkAccount");
+          }
+      });
+
+      // Select the default radio button and trigger click
+      $(".form-new-account input[name='SignUpRadioButton']:first").attr("checked", true).trigger("click");
+
+      $("#SubmitAccount").click(function (e) {
+          if ($('input:radio[name=SignUpRadioButton]:checked').val() == "NewAccount") {
+              if ($("#FirstName").val().length == 0 || $("#LastName").val().length == 0 || $("#Email").val().length == 0) {
+                  e.preventDefault();
+              }
+          }
+          else if ($('input:radio[name=SignUpRadioButton]:checked').val() == "LinkAccount") {
+              if ($("#linkUpEmail").val().length == 0) {
+                  e.preventDefault();
+              }
+          } else {
+              e.preventDefault();
+              throw "Sign up option not supported.";
+          }
+      })
+  });
+</script>
+
+@section other{
+    <link href="~/Content/CSS/SignIn.css" rel="stylesheet" />
+}
+
+@if (@Model.ErrorMessage != null)
+{
+    <h5 class="margin-bottom-15 msg-activate msg-error">@Model.ErrorMessage</h5>
+}
+
+@if (@Model.Messages != null)
+{
+    foreach (string message in Model.Messages)
+    {
+        <h5 class="margin-bottom-15 msg-activate">@message</h5>
+    }
+}
+
+<form class="form-new-account" action="/SignIn/FinishSignUp" method="post">
+    <input type="hidden" name="SelectedAuthenticationProviderToken" id="SelectedAuthenticationProviderToken" value="@Model.AuthenticationToken" />
+    <input type="hidden" name="SelectedAuthenticationProviderType" id="SelectedAuthenticationProviderType" value="@Model.ExternalIdentityProviderType" />
+    <input type="hidden" name="LogOnEmail" value="@Model.LogOnEmailAddress" />
+
+
+    <h3 class="form-heading">@Resources.Hello</h3>
+    
+    <div class="radio margin-bottom-20">
+        <label><input type="radio" name="SignUpRadioButton" value="NewAccount" />@Resources.NewContosoAccount</label>
+    </div>
+
+    <div class="new-account-fields">
+        <label for="inputEmail">@Resources.FirstName</label>
+        <input name="FirstName" id="FirstName" class="form-control margin-bottom-20" type="text" />
+
+        <label for="inputEmail">@Resources.LastName</label>
+        <input name="LastName" id="LastName" class="form-control margin-bottom-20" type="text" />
+
+        <label for="inputEmail">@Resources.EmailAddress</label>
+        <input name="Email" id="Email" class="form-control margin-bottom-20" type="email" value="@Model.LogOnEmailAddress" />
+    </div>
+
+    <hr />
+    <div class="radio margin-bottom-20">
+        <label><input type="radio" name="SignUpRadioButton" value="LinkAccount" />@Resources.LinkContosoAccount</label>
+    </div>
+
+    <div class="link-account-fields">
+        <label for="inputEmail">@Resources.EmailAddress</label>
+        <input name="EmailOfExistingCustomer" id="linkUpEmail" class="form-control margin-bottom-20" type="email">
+
+        <label class="margin-bottom-20">@Resources.EnterEmailForAccountAssociation</label>
+    </div>
+
+    <button id="SubmitAccount" class="btn btn-blue btn-forward-large btn-lg btn-block" type="submit">@Resources.Done</button>
+</form>

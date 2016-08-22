@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{459A1CDA-0E17-4E60-95DC-CE2DA2B4ADE3}</ProjectGuid>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>$(AssemblyNamePrefix).HardwareStationSetup</AssemblyName>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>uac.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(SdkReferencesPath)\$(AssemblyNamePrefix).Retail.Deployment.SelfService.BootstrapperLibrary.dll">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(OutputPath)content.zip">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <OriginalSetupExe Include="$(SdkReferencesPath)\HardwareStationSetup.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <_bin_File Include="@(HardwareStation_CustomizableFile)" />
+  </ItemGroup>
+  <ItemGroup>
+    <_bin_File Include="..\..\References\Interop.OposCashDrawer\5.0.0.0\Interop.OposCashDrawer.dll" />
+    <_bin_File Include="..\..\References\Interop.OposConstants\5.0.0.0\Interop.OposConstants.dll" />
+    <_bin_File Include="..\..\References\Interop.OposLineDisplay\5.0.0.0\Interop.OposLineDisplay.dll" />
+    <_bin_File Include="..\..\References\Interop.OposPinPad\5.0.0.0\Interop.OposPinPad.dll" />
+    <_bin_File Include="..\..\References\Interop.OposPOSPrinter\5.0.0.0\Interop.OposPOSPrinter.dll" />
+    <_bin_File Include="..\..\References\Interop.OposScale\5.0.0.0\Interop.OposScale.dll" />
+    <_bin_File Include="..\..\References\Interop.OposSigCap\5.0.0.0\Interop.OposSigCap.dll" />
+    <_bin_File Include="..\..\References\Microsoft.ApplicationInsights.Extensibility.PerfCollector\0.15.0.187\Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll" />
+    <_bin_File Include="..\..\References\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry\0.15.0.179\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll" />
+    <_bin_File Include="..\..\References\Microsoft.ApplicationInsights.Extensibility.Web\0.15.0.179\Microsoft.ApplicationInsights.Extensibility.Web.dll" />
+    <_bin_File Include="..\..\References\Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll" />
+    <_bin_File Include="..\..\References\Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll" />
+    <_bin_File Include="..\..\References\Microsoft.ApplicationInsights.PersistenceChannel\0.15.0.187\Microsoft.ApplicationInsights.PersistenceChannel.dll" />
+    <_bin_File Include="..\..\References\Microsoft.ApplicationInsights\0.15.0.179\Microsoft.ApplicationInsights.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept\0.14.0.8007\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Diagnostics.Tracing.EventSource\1.1.16.0\Microsoft.Diagnostics.Tracing.EventSource.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Core.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Contracts.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Desktop.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Entities.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Network.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Opos.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.OposLibrary.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.PaymentTerminalLibrary.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.PrinterLibrary.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.SampleMx925Library.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Security.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.WebHost.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Diagnostics.Sinks.Portable.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Core.Desktop.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Proxies.Desktop.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Notification.Contracts.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Notification.Proxy.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentManager.Reference.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentProcessor.Common.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Extensions.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentTerminal.Contracts.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Security.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.TestConnector.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.TestConnector.Portable.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Practices.Prism\4.1.0.0\Microsoft.Practices.Prism.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Threading.Tasks.Extensions.Desktop\1.0.168.0\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Threading.Tasks.Extensions\1.0.12.0\Microsoft.Threading.Tasks.Extensions.dll" />
+    <_bin_File Include="..\..\References\Microsoft.Threading.Tasks\1.0.12.0\Microsoft.Threading.Tasks.dll" />
+    <_bin_File Include="..\..\References\Newtonsoft.Json.Portable\6.0.0.0\Newtonsoft.Json.Portable.dll" />
+    <_bin_File Include="..\..\References\Newtonsoft.Json\6.0.0.0\Newtonsoft.Json.dll" />
+    <_bin_File Include="..\..\References\sqlite3.dll" />
+    <_bin_File Include="..\..\References\SQLitePCL.Ext\3.8.5.0\SQLitePCL.Ext.dll" />
+    <_bin_File Include="..\..\References\SQLitePCL\3.8.5.0\SQLitePCL.dll" />
+    <_bin_File Include="..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll" />
+    <_bin_File Include="..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll" />
+    <_bin_File Include="..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll" />
+    <_bin_File Include="..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll" />
+    <_bin_File Include="..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll" />
+    <_bin_File Include="..\..\References\System.Net.Http.Formatting\5.2.2.0\System.Net.Http.Formatting.dll" />
+    <_bin_File Include="..\..\References\System.Threading.Tasks.Dataflow\4.5.25.0\System.Threading.Tasks.Dataflow.dll" />
+    <_bin_File Include="..\..\References\System.Web.Http.WebHost\5.2.2.0\System.Web.Http.WebHost.dll" />
+    <_bin_File Include="..\..\References\System.Web.Http\5.2.2.0\System.Web.Http.dll" />
+    <!-- <_bin_File Include="bin\Microsoft.Dynamics.Commerce.HardwareStation.WebHost.dll.config" /> already found in @(HardwareStation_CustomizableFile) ItemGroup -->
+    <_bin_File Include="bin\Microsoft.Dynamics.Commerce.HardwareStation.WebHost.man" />
+    <__File Include="ApplicationInsights.config" />
+    <__File Include="Global.asax" />
+    <__File Include="Web.config" />
+    <ProjectReference Include="..\BootstrapperLibrary\Setup.BootStrapperLibrary.csproj">
+      <Project>{92062E43-123C-423E-9C74-1B60D1EC474E}</Project>
+      <Name>Setup.BootstrapperLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Target Name="CopyPackageFiles">
+    <Copy SourceFiles="@(OriginalSetupExe)" DestinationFolder="$(OutputPath)content.folder\" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(HardwareStation_CustomizableFile)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\Package\bin" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_bin_File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\Package\bin" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(__File)" DestinationFolder="$(OutputPath)content.folder\CustomizedFiles\Package\" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="AfterResGen" Inputs="$(MSBuildAllProjects);@(OriginalSetupExe);@(HardwareStation_CustomizableFile);@(_bin_File);@(__File)" Outputs="$(OutputPath)content.zip">
+    <CallTarget Targets="CopyPackageFiles" />
+    <Delete Files="$(OutputPath)content.zip" />
+    <Zip OutputFileName="$(OutputPath)content.zip" InputFolder="$(OutputPath)content.folder" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6DC0AF23-61ED-4CA2-8C68-84B95A4FE729}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Retail.Ecommerce.Web.Storefront</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Retail.Ecommerce.Web.Storefront</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>40004</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <!-- ETW Manifest Generator related properties. -->
+    <EtwManifestName>$(AssemblyName).man</EtwManifestName>
+    <EtwProviderId>B0B7DF4C-C66C-414F-A3EA-A476F1AE54C0</EtwProviderId>
+    <EtwProviderName>Microsoft-Dynamics-Commerce-OnlineStore</EtwProviderName>
+    <DeployOnBuild Condition="'$(BuildingInsideVisualStudio)'!='true'">true</DeployOnBuild>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary.dll">
+      <HintPath>..\..\..\References\AntiXssLibrary\4.3.0.0\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Client.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.ConfigurationProviders.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.ConfigurationProviders.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Data.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Localization.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Messages.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.Core.Desktop.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Core.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Resources.Strings.dll">
+      <HintPath>..\..\..\References\Microsoft.Dynamics.Retail.Resources.Strings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.IdentityModel.Protocol.Extensions\1.0.2.28\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Client.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.OData.Client\6.11.0.0\Microsoft.OData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Core.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.OData.Core\6.11.0.0\Microsoft.OData.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OData.Edm.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.OData.Edm\6.11.0.0\Microsoft.OData.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Owin\3.0.1.0\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Owin.Host.SystemWeb\3.0.1.0\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Owin.Security.Cookies\3.0.1.0\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Owin.Security\3.0.1.0\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Owin.Security.OpenIdConnect\3.0.1.0\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Spatial.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Spatial\6.11.0.0\Microsoft.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Portable.dll">
+      <HintPath>..\..\..\References\Newtonsoft.Json.Portable\6.0.0.0\Newtonsoft.Json.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.dll">
+      <HintPath>..\..\..\References\Owin\1.0.0.0\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt.dll">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\System.IdentityModel.Tokens.Jwt\4.0.2.28\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.ObjectModel">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.XDocument" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Common\DemoData\CheckoutData.xml" />
+    <Content Include="Common\Scripts\External\jquery-2.1.1.js" />
+    <Content Include="Common\Scripts\External\jquery-ui.js" />
+    <Content Include="Common\Styles\External\jquery-ui.css" />
+    <Content Include="Common\Styles\External\bootstrap.min.css" />
+    <Content Include="Common\Scripts\External\bootstrap.min.js" />
+    <Content Include="Common\Scripts\External\knockout-2.2.1.js" />
+    <Content Include="Common\Scripts\External\datajs-1.1.0.js" />
+    <Content Include="Common\Scripts\External\Diagnostics.TypeScriptCore.js" />
+    <Content Include="..\..\..\Proxies\Proxies.Retail.TypeScript\Libraries.Proxies.Retail.TypeScript.js">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+      <Link>Common\Scripts\External\Libraries.Proxies.Retail.TypeScript.js</Link>
+    </Content>
+    <Content Include="Common\Styles\MasterStyles.css" />
+    <Content Include="Content\CSS\DynamicsSymbols.css" />
+    <Content Include="Content\CSS\layout.css" />
+    <Content Include="Content\CSS\productDetails.css" />
+    <Content Include="Content\CSS\productGallery.css" />
+    <Content Include="Content\CSS\SelectedProductGallery.css" />
+    <Content Include="Content\CSS\SignIn.css" />
+    <Content Include="Content\IMG\btn_i_back_lrg.png" />
+    <Content Include="Content\IMG\btn_i_forward_lrg.png" />
+    <Content Include="Content\IMG\btn_lrg_bl_bg.png" />
+    <Content Include="Content\IMG\btn_lrg_bl_left.png" />
+    <Content Include="Content\IMG\btn_lrg_bl_right.png" />
+    <Content Include="Content\IMG\btn_lrg_gr_bg.png" />
+    <Content Include="Content\IMG\btn_lrg_gr_left.png" />
+    <Content Include="Content\IMG\btn_lrg_gr_right.png" />
+    <Content Include="Content\IMG\companyLogoMain.png" />
+    <Content Include="Content\IMG\companyLogoMobile.png" />
+    <Content Include="Content\IMG\i_Facebook_24.png" />
+    <Content Include="Content\IMG\i_Google_24.png" />
+    <Content Include="Content\IMG\i_Microsoft_24.png" />
+    <Content Include="Content\IMG\i_Search_16.png" />
+    <Content Include="Content\IMG\i_Yahoo_24.png" />
+    <Content Include="Content\IMG\loading_spinner_c.png" />
+    <Content Include="Content\IMG\menuHorzBars.png" />
+    <Content Include="Content\IMG\PromotionImages\promo_1.jpg" />
+    <Content Include="Content\IMG\PromotionImages\promo_2.jpg" />
+    <Content Include="Content\IMG\PromotionImages\promo_3.jpg" />
+    <Content Include="Content\IMG\PromotionImages\promotion_1.jpg" />
+    <Content Include="Content\IMG\PromotionImages\promotion_2.jpg" />
+    <Content Include="Content\IMG\PromotionImages\promotion_3.jpg" />
+    <Content Include="Content\IMG\whiteShoppingCart.png" />
+    <Content Include="Content\JS\ProductDetails.js" />
+    <Content Include="Content\JS\ProductGallery.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\ActionControllerBase.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MyAccountController.cs" />
+    <Compile Include="Controllers\OrderConfirmationController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\ProductDetailsController.cs" />
+    <Compile Include="Controllers\ProductGalleryController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\SignInController.cs" />
+    <Compile Include="Controllers\WebApi\CartController.cs" />
+    <Compile Include="Controllers\WebApi\CustomerController.cs" />
+    <Compile Include="Controllers\WebApi\OrgUnitController.cs" />
+    <Compile Include="Controllers\WebApi\ProductController.cs" />
+    <Compile Include="Controllers\WebApi\RetailOperationsController.cs" />
+    <Compile Include="Controllers\WebApi\SalesOrderController.cs" />
+    <Compile Include="Controllers\WebApi\WebApiControllerBase.cs" />
+    <Compile Include="Controllers\WebApi\WishListController.cs" />
+    <Compile Include="CookieManager.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomLink.cs" />
+    <Compile Include="Models\ProductDetailsModel.cs" />
+    <Compile Include="Models\ProductGalleryModel.cs" />
+    <Compile Include="Models\ProductNavigationCategory.cs" />
+    <Compile Include="Models\ProductNavigationModel.cs" />
+    <Compile Include="Models\ResourceHelper.cs" />
+    <Compile Include="Models\SelectedProductGalleryModel2.cs" />
+    <Compile Include="OpenIdConnectUtilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceUtilities.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AuthenticationProvidersViewModel.cs" />
+    <Compile Include="ViewModels\CustomerLinkUpPendingViewModel.cs" />
+    <Compile Include="ViewModels\ProductSearchResultsViewModel.cs" />
+    <Compile Include="ViewModels\SignedInUserViewModel.cs" />
+    <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="WebOperationsHandlers\CartWebOperationsHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\FONT\dynamsymb.woff" />
+    <None Include="Properties\PublishProfiles\FileSystemPublishProfile.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\ImageCarousel.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\NavSearchBar.cshtml" />
+    <Content Include="Views\Shared\SelectedProductGallery2.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginStatus.cshtml" />
+    <Content Include="Views\SignIn\SignIn.cshtml" />
+    <Content Include="Views\SignIn\SignOut.cshtml" />
+    <Content Include="Views\MyAccount\MyAccount.cshtml" />
+    <Content Include="Views\MyAccount\OrderHistory.cshtml" />
+    <Content Include="Views\MyAccount\UnlinkAccount.cshtml" />
+    <Content Include="Views\OrderDetails\OrderDetails.cshtml" />
+    <Content Include="Views\SignIn\OAuthV2Redirect.cshtml" />
+    <Content Include="Views\SignIn\UserPendingActivation.cshtml" />
+    <Content Include="Views\Checkout\Checkout.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\OrderConfirmation\OrderConfirmation.cshtml" />
+    <Content Include="Views\ProductDetails\ProductDetails.cshtml" />
+    <Content Include="Views\ProductGallery\ProductGallery.cshtml" />
+    <Content Include="Views\ShoppingCart\ShoppingCart.cshtml" />
+    <Content Include="Views\Products\SearchResults.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Following files are needed by web storefront only during runtime, and not for building the project. -->
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.OData.Core\6.11.0.0\Microsoft.OData.Core.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.OData.Edm\6.11.0.0\Microsoft.OData.Edm.dll" />
+    <RuntimeDependencies Include="..\..\..\References\Microsoft.Spatial\6.11.0.0\Microsoft.Spatial.dll" />
+    <RuntimeDependencies Include="..\..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll" />
+    <RuntimeDependencies Include="..\..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll" />
+    <RuntimeDependencies Include="..\..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll" />
+    <RuntimeDependencies Include="..\..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll" />
+    <RuntimeDependencies Include="..\..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\OnlineStore\Ecommerce.Sdk.Controls\Platform.Ecommerce.Sdk.Controls.csproj">
+      <Project>{1DFD5AD7-3634-4B84-9D4C-4961DC40EBDD}</Project>
+      <Name>Platform.Ecommerce.Sdk.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OnlineStore\Ecommerce.Sdk.Core\Platform.Ecommerce.Sdk.Core.csproj">
+      <Project>{90BAC836-16EE-4F8D-AD88-127F14864E78}</Project>
+      <Name>Platform.Ecommerce.Sdk.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Proxies\RetailProxy\Proxies.RetailProxy.csproj">
+      <Project>{AB373318-DA97-428E-B217-D519E8841658}</Project>
+      <Name>Proxies.RetailProxy</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <RuntimeRuntimeDependenciesDir>$(MSBuildProjectDirectory)\ExtraFilesForRuntimeRuntimeDependencies</RuntimeRuntimeDependenciesDir>
+  </PropertyGroup>
+  <Target Name="CopyRuntimeRuntimeDependenciesLocally" AfterTargets="BeforeBuild">
+    <Copy SourceFiles="@(RuntimeDependencies)" DestinationFolder="$(RuntimeRuntimeDependenciesDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CustomCollectFiles">
+    <ItemGroup>
+      <FilesForPackagingFromProject Include="%(RuntimeRuntimeDependencies.Identity)">
+        <DestinationRelativePath>bin\%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+  <Target Name="CopyLinkedContentFiles" BeforeTargets="Build">
+    <Copy SourceFiles="%(Content.Identity)" DestinationFiles="%(Content.Link)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Condition="'%(Content.Link)' != ''" />
+  </Target>
+  <PropertyGroup>
+    <CopyAllFilesToSingleFolderForPackageDependsOn>
+      CustomCollectFiles;$(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForPackageDependsOn>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59986/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl></CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="False" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

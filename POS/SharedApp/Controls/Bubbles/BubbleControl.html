@@ -1,0 +1,30 @@
+<!-- Copyright (c) Microsoft. All rights reserved. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="BubbleControl.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="bubble-container"></div>
+    <script type="text/html" class="template" id="bubble-template">
+        <div class="bubble bubble-large" data-bind="css: { 'bubble-large': size != 'small', 'bubble-small': size == 'small' }">
+            <div class="arrow-rotate-container">
+                <div class="bubble-border-wrapper">
+                    <div class="arrow-border" data-bind="visible: isArrowVisible">
+                    </div>
+                </div>
+                <div class="arrow" data-bind="visible: isArrowVisible, style: { 'background-color': arrowColor }"></div>
+            </div>
+            <div class="bubble-border-wrapper">
+                <div class="bubble-border"></div>
+            </div>
+            <div class="bubble-text-container" role="note">
+                <div class="bubble-text-right">
+                    <span data-bind="text: title"></span>
+                </div>
+            </div>
+        </div>
+    </script>
+</body>
+</html>

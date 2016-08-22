@@ -1,0 +1,71 @@
+@using Microsoft.Owin.Security
+@model Contoso.Retail.Ecommerce.Web.Storefront.ViewModels.AuthenticationProvidersViewModel
+<script>
+  $(document).ready(function(){
+      $('.identity-provider').click(function () {
+          $('#SelectedAuthenticationProviderName').val(this.value);
+      });
+  });
+</script>
+
+@section other{
+    <link href="~/Content/CSS/SignIn.css" rel="stylesheet" />
+}
+
+@if (@Model.ErrorMessage != null)
+{
+    <h5 class="margin-bottom-15 msg-activate msg-error">@Model.ErrorMessage</h5>
+}
+
+@if (@Model.Messages != null)
+{
+    foreach (string message in Model.Messages)
+    {
+        <h5 class="margin-bottom-15 msg-activate">@message</h5>
+    }
+}
+
+<form class="form-signin" action="/SignIn/ProviderSelected" method="post">
+    <input type="hidden" name="SelectedAuthenticationProviderName" id="SelectedAuthenticationProviderName"/>
+
+    <div class="page-title margin-bottom-20">@Resources.SignIn</div>
+
+    @foreach (AuthenticationDescription item in Model.AuthenticationDescriptions)
+    {
+        var imageUrl = @item.Properties.ContainsKey("ImageUrl") ? @item.Properties["ImageUrl"] : string.Empty;
+
+        <button id="@item.AuthenticationType"
+                class="identity-provider margin-bottom-15 form-control btn btn-block"
+                type="submit"
+                value="@item.AuthenticationType"
+                style="background-image:url(@imageUrl);">
+            <div class="provider-name">@Resources.SignInWith
+                @item.Caption
+            </div>
+        </button>
+    }
+
+    <div class="msg-divider page-subtitle margin-bottom-20 margin-top-20">-<span>@Resources.Or</span>-</div>
+    <div class="margin-bottom-15 page-title">@Resources.UseYourContosoAccount</div>
+
+    <label for="inputEmail">@Resources.EmailAddress</label>
+    <input class="form-control margin-bottom-20" type="email" disabled="disabled" />
+
+    <label for="inputPassword">@Resources.Password</label>
+    <a class="forgot-password float-right" href="#">@Resources.ForgotPassword</a>
+    <input class="form-control margin-bottom-20" type="password" disabled="disabled" />
+
+    <button class="btn btn-grey btn-forward-large btn-lg btn-primary btn-block" type="submit" disabled="disabled">@Resources.SignIn</button>
+
+    <a class="display-block margin-bottom-15" href="#">@Resources.CreateANewAccount</a>
+
+    @if (!Model.IsActivationFlow)
+    {
+    <a class="display-block margin-bottom-15 lnk-activation" href="/SignIn/AccountLinkUpPending">Enter activation code to link to Contoso account</a>
+    }
+
+    @if (Model.IsCheckoutFlow)
+    {
+        <a class="display-block margin-bottom-15" href="/Checkout">@Resources.CheckoutAsAGuest</a>
+    }
+</form>

@@ -1,0 +1,42 @@
+@model Contoso.Retail.Ecommerce.Web.Storefront.ViewModels.CustomerLinkUpPendingViewModel
+
+@section other{
+<link href="~/Content/CSS/SignIn.css" rel="stylesheet" />
+}
+
+<script>
+  $(document).ready(function(e){
+      $("#SubmitActivationCode").click(function(e) {
+          if ($("#Email").val().length == 0 || $("#ActivationCode").val().length == 0) {
+              e.preventDefault();
+          }
+        }
+      )
+  });
+</script>
+
+
+@if (@Model.ErrorMessage != null)
+{
+    <h5 class="margin-bottom-15 msg-activate msg-error">@Model.ErrorMessage</h5>
+}
+
+@if (@Model.Messages != null)
+{
+    foreach (string message in Model.Messages)
+    {
+        <h5 class="margin-bottom-15 msg-activate">@message</h5>
+    }
+}
+
+<h5 class="margin-bottom-15 msg-activate">Please provide the following information to activate your login.</h5>
+<form class="form-activate" action="/SignIn/FinalizeAccountLinkUp" method="post">
+    <label for="inputEmail">@Resources.EmailAddress:</label>
+    <input name="Email" id="Email" class="form-control margin-bottom-20" type="email" value="@Model.EmailAddressOfExistingCustomer" />
+    <label for="inputActivationCode">Activation Code:</label>
+    <input name="ActivationCode" id="ActivationCode" class="form-control margin-bottom-20" type="text" value="@Model.ActivationCode" />
+
+    <button id="SubmitActivationCode" class="btn btn-blue btn-forward-large btn-lg btn-block" type="submit">@Resources.Done</button>
+</form>
+
+<h5 class="margin-bottom-15 msg-activate">Please <a href="/SignIn">click here</a> to resend the activation code or create a new user.</h5>

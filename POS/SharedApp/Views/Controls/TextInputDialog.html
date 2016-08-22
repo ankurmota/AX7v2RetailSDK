@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TextInputDialog</title>
+
+    <link href="TextInputDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'TextInputDialog'">
+
+        <div class="textInputDialog">
+            <div data-bind="dialog:
+                {
+                    title: title,
+                    subTitle: subTitle,
+                    visible: visible,
+                    buttonClick: buttonClickHandler,
+                    showProgressIndicator: indeterminateWaitVisible,
+                    subTitleCssClass: subTitleCssClass,
+                    closeOnEscButton:true,
+                    buttons: [
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_75'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK },
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK }
+                    ],
+                }" class="textInputDialog modalWindowContentSection">
+
+                <!-- dialog content -->
+                <div class="content">
+
+                    <label for="textInputDialogContent" data-bind="text: _labelText"></label>
+                    <!-- ko if: _isTextType -->
+                    <textarea id="textInputDialogContent" class="textInputArea" autofocus="autofocus" data-bind="value: _textContent, valueUpdate:'keypress', attr: { 'maxLength': _textMaxLength, 
+                              'rows': _rowsNumber }, style: { overflow: _hideScrollbar() ? 'hidden' : 'auto' }, event: { keydown: onkeydown }"></textarea>
+                    <!-- /ko -->
+                    <!-- ko ifnot: _isTextType -->
+                    <input id="textInputDialogContent" class="width32" data-bind="value: _textContent, valueUpdate:'keypress', attr: { 'maxLength': _textMaxLength, type: _type }" />
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

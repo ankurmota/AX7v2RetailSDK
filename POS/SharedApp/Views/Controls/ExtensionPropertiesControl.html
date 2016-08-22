@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ExtensionPropertiesControl</title>
+</head>
+<body>
+    <div data-bind="customControlInternal: 'ExtensionPropertiesControl'">
+        <div data-bind="foreach: { data: _flattenedData, as: 'property' }">
+            <div class="marginBottom1 marginTop05 secondaryBackgroundColor highContrastBorderThin height01"></div>
+            <div class="row padTop1 padBottom1 ">
+                <div class="ratio5">
+                    <h6 data-bind="text: key" class="wrapText secondaryFontColor"></h6>
+                </div>
+                <div>
+                    <h4 data-bind="text: value" class="wrapText"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="marginBottom1 marginTop05 secondaryBackgroundColor highContrastBorderThin height01" data-bind="visible: _flattenedData().length > 1"></div>
+    </div>
+</body>
+</html>

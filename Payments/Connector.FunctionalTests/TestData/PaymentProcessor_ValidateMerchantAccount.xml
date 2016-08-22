@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+  <PaymentProcessor_ValidateMerchantAccount_Success>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+  </PaymentProcessor_ValidateMerchantAccount_Success>
+  <PaymentProcessor_ValidateMerchantAccount_Success>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+  </PaymentProcessor_ValidateMerchantAccount_Success>
+
+  <PaymentProcessor_ValidateMerchantAccount_NullRequest>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_ValidateMerchantAccount_NullRequest>
+  <PaymentProcessor_ValidateMerchantAccount_NullRequest>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_ValidateMerchantAccount_NullRequest>
+
+  <PaymentProcessor_ValidateMerchantAccount_InvalidProperties>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable_InvalidProperties.xml</MerchantAccountXmlPath>
+    <ExpectedErrorCount>3</ExpectedErrorCount>
+  </PaymentProcessor_ValidateMerchantAccount_InvalidProperties>
+  <PaymentProcessor_ValidateMerchantAccount_InvalidProperties>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop_InvalidProperties.xml</MerchantAccountXmlPath>
+    <ExpectedErrorCount>3</ExpectedErrorCount>
+  </PaymentProcessor_ValidateMerchantAccount_InvalidProperties>
+
+</TestData>

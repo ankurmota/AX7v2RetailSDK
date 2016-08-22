@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Templates</title>
+    <link href="CustomerTemplate.css" rel="stylesheet" />
+</head>
+<body>
+        <!-- Customer list template -->
+        <div id="customersListTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="listViewLine clickable" data-win-bind="title: Name Commerce.Core.Converter.textContentFormatter">
+                <div class="ratio1"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: AccountNumber Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio2"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: FullName Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio3"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: FullAddress Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio3"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: Email Commerce.Core.Converter.textContentFormatter"></h4></div>
+                <div class="ratio1"><h4 class="ellipsis primaryFontColor" data-win-bind="textContent: Phone Commerce.Core.Converter.textContentFormatter"></h4></div>
+            </div>
+        </div>
+
+        <!-- Customer small card template -->
+        <div id="customersSmallCardTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="width31 height7 row" data-win-bind="title: Name Commerce.Core.Converter.textContentFormatter">
+                <div class="height7 width7">
+                    <img class="height7 width7" src="#" data-win-bind="src: this Commerce.Core.Converter.SmallCustomerImage; alt: Name Commerce.Core.Converter.textContentFormatter; onerror: Commerce.DefaultImages.CustomerSmall Commerce.CustomBindings.SetDefaultImage" />
+                </div>
+                <div class="pad1 width24 height7 primaryBackgroundColor">
+                    <h4 class="ellipsis primaryFontColor" data-win-bind="textContent: FullName Commerce.Core.Converter.textContentFormatter"></h4>
+                    <h4 class="ellipsis secondaryFontColor" data-win-bind="textContent: Email Commerce.Core.Converter.textContentFormatter"></h4>
+                    <h4 class="ellipsis secondaryFontColor" data-win-bind="textContent: Phone Commerce.Core.Converter.textContentFormatter"></h4>
+                </div>
+                <div class="cardHover accentBorder overLayZIndex"></div>
+            </div>
+        </div>
+
+        <!-- Customer large card template -->
+        <div id="customersLargeCardTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="width24 height23 col" data-win-bind="title: Name Commerce.Core.Converter.textContentFormatter">
+                <div class="width24 height16">
+                    <img class="width24 height23" src="#" data-win-bind="src: this Commerce.Core.Converter.LargeCustomerImage; alt: Name Commerce.Core.Converter.textContentFormatter; onerror: Commerce.DefaultImages.CustomerLarge Commerce.CustomBindings.SetDefaultImage" />
+                </div>
+                <div class="width24 pad1 grow primaryBackgroundColor overLayZIndex">
+                    <h4 class="ellipsis primaryFontColor" data-win-bind="textContent: FullName Commerce.Core.Converter.textContentFormatter"></h4>
+                    <h4 class="ellipsis secondaryFontColor" data-win-bind="textContent: Email Commerce.Core.Converter.textContentFormatter"></h4>
+                    <h4 class="ellipsis secondaryFontColor" data-win-bind="textContent: Phone Commerce.Core.Converter.textContentFormatter"></h4>
+                </div>
+                <div class="cardHover accentBorder overLayZIndex"></div>
+            </div>
+        </div>
+
+        <!-- Loyalty card template -->
+        <div id="customersLoyaltyCardTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="width31 height7 primaryPanelBackgroundColor">
+                <div class="height3 pad1 primaryPanelBarColor">
+                    <h4 data-win-bind="innerText: CardTenderTypeValue Commerce.Core.Converter.cardTenderTypeValueConverter"></h4>
+                </div>
+                <div class="row pad1 height4 positionRelative">
+                    <div class="accent col padLeft0 padRight1">
+                        <h2 data-win-bind="textContent: CardNumber"></h2>
+                    </div>
+                </div>
+                <div class="cardHover accentBorder overLayZIndex"></div>
+            </div>
+        </div>
+
+        <!-- Customer loyalty card template for selectCustomerLoyaltyCardDialog -->
+        <script type="text/html" id="customersLoyaltyCardButtonTemplate">
+            <!-- ko if: $data -->
+            <div class="height13 width13 pad1 marginRight1 positionRelative" data-bind="
+                    css: { 'accentBackground': $root.enableSelect, 'disabledButtonBackground': !$root.enableSelect() },
+                    attr: { title: $data.CardNumber },
+                    click: function(data) { $root.loyaltyCardInvokedHandler.call($root, data); }">
+                <h4 class="bottom0 left1" data-bind="text: $data.CardNumber"></h4>
+            </div>
+            <!-- /ko -->
+        </script>
+
+        <!-- Wish list template -->
+        <div id="wishListTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="width31 height9 primaryBackgroundColor highContrastBorderThin">
+                <div class="height3 pad1 headerBackground">
+                    <a class="h3" href="#" data-win-bind="innerText: Name"></a>
+                </div>
+                <div class="positionRelative height6 pad1">
+                    <h1 data-win-bind="textContent: CommerceListLines Commerce.Core.Converter.TotalCollection"></h1>
+                    <div class="bottom0 right1">
+                        <h4 class="secondaryFontColor" data-win-bind="textContent: CommerceListTypeValue Commerce.Core.Converter.WishListTypeFormatter"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Address card for use with WinJS Listview (browseGrid) -->
+        <div id="customerAddressTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="width32 height14 col primaryPanelBackgroundColor">
+                <div class="height3 pad1 headerBackground">
+                    <a class="h4 accent" href="#" data-win-bind="textContent: this.address.Name Commerce.Core.Converter.AddressHeaderFormatter; data: RecordId; onclick: addressTitleClicked"></a>
+                </div>
+                <div class="positionRelative pad1 grow" data-win-bind="onclick: addressSelected">
+                    <!-- formatted address lines are generated by the commonAddressFormatterWithHtmlEscape -->
+                    <div data-win-bind="innerHTML: this.address Commerce.Core.Converter.commonAddressFormatterWithHtmlEscape"></div>
+                    <h4 class="primaryFontColor" data-win-bind="textContent: this.address.ThreeLetterISORegionName"></h4>
+                    <div class="bottom0 right1">
+                        <h6 class="secondaryFontColor" data-win-bind="textContent: this.address.AddressTypeValue Commerce.Core.Converter.AddressTypeFormatter"></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shipping methods address -->
+        <script type="text/html" id="shippingAddressTemplate">
+        <div class="width32 height14 primaryPanelBackgroundColor col highContrastBorderThin">
+            <div class="height3 pad1 headerBackground">
+                <a class="h4 accent" href="#" data-bind="text: Name, click: $root.updateAddressButtonClick.bind($root)">Name</a>
+            </div>
+            <div class="positionRelative pad1 grow">
+                 <div data-bind="html: Commerce.Formatters.CommonAddressFormatterWithHtmlEscape($data)"></div>
+                 <h4 class="primaryFontColor" data-bind="text: $data.ThreeLetterISORegionName"></h4>
+                 <div class="bottom0 right1">
+                    <h6 class="secondaryFontColor" data-bind="text: Commerce.Formatters.AddressTypeTextFormatter($data.AddressTypeValue)">AddressTypeValue</h6>
+                  </div>
+              </div>
+            </div>
+        </script>
+
+        <!-- Customer Card Template -->
+        <!-- knockout template binding - does not use WinJS.UI -->
+        <!-- Note: you can use any of these templates separately, but you must provide the customerDetailsCardStyle class to a PARENT DIV
+             of the element you are binding the template on. -->
+        <script type="text/html" id="customerContactCardTemplate">
+            <div data-bind="if: $data" class="primaryPanelBackgroundColor highContrastBorderThin">
+                <div data-bind="with: customer" class="positionRelative minWidth27">
+                    <div class="minHeight12 pad1 padBottom0 row">
+                        <div class="hide no-shrink marginRight2 ShowImage" data-bind="customerPanelField: { visibilityField: 'ShowImage' }">
+                            <!-- customer image -->
+                            <img class="height7 width7" data-bind="image: {src: Commerce.Formatters.CustomerImage($data), defaultSrc: Commerce.DefaultImages.CustomerSmall}" />
+                        </div>
+
+                        <div class="col ellipsis">
+                            <!-- Customer Name -->
+                            <div class="hide height2 ShowName marginRight05" data-bind="customerPanelField: { visibilityField: 'ShowName' }">
+                                <a class=" h3 ellipsis" href="#" data-bind="click: function (data) {
+                                    Commerce.ViewModelAdapter.navigate('CustomerDetailsView', {
+                                        accountNumber: $data.AccountNumber,
+                                        destination: 'CartView',
+                                        destinationOptions: null
+                                    });
+                                    },
+                                    text: $data.Name">
+                                    Customer Name
+                                </a>
+                            </div>
+
+                            <!-- Customer Account Number -->
+                            <div class="hide height1 marginTop1 ShowAccountNumber" data-bind="customerPanelField: { visibilityField: 'ShowAccountNumber' }">
+                                <h6 class="ellipsis primaryFontColor" data-bind="text: $data.InvoiceAccount ? $data.InvoiceAccount : $data.AccountNumber">Account Number</h6>
+                            </div>
+
+                            <!-- Customer Contact Buttons (Phone & Email) -->
+                            <div class="row marginTop2 marginBottom1">
+                                <!-- phone and email buttons are disabled for the time being until we can get functionality -->
+                                <div class="shrink marginRight1">
+                                    <a href="#" data-bind="attr: {href: 'tel:' + $data.Phone }">
+                                        <button class="iconPhoneBig iconDisabled" data-bind="css: { iconDisabled: $data.Phone ? Phone == '' : false}, resx: { ariaLabel: 'string_1309' }"></button> <!-- Phone number -->
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="#" data-bind="attr: {href: 'mailto:' + $data.Email }">
+                                        <button class="iconEmailBig iconDisabled" data-bind="css: { iconDisabled: $data.Email ? Email == '' : false }, resx: { ariaLabel: 'string_1311' }"></button> <!-- Email address -->
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>  <!-- end .customer-summary-details -->
+                </div>
+
+                <!-- loyalty cards -->
+                <div class="hide pad1 height3 minWidth27 ShowLoyaltyCard ellipsis row" data-bind="customerPanelField: { visibilityField: 'ShowLoyaltyCard' }">
+                    <div class="col grow">
+                        <h6 data-bind="resx: { textContent: 'string_4366' }" class="secondaryFontColor">LOYALTY CARD</h6>
+                    </div>
+                    <div class="col grow">
+                        <!-- if customer has multiple cards and card is selected...-->
+                        <h4 data-bind="customerLoyaltyCard: {data: $data}, text: customerLoyaltyCardLabel, css: {'accent': isLoyaltyCardLabelActionable}" class="primaryFontColor textRight"></h4>
+                    </div>
+                </div>
+
+                <div data-bind="with: customer">
+                    <!-- balance -->
+                    <div class="hide pad1 height3 ellipsis row minWidth27 ShowBalance" data-bind="customerPanelField: { visibilityField: 'ShowBalance' }">
+                        <div class="col grow">
+                            <h6 data-bind="resx: { textContent: 'string_4364' }" class="secondaryFontColor">BALANCE</h6>
+                        </div>
+                        <div class="col grow">
+                            <h6 class="primaryFontColor textRight" data-bind="formatPriceOrEmpty: $data.Balance">Balance</h6>
+                        </div>
+                    </div>
+
+                    <!-- credit limit -->
+                    <div class="hide pad1 height3 ellipsis row minWidth27 ShowCreditLimit" data-bind="customerPanelField: { visibilityField: 'ShowCreditLimit' }">
+                        <div class="col grow">
+                            <h6 data-bind="resx: {textContent: 'string_4365'}" class="secondaryFontColor">CREDIT LIMIT</h6>
+                        </div>
+                        <div class="col grow">
+                            <h6 class="primaryFontColor textRight" data-bind="formatPriceOrEmpty: $data.CreditLimit">Credit Limit</h6>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end if -->
+        </script>
+
+        <!-- Primary Address Card Template -->
+        <!-- Note: you can use any of these templates separately, but you must provide the customerDetailsCardStyle class to a PARENT DIV
+             of the element you are binding the template on. -->
+        <script type="text/html" id="customerPrimaryAddressCardTemplate">
+            <div data-bind="if: $data">
+                <!-- do not remove .customerPanelPrimaryAddress - needed for custom knockout binding -->
+                <div class="hide customerPanelPrimaryAddress height14 primaryPanelBackgroundColor minWidth27 AddressType" data-bind="customerPanelField: { addressVisibleField: 'AddressType' }">
+                    <div class="col highContrastBorderThin grow" data-bind="with: customerPrimaryAddress">
+                        <div class="headerBackground height3 pad1">
+                            <a class="h4 ellipsis accent" href="#" data-bind="text: Commerce.Formatters.AddressHeaderFormatter($data.Name), click: function(data) { $parent.addressEditClickHandler.call($parent, data); }">Customer address name</a>
+                        </div>
+
+                        <div class="pad1 positionRelative minHeight11">
+                            <div class="primaryFontColor" data-bind="html: Commerce.Formatters.CommonAddressFormatterWithHtmlEscape($data, 4)"></div>
+                            <div class="bottom0 right1">
+                                <h6 class="secondaryFontColor" data-bind="resx: { textContent: 'string_306' }">ADDRESS TYPE (PRIMARY)</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <!-- Invoice Address Card Template -->
+        <!-- Note: you can use any of these templates separately, but you must provide the customerDetailsCardStyle class to a PARENT DIV
+             of the element you are binding the template on. -->
+
+        <script type="text/html" id="customerInvoiceAddressCardTemplate">
+            <div data-bind="if: $data">
+                <!-- do not remove .customerPanelInvoiceAddress - needed for custom knockout binding -->
+                <div class="hide customerPanelInvoiceAddress height14 primaryPanelBackgroundColor minWidth27 AddressType" data-bind="customerPanelField: { addressVisibleField: 'AddressType' }">
+                    <div class="col highContrastBorderThin grow" data-bind="with: customerInvoiceAddress">
+                        <div class="headerBackground height3 pad1">
+                            <a class="h4" href="#" data-bind="text: $data.Name, click: function(data) { $parent.addressEditClickHandler.call($parent, data); }">Customer address name</a>
+                        </div>
+                        <div class="pad1 positionRelative minHeight11">
+                            <div class="primaryFontColor" data-bind="html: Commerce.Formatters.CommonAddressFormatterWithHtmlEscape($data, 4)"></div>
+                            <div class="bottom0 right1">
+                                <h6 class="secondaryFontColor" data-bind="resx: {textContent: 'string_307'}">INVOICE</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <!-- Add Address Card Template -->
+        <!-- Note: you can use any of these templates separately, but you must provide the customerDetailsCardStyle class to a PARENT DIV
+             of the element you are binding the template on. -->
+
+        <script type="text/html" id="customerAddAddressCardTemplate">
+            <div data-bind="if: $data">
+                <!-- do not remove .customerPanelAddAddress - needed for custom knockout binding -->
+                <div class="hide customerPanelAddAddress height14 primaryBackgroundColor highContrastBorderThin minWidth27 AddressType" data-bind="customerPanelField: { addressVisibleField: 'AddressType' }">
+                    <div class="center col">
+                        <div class="marginBottom1 shrink">
+                            <button class="iconAddBig" data-bind="click: function(data) { $data.addressEditClickHandler.call($data, null); }"></button>
+                        </div>
+                        <h4 class="primaryFontColor" data-bind="resx: { textContent: 'string_4842' }">Add Address</h4>
+                    </div>
+                </div> <!-- end .customerPanelNoAddress -->
+            </div>
+        </script>
+
+        <!-- Customer Card Template -->
+        <script type="text/html" id="customerDetailsCardTemplate">
+            <!-- Note: you can use any of these templates separately, but you must provide the customerDetailsCardStyle class to a PARENT DIV
+             of the element you are binding the template on. -->
+
+            <div class="customerDetailsCardStyle positionRelative minWidth27">
+                <div data-bind="template: { name: 'customerContactCardTemplate', data: $data }"></div>
+                <div data-bind="template: { name: 'customerPrimaryAddressCardTemplate', data: $data }"></div>
+                <div data-bind="template: { name: 'customerInvoiceAddressCardTemplate', data: $data }"></div>
+                <div data-bind="template: { name: 'customerAddAddressCardTemplate', data: $data }"></div>
+            </div>
+        </script>
+</body>
+</html>

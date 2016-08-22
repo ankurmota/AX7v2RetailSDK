@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Developer Mode Settings Flyout</title>
+    <link href="DeveloperMode.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="developerMode col"  data-bind="customControlInternal: 'DeveloperMode'">
+        <!-- Set on/off developer mode to control whether grid, theme, and dir are loaded in
+        from the local storage -->
+        <h2 class="marginBottom1" data-bind="resx: { textContent: 'string_10' }"></h2>
+        <div>
+            <div class="grow">
+                <h4 data-bind="resx: { textContent: 'string_10' }">Developer Mode</h4>
+                <input type="checkbox" value="false" data-bind="checked: _isDeveloperMode, resx: { ariaLabel: 'string_10' }" />    <!-- Developer mode -->
+            </div>
+        </div>
+        <div class="marginTop1 borderTop padTop1">
+            <h4 data-bind="resx: { textContent: 'string_11' }">Theme (Shift+T)</h4>
+            <div class="row pad1">
+                <div class="grow">
+                    <h6 data-bind="resx: { textContent: 'string_12' }">Dark</h6>
+                    <input type="radio" value="dark" name="themeSelect"
+                           data-bind="checkedValue: Commerce.Controls.DeveloperMode.theme, 
+                                checked: Commerce.Controls.DeveloperMode.theme, 
+                                attr: { disabled: !_isDeveloperMode() }, 
+                                resx: { ariaLabel: 'string_12' }" />  <!-- Dark -->
+                </div>
+
+                <div class="grow">
+                    <h6 data-bind="resx: { textContent: 'string_13' }">Light</h6>
+                    <input type="radio" value="light" name="themeSelect"
+                           data-bind="checkedValue: Commerce.Controls.DeveloperMode.theme, 
+                                checked: Commerce.Controls.DeveloperMode.theme, 
+                                attr: { disabled: !_isDeveloperMode() }, 
+                                resx: { ariaLabel: 'string_13' }" />  <!-- Light -->
+                </div>
+            </div>
+        </div>
+
+        <div class="marginTop1 borderTop padTop1">
+            <h4 data-bind="resx: { textContent: 'string_14' }">Text Direction (Shift+D)</h4>
+            <div class="row pad1">
+                <div class="grow">
+                    <h6 data-bind="resx: { textContent: 'string_15' }">LTR</h6>
+                    <input type="radio" value="ltr" name="textDir"
+                           data-bind="checkedValue: Commerce.Controls.DeveloperMode.dir, 
+                                checked: Commerce.Controls.DeveloperMode.dir, 
+                                attr: { disabled: !_isDeveloperMode() }, 
+                                resx: { ariaLabel: 'string_15' }" />    <!-- LTR -->
+                </div>
+
+                <div class="grow">
+                    <h6 data-bind="resx: { textContent: 'string_16' }">RTL</h6>
+                    <input type="radio" value="rtl" name="textDir"
+                           data-bind="checkedValue: Commerce.Controls.DeveloperMode.dir, 
+                                checked: Commerce.Controls.DeveloperMode.dir, 
+                                attr: { disabled: !_isDeveloperMode() }, 
+                                resx: { ariaLabel: 'string_16' }" />  <!-- RTL -->
+                </div>
+            </div>
+        </div>
+
+        <div class="marginTop1 borderTop padTop1">
+            <h4 data-bind="resx: { textContent: 'string_17' }">Grid Overlay (Shift+G)</h4>
+
+            <div class="pad1">
+                <div class="genericToggle" id="isGridVisibleToggle" data-win-control="WinJS.UI.ToggleSwitch"
+                     data-bind="winControl: {
+                                        labelOn: 'string_7411',
+                                        labelOff: 'string_7412',
+                                        toggleChanged: Commerce.Controls.DeveloperMode.toggleGridVisibility,
+                                        toggleOnOff: Commerce.Controls.DeveloperMode.isVisible,
+                                        disabled: $root._isGridToggleDisabled
+                                    },
+                                resx: { ariaLabel: 'string_17' }">  <!-- Grid Overlay -->
+                </div>
+            </div>
+        </div>
+
+        <div class="marginTop1 borderTop padTop1">
+            <h4 data-bind="resx: { textContent: 'string_18' }">Colors</h4>
+
+            <div class="pad1">
+                <div class="genericToggle" id="isColoringVisibleToggle" data-win-control="WinJS.UI.ToggleSwitch"
+                     data-bind="winControl: {
+                                        labelOn: 'string_7411',
+                                        labelOff: 'string_7412',
+                                        toggleChanged: Commerce.Controls.DeveloperMode.toggleColorVisibility,
+                                        toggleOnOff: Commerce.Controls.DeveloperMode.isColoringVisible,
+                                        disabled: $root._isColoringDisabled
+                                    },
+                                resx: { ariaLabel: 'string_18' }">  <!-- Colors -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

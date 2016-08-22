@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SearchReceipts</title>
+
+    <link href="SearchReceiptsView.css" rel="stylesheet" title="SearchReceipts" />
+</head>
+<body>
+    <!-- Template declarations for receipts. -->
+    <div id="salesLineTemplate" data-win-control="WinJS.Binding.Template">
+        <div id="salesOrderLineHeader" class="listViewLine">
+            <div class="ratio1 ratio2Under1080">
+                <h4 data-win-bind="textContent: ItemId"></h4>
+            </div>
+            <div class="ratio5 ratio2Under1080">
+                <h4 data-win-bind="textContent: ProductName"></h4>
+            </div>
+            <div class="ratio1 ratio2Under1080 textRight">
+                <h4 data-win-bind="textContent: Price Commerce.Core.Converter.PriceFormatter"></h4>
+            </div>
+            <div class="ratio1 ratio2Under1080 textRight">
+                <h4 data-win-bind="textContent: Quantity Commerce.Core.Converter.QuantityFormatter"></h4>
+            </div>
+            <div class="ratio1 hideUnder1080 ratio2Under1080 textRight">
+                <h4 data-win-bind="textContent: NetAmount Commerce.Core.Converter.PriceFormatter"></h4>
+            </div>
+            <div class="ratio1 ratio2Under1080 textRight">
+                <h4 data-win-bind="textContent: TotalAmount Commerce.Core.Converter.PriceFormatter"></h4>
+            </div>
+        </div>
+    </div>
+    <div id="salesLineSmallCardTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="row">
+            <div class="col centerY height10">
+                <img src="#" class="height9 width7" data-win-bind="src: Product Commerce.Core.Converter.SmallProductImage; alt: ProductName; onerror: Commerce.DefaultImages.ProductSmall Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+            <div class="col centerY width20 height10 marginLeft1">
+                <div>
+                    <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+                    <div class="row">
+                        <h4 data-bind="resx: {textContent: 'string_1200'}">Quantity: </h4>
+                        <div class="marginLeft1">
+                            <h4 data-win-bind="textContent: Quantity Commerce.Core.Converter.QuantityFormatter"></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4 data-bind="resx: {textContent: 'string_1201'}">Total: </h4>
+                        <div class="marginLeft1">
+                            <h4 data-win-bind="textContent: TotalAmount Commerce.Core.Converter.PriceFormatter"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="salesLineLargeCardTemplate" data-win-control="WinJS.Binding.Template">
+        <img src="#" class="height16 width20" data-win-bind="src: Product Commerce.Core.Converter.LargeProductImage; alt: ProductName; onerror: Commerce.DefaultImages.ProductLarge Commerce.CustomBindings.SetDefaultImage" />
+        <div class="marginTop05">
+            <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+        </div>
+        <div class="row">
+            <h4 data-bind="resx: {textContent: 'string_1200'}">Quantity: </h4>
+            <div class="marginLeft1">
+                <h4 data-win-bind="textContent: Quantity Commerce.Core.Converter.QuantityFormatter"></h4>
+            </div>
+        </div>
+        <div class="row">
+            <h4 data-bind="resx: {textContent: 'string_1201'}">Total: </h4>
+            <div class="marginLeft1">
+                <h4 data-win-bind="textContent: TotalAmount Commerce.Core.Converter.PriceFormatter"></h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main page -->
+    <div class="fragment searchReceiptsView">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: _indeterminateWaitVisible }"></div>
+
+        <!-- Search receipts dialog -->
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="col grow" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <!-- Main content -->
+            <div class="no-shrink marginBottom1">
+                <h2 data-bind="resx: {textContent: 'string_1236'}">Returnable products</h2>
+            </div>
+            <div id="searchReceiptsResults" class="standardGrid">
+                <div id="salesOrderLineHeader" class="listViewHeader">
+                    <div class="ratio1 ratio2Under1080">
+                        <h6 data-bind="resx: {textWithTooltip: 'string_1206'}">NUMBER</h6>
+                    </div>
+                    <div class="ratio5 ratio2Under1080">
+                        <h6 data-bind="resx: {textWithTooltip: 'string_1207'}">NAME</h6>
+                    </div>
+                    <div class="ratio1 ratio2Under1080 textRight">
+                        <h6 data-bind="resx: {textWithTooltip: 'string_1208'}">UNIT PRICE</h6>
+                    </div>
+                    <div class="ratio1 ratio2Under1080 textRight">
+                        <h6 data-bind="resx: {textWithTooltip: 'string_1209'}">QUANTITY</h6>
+                    </div>
+                    <div class="ratio1 hideUnder1080 ratio2Under1080 textRight">
+                        <h6 data-bind="resx: {textWithTooltip: 'string_1238'}">EXTENDED PRICE</h6>
+                    </div>
+                    <div class="ratio1 ratio2Under1080 textRight">
+                        <h6 data-bind="resx: {textWithTooltip: 'string_1210'}">TOTAL</h6>
+                    </div>
+                </div>
+
+
+                <div class="center grow" data-bind="visible: _searchReceiptMessageTextVisible">
+                    <div class="textCenter">
+                        <h3 id="searchReceiptMessageText" data-bind="text: _searchReceiptMessageText"></h3>
+                    </div>
+                </div>
+
+                <div id="salesOrderLinesView"
+                     class="win-selectionstylefilled grow"
+                     data-win-control="WinJS.UI.ListView"
+                     data-win-options="{ selectionMode: 'multi', itemTemplate: select('#salesLineTemplate'), layout: { type: WinJS.UI.ListLayout } }"
+                     data-bind="winControl: {
+                        itemDataSource: _viewModel.salesLinesForDisplay,
+                        selectAllButton: '#selectAll',
+                        clearButton: '#clear',
+                        forcelayout: forceGridLayout,
+                        swipeBehavior: true,
+                        selectionchanged: { eventHandlerCallBack: salesOrderLineListSelectionChangedEventHandler }
+                    },  resx: { ariaLabel: 'string_1249' }, visible: _gridVisible">
+                    <!-- List of sales line for an order -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bottom app bar -->
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl" 
+        data-win-options="{ sticky : true }"
+        data-bind="winControl: { visible: _appBarVisible }">
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'selectAll',
+                label:'Select all',
+                extraClass: 'winappbar-iconSelectAll',
+                section:'selection'
+            }"
+                data-bind="resx: {label: 'string_1213'}">
+        </button>
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'clear',
+                label:'Clear',
+                extraClass: 'winappbar-iconClear',
+                section:'selection'
+            }"
+                data-bind="winControl: { disabled: _isNoItemSelected }, resx: {label: 'string_1248'}">
+        </button>
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'return',
+                label:'Return',
+                extraClass: 'winappbar-iconReturn'
+            }"
+                data-bind="winControl: { disabled: _isNoItemSelected, click: returnSalesOrderLines}, resx: {label: 'string_1214'}"></button>
+    </div>
+</body>
+</html>

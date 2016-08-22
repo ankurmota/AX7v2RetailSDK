@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BCFD2D94-44C8-4624-B014-4FE3B8BEA00F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.HardwareStation.Peripherals.PaymentTerminalLibrary</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.HardwareStation.Peripherals.PaymentTerminalLibrary</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.OposConstants.dll">
+      <HintPath>..\..\References\Interop.OposConstants\5.0.0.0\Interop.OposConstants.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Core.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Contracts.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.SDKManager.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EventArgs\ButtonPressEventArgs.cs" />
+    <Compile Include="EventArgs\CardSwipeEventArgs.cs" />
+    <Compile Include="EventArgs\DeviceState.cs" />
+    <Compile Include="EventArgs\InputValueEventArgs.cs" />
+    <Compile Include="EventArgs\PinDataEventArgs.cs" />
+    <Compile Include="EventArgs\SignatureEventArgs.cs" />
+    <Compile Include="Forms\Form.cs" />
+    <Compile Include="Forms\FormProperty.cs" />
+    <Compile Include="PaymentTerminal\PaymentTerminalBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrackData.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

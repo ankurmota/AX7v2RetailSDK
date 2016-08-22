@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>NumPad</title>
+
+    <link href="NumPad.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="numPadControl light col width31">
+        <div class="row width31 height8">
+            <button type="button" class="baseFont dark marginRight1 marginBottom1 height7 width15" value="clear"><h1 data-bind="resx: { textContent: 'string_51' }"></h1></button>
+            <button type="button" class="baseFont dark marginBottom1 height7 width15" value="backspace"><h1 class="marginBottom0">&#8592;</h1></button>
+        </div>
+
+        <div class="row width31">
+            <div class="row wrap width24">
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="7">
+                    <h1 class="margin0" data-bind="text: '7'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="8">
+                    <h1 class="margin0" data-bind="text: '8'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="9">
+                    <h1 class="margin0" data-bind="text: '9'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="4">
+                    <h1 class="margin0" data-bind="text: '4'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="5">
+                    <h1 class="margin0" data-bind="text: '5'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="6">
+                    <h1 class="margin0" data-bind="text: '6'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="1">
+                    <h1 class="margin0" data-bind="text: '1'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="2">
+                    <h1 class="margin0" data-bind="text: '2'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="3">
+                    <h1 class="margin0" data-bind="text: '3'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="0">
+                    <h1 class="margin0" data-bind="text: '0'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 marginBottom1 height7 width7" value="00">
+                    <h1 class="margin0" data-bind="text: '00'"></h1>
+                </button>
+                <button type="button" class="baseFont marginRight1 height7 width7" value="decimal">
+                    <h1 class="marginBottom05" data-bind="text: Commerce.NumberExtensions.decimalSeparator"></h1>
+                </button>
+            </div>
+
+            <div class="col width7">
+                <button type="button" class="baseFont dark height7 width7 marginBottom1" value="*"><h1 class="marginTop04">*</h1></button>
+                <button type="button" class="baseFont dark height7 width7 marginBottom1" value="-"><h1 class="marginBottom0">-</h1></button>
+                <button type="button" class="baseFont dark height15 width7" id="numPadEnter" value="enter"><h1 class="marginBottom0">&#8629;</h1></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

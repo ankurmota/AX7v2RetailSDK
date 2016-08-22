@@ -1,0 +1,65 @@
+.developerMode .win-settingsflyout .win-backbutton {
+    position: relative;
+}
+
+.developerMode .win-settingsflyout .win-header .win-label {
+    display: block;
+    padding-left: 0px;
+    font-size: auto;
+    line-height: auto;
+}
+
+.developerMode .win-settingsflyout {
+    width: 450px;
+    z-index: 2000;
+}
+
+.developerMode .win-settingsflyout header {
+    background-color: #00188f;
+}
+
+.developerMode .win-settingsflyout header * {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.developerMode .win-settingsflyout img {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+body[dir=rtl] .developerMode .win-settingsflyout img {
+    left: 0px;
+    right: auto;
+}
+
+.developerMode .win-settingsflyout .win-content h2, 
+.developerMode .win-settingsflyout .win-content h3 {
+    color: #000;
+}
+
+.developerMode .win-settingsflyout .win-content .win-settings-section .win-toggleswitch {
+    padding-bottom: 0px;
+}
+
+.developerMode .iconCollapse,
+.developerMode .iconExpand {
+    margin: 0em !important;
+}
+
+.developerMode .win-toggleswitch .win-label {
+    padding: 0em !important;
+}
+
+.developerMode .border {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.developerMode .borderTop {
+    border-top: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.developerMode .iconClipboard {
+    border: 2px solid transparent;
+}

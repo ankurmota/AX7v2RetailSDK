@@ -1,0 +1,219 @@
+<!-- Product Details Page -->
+
+@using Contoso.Retail.Ecommerce.Web.Storefront.Models;
+@using Contoso.Commerce.RetailProxy;
+@using System.Threading;
+@using System.Threading.Tasks;
+@using System.Linq;
+@using System.Collections.Generic;
+@using System.Collections.ObjectModel;
+@using Contoso.Retail.Ecommerce.Sdk.Core;
+@using Newtonsoft.Json;
+
+@{
+    // establish the base product
+    Product baseProduct = Model.Product;
+
+    ProductVariant p = null;
+    ObservableCollection<ProductDimensionSet> productDimensions = null;
+    Dictionary<string, long?> variantToIdMap = new Dictionary<string, long?>();
+    string variantToIdMapJson = string.Empty;
+    bool hasVariants = (baseProduct.CompositionInformation != null);
+
+    if (hasVariants)
+    {
+        foreach (ProductVariant productVariant in baseProduct.CompositionInformation.VariantInformation.Variants)
+        {
+            string dimensionValues = string.Format("{0}:{1}:{2}:{3}", productVariant.Color, productVariant.Size, productVariant.Style, productVariant.Configuration);
+            variantToIdMap.Add(dimensionValues, productVariant.DistinctProductVariantId);
+        }
+
+        // get the first product variant
+        p = baseProduct.CompositionInformation.VariantInformation.Variants.First<ProductVariant>();
+
+        // get possible product dimensions
+        productDimensions = baseProduct.CompositionInformation.VariantInformation.Dimensions;
+    }
+
+    variantToIdMapJson = JsonConvert.SerializeObject(variantToIdMap);
+
+    // set page title to the product name
+    ViewBag.Title = baseProduct.ProductName + " - Contoso";
+}
+
+@section other{
+    <!-- Load CSS for Product Details Page specifically-->
+    <link href="~/Content/CSS/productDetails.css" rel="stylesheet" />
+}
+
+<h5 class="margin-bottom-15 msg-activate msg-error"></h5>
+
+<!-- Product Navigation Breadcrumb -->
+<ol class="breadcrumb" style="text-align: left;">
+    @for (var i = Model.BreadcrumbNavLinks.Count - 1; i >= 0; i--)
+    {
+        if (i == Model.BreadcrumbNavLinks.Count - 1)
+        {
+            // last element, make it active
+            <li class="active">@Html.Raw(Model.BreadcrumbNavLinks[i])</li>
+        }
+        else
+        {
+            <li>@Html.Raw(Model.BreadcrumbNavLinks[i])</li>
+        }
+    }
+</ol>
+
+
+
+<!-- Check if a valid product was passed in-->
+@if (baseProduct != null)
+{
+
+    <!-- Show the image on the left side of the page-->
+    <div class="col-sm-6 col-xs-12">
+        @{
+            // get the first image
+            RichMediaLocationsRichMediaLocation img = baseProduct.Image.Items.First<RichMediaLocationsRichMediaLocation>();
+
+            // concatenate the retail server location with the relative image url
+            string imgLoc = img.Url;
+        }
+        <div class="product-details-img-wrapper">
+            <img src="@imgLoc" class="product-gallery-img" />
+        </div>
+    </div>
+
+    <!-- Product Details section on the right side of the page-->
+            <div class="col-sm-6 col-xs-12 product-details-details-wrapper">
+                <div class="product-details-product-name">@baseProduct.ProductName</div>
+                <div class="product-details-product-id">@(p == null ? baseProduct.ProductNumber : p.ProductNumber)</div>
+
+                <div class="product-details-price-wrapper">
+                    @if (baseProduct.AdjustedPrice == baseProduct.BasePrice)
+                    {
+                        // no sale
+                        <div class="product-details-actual-price">@baseProduct.ExtensionProperties.GetPropertyValue("FormattedAdjustedPrice", ExtensionPropertyTypes.String)</div>
+                    }
+                    else
+                    {
+                        // sale
+                        <div class="product-details-actual-price">@baseProduct.ExtensionProperties.GetPropertyValue("FormattedAdjustedPrice", ExtensionPropertyTypes.String) (save @baseProduct.ExtensionProperties.GetPropertyValue("SavingsPercent", ExtensionPropertyTypes.String))</div>
+                        <div class="product-details-original-price">@baseProduct.ExtensionProperties.GetPropertyValue("FormattedBasePrice", ExtensionPropertyTypes.String)</div>
+                    }
+                </div>
+
+                <!-- Starts for customer review, to make this actually work, we can add some logic for filling the right amount of stars in-->
+                <div class="product-details-star-rating">
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                </div>
+
+                <div class="product-details-description">
+                    @baseProduct.Description
+                </div>
+
+                @if (productDimensions != null)
+                {
+                    foreach (var dim in productDimensions)
+                    {
+                        <h4><b>@dim.DimensionKey</b></h4>
+                        <select class="form-control product-details-dimension-wrapper @(@dim.DimensionKey+"Selector")">
+                            @foreach (var dimVal in dim.DimensionValues)
+                            {
+                                // see which option the variant being displayed contians, could use some work with multiple dimensions
+                                if (dimVal.VariantSet.Contains((long)p.DistinctProductVariantId))
+                                {
+                                    <option selected="selected">@dimVal.DimensionValue</option>
+                                }
+                                else
+                                {
+                                    <option>@dimVal.DimensionValue</option>
+                                }
+                            }
+                        </select>
+                    }
+                }
+
+                @if (baseProduct.ProductNumber == "9999")
+                {
+                    // it's a gift card
+                    <h4><b>@ResourceHelper.GetLocalString("GiftCardAmount")</b></h4>
+                    <input type="text" class="form-control" id="giftcardAmount" style="width: 200px;" placeholder="100.00" />
+                }
+
+                <h4><b>@ResourceHelper.GetLocalString("Quantity")</b></h4>
+                <div class="product-details-quanity-wrapper">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-number glyphicon glyphicon-minus" data-type="minus" data-field="quant[1]" id="minus-qty"></button>
+                        </span>
+                        <input name="quant[1]" id="item-quantity" class="form-control input-number" value="1">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-number glyphicon glyphicon-plus" data-type="plus" data-field="quant[1]" id="plus-qty"></button>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- No logic or element id yet for when we want to actually add the product to our cart -->
+                <button id="add-to-cart-btn" class="btn btn-primary">@ResourceHelper.GetLocalString("AddToCart")</button>
+            </div>
+
+            }
+            else
+            {
+                <span>Item can't be found</span>
+            }
+
+@section pageSpecificJs {
+    <script src="~/Content/JS/ProductDetails.js"></script>
+    <script>
+        var variantToIdMap = @Html.Raw(@variantToIdMapJson.ToString());
+        var hasVariants = @(@hasVariants ? "true": "false");
+
+        $("#add-to-cart-btn").click(function () {
+
+            var productId = 0;
+            if (hasVariants) {
+                var color = $(".ColorSelector").val() ? $(".ColorSelector").val() : "";
+                var size = $(".SizeSelector").val() ? $(".SizeSelector").val() : "";
+                var style = $(".StyleSelector").val() ? $(".StyleSelector").val() : "";
+                var configuration = $(".ConfigurationSelector").val() ? $(".ConfigurationSelector").val() : "";
+                var dimensionValues = color + ":" + size + ":" + style + ":" + configuration;
+
+                if (variantToIdMap != undefined && variantToIdMap != null)
+                {
+                    productId = variantToIdMap[dimensionValues];
+                }
+            }
+            else {
+                productId = @((p == null) ? baseProduct.RecordId : p.DistinctProductVariantId);
+            }
+
+            if (productId != 0 && productId != undefined) {
+                var cartLine = { "ProductId": productId, "Quantity": $("#item-quantity").val(), "Price": ($("#giftcardAmount") != null) ? $("#giftcardAmount").val() : null};
+                var data = {
+                    "isCheckoutSession": false,
+                    "cartLines": [cartLine]
+                };
+
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    url: "/Cart/AddItems",
+                    data: JSON.stringify(data),
+                    success: addItemSuccessCallback,
+                    error: addItemFailureCallback
+                });
+            }
+            else {
+                var errorElement = $("#body-wrapper").find(".msg-error");
+                errorElement[0].textContent  = "@ResourceHelper.GetLocalString("NoSuchProduct")";
+            }
+        });
+    </script>
+}

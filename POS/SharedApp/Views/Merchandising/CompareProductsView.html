@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CompareProductsView</title>
+    <link href="CompareProductsView.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="fragment compareProductsView">
+        <!-- Progress Ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row marginBottom0" data-bind="resx: { ariaLabel: 'string_4454' }"> <!-- Main content -->
+
+            <!-- product template -->
+            <script type="text/html" id="compareProductsTemplate">
+
+                <!-- product image -->
+                <div class="height18 width18 top0">
+                    <img class="height18 width18" src="#"
+                         data-bind="image: {src: Commerce.Formatters.ProductImage($data),
+                            defaultSrc: Commerce.DefaultImages.ProductSmall},
+                            click: function(data) { $root.viewProductById($data, $root); }"/>
+                </div>
+
+                <div class="highContrastBorderThin row positionRelative flip">
+
+                    <!-- remove icon -->
+                    <div class="top0 left0 height4 width4 removeButton" data-bind="click: function(data) { $root.removeProduct($data, $root); }">
+                        <div class="top0 left0 triangleBackgroundTopLeft primaryBorderColor"></div>
+                        <div class="triangleIconCancel top03 left02"></div>
+                    </div>
+
+                    <!-- empty image holder for resolving flip. -->
+                    <div class="height18 width18"></div>
+
+                    <!-- product details -->
+                    <div class="col pad1 maxWidth27">
+
+                        <!-- product name -->
+                        <div class="height10 scrollY">
+                            <h3 data-bind="text: ProductName" class="wrapText ellipsis">Product Name</h3>
+                        </div>
+
+                        <!-- price & add to sale button -->
+                        <div class="row flip shrink">
+                            <div class="col shrink width13">
+                                <!-- product id -->
+                                <div class="marginBottom1 height1 marginTop2">
+                                    <h4 class="secondaryFontColor" data-bind="text: ProductNumber">Product Number</h4>
+                                </div>
+
+                                <div class="height2">
+                                    <h2 data-bind="text: Commerce.Formatters.PriceFormatter(Price)">Price</h2>
+                                </div>
+                            </div>
+
+                            <div class="marginTop2 height4 width13">
+                                <button class="primaryButton" data-bind="resx: { textContent: 'string_301' }, click: function(data) { $root.addProductToCartHandler($data, $root); }">
+                                    Add to sale
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </script>
+
+            <!-- products container -->
+            <div class="col no-shrink">
+
+                <!-- products heading -->
+                <div class="marginBottom1 no-shrink">
+                    <h2 data-bind="resx: { textContent: 'string_28' }">Products</h2>
+                </div>
+
+                <!-- product column -->
+                <div class="col flip width45 height56">
+                    <!-- The below commented knockout syntax is used by knockout for containerless control flow syntax -->
+                    <!-- ko foreach: {data: ViewModel.products, as: 'product'} -->
+                        <div class="row flip width45 height18 marginBottom1 primaryBackgroundColor positionRelative"
+                             data-bind="template: {name: 'compareProductsTemplate', data: product}"></div>
+                    <!-- /ko -->
+
+                    <!-- add more products to compare -->
+                    <div class="height18 width45 marginBottom1 center primaryBackgroundColor highContrastBorderThin center flip" data-bind="visible: isAddProductsVisible">
+                        <div class="col height6 center">
+                            <div class="marginBottom1">
+                                <button class="iconAdd" id="addProductsToCompareButton" data-bind="click: addProductClicked, resx: { ariaLabel: 'string_706' }"></button>   <!-- Add another product to compare -->
+                            </div>
+                            <h4 data-bind="resx: { textContent: 'string_706' }" class="wrapText textCenter width100Percent">Add another product to compare</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gutter2x2"></div>
+
+            <!-- specifications outer container -->
+            <div class="row grow" style="flex-basis: 0">
+                <!-- inner container -->
+                <div class="row scrollX height60 flip">
+                    <!-- The below commented knockout syntax is used by knockout for containerless control flow syntax -->
+                    <!-- ko foreach: { data: productProperties, as: 'Property' } -->
+                    <div class="col no-shrink maxWidth20">
+                        <!-- spec header -->
+                        <div class="height2 marginTop2 width15">
+                            <h6 class="wrapText secondaryFontColor" data-bind="text: Property.KeyName">Column Property</h6>
+                        </div>
+
+                        <!-- spec contents per product (html dynamically generated) -->
+                        <div class="col flip shrink">
+
+                            <!-- The below commented knockout syntax is used by knockout for containerless control flow syntax -->
+                            <!-- ko foreach: { data: $root.ViewModel.allProductProperties, as: 'product'} -->
+                                <div class="height19 flip borderTop maxWidth20">
+                                    <div class="padTop2 ellipsis padRight2">
+                                        <h4 class="wrapText" data-bind="text: product.productProperties[$parentContext.$index()].ValueString">property Value</h4>
+                                    </div>
+                                </div>
+                            <!-- /ko -->
+
+                            <!-- empty row if < 3 products visible -->
+                            <div class="height19 borderTop flip" data-bind="visible: $root.isAddProductsVisible"></div>
+                        </div>
+
+                    </div>
+                    <!-- /ko -->
+
+                </div>
+            </div>
+        </section>           
+    </div>
+
+</body>
+</html>

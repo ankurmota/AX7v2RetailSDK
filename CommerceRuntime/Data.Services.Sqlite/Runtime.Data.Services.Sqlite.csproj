@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F57A0FA9-F533-4D6A-B0F4-383DA70BDB7E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.Runtime.DataServices.Sqlite</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.Runtime.DataServices.Sqlite</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Address\AddressQueries.cs" />
+    <Compile Include="Address\AddressSqliteDatabaseAccessor.cs" />
+    <Compile Include="Channel\ChannelSqliteDataService.cs" />
+    <Compile Include="Channel\GetChannelCategoryAttributesProcedure.cs" />
+    <Compile Include="ClientOfflineTransactionSqliteDataService.cs" />
+    <Compile Include="Customer\CustomerSqliteDataService.cs" />
+    <Compile Include="Customer\GetCustomersProcedure.cs" />
+    <Compile Include="Customer\SearchCustomersProcedure.cs" />
+    <Compile Include="DatabaseConnectionManagementService.cs" />
+    <Compile Include="EmployeeSqliteDataService.cs" />
+    <Compile Include="Helpers\RowVersionHelper.cs" />
+    <Compile Include="Helpers\TempTableHelper.cs" />
+    <Compile Include="Logging\AuditLogSqliteDataService.cs" />
+    <Compile Include="PricingAndDiscounts\DiscountProcedure.cs" />
+    <Compile Include="PricingAndDiscounts\PricingProcedure.cs" />
+    <Compile Include="PricingAndDiscounts\PricingSqliteDatabaseAccessor.cs" />
+    <Compile Include="PricingAndDiscounts\PricingSqliteDataService.cs" />
+    <Compile Include="PricingAndDiscounts\PricingTempTable.cs" />
+    <Compile Include="Product\GetAssortedProductsProcedure.cs" />
+    <Compile Include="Product\GetItemsProcedure.cs" />
+    <Compile Include="Product\GetKitComponentAndSubstituteProcedure.cs" />
+    <Compile Include="Product\GetKitComponentsProcedure.cs" />
+    <Compile Include="Product\GetKitDefinitionProcedure.cs" />
+    <Compile Include="Product\GetKitVariantMapProcedure.cs" />
+    <Compile Include="Product\GetLinkedProductsProcedure.cs" />
+    <Compile Include="Product\GetProductAttributesProcedure.cs" />
+    <Compile Include="Product\GetProductBehaviorByProductIdsProcedure.cs" />
+    <Compile Include="Product\GetProductsByCategoryProcedure.cs" />
+    <Compile Include="Product\GetProductsByIdsProcedure.cs" />
+    <Compile Include="Product\GetProductsProcedure.cs" />
+    <Compile Include="Product\GetProductVariantsProcedure.cs" />
+    <Compile Include="Product\ProductSearchSqliteDataService.cs" />
+    <Compile Include="Product\ProductSqliteDataService.cs" />
+    <Compile Include="Product\ProductsSqliteDataService.cs" />
+    <Compile Include="Product\SearchProductsByCategoryIdProcedure.cs" />
+    <Compile Include="Product\SearchProductsProcedure.cs" />
+    <Compile Include="Product\TableTypes\ProductLookupTableType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReasonCodes\GetReasonCodesProcedure.cs" />
+    <Compile Include="ReasonCodes\GetSubReasonCodesProcedure.cs" />
+    <Compile Include="ReasonCodes\ReasonCodeSqliteDataService.cs" />
+    <Compile Include="SalesTransaction\DeleteCartProcedure.cs" />
+    <Compile Include="SalesTransaction\GetDiscountLinesProcedure.cs" />
+    <Compile Include="SalesTransaction\GetLoyaltyRewardPointLinesProcedure.cs" />
+    <Compile Include="SalesTransaction\GetSalesLinesProcedure.cs" />
+    <Compile Include="SalesTransaction\GetSalesTransactionsProcedure.cs" />
+    <Compile Include="SalesTransaction\InsertSalesTransactionTablesProcedure.cs" />
+    <Compile Include="SalesTransaction\SalesTransactionSqliteDataService.cs" />
+    <Compile Include="SalesTransaction\SaveSalesTransactionProcedure.cs" />
+    <Compile Include="Shifts\GetShiftDataProcedure.cs" />
+    <Compile Include="Shifts\OfflineShiftDataServiceUtilities.cs" />
+    <Compile Include="Shifts\ShiftSqliteDataService.cs" />
+    <Compile Include="Shifts\ShiftsQueries.cs" />
+    <Compile Include="Shifts\ShiftsSqliteDatabaseAccessor.cs" />
+    <Compile Include="SqliteDatabaseContext.cs" />
+    <Compile Include="Tax\GetTaxCodeIntervalsProcedure.cs" />
+    <Compile Include="Tax\TaxSqliteDataService.cs" />
+    <Compile Include="TransactionLogSqliteDataService.cs" />
+    <Compile Include="UnitOfMeasure\GetUnitOfMeasureConversionProcedure.cs" />
+    <Compile Include="UnitOfMeasure\GetUnitOfMeasureOptionsProcedure.cs" />
+    <Compile Include="UnitOfMeasure\UnitOfMeasureSqliteDataService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data.Access.Sqlite\Runtime.Data.Access.Sqlite.csproj">
+      <Project>{2367D3E2-A0B3-4C8D-A21C-E28D22397A01}</Project>
+      <Name>Runtime.Data.Access.Sqlite</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Data.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

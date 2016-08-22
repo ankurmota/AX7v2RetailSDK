@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hardware station view</title>
+    <link href="HardwareStationView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <div class="genericDialogBackground" data-bind="visible: indeterminateWaitVisible"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="col grow" data-bind="resx: { ariaLabel: 'string_4454' }"><!-- Main content -->
+            <div class="col grow" data-bind="listView: {
+                itemDataSource: viewModel.hardwareStations,
+                selectionchanged: { eventHandlerCallBack: selectionChangedHandler, appBarId: '#commandAppBar' },
+                selectionMode: 'single',
+                columns: [
+                    { titleResx: 'string_6002', cssClass: 'ratio3', field: 'HostName' },
+                    { titleResx: 'string_6015', cssClass: 'ratio3', field: 'Description' },
+                    { titleResx: 'string_6003', cssClass: 'ratio2', field: 'IsActive', converter: 'Commerce.Core.Converter.BooleanFormatter' },
+                    { titleResx: 'string_6004', cssClass: 'ratio2 textRight', field: 'IsPaired', converter: 'Commerce.Core.Converter.BooleanFormatter' },
+                ]
+            }">
+            </div>
+        </section>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl"  data-win-options="{ sticky : true }">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'setActive', label:'Set as active', extraClass: 'winappbar-iconActive'}"
+                data-bind="click: setActive, enable: isCommandEnable, resx: { label: 'string_6005' }">
+            </button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'setInactive', label:'Set as inactive', extraClass: 'winappbar-iconActive'}"
+                data-bind="click: setInactive, enable: isCommandEnable, resx: { label: 'string_6013' }">
+            </button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'pair', label:'Pair', extraClass: 'winappbar-iconPair'}"
+                data-bind="click: pair, enable: isPairingEnable, resx: { label: 'string_6006' }">
+            </button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'unpair', label:'Unpair', extraClass: 'winappbar-iconUnpair'}"
+                data-bind="click: unpair, enable: isUnpairingEnable, resx: { label: 'string_6007' }">
+            </button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'skipSelection', label:'Skip selection', extraClass: 'winappbar-iconCancel'}"
+                data-bind="click: skipSelection, visible: isActiveOnly, resx: { label: 'string_6016' }">
+            </button>
+        </div>
+    </div>
+</body>
+</html>

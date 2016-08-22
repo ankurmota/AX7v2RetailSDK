@@ -1,0 +1,528 @@
+﻿@import '../Common/_Constants.scss';
+
+/*
+*	APP BAR RULES
+*/
+.win-commandlayout.win-appbar-minimal {
+    width: 100% !important;
+}
+
+.win-commandlayout.win-appbar-minimal.hideEllipsis {
+    padding-right: 0;
+
+    button.win-appbar-invokebutton {
+        display: none;
+    }
+}
+
+/*
+*	MAIN PAGE HEADER RULES
+*/
+#common-header {
+	flex: 0 0 auto;
+}
+
+/*
+*	MAIN PAGE .fragment RULES
+*/
+/* Define a grid with rows for a banner and a body */
+.fragment {
+	display: flex;
+    height: 100%;
+    width: 100%;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-content: flex-start;
+	align-items: stretch;
+	overflow: hidden;
+}
+
+/*
+*	MAIN CONTENT CONTAINER RULES
+*/
+section {
+	max-height: 100%;
+	overflow-y: hidden; /* landscape only */
+	margin-left: $navigation-bar-width; /* navigation bar */
+    margin-bottom: $app-bar-height;
+    padding-bottom: $content-bottom-padding;
+    /* Default content offset. Used padding instead of margin 
+        for proper scroll position. */
+    padding-left: $content-side-padding;
+	padding-right: $content-side-padding;
+}
+
+/* Used for search like pages e.g Search, Categories*/
+section.panoramicGrid {
+    width: calc(100% - $navigation-bar-width);
+
+    /* Overrides section padding. Doesn't need any content offset.*/
+    padding-bottom: 0em;
+    padding-left: 0em;
+    padding-right: 0em;
+}
+
+section.full-screen {
+    margin: 0em;
+    padding: 0em;
+    width: 100%;
+}
+
+body[dir=rtl] {
+
+     section {
+        margin-left: 0;
+        margin-right: $navigation-bar-width;
+    }
+
+     section.full-screen { 
+        margin: 0em;
+        padding: 0em;
+    }
+
+     section.panoramicGrid,
+     section.panoramic {
+        margin-left: 0;
+        margin-right: $navigation-bar-width;
+        padding-right: 0;
+    }
+
+     .gridHeader {
+        width: calc(100% - 7.5em);
+        margin-left: 3em;
+        margin-right: 4em;
+    }
+
+     .browseGrid .win-surface.win-nocssgrid.win-gridlayout,
+     .browseGrid .win-groups.win-listview > .win-horizontal .win-surface,
+     .browseGrid .win-listview .win-horizontal .win-surface {
+        margin-left: 3em;
+        margin-right: 4em;
+    }
+}
+
+section.panoramic {
+	display: inline-flex;
+	align-self: stretch;
+	align-content: flex-start;
+	align-items: flex-start;
+	flex: 1 1 auto;
+	flex-direction: row;
+    flex-wrap: nowrap;
+	justify-content: flex-start;
+    margin-left: 8em;
+    margin-right: 0;
+    padding-left: 4em;
+    width: calc(100% - 8em);
+}
+
+section.row {
+	display: flex;
+	align-self: stretch;
+	align-content: flex-start;
+	align-items: flex-start;
+	flex: 1 1 auto;
+	flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    justify-content: flex-start;
+}
+
+section.overflowYVisible {
+    overflow-y: visible;
+}
+
+section.pad0 {
+    padding: 0em !important;
+}
+
+@media (orientation:portrait) {
+    section.row {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: calc(100% - 14em); /* Height of the screen - height of the header */
+    }
+
+        section.row.noflip {
+            flex-direction: row;
+        }
+
+    .flip.row {
+        flex-direction: column;
+    }
+    .flip.col {
+        flex-direction: row;
+    }
+}
+
+/*
+*   PANEL RULES
+*/
+.panel .row > div {
+	flex-grow: 1;
+}
+
+.panel .panel-footer {
+	align-items: flex-end;
+	flex-grow: 1;
+}
+
+/*
+*	ROW RULES
+*/
+.row { 
+	display: flex; 
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start; 
+	align-content: flex-start; 
+	align-items: flex-start;
+	align-self: stretch;
+}
+
+.row > h2, section .col > h2 {
+	flex-shrink: 0;
+}
+
+.grow, .grow-landscape  {
+  flex-grow: 1;
+}
+
+/*
+ * Forces proper space distribution for elements with different content height.
+ */
+.col > .grow {
+    min-height: 0;
+}
+
+.row > .grow {
+    min-width: 0;
+}
+
+.no-shrink {
+  flex-shrink: 0;
+}
+
+//Alligns childs inside flex container. 
+.row.alignRight {
+   justify-content: flex-end;
+}
+.col.alignRight {
+    align-content: flex-end;
+}
+
+
+/*
+*	COLUMN RULES
+*/
+.col { 
+	display: flex; 
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start; 
+	align-content: flex-start;
+	align-items: stretch;
+	align-self: stretch;  /*to-do:  stretch causes unintended wrapping with listview...it has to do with scrollY */
+}
+
+/*
+*   COMMON GUTTER 
+*/
+.gutter8x8 {
+    width: 8em !important;
+    height: 8em !important; /* height affects gutter spacing in portrait (vertical layout) */
+}
+.gutter4x4 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 4em !important;
+    height: 4em !important; /* height affects gutter spacing in portrait (vertical layout) */
+    flex: 0 0 4em !important;
+}
+
+.gutter4x2 {
+    width: 4em !important;
+    height: 2em !important;
+    flex: 0 0 auto !important;
+}
+
+.gutter3x3 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 3em !important;
+    height: 3em !important; /* height affects gutter spacing in portrait (vertical layout) */
+    flex: 0 0 3em !important;
+}
+
+.gutter2x2 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 2em !important;
+    height: 2em !important; /* height affects gutter spacing in portrait (vertical layout) */
+    flex: 0 0 2em !important;
+}
+
+.gutter1x1 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 1em !important;
+    height: 1em !important; /* height affects gutter spacing in portrait (vertical layout) */
+    flex: 0 0 1em !important;
+}
+
+/*
+*	WRAP CONTENTS OF ROW OR COLUMN
+*/
+.wrap {
+	flex-wrap: wrap !important;
+	align-items: flex-start;
+}
+.nowrap {
+	flex-wrap: nowrap !important;
+	align-items: flex-start;
+}
+
+/*
+*	CANVAS RULES
+*/
+.canvas {
+    background-color: #fff;
+}
+
+/*
+*	CENTER LAYOUT RULES (HORIZONTAL / VERTICAL CENTERING)
+*/
+.center {
+	display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+	flex: 1 1 auto; 
+	height: 100%;
+	width: 100%;
+}
+
+
+.centerY {
+	display: flex;
+	flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+	flex: 1 1 auto;
+	height: 100%;
+}
+
+.center > div,
+.centerY > div {
+	align-self: auto;
+}
+
+/*
+*	SHRINK & STRETCH
+*/
+.shrink { 
+    flex: 0 1 auto !important;
+}
+
+.stretch {
+    align-self: stretch;
+    flex: 1 100% !important;
+}
+
+/* this is used primarily as an overwrite for the row { width: 100% } rule,
+    which causes problems when rendering a .col adjacent to a .row */
+.widthAuto {
+    width: auto !important;
+}
+
+.width100Percent {
+    width: 100%;
+}
+
+.heightAuto {
+    height: auto !important;
+}
+
+.height100Percent {
+    height: 100%;
+}
+
+/*
+*	UTILITY CLASSES
+*/
+.scroll {
+    overflow: auto;
+}
+
+.scrollY { 
+    width: 100%;
+    height: 100%;
+	overflow-y: auto !important;
+}
+.scrollX { 
+    width: 100%;
+    height: 100%;
+	overflow-x: auto !important;
+    overflow-y:hidden;
+}
+@media (orientation:portrait) {
+    .flip.scrollY {
+        overflow-x: auto !important;
+    }
+    .flip.scrollX {
+        overflow-y: auto !important;
+    }
+    .grow-landscape {
+        flex-grow: 0
+    }
+}
+
+.textLeft { text-align: left !important; }
+body[dir=rtl] .textLeft { text-align: right !important; }
+.textRight { text-align: right; }
+body[dir=rtl] .textRight { text-align: left; }
+.textCenter { text-align: center; }
+.textJustify { text-align: justify; }
+.textMiddle { vertical-align: middle; }
+.textBottom { position: absolute; bottom: 0px; }
+
+@for $i from 1 through 9 {
+    .ratio#{$i} {
+        max-width: $i * 10%;
+        min-width: $i * 10%;
+	    overflow: hidden;
+
+        h1, h3, h4 {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space:nowrap;
+        }
+    }
+}
+
+.overflowHidden {
+    overflow: hidden;
+}
+
+
+.positionAbsolute {
+    position: absolute;
+}
+
+.positionRelative {
+    position: relative;
+}
+
+@media (orientation:portrait) {
+    .ratio2InPortrait {
+        max-width: 20% !important; 
+	    min-width: 20% !important;
+	    overflow: hidden;
+    }
+}
+
+/*
+*	VISIBILITY CLASSES
+*/
+.hide {
+	display: none !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+/*
+    This class can be used for hiding specific columns in a listview when the device goes into portrait mode.
+    Sometimes, when the listview shrinks to accomodate the narrower device width, certain columns get too narrow.
+    Simply include this class on the cell in the listview's template to hide each of those cells in portrait.
+*/
+@media (orientation:portrait) {
+    .hideInPortrait {
+        display: none !important;
+    }
+}
+
+@media (max-width: 800px) {
+    .hideUnder800 {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1080px) {
+    .hideUnder1080 {
+        display: none !important;
+    }
+}
+
+@media (max-width: 1080px) {
+    .ratio2Under1080 {
+        max-width: 20% !important; 
+	    min-width: 20% !important;
+	    overflow: hidden;
+    }
+}
+
+@media (orientation:landscape) {
+    .hideInLandscape {
+        display: none !important;
+    }
+}
+
+/** Device activation styles */
+.dynamicsBackground {
+    background-color: #00188e;
+    
+    label {
+        opacity: 0.6;
+    }
+
+    button {
+        border-color: #fff !important;
+    }
+   
+     color:#fff; /* Overrides dark theme and light theme colors.*/
+
+   .errorDetailsActivation {
+        background-color: #FFF;
+        color: #000 /* Overrides dark theme and light theme colors.*/;
+        overflow-y: auto;
+    }
+
+   a, a:hover, a:hover:active,
+   progress.win-ring, .win-listview .win-progress {
+       color: #fff;
+   }
+
+   a {
+      text-decoration: underline;
+   }
+
+    /* Device activation high contrast styles */
+    @media screen and (-ms-high-contrast) {
+        label {
+            opacity: 1;
+        }
+    }
+}
+
+.panelBackgroundColor {
+    background-color: rgba(17, 19, 21, 0.5);
+}
+
+.dynamicsBackground label {
+    color: #FFF;
+}
+
+.errorDetailsActivation {
+    background-color: #FFF;
+    color: #000;
+    overflow-y: auto;
+}

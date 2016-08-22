@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>RefinerControl</title>
+    <link href="RefinerControl.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="refinerListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="marginTop1 height3 minHeight3 grow marginLeft1 centerY">
+            <div>
+                <h4 class="ellipsis" data-win-bind="textContent: KeyName"></h4>
+            </div>
+        </div>
+    </div>
+    
+    <div class="refinerControlView col grow" data-bind="customControlInternal: 'RefinerControl'">
+        <div class="center indeterminateWait positionAbsolute" data-bind="loader: { visible: indeterminateWaitVisible, type: Commerce.Controls.LoaderType.Nested }"></div>
+        <div class="col no-shrink">
+            <div class="padTop2 height6">   
+                <h2 data-bind="resx: { textContent: 'string_4104' }"></h2> <!--Filters-->
+            </div>
+            <div class="row minHeight6 padTop1 padBottom1">
+                <div class="padRight1 ratio5 col">
+                    <button class="primaryButton" data-bind="click: applyFilter, enable:selectedProductRefiners().length > 0, resx: { textContent: 'string_40' }"></button> <!-- Apply -->
+                </div>
+                <div class="ratio5 padLeft1 col">
+                    <button class="secondaryButton" data-bind="click: clearFilter, enable:selectedProductRefiners().length > 0, resx: { textContent: 'string_41' }"></button> <!-- Clear -->
+                </div>
+            </div>
+            <div class="navBarBreakline height2"></div>
+        </div>
+        <div class="scrollY col grow marginBottom4">
+           
+            <!-- Add Filter -->
+            <div class="scrollY col grow positionRelative marginBottom4">
+                <div>
+                    <div class="refinerList shrink">
+                    </div>
+                    <div id="addFilter" class="row padTop2" data-bind="visible: availableProductRefiners().length > 0">
+                        <div class="shrink">
+                            <button class="iconAdd navBarButtonColor" data-bind="click: toggleFilterListFlyout(), resx: { ariaLabel: 'string_4107' }"></button> <!-- Add filter -->
+                        </div>
+                        <div class="padTop1 padLeft1">
+                            <h4 data-bind="resx: { textContent: 'string_4107' }"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Filters -->
+            <div class="pad0 baseFont col grow"
+                 data-win-control="WinJS.UI.Flyout"
+                 data-bind="flyout: {
+                                   anchor: '#addFilter',
+                                   placement: 'bottom',
+                                   alignment: 'right',
+                                   toggleShowHide: toggleFilterListFlyout,
+                                   sticky: false
+                            },
+                                visible: true,
+                                resx: { ariaLabel: 'string_4161' } "> <!-- List of filters -->
+                <div id="repeater" class="col grow itemPicker win-selectionstylefilled"
+                     data-win-control="WinJS.UI.ListView"
+                     data-win-options="{ selectionMode: 'none', tapBehavior: 'invokeOnly', itemTemplate: select('#refinerListTemplate'), layout: { type: WinJS.UI.ListLayout }}"
+                     data-bind="winControl: {
+                                       forcelayout: forceLayoutFilterListListView,
+                                       itemDataSource: availableProductRefiners,
+                                       iteminvoked : AddRefinerUI
+                                       },
+                            resx: { ariaLabel: 'string_4104' }">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

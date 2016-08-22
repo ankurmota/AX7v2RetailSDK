@@ -1,0 +1,7 @@
+.priceCheckView #CustomerPanel {
+    position: relative;
+}
+
+.priceCheckView #CustomerPanel a {
+    width: calc(100% - 25px);
+}

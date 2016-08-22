@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.Default.props" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputPath>bin</OutputPath>
+    <OutputType>Library</OutputType>
+    <AssemblyName>$(AssemblyNamePrefix).Pos.Core</AssemblyName>
+    <ProjectGuid>{34AC8A0D-A609-4A3B-906F-5A95A531AAE2}</ProjectGuid>
+    <TypeScriptOutFile>Commerce.Core.js</TypeScriptOutFile>
+    <TypeScriptNoImplicitAny>false</TypeScriptNoImplicitAny>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+    <TypeScriptLibrariesOutDir>$(MsBuildThisFileDirectory)</TypeScriptLibrariesOutDir>
+    <RequiresProxyCode>true</RequiresProxyCode>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Activities\Activity.ts" />
+    <TypeScriptCompile Include="Activities\ActivityHelper.ts" />
+    <TypeScriptCompile Include="Activities\ClearMerchantInformationActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetCancellationChargeActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetCartLineCommentsActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetCartLineDiscountsActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetCartLineQuantitiesActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetCartLineUnitOfMeasuresActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetCartLineWeightActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetCashDrawerActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetCustomerAccountDepositAmountActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetDiscountCodeActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetIncomeExpenseLineActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetInvoiceCommentActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetLoyaltyCardActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetOrderTypeActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetPriceOverrideActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetProductKeyInPriceActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetProductKeyQuantityActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetProductsActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetProductsToReturnActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetQuotationExpirationDateActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetReasonCodeLinesActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetSalesPersonActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetSerialNumberActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetShiftActionActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetShippingChargeActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetShippingDateActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetTransactionActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetTransactionCommentActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetTransactionDiscountActivity.ts" />
+    <TypeScriptCompile Include="Activities\GetTransactionReturnLinesActivity.ts" />
+    <TypeScriptCompile Include="Activities\PrintReceiptActivity.ts" />
+    <TypeScriptCompile Include="Activities\RegisterTimeActivity.ts" />
+    <TypeScriptCompile Include="Activities\ResumeShiftActivity.ts" />
+    <TypeScriptCompile Include="Activities\SaveMerchantInformationActivity.ts" />
+    <TypeScriptCompile Include="Activities\SelectHardwareStationActivity.ts" />
+    <TypeScriptCompile Include="Activities\SelectTaxOverrideActivity.ts" />
+    <TypeScriptCompile Include="Activities\SelectVariantActivity.ts" />
+    <TypeScriptCompile Include="ApplicationArgumentId.ts" />
+    <TypeScriptCompile Include="ApplicationContext.ts" />
+    <TypeScriptCompile Include="ApplicationStorage.ts" />
+    <TypeScriptCompile Include="Authentication\AuthenticationProviderManager.ts" />
+    <TypeScriptCompile Include="Authentication\AuthenticationProviderResourceType.ts" />
+    <TypeScriptCompile Include="Authentication\IAuthenticationProvider.ts" />
+    <TypeScriptCompile Include="Authentication\IAuthenticationToken.ts" />
+    <TypeScriptCompile Include="Authentication\IImplicitGrantAuthenticationProvider.ts" />
+    <TypeScriptCompile Include="Authentication\IResourceOwnerPasswordGrantAuthenticationProvider.ts" />
+    <TypeScriptCompile Include="Authentication\Providers\AzureActiveDirectoryUserAuthenticationProvider.ts" />
+    <TypeScriptCompile Include="Authentication\Providers\CommerceUserAuthenticationProvider.ts" />
+    <TypeScriptCompile Include="Authentication\Providers\DeviceAuthenticationProvider.ts" />
+    <TypeScriptCompile Include="Core.d.ts" />
+    <TypeScriptCompile Include="Entities\AddressTypeHelper.ts" />
+    <TypeScriptCompile Include="Entities\ApplicationTypeEnum.ts" />
+    <TypeScriptCompile Include="Entities\Authentication\IChangePasswordRequest.ts" />
+    <TypeScriptCompile Include="Entities\Authentication\IEnrollRequest.ts" />
+    <TypeScriptCompile Include="Entities\Authentication\IDisenrollRequest.ts" />
+    <TypeScriptCompile Include="Entities\Authentication\ILogonRequest.ts" />
+    <TypeScriptCompile Include="Entities\Authentication\ICommerceToken.ts" />
+    <TypeScriptCompile Include="Entities\Authentication\IResetPasswordRequest.ts" />
+    <TypeScriptCompile Include="Entities\CardSource.ts" />
+    <TypeScriptCompile Include="Entities\CartTenderLineTenderType.ts" />
+    <TypeScriptCompile Include="Entities\CommerceTypes.g.ts">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Entities\CommerceTypesValidators.ts" />
+    <TypeScriptCompile Include="Entities\Customer.ts" />
+    <TypeScriptCompile Include="Entities\CustomerOrderOperations.ts" />
+    <TypeScriptCompile Include="Entities\CustomerType.ts" />
+    <TypeScriptCompile Include="Entities\DeliveryModeStatusEnum.ts" />
+    <TypeScriptCompile Include="Entities\DeviceActivation.ts" />
+    <TypeScriptCompile Include="Entities\DimensionKeys.ts" />
+    <TypeScriptCompile Include="Entities\EntityValidatorBase.ts" />
+    <TypeScriptCompile Include="Entities\Error.ts" />
+    <TypeScriptCompile Include="Entities\FieldValidator.ts" />
+    <TypeScriptCompile Include="Entities\HealthCheck.ts" />
+    <TypeScriptCompile Include="Entities\IEntityValidator.ts" />
+    <TypeScriptCompile Include="Entities\IErrorDetails.ts" />
+    <TypeScriptCompile Include="Entities\InventoryOrders.ts" />
+    <TypeScriptCompile Include="Entities\IOperationsMap.ts" />
+    <TypeScriptCompile Include="Entities\ISearchReceiptRegister.ts" />
+    <TypeScriptCompile Include="Entities\ISearchReceiptStore.ts" />
+    <TypeScriptCompile Include="Entities\LanguagesInfo.ts" />
+    <TypeScriptCompile Include="Entities\Layout.ts" />
+    <TypeScriptCompile Include="Entities\LayoutOrientation.ts" />
+    <TypeScriptCompile Include="Entities\Peripherals.ts" />
+    <TypeScriptCompile Include="Entities\PickingAndReceivingJournal.ts" />
+    <TypeScriptCompile Include="Entities\PlatformType.ts" />
+    <TypeScriptCompile Include="Entities\Point.ts" />
+    <TypeScriptCompile Include="Entities\PriceType.ts" />
+    <TypeScriptCompile Include="Entities\Product.ts" />
+    <TypeScriptCompile Include="Entities\ProductDimensionResult.ts" />
+    <TypeScriptCompile Include="Entities\ReasonCodeInputType.ts" />
+    <TypeScriptCompile Include="Entities\ReasonCodeTableRefType.ts" />
+    <TypeScriptCompile Include="Entities\ReceiptOption.ts" />
+    <TypeScriptCompile Include="Entities\SalesOrderWrapper.ts" />
+    <TypeScriptCompile Include="Entities\ServiceEndpoint.ts" />
+    <TypeScriptCompile Include="Entities\StockCount.ts" />
+    <TypeScriptCompile Include="Entities\StockCountLine.ts" />
+    <TypeScriptCompile Include="Entities\Store.ts" />
+    <TypeScriptCompile Include="Entities\StoreOperations.ts" />
+    <TypeScriptCompile Include="Entities\TaskRecorderTypes.ts" />
+    <TypeScriptCompile Include="Entities\TenderTypeId.ts" />
+    <TypeScriptCompile Include="ErrorHandler.ts" />
+    <TypeScriptCompile Include="Extensions\ArrayExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\DateExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\NumberExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\ObjectExtensions.ts" />
+    <TypeScriptCompile Include="Extensions\StringExtensions.ts" />
+    <TypeScriptCompile Include="Activities\GetCustomerAccountDepositLineCommentsActivity.ts" />
+    <TypeScriptCompile Include="Host\Authentication\IAuthenticationProvider.ts" />
+    <TypeScriptCompile Include="Host\Authentication\IUserDetails.ts" />
+    <TypeScriptCompile Include="Host\BrowserType.ts" />
+    <TypeScriptCompile Include="Host\Globalization\DateTimeFormat.ts" />
+    <TypeScriptCompile Include="Host\Globalization\GlobalizationBase.ts" />
+    <TypeScriptCompile Include="Host\Globalization\CultureHelper.ts" />
+    <TypeScriptCompile Include="Host\IApplication.ts" />
+    <TypeScriptCompile Include="Host\IApplicationIdentity.ts" />
+    <TypeScriptCompile Include="Host\IConfigurationProvider.ts" />
+    <TypeScriptCompile Include="Host\Globalization\IDateTimeFormatter.ts" />
+    <TypeScriptCompile Include="Host\Globalization\IGlobalization.ts" />
+    <TypeScriptCompile Include="Host\IHost.ts" />
+    <TypeScriptCompile Include="Host\ILanguage.ts" />
+    <TypeScriptCompile Include="Host\IVersion.ts" />
+    <TypeScriptCompile Include="Host\Globalization\TimeZoneDateTimeFormatter.ts" />
+    <TypeScriptCompile Include="IAsyncDialogResult.ts" />
+    <TypeScriptCompile Include="IAsyncResult.ts" />
+    <TypeScriptCompile Include="IMessageOptions.ts" />
+    <TypeScriptCompile Include="IMessageResult.ts" />
+    <TypeScriptCompile Include="IParser.ts" />
+    <TypeScriptCompile Include="Lazy.ts" />
+    <TypeScriptCompile Include="Managers\Common\DataServiceQuery.ts" />
+    <TypeScriptCompile Include="Managers\Common\MimeTypes.ts" />
+    <TypeScriptCompile Include="Managers\Common\HttpHeaders.ts" />
+    <TypeScriptCompile Include="Managers\Common\HttpStatusCodes.ts" />
+    <TypeScriptCompile Include="Managers\Common\HttpVerbs.ts" />
+    <TypeScriptCompile Include="Managers\Common\IDataServiceQuery.ts" />
+    <TypeScriptCompile Include="Managers\Common\IDataServiceRequestFactory.ts" />
+    <TypeScriptCompile Include="Managers\Common\IXmlHttpError.ts" />
+    <TypeScriptCompile Include="Managers\Common\IXmlHttpRequest.ts" />
+    <TypeScriptCompile Include="Managers\Common\IXmlHttpResponse.ts" />
+    <TypeScriptCompile Include="Managers\Common\XmlHttpRequestHelper.ts" />
+    <TypeScriptCompile Include="Managers\Context\CommerceAuthenticationContext.ts" />
+    <TypeScriptCompile Include="Managers\Context\CommerceContext.g.ts">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Managers\Context\LocatorContext.ts" />
+    <TypeScriptCompile Include="Managers\ErrorHandling\CommerceExceptionTypes.ts" />
+    <TypeScriptCompile Include="Managers\ErrorHandling\ErrorParser.ts" />
+    <TypeScriptCompile Include="Managers\IAsyncServiceManager.ts" />
+    <TypeScriptCompile Include="Managers\IAuthenticationManager.ts" />
+    <TypeScriptCompile Include="Managers\ICartManager.ts" />
+    <TypeScriptCompile Include="Managers\IChannelManager.ts" />
+    <TypeScriptCompile Include="Managers\ICustomerManager.ts" />
+    <TypeScriptCompile Include="Managers\IInventoryManager.ts" />
+    <TypeScriptCompile Include="Managers\IManagerFactory.ts" />
+    <TypeScriptCompile Include="Managers\IOperatorManager.ts" />
+    <TypeScriptCompile Include="Managers\IPaymentManager.ts" />
+    <TypeScriptCompile Include="Managers\IProductManager.ts" />
+    <TypeScriptCompile Include="Managers\IRecordingManager.ts" />
+    <TypeScriptCompile Include="Managers\IReportManager.ts" />
+    <TypeScriptCompile Include="Managers\ISalesOrderManager.ts" />
+    <TypeScriptCompile Include="Managers\IStockCountJournalManager.ts" />
+    <TypeScriptCompile Include="Managers\IStoreOperationsManager.ts" />
+    <TypeScriptCompile Include="Managers\ITillLayoutManager.ts" />
+    <TypeScriptCompile Include="Managers\Requests\ChainedRequest.ts" />
+    <TypeScriptCompile Include="Managers\Requests\ChainedRequestFactory.ts" />
+    <TypeScriptCompile Include="Managers\Requests\CommerceAuthenticationRequest.ts" />
+    <TypeScriptCompile Include="Managers\Requests\CommerceAuthenticationRequestFactory.ts" />
+    <TypeScriptCompile Include="Managers\Requests\CommerceRuntimeRequest.ts" />
+    <TypeScriptCompile Include="Managers\Requests\CommerceRuntimeRequestFactory.ts" />
+    <TypeScriptCompile Include="Managers\Requests\IDataServiceRequest.ts" />
+    <TypeScriptCompile Include="Managers\Requests\LocatorServiceRequest.ts" />
+    <TypeScriptCompile Include="Managers\Requests\LocatorServiceRequestFactory.ts" />
+    <TypeScriptCompile Include="Managers\Requests\ODataRequestBase.ts" />
+    <TypeScriptCompile Include="Managers\Requests\RetailServerRequest.ts" />
+    <TypeScriptCompile Include="Managers\Requests\RetailServerRequestFactory.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\AsyncServiceManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\AuthenticationManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\CartManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\ChannelManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\CustomerManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\InventoryManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\OperatorManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\PaymentManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\ProductManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\ReportManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\SalesOrderManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\StockCountJournalManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\StoreOperationsManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\RecordingManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServer\TillLayoutManager.ts" />
+    <TypeScriptCompile Include="Managers\RetailServerManagerFactory.ts" />
+    <TypeScriptCompile Include="NotificationHandler.ts" />
+    <TypeScriptCompile Include="NumberSequence.ts" />
+    <TypeScriptCompile Include="Operations\AddAffiliationFromListOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\AddAffiliationOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\AddCustomerToSalesOrderOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\AddDiscountCodeBarcodeOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\AddGiftCardOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\AddLoyaltyCardOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\BankDropOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\GetEnvironmentConfiguration.ts" />
+    <TypeScriptCompile Include="Operations\ExtendedLogOnOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\BlankOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\BlindCloseShiftOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\CalculateTotalOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ChangePasswordOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ChangeUnitOfMeasureOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ClearQuantityOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\CloseShiftOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\CreateCustomerOrderOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\CreateCustomerQuoteOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\CustomerAccountDepositOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\CustomerAddOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\CustomerClearOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\CustomerEditOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\CustomerOrderHelper.ts" />
+    <TypeScriptCompile Include="Operations\CustomerSearchOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\DatabaseConnectionStatusOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\DeactivateDeviceOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\DeclareStartAmountOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\DepositOverrideOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\AADLogonOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\AnonymousLogonOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\CheckServerConnectivityOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\DeviceActivationOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\DeviceActivationOperationBase.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\DeviceActivationSequence.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\GetDeviceConfigurationOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\GetEmployeesOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\GetHardwareProfileOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\GetLatestNumberSequenceOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\GetLocalizationOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\GetPaymentMerchantInformationOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\IDeviceActivationOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\LogoffOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\LogonWithDeviceTokenOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\DiagnosticsOperation.ts" />
+    <TypeScriptCompile Include="Operations\DeviceActivationOperations\UpdateServerUrlOperation.ts" />
+    <TypeScriptCompile Include="Operations\DiscountOperationsHelper.ts" />
+    <TypeScriptCompile Include="Operations\DisplayTotalOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ExpenseAccountsOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\FloatEntryOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\GetPaymentsHistoryOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\GiftCardBalanceOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\IncomeAccountsOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\InvoiceCommentOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\IssueCreditMemoOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\IssueGiftCardOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\IssueLoyaltyCardOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ItemSaleOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\LineDiscountAmountOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\LineDiscountPercentOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\LogoffOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\OpenCashDrawerOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\OperationHandlerBase.ts" />
+    <TypeScriptCompile Include="Operations\OverrideLineProductTaxFromListOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\OverrideLineProductTaxOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\OverrideTaxOperationsHelper.ts" />
+    <TypeScriptCompile Include="Operations\OverrideTransactionTaxFromListOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\OverrideTransactionTaxOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\PairHardwareStationOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\PayCashQuickOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\PaymentOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\PickupAllOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\PickupSelectedOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\PrePostTriggerOperationHandlerBase.ts" />
+    <TypeScriptCompile Include="Operations\PriceOverrideOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\PrintXOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\PrintZOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ProductCommentOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\RecalculateCustomerOrderOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\RecallCustomerOrderOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\RecallTransactionOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ResetPasswordOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ReturnBaseOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ReturnProductOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ReturnTransactionOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\SafeDropOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\SalesOrderOperationHelpers.ts" />
+    <TypeScriptCompile Include="Operations\SalesPersonOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\SelectHardwareStationOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\SetQuantityOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\SetQuotationExpirationDateOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ShipAllOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ShipSelectedOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ShowBlindClosedShiftsOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ShowJournalOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\SuspendShiftOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\SuspendTransactionOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\TenderDeclarationOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\TenderRemovalOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\TimeClockOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\TotalDiscountAmountOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\TotalDiscountPercentOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\TransactionCommentOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\UpdateCustomerOrderOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\ViewTimeClockEntriesOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\VoidPaymentOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\VoidProductsOperationHandler.ts" />
+    <TypeScriptCompile Include="Operations\VoidTransactionOperationHandler.ts" />
+    <TypeScriptCompile Include="OperationsManager.ts" />
+    <TypeScriptCompile Include="OperationValidators.ts" />
+    <TypeScriptCompile Include="Parsers.ts" />
+    <TypeScriptCompile Include="PaymentErrorHelper.ts" />
+    <TypeScriptCompile Include="Peripherals\CompositeBarcodeScanner.ts" />
+    <TypeScriptCompile Include="Peripherals\CompositeMagneticStripeReader.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\BarcodeScanner.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\CardPayment.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\CashDrawer.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\CompositeBarcodeScanner.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\HardwareStationContext.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\LineDisplay.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\LineDisplayHelper.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\LongPollingLockPeripheralBase.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\MagneticStripeReader.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\PaymentTerminal.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\PinPad.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\Printer.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\Scale.ts" />
+    <TypeScriptCompile Include="Peripherals\HardwareStation\SignatureCapture.ts" />
+    <TypeScriptCompile Include="Peripherals\IBarcodeScanner.ts" />
+    <TypeScriptCompile Include="Peripherals\ICardPayment.ts" />
+    <TypeScriptCompile Include="Peripherals\ICashDrawer.ts" />
+    <TypeScriptCompile Include="Peripherals\IDualDisplay.ts" />
+    <TypeScriptCompile Include="Peripherals\IInitializable.ts" />
+    <TypeScriptCompile Include="Peripherals\ILineDisplay.ts" />
+    <TypeScriptCompile Include="Peripherals\IMagneticStripeReader.ts" />
+    <TypeScriptCompile Include="Peripherals\IPaymentTerminalFull.ts" />
+    <TypeScriptCompile Include="Peripherals\IPaymentTerminalExtension.ts" />
+    <TypeScriptCompile Include="Peripherals\IPaymentTerminal.ts" />
+    <TypeScriptCompile Include="Peripherals\IPeripherals.ts" />
+    <TypeScriptCompile Include="Peripherals\IPinPad.ts" />
+    <TypeScriptCompile Include="Peripherals\IPrinter.ts" />
+    <TypeScriptCompile Include="Peripherals\IProximity.ts" />
+    <TypeScriptCompile Include="Peripherals\IScale.ts" />
+    <TypeScriptCompile Include="Peripherals\ISignatureCapture.ts" />
+    <TypeScriptCompile Include="Peripherals\KeyboardPressEventAggregator.ts" />
+    <TypeScriptCompile Include="Peripherals\KeyboardBarcodeScanParser.ts" />
+    <TypeScriptCompile Include="Peripherals\MSRKeyboardSwipeParser.ts" />
+    <TypeScriptCompile Include="Peripherals\NoOperation\NopBarcodeScanner.ts" />
+    <TypeScriptCompile Include="Peripherals\NoOperation\NopDualDisplay.ts" />
+    <TypeScriptCompile Include="Peripherals\NoOperation\NopMagneticStripeReader.ts" />
+    <TypeScriptCompile Include="Peripherals\NoOperation\NopPaymentTerminal.ts" />
+    <TypeScriptCompile Include="Peripherals\NoOperation\NopProximity.ts" />
+    <TypeScriptCompile Include="Peripherals\PeripheralsBase.ts" />
+    <TypeScriptCompile Include="RegularExpressionValidations.ts" />
+    <TypeScriptCompile Include="Session.ts" />
+    <TypeScriptCompile Include="TaskRecorder\Configuration\ITaskRecorderConfig.ts" />
+    <TypeScriptCompile Include="TaskRecorder\ITaskRecorderController.ts" />
+    <TypeScriptCompile Include="TaskRecorder\Model\TaskGuideModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\Model\RecordingFactory.ts" />
+    <TypeScriptCompile Include="TaskRecorder\TaskRecorderDownloader.ts" />
+    <TypeScriptCompile Include="TaskRecorder\TaskRecorderEventListener.ts" />
+    <TypeScriptCompile Include="TaskRecorder\TaskRecorderManager.ts" />
+    <TypeScriptCompile Include="TaskRecorder\TaskRecorderSession.ts" />
+    <TypeScriptCompile Include="TaskRecorder\TaskRecorderState.ts" />
+    <TypeScriptCompile Include="TaskRecorder\TaskRecorderUploadScreenshotsHandler.ts" />
+    <TypeScriptCompile Include="TaskRecorder\ITaskSubscriber.ts" />
+    <TypeScriptCompile Include="TaskRecorder\TaskRecorderUtil.ts" />
+    <TypeScriptCompile Include="TaskRecorder\UI\TaskRecorderViewManager.ts" />
+    <TypeScriptCompile Include="TaskRecorder\UI\ViewDefinition.ts" />
+    <TypeScriptCompile Include="TaskRecorder\ViewModel\ITaskRecorderNodeViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\ViewModel\TaskRecorderSessionViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\ViewModel\TaskRecorderStepViewModel.ts" />
+    <TypeScriptCompile Include="TaskRecorder\ViewModel\TaskRecorderTaskViewModel.ts" />
+    <TypeScriptCompile Include="TenderTypeMap.ts" />
+    <TypeScriptCompile Include="Triggers\ApplicationTriggers.ts" />
+    <TypeScriptCompile Include="Triggers\CashManagementTriggers.ts" />
+    <TypeScriptCompile Include="Triggers\CustomerTriggers.ts" />
+    <TypeScriptCompile Include="Triggers\DiscountTriggers.ts" />
+    <TypeScriptCompile Include="Triggers\ITrigger.ts" />
+    <TypeScriptCompile Include="Triggers\OperationTriggers.ts" />
+    <TypeScriptCompile Include="Triggers\PaymentTriggers.ts" />
+    <TypeScriptCompile Include="Triggers\PrintingTriggers.ts" />
+    <TypeScriptCompile Include="Triggers\ProductTriggers.ts" />
+    <TypeScriptCompile Include="Triggers\TransactionTriggers.ts" />
+    <TypeScriptCompile Include="Triggers\TriggerHelper.ts" />
+    <TypeScriptCompile Include="Triggers\TriggerManager.ts" />
+    <TypeScriptCompile Include="Triggers\TriggerType.ts" />
+    <TypeScriptCompile Include="UserActivityTracker.ts" />
+    <TypeScriptCompile Include="Utilities\AddressHelper.ts" />
+    <TypeScriptCompile Include="Utilities\ReceiptHelper.ts" />
+    <TypeScriptCompile Include="Utilities\SimpleProductHelper.ts" />
+    <TypeScriptCompile Include="Utilities\ThrowIf.ts" />
+    <TypeScriptCompile Include="Utilities\CartHelper.ts" />
+    <TypeScriptCompile Include="Utilities\CartLineHelper.ts" />
+    <TypeScriptCompile Include="Utilities\ClientBrokerHelper.ts" />
+    <TypeScriptCompile Include="Utilities\CSSHelpers.ts" />
+    <TypeScriptCompile Include="Utilities\CurrencyHelper.ts" />
+    <TypeScriptCompile Include="Utilities\CustomerHelper.ts" />
+    <TypeScriptCompile Include="Utilities\DataHelper.ts" />
+    <TypeScriptCompile Include="Utilities\DeliveryHelper.ts" />
+    <TypeScriptCompile Include="Utilities\DeviceActivationHelper.ts" />
+    <TypeScriptCompile Include="Utilities\Dictionary.ts" />
+    <TypeScriptCompile Include="Utilities\DiscountsHelper.ts" />
+    <TypeScriptCompile Include="Utilities\ErrorHelper.ts" />
+    <TypeScriptCompile Include="Utilities\EscapingHelper.ts" />
+    <TypeScriptCompile Include="Utilities\ExtensibilityHelper.ts" />
+    <TypeScriptCompile Include="Utilities\FunctionQueueHelper.ts" />
+    <TypeScriptCompile Include="Utilities\HardwareStationEndpointStorage.ts" />
+    <TypeScriptCompile Include="Utilities\HealthCheckParser.ts" />
+    <TypeScriptCompile Include="Utilities\ImageHelper.ts" />
+    <TypeScriptCompile Include="Utilities\LogonHelper.ts" />
+    <TypeScriptCompile Include="Utilities\MediaBlobHelper.ts" />
+    <TypeScriptCompile Include="Utilities\OfflineHelper.ts" />
+    <TypeScriptCompile Include="Utilities\PaymentHelper.ts" />
+    <TypeScriptCompile Include="Utilities\ProductCatalogStoreHelper.ts" />
+    <TypeScriptCompile Include="Utilities\ProductPropertiesHelper.ts" />
+    <TypeScriptCompile Include="Utilities\ProductSearchResultHelper.ts" />
+    <TypeScriptCompile Include="Utilities\ReasonCodesHelper.ts" />
+    <TypeScriptCompile Include="Utilities\SerializationHelpers.ts" />
+    <TypeScriptCompile Include="Utilities\ShiftHelper.ts" />
+    <TypeScriptCompile Include="Utilities\UnitOfMeasureHelper.ts" />
+    <TypeScriptCompile Include="Utilities\UrlHelper.ts" />
+  </ItemGroup>
+  <ItemGroup Label="Libraries">
+    <TypeScriptLibraries Include="DataJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="Diagnostics.TypeScriptCore.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="JQuery.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="KnockoutJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="moment.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="moment-node.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="moment-timezone.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="RetailLogger.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="WinRT.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="globalize.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="WinJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptCompile Include="@(TypeScriptLibraries -&gt; '%(Filename)%(Extension)')" />
+  </ItemGroup>
+  <ItemGroup>
+    <Clean Include="$(MSBuildProjectDirectory)\Entities\CommerceTypes.g.ts;$(MSBuildProjectDirectory)\Managers\Context\CommerceContext.g.ts" />
+  </ItemGroup>
+  <!-- 
+  Target that generates the Retail proxy files for POS
+  -->
+  <Target Name="GeneratePOSRetailProxyFiles" BeforeTargets="PreComputeCompileTypeScript" DependsOnTargets="SetupCommerceProxyGenerator" Inputs="$(MSBuildAllProjects);@(CommerceProxyGeneratorOutputFile);$(RetailServerLibraryPathForProxyGeneration)" Outputs="$(MSBuildProjectDirectory)\Entities\CommerceTypes.g.ts;$(MSBuildProjectDirectory)\Managers\Context\CommerceContext.g.ts" Condition="Exists('$(RetailServerLibraryPathForProxyGeneration)')">
+    <Exec Command="&quot;$(CommerceProxyGeneratorOutputLocation)CommerceProxyGenerator.exe&quot; &quot;$(RetailServerLibraryPathForProxyGeneration)&quot; /a:typescript /outputpath:$(OutputPath)" />
+    <Copy SourceFiles="$(OutputPath)\CommerceTypes.g.ts" DestinationFiles="$(MSBuildProjectDirectory)\Entities\CommerceTypes.g.ts" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(OutputPath)\CommerceContext.g.ts" DestinationFiles="$(MSBuildProjectDirectory)\Managers\Context\CommerceContext.g.ts" SkipUnchangedFiles="true" />
+  </Target>
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.targets')" />
+  <Target Name="CopyTypeScriptLibraries" BeforeTargets="PreComputeCompileTypeScript;">
+    <Copy SourceFiles="%(TypeScriptLibraries.Identity)" DestinationFiles="$(TypeScriptLibrariesOutDir)%(TypeScriptLibraries.FileName)%(TypeScriptLibraries.Extension)" SkipUnchangedFiles="true" Condition="Exists('%(TypeScriptLibraries.Identity)')" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

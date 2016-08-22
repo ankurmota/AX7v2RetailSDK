@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CustomersView</title>
+
+    <link href="CustomerAddEditView.css" rel="stylesheet" />
+</head>
+<body>
+    <form autocomplete="off">
+        <div class="fragment customerAddEditView">
+            <!-- Indeterminate wait -->
+            <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+            <!-- Page header -->
+            <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+            <section role="main" class="row grow" data-bind="resx: { ariaLabel: 'string_4454' }">
+                <!-- Main content -->
+
+                <div class="col grow-landscape maxWidth68 minWidth52">
+                    <div class="row marginBottom1">
+
+                        <!-- Customer type -->
+                        <div class="stretch">
+                            <label for="customerTypeInput" data-bind="resx: { textContent: 'string_1300' }">Type</label>
+                            <select tabindex="1" id="customerTypeInput"
+                                    data-bind="enable: _customerTypeInputEnable,
+                                    options: customerAddEditViewModel.CustomerTypes,
+                                    optionsText: 'Name',
+                                    optionsValue: 'Code',
+                                    value: customerAddEditViewModel.CustomerProxy.CustomerTypeValue,
+                                    optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1301')"></select>
+                        </div>
+
+                        <div class="gutter4x4"></div>
+
+                        <!-- Customer group -->
+                        <div class="stretch">
+                            <label for="customerGroupOptions" data-bind="resx: { textContent: 'string_1302' }">Customer Group</label>
+                            <select tabindex="2" id="customerGroupOptions"
+                                    data-bind="options: customerAddEditViewModel.CustomerGroups,
+                                    optionsText: 'CustomerGroupName',
+                                    optionsValue: 'CustomerGroupNumber',
+                                    value: customerAddEditViewModel.CustomerProxy.CustomerGroup,
+                                    optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1303')"></select>
+                        </div>
+                    </div>
+                    <div class="gutter3x3"></div>
+                    <!-- Contact Info header -->
+                    <div class="row marginBottom1 ">
+                        <h2 data-bind="resx: { textContent: 'string_1304' }">Contact information</h2>
+                    </div>
+
+                    <div class="row">
+                        <div class="col stretch">
+
+                            <!-- Company -->
+                            <div class="marginBottom2" data-bind="visible: !arePersonFieldsVisible(), enableAll: !arePersonFieldsVisible()">
+                                <label for="companyNameInput" data-bind="resx: { textContent: 'string_1308' }">Company</label>
+                                <input tabindex="3" type="text" id="companyNameInput"
+                                       data-bind="validator: {
+                                        data: customerAddEditViewModel.CustomerProxy,
+                                        field: 'Name',
+                                        validatorType: 'CustomerValidator'
+                                    }" />
+                            </div>
+
+                            <!-- First name -->
+                            <div class="marginBottom2" data-bind="visible: PersonFieldsVisible, enableAll: PersonFieldsVisible">
+                                <label for="customerFirstNameInput" data-bind="resx: { textContent: 'string_1305' }">First Name</label>
+                                <input tabindex="3" type="text" id="customerFirstNameInput"
+                                       data-bind="validator: {
+                                    data: customerAddEditViewModel.CustomerProxy,
+                                    field: 'FirstName',
+                                    validatorType: 'CustomerValidator'
+                                }" />
+                            </div>
+                        </div>
+
+                        <div class="gutter4x4"></div>
+
+                        <div class="col stretch">
+                            <!-- Last name -->
+                            <div class="marginBottom2" data-bind="visible: PersonFieldsVisible, enableAll: PersonFieldsVisible">
+                                <label for="customerLastNameInput" data-bind="resx: { textContent: 'string_1307' }">Last Name</label>
+                                <input tabindex="4" type="text" id="customerLastNameInput"
+                                       data-bind="validator: {
+                                        data: customerAddEditViewModel.CustomerProxy,
+                                        field: 'LastName',
+                                        validatorType: 'CustomerValidator'
+                                    }" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col stretch">
+                            <!-- Contact email address -->
+                            <div class="marginBottom2">
+                                <label for="customerContactEmailInput" data-bind="resx: { textContent: 'string_4845' }">Contact email address</label>
+                                <input tabindex="5" type="text" id="customerContactEmailInput"
+                                       data-bind="validator: {
+                                       data: customerAddEditViewModel.CustomerProxy,
+                                       field: 'Email',
+                                       validatorType: 'AddressValidator',
+                                       validatorField: 'Email',
+                                       },
+                                       event: { blur: onBlurContactEmail }"/>
+                            </div>
+                            <!-- Phone number -->
+                            <div class="marginBottom1">
+                                <label for="customerPhoneNumberInput" data-bind="resx: { textContent: 'string_1309' }">Phone</label>
+                                <input tabindex="7" type="tel" id="customerPhoneNumberInput"
+                                       data-bind="validator: {
+                                       data: customerAddEditViewModel.CustomerProxy,
+                                       field: 'Phone',
+                                       validatorType: 'AddressValidator'
+                                       }"/>
+                            </div>
+                        </div>
+                        <div class="gutter4x4"></div>
+                        <div class="col stretch">
+                            <!-- Receipt email address -->
+                            <div class="marginBottom2">
+                                <label for="customerReceiptEmailInput" data-bind="resx: { textContent: 'string_1312' }">Receipt Email</label>
+                                <input tabindex="6" type="text" id="customerReceiptEmailInput"
+                                       data-bind="validator: {
+                                       data: customerAddEditViewModel.CustomerProxy,
+                                       field: 'ReceiptEmail',
+                                       validatorType: 'AddressValidator',
+                                       validatorField: 'Email'
+                                       }"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gutter3x3"></div>
+                    <!-- Preferences header add-edit-customer-preferences-->
+                    <div class="row marginBottom1 ">
+                        <h2 data-bind="resx: { textContent: 'string_1320' }">Preferences</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col stretch">
+                            <!-- Receipt preferences -->
+                            <div class="marginBottom2">
+                                <label for="customerReceiptPreferenceOptions" data-bind="resx: { textContent: 'string_1325' }">Receipt Preference</label>
+                                <select tabindex="8" id="customerReceiptPreferenceOptions" title="Choose receipt preference"
+                                        data-bind="options: customerAddEditViewModel.ReceiptOptions,
+                                        optionsText: 'Description',
+                                        optionsValue: 'Code',
+                                        value: customerAddEditViewModel.CustomerProxy.ReceiptSettings,
+                                        optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1326')"></select>
+                            </div>
+                                
+                            <!-- Language -->
+                            <div>
+                                <label for="customerLanguageOptions" data-bind="resx: { textContent: 'string_1323' }">Language</label>
+                                <select tabindex="10" id="customerLanguageOptions" title="Choose language"
+                                        data-bind="options: customerAddEditViewModel.Languages,
+                                        optionsText: 'LanguageName',
+                                        optionsValue: 'LanguageId',
+                                        value: customerAddEditViewModel.CustomerProxy.Language,
+                                        optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1324')"></select>
+                            </div>
+
+                        </div>
+
+                        <div class="gutter4x4"></div>
+
+                        <div class="col stretch">
+
+                            <!-- Currency -->
+                            <div class="marginBottom2">
+                                <label for="customerCurrencyOptions" data-bind="resx: { textContent: 'string_1321' }">Currency</label>
+                                <select tabindex="9" id="customerCurrencyOptions" title="Choose currency"
+                                        data-bind="options: customerAddEditViewModel.Currencies,
+                                        optionsText: 'CurrencyCode',
+                                        optionsValue: 'CurrencyCode',
+                                        value: customerAddEditViewModel.CustomerProxy.CurrencyCode,
+                                        optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1322')"></select>
+                            </div>
+
+                            <!-- BEGIN SDKSAMPLE_CUSTOMERPREFERENCES (do not remove this)
+                            <div class="marginBottom2">
+                                <label for="specialOfferTabRead" data-bind="resx: { textContent: 'string_1399' }">Receive special offers?</label>
+                                <input tabindex="11" type="checkbox" id="specialOfferTabRead"
+                                       data-bind="checked: customerAddEditViewModel.emailOptIn"/>
+                            </div>
+                            END SDKSAMPLE_CUSTOMERPREFERENCES (do not remove this) -->
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="gutter4x4"></div>
+
+                <div class="col width27">
+                    <div class="col stretch">
+                        <!-- Customer address card -->
+                        <div>
+                            <div class="marginBottom1">
+                                <h2 data-bind="resx: { textContent: 'string_4809' }">Primary Address</h2>
+                            </div>
+                            <div data-bind="customerCard: {data: _customerCardViewModel, template: 'customerPrimaryAddressCardTemplate'}"></div>
+                            <div data-bind="buttonBlock: {
+                                                    buttonClass: 'iconAdd',
+                                                    ariaLabelResx: 'string_2503',    // Create a new address
+                                                    labelTextResx: 'string_2503',    // Create a new address
+                                    }, invokeValidate: gotoAddNewAddress, css: { 'marginTop1': addressFilled } ">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gutter4x4"></div>
+
+                    <div class="col stretch hideInLandscape"></div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl" data-win-options="{
+                sticky : true
+            }">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{
+                    id:'cmdSaveCustomerDetails',
+                    extraClass: 'winappbar-iconSave',
+                    section:'global'
+                }"
+                    data-bind="enable: customerAddEditViewModel.canSave, invokeValidate: saveCustomer, resx: { label: 'string_1327' }"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{
+                    id:'cmdSaveAndAddCustomerToSale',
+                    extraClass: 'winappbar-iconAdd',
+                    section:'global'
+                }"
+                    data-bind="enable: customerAddEditViewModel.canSave, invokeValidate: saveAndAddCustomerToSale, resx: { label: 'string_1328' }"></button>
+        </div>
+
+    </form>
+</body>
+</html>

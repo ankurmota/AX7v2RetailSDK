@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+  <PaymentProcessor_GetPaymentProcessor_PortableSuccess>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GetPaymentProcessor_PortableSuccess>
+  <PaymentProcessor_GetPaymentProcessor_PortableSuccess>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GetPaymentProcessor_PortableSuccess>
+
+  <PaymentProcessor_GetPaymentProcessor_DesktopSuccess>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GetPaymentProcessor_DesktopSuccess>
+  
+</TestData>

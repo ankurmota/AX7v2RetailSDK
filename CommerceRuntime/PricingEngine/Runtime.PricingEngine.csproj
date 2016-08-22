@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{759D0ADC-01A4-40E3-96F5-763265C6C9FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.Runtime.Services.PricingEngine</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.Runtime.Services.PricingEngine</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ChannelCurrencyOperations.cs" />
+    <Compile Include="ChargeLineTotaler.cs" />
+    <Compile Include="Discount.cs" />
+    <Compile Include="DiscountData\AppliedDiscountApplication.cs" />
+    <Compile Include="DiscountData\BitSet.cs" />
+    <Compile Include="DiscountData\DiscountableItemGroup.cs" />
+    <Compile Include="DiscountData\DiscountApplication.cs" />
+    <Compile Include="DiscountData\DiscountApplicationState.cs" />
+    <Compile Include="DiscountData\DiscountBase.cs" />
+    <Compile Include="DiscountData\DiscountCalculator.cs" />
+    <Compile Include="DiscountData\DiscountDealEstimate.cs" />
+    <Compile Include="DiscountData\DiscountLineQuantity.cs" />
+    <Compile Include="DiscountData\ItemCompoundedOfferQuantityLookup.cs" />
+    <Compile Include="DiscountData\ItemPriceComparer.cs" />
+    <Compile Include="DiscountData\MixAndMatchDiscount.cs" />
+    <Compile Include="DiscountData\MultipleBuyDiscount.cs" />
+    <Compile Include="DiscountData\OfferDiscount.cs" />
+    <Compile Include="DiscountData\OverlapppedDiscounts.cs" />
+    <Compile Include="DiscountData\RetailDiscountLineItem.cs" />
+    <Compile Include="DiscountData\RetailDiscountStore.cs" />
+    <Compile Include="DiscountData\SingleItemNonOverlappedDiscountResult.cs" />
+    <Compile Include="DiscountData\ThresholdDiscount.cs" />
+    <Compile Include="DiscountParameters.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ICurrencyOperations.cs" />
+    <Compile Include="IndiaPriceHelper.cs" />
+    <Compile Include="InternalValidationPeriod.cs" />
+    <Compile Include="IPricingDataAccessor.cs" />
+    <Compile Include="LineDiscountCalculator.cs" />
+    <Compile Include="LoyaltyDiscountCalculator.cs" />
+    <Compile Include="MultilineDiscountCalculator.cs" />
+    <Compile Include="PriceAgreementArgs.cs" />
+    <Compile Include="PriceContext.cs" />
+    <Compile Include="PriceContextHelper.cs" />
+    <Compile Include="PriceLineResolver.cs" />
+    <Compile Include="PricingCalculators\BasePriceCalculator.cs" />
+    <Compile Include="PricingCalculators\IPricingCalculator.cs" />
+    <Compile Include="PricingCalculators\PriceAdjustmentCalculator.cs" />
+    <Compile Include="PricingCalculators\TradeAgreementCalculator.cs" />
+    <Compile Include="PricingEngine.cs" />
+    <Compile Include="PricingEngineDiagnosticsObject.cs" />
+    <Compile Include="PricingEnums.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesLineTotaller.cs" />
+    <Compile Include="SimpleProfiler.cs" />
+    <Compile Include="TotalDiscountCalculator.cs" />
+    <Compile Include="TypeHelperForAx.cs" />
+    <Compile Include="Types\PriceGroupIncludesTax.cs" />
+    <Compile Include="Types\PriceResult.cs" />
+    <Compile Include="Types\RetailPriceArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

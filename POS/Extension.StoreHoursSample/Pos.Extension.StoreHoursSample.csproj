@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.Default.props" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputPath>bin</OutputPath>
+    <OutputType>Library</OutputType>
+    <AssemblyName>$(AssemblyNamePrefix).Pos.Extension.StoreHoursSample</AssemblyName>
+    <ProjectGuid>{2A3F8C68-9DB1-45EA-94FF-CD97DD8C23B6}</ProjectGuid>
+    <TypeScriptOutFile>Custom.Extension.js</TypeScriptOutFile>
+    <TypeScriptNoImplicitAny>false</TypeScriptNoImplicitAny>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+    <TypeScriptLibrariesOutDir>$(MsBuildThisFileDirectory)</TypeScriptLibrariesOutDir>
+    <IgnoreAssemblyDuringSdkGeneration>true</IgnoreAssemblyDuringSdkGeneration>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Managers\ExtendedManagerFactory.ts" />
+    <TypeScriptCompile Include="Managers\IExtendedChannelManager.ts" />
+    <TypeScriptCompile Include="Pos.Extension.ts" />
+  </ItemGroup>
+  <ItemGroup Label="Libraries">
+    <TypeScriptLibraries Include="..\Core\Commerce.Core.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\Core.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\DataJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\Diagnostics.TypeScriptCore.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\JQuery.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\KnockoutJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\moment.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\moment-node.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\moment-timezone.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\RetailLogger.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\WinRT.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\WinJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\Core\globalize.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptCompile Include="@(TypeScriptLibraries -&gt; '%(Filename)%(Extension)')" />
+  </ItemGroup>
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.targets')" />
+  <Target Name="CopyTypeScriptLibraries" BeforeTargets="PreComputeCompileTypeScript;">
+    <Copy SourceFiles="%(TypeScriptLibraries.Identity)" DestinationFiles="$(TypeScriptLibrariesOutDir)%(TypeScriptLibraries.FileName)%(TypeScriptLibraries.Extension)" SkipUnchangedFiles="true" Condition="Exists('%(TypeScriptLibraries.Identity)')" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

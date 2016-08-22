@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>LockRegisterView</title>
+    <link href="LockRegister.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="fragment" data-bind="css: { loginBackgroundImage: !_isPortraitOrientation(), loginBackgroundImagePortrait: _isPortraitOrientation() }">
+
+        <div data-bind="loader: { visible: loading }"></div>
+
+        <!--Lock Register panel for displaying operator id and accepting password-->
+        <section id="lockRegisterSection" role="main" class="full-screen center margin0" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <!-- Main content -->
+            <div class="width50 pad4 primaryBackgroundColor highContrastBorderThin">
+                <div>
+                    <h1 class="wrapTextWithoutHyphen" data-bind="resx: { textContent: 'string_6700' }">Register locked</h1>
+                </div>
+
+                <div class="padTop4">
+                    <label data-bind="resx: { textContent: 'string_6701' }">Store</label>
+
+                    <h4 data-bind="text: store">Store</h4>
+                </div>
+
+                <div class="padTop2">
+                    <label data-bind="resx: { textContent: 'string_6703' }">Operator Id</label>
+
+                    <h4 data-bind="text: operatorId">Operator Id</h4>
+                </div>
+
+                <div class="padTop2">
+                    <label data-bind="resx: { textContent: 'string_6704' }" for="passwordBox">Password</label>
+
+                    <input id="passwordBox" type="password" required="required"
+                           data-bind="
+                                    value: viewModel.password,
+                                    valueUpdate: 'afterkeydown',
+                                    enterKeyPress: unlockRegisterButtonClick,
+                                    validator: {
+                                        validatorField: 'Password',
+                                        validatorType: 'ConnectionRequestValidator'
+                                    }" />
+                </div>
+
+                <div class="padTop4 row alignRight">
+                    <div>
+                        <button class="primaryButton" data-bind="resx: { textContent: 'string_6705' }, click: unlockRegisterButtonClick, disable: _disableUnlockButton">
+                            Unlock register
+                        </button>
+                    </div>
+                    <div class="padLeft1">
+                        <button class="secondaryButton" data-bind=" resx: { textcontent: 'string_6706' }, click: switchUser">
+                            Switch user
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

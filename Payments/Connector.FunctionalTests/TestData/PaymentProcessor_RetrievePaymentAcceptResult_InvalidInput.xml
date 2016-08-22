@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+
+  <PaymentProcessor_RetrievePaymentAcceptResult_InvalidInput>
+    <TestDescriptor>Invalid merchant account</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable_InvalidProperties.xml</MerchantAccountXmlPath>
+    <PaymentAcceptResultAccessCode>54B27908-3B17-46A0-B299-39D881082508</PaymentAcceptResultAccessCode>
+    <IndustryType>Retail</IndustryType>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_RetrievePaymentAcceptResult_InvalidInput>
+  <PaymentProcessor_RetrievePaymentAcceptResult_InvalidInput>
+    <TestDescriptor>Invalid result access code</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <PaymentAcceptResultAccessCode>54B27908-3B17-46A0-B299-39D881082508</PaymentAcceptResultAccessCode>
+    <IndustryType>Retail</IndustryType>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_RetrievePaymentAcceptResult_InvalidInput>
+  <PaymentProcessor_RetrievePaymentAcceptResult_InvalidInput>
+    <TestDescriptor>Invalid merchant account</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop_InvalidProperties.xml</MerchantAccountXmlPath>
+    <PaymentAcceptResultAccessCode>54B27908-3B17-46A0-B299-39D881082508</PaymentAcceptResultAccessCode>
+    <IndustryType>Retail</IndustryType>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_RetrievePaymentAcceptResult_InvalidInput>
+  <PaymentProcessor_RetrievePaymentAcceptResult_InvalidInput>
+    <TestDescriptor>Invalid result access code</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <PaymentAcceptResultAccessCode>54B27908-3B17-46A0-B299-39D881082508</PaymentAcceptResultAccessCode>
+    <IndustryType>Retail</IndustryType>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_RetrievePaymentAcceptResult_InvalidInput>
+
+  <PaymentProcessor_RetrievePaymentAcceptResult_NullRequest>
+    <TestDescriptor>Null request</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_RetrievePaymentAcceptResult_NullRequest>
+  <PaymentProcessor_RetrievePaymentAcceptResult_NullRequest>
+    <TestDescriptor>Null request</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_RetrievePaymentAcceptResult_NullRequest>
+  
+</TestData>

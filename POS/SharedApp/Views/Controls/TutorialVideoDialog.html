@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tutorial</title>
+
+    <!-- WinJS references -->
+    <link href="/views/Controls/TutorialVideoDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="tutorial-dialog" data-bind="customControlInternal: 'TutorialVideoDialog'">
+        <div data-bind="dialog:
+            {
+                visible: visible,
+                buttonClick: hideDialog,
+                showProgressIndicator: indeterminateWaitVisible,
+                closeOnEscButton: false,
+                isFullView: true,
+                focus: false
+            }">
+
+            <!-- dialog content -->
+            <div class="col grow">
+                <div class="height6 no-shrink row grow">
+                    <div class="grow">
+                        <h1 class="title" data-bind="resx: { textContent: 'string_7622' }"> Welcome to Retail POS </h1>
+                    </div>
+                    <div>
+                        <h1 id="closeDialogButton" tabindex="0" class="accent closeButton" data-bind="click: hideDialog, enterKeyPress: hideDialog, resx: { ariaLabel: 'string_7623' }"> &#xE10A </h1>
+                    </div>    
+                </div>                
+                <div id="videoContainer" class="row grow">
+                    <div class="col grow">
+                        <video width="750" height="500" id="videoPlayer" controls="true" poster="true"></video>
+                         <div class="gutter3x3"></div>
+                        <div class="col grow">
+                            <div class="row">
+                                <input id="videoCheckbox" type="checkbox" data-bind="checked: tutorialVideoDisabled"/>
+                                <div class="padTop03">
+                                    <label class="label-checkbox" for="videoCheckbox" data-bind="resx: { textContent: 'string_7624' }">Don't show me the app introduction next time.</label>
+                                </div>
+                            </div>
+                            <div class="row marginTop1">
+                                <input id="bubbleCheckbox" type="checkbox" data-bind="checked: bubbleTourDisabled" />
+                                <div class="padTop03">
+                                    <label class="label-checkbox" for="bubbleCheckbox" data-bind="resx: { textContent: 'string_7625' }">Don't show me the app tour next time.</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="videoLinks" class="col width37">
+                        <div class=" col grow scrollY" data-bind="foreach: _videoList">
+                            <div class="row">
+                                <div class="width8 playButton-wrapper">
+                                    <h3 class="playButton accent" data-bind="visible: active, resx: { ariaLabel: 'string_7626' }">&#xE102 </h3>
+                                </div>
+                                <div class="grow">
+                                    <a class="video-link" href="#" data-bind="click: $parent.playVideo.bind($parent)">
+                                        <h3 data-bind="resx: { textContent: name }"></h3>
+                                    </a>
+
+                                    <h4 data-bind="resx: { textContent: description }"></h4>
+                                    <h6 class="bold" data-bind="text: durationString"></h6>
+                                </div>
+                            </div>
+                            <div class="gutter3x3"></div>
+                        </div>
+                        <div class="col no-shrink">
+                            <div class="row">
+                                <div class="width8"></div>
+                                <button id="btnStartExploring" class="explore-button grow" type="button" value="Start exploring now" data-bind="click: hideDialog, resx: { textContent: 'string_7627' }">
+                                    Start exploring now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

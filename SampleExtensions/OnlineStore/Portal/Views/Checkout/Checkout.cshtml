@@ -1,0 +1,19 @@
+@using Contoso.Retail.Ecommerce.Sdk.Controls
+
+@{
+    ViewBag.Title = "Checkout - Contoso";
+}
+
+@section other {
+    @MvcHelperExtension.GetCheckoutControlHeader("/OrderConfirmation", false)
+
+    @{
+        this.ViewContext.HttpContext.Items["IsCheckout"] = true;
+    }
+}
+
+@MvcHelperExtension.GetCheckoutControl()
+
+
+
+

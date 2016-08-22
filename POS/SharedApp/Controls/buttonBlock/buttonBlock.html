@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>buttonBlock control</title>
+</head>
+<body>
+<script type="text/html" id="buttonBlockTemplate">
+    <div class="pad1 centerY row"
+         data-bind="attr: { 'tabindex': tabIndex, 'aria-label': ariaLabel },
+                       css: { 
+                                height5: !bigButtonBlock,
+                                height6: bigButtonBlock,
+                                padLeft0: blockType === Commerce.ButtonBlock.ButtonBlockType.Text },
+                       style: { 'cursor': blockType === Commerce.ButtonBlock.ButtonBlockType.Text ? 'default' : 'pointer' },
+                        attr: { role: blockType === Commerce.ButtonBlock.ButtonBlockType.Text ? '' : 'button' }">
+            <button tabindex=" -1" data-bind="attr: { 'class': buttonClass }, visible: !loading() && blockType === Commerce.ButtonBlock.ButtonBlockType.Button"></button>
+            <div class="col height2" data-bind="visible: !loading() && blockType === Commerce.ButtonBlock.ButtonBlockType.Text">
+                <h4 tabindex=" -1" class="margin0" style="cursor: default" data-bind="css: buttonClass"></h4>
+            </div>
+            <div class="width3 height2" data-bind="loader: { visible: loading, isSmall: true, type: Commerce.Controls.LoaderType.Nested, color: Commerce.Controls.LoaderColor.White }"></div>
+            <div tabindex="-1" class="marginLeft1" data-bind="visible: labelVisible"></div>
+            <!-- Label for standard button block -->
+            <h4 tabindex="-1"
+                class="margin0 ellipsis"
+                data-bind="text: label
+                         , visible: labelVisible && standardButtonBlock
+                         , css: maxLabelWidthClass"></h4>
+            <!-- Label for big button block -->
+            <h3 tabindex="-1"
+                class="margin0 ellipsis"
+                data-bind="text: label
+                         , visible: labelVisible && bigButtonBlock
+                         , css: maxLabelWidthClass"></h3>
+        </div>
+    </script>
+</body>
+</html>

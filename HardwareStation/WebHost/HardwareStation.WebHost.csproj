@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD1A41C5-36D7-4622-8415-A71B3B1C36D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Contoso.Commerce.HardwareStation.WebHost</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.HardwareStation.WebHost</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <!-- NOTE: do not remove this property, otherwise the project won't be opened properly in VS. -->
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputPath>bin\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <!-- ETW Manifest Generator related properties. -->
+    <EtwManifestName>$(AssemblyName).man</EtwManifestName>
+    <EtwProviderId>2EDC7AEE-4EE6-4587-A978-76140643078D</EtwProviderId>
+    <EtwProviderName>Microsoft-Dynamics-Commerce-HardwareStation</EtwProviderName>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FPEINTERFACELib.dll">
+      <HintPath>..\..\References\FPEINTERFACELib\1.0.0.0\FPEINTERFACELib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.OposConstants.dll">
+      <HintPath>..\..\References\Interop.OposConstants\5.0.0.0\Interop.OposConstants.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Core.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Contracts.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Security.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.Core.Desktop.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Core.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.SDKManager.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.dll">
+      <HintPath>..\..\References\Newtonsoft.Json\6.0.0.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting.dll">
+      <HintPath>..\..\References\System.Net.Http.Formatting\5.2.2.0\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.dll">
+      <HintPath>..\..\References\System.Web.Http\5.2.2.0\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost.dll">
+      <HintPath>..\..\References\System.Web.Http.WebHost\5.2.2.0\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CorsSupport.cs" />
+    <Compile Include="Extensions\AuthenticationModule.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Global.asax">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <!-- Copy non referenced assemblies that are loaded at runtime -->
+  <ItemGroup>
+    <RuntimeDependencies Include="$(SdkAssetsPath)\Event.sqlite.db" />
+    <RuntimeDependencies Include="..\..\References\Interop.OposCashDrawer\5.0.0.0\Interop.OposCashDrawer.dll" />
+    <RuntimeDependencies Include="..\..\References\Interop.OposConstants\5.0.0.0\Interop.OposConstants.dll" />
+    <RuntimeDependencies Include="..\..\References\Interop.OposLineDisplay\5.0.0.0\Interop.OposLineDisplay.dll" />
+    <RuntimeDependencies Include="..\..\References\Interop.OposPinPad\5.0.0.0\Interop.OposPinPad.dll" />
+    <RuntimeDependencies Include="..\..\References\Interop.OposPOSPrinter\5.0.0.0\Interop.OposPOSPrinter.dll" />
+    <RuntimeDependencies Include="..\..\References\Interop.OposScale\5.0.0.0\Interop.OposScale.dll" />
+    <RuntimeDependencies Include="..\..\References\Interop.OposSigCap\5.0.0.0\Interop.OposSigCap.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.ApplicationInsights.Extensibility.PerfCollector\0.15.0.187\Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry\0.15.0.179\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.ApplicationInsights.Extensibility.Web\0.15.0.179\Microsoft.ApplicationInsights.Extensibility.Web.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.ApplicationInsights.PersistenceChannel\0.15.0.187\Microsoft.ApplicationInsights.PersistenceChannel.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.ApplicationInsights\0.15.0.179\Microsoft.ApplicationInsights.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept\0.14.0.8007\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Diagnostics.Tracing.EventSource\1.1.16.0\Microsoft.Diagnostics.Tracing.EventSource.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Contracts.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Desktop.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Entities.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Network.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Opos.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.OposLibrary.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.PaymentTerminalLibrary.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.PrinterLibrary.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.SampleMx925Library.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Diagnostics.Sinks.Portable.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Proxies.Desktop.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.Notification.Contracts.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.Notification.Proxy.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.PaymentManager.Reference.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.PaymentProcessor.Common.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Extensions.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.PaymentTerminal.Contracts.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.Security.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.TestConnector.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Dynamics.Retail.TestConnector.Portable.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Practices.Prism\4.1.0.0\Microsoft.Practices.Prism.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Threading.Tasks.Extensions.Desktop\1.0.168.0\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Threading.Tasks.Extensions\1.0.12.0\Microsoft.Threading.Tasks.Extensions.dll" />
+    <RuntimeDependencies Include="..\..\References\Microsoft.Threading.Tasks\1.0.12.0\Microsoft.Threading.Tasks.dll" />
+    <RuntimeDependencies Include="..\..\References\Newtonsoft.Json.Portable\6.0.0.0\Newtonsoft.Json.Portable.dll" />
+    <RuntimeDependencies Include="..\..\References\sqlite3.dll" />
+    <RuntimeDependencies Include="..\..\References\SQLitePCL.Ext\3.8.5.0\SQLitePCL.Ext.dll" />
+    <RuntimeDependencies Include="..\..\References\SQLitePCL\3.8.5.0\SQLitePCL.dll" />
+    <RuntimeDependencies Include="..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll" />
+    <RuntimeDependencies Include="..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll" />
+    <RuntimeDependencies Include="..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll" />
+    <RuntimeDependencies Include="..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll" />
+    <RuntimeDependencies Include="..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll" />
+    <RuntimeDependencies Include="..\..\References\System.Threading.Tasks.Dataflow\4.5.25.0\System.Threading.Tasks.Dataflow.dll" />
+  </ItemGroup>
+  <!-- NOTE: do not remove this import, otherwise the project won't be opened properly in VS. The target is imported in Build.Retail.targets. -->
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="False" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51971</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51971/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="CopyRuntimeDependenciesLocally" AfterTargets="AfterBuild">
+    <Copy SourceFiles="@(RunTimeDependencies)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

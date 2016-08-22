@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.Default.props" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputPath>bin</OutputPath>
+    <ProjectGuid>{1DFD5AD7-3634-4B84-9D4C-4961DC40EBDD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Retail.Ecommerce.Sdk.Controls</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Retail.Ecommerce.Sdk.Controls</AssemblyName>
+    <TypeScriptOutFile>Common\Scripts.js</TypeScriptOutFile>
+    <TypeScriptNoImplicitAny>false</TypeScriptNoImplicitAny>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+    <TypeScriptLibrariesOutDir>$(MsBuildThisFileDirectory)</TypeScriptLibrariesOutDir>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TSLintEnabled>false</TSLintEnabled>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseControl\RetailWebControl.cs" />
+    <Compile Include="Checkout\Checkout.cs" />
+    <Compile Include="Common\ConfigurationSections\CheckoutControl.cs" />
+    <Compile Include="Common\ConfigurationSections\ControlsSection.cs" />
+    <Compile Include="Common\ConfigurationSections\Services.cs" />
+    <Compile Include="CustomerAddress\CustomerAddress.cs" />
+    <Compile Include="MiniCart\MiniCart.cs" />
+    <Compile Include="MvcHelperExtension.cs" />
+    <Compile Include="OrderDetails\OrderDetails.cs" />
+    <Compile Include="OrderHistory\OrderHistory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingCart\ShoppingCart.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Common\Helpers\ErrorHelper.ts" />
+    <TypeScriptCompile Include="Common\Helpers\PaymentErrorHelper.ts" />
+    <TypeScriptCompile Include="Common\WebApis\CartWebApi.ts" />
+    <TypeScriptCompile Include="Common\WebApis\CustomerWebApi.ts" />
+    <TypeScriptCompile Include="Common\WebApis\OrgUnitWebApi.ts" />
+    <TypeScriptCompile Include="Common\WebApis\ProductWebApi.ts" />
+    <TypeScriptCompile Include="Common\WebApis\RetailOperationsWebApi.ts" />
+    <TypeScriptCompile Include="Common\WebApis\SalesOrderWebApi.ts" />
+    <TypeScriptCompile Include="CustomerAddress\CustomerAddress.ts" />
+    <TypeScriptCompile Include="MiniCart\MiniCart.ts" />
+    <TypeScriptCompile Include="OrderDetails\OrderDetails.ts" />
+    <TypeScriptCompile Include="OrderHistory\OrderHistory.ts" />
+    <TypeScriptCompile Include="ShoppingCart\ShoppingCart.ts" />
+    <TypeScriptCompile Include="Checkout\Checkout.ts" />
+    <TypeScriptCompile Include="Common\Helpers\Core.ts" />
+    <TypeScriptCompile Include="Common\Helpers\EcommerceTypes.ts" />
+    <TypeScriptCompile Include="Resources\ErrorMapper.ts" />
+    <TypeScriptCompile Include="Resources\Resources.ts" />
+    <TypeScriptCompile Include="Resources\Resources.fr.ts" />
+    <TypeScriptCompile Include="Resources\Resources.en-us.ts" />
+    <TypeScriptCompile Include="Common\Helpers\EcommerceTypeValidators.ts" />
+    <TypeScriptCompile Include="Common\Helpers\Utils.ts" />
+    <TypeScriptCompile Include="Common\Helpers\AsyncResult.ts" />
+    <TypeScriptCompile Include="Common\KnockoutExtensions\knockout.validator.ts" />
+    <TypeScriptCompile Include="Common\KnockoutExtensions\knockout.bindingHandlers.ts" />
+  </ItemGroup>
+  <ItemGroup Label="Libraries">
+    <TypeScriptLibraries Include="DataJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="JQuery.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="KnockoutJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="..\..\Proxies\Proxies.Retail.TypeScript\Libraries.Proxies.Retail.TypeScript.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="Diagnostics.TypeScriptCore.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptCompile Include="@(TypeScriptLibraries -&gt; '%(Filename)%(Extension)')" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomerAddress\CustomerAddress.css" />
+    <EmbeddedResource Include="CustomerAddress\CustomerAddress.html" />
+    <EmbeddedResource Include="Checkout\Checkout.html" />
+    <EmbeddedResource Include="Checkout\Checkout.css" />
+    <EmbeddedResource Include="BaseControl\RetailWebControl.css" />
+    <EmbeddedResource Include="OrderDetails\OrderDetails.html" />
+    <EmbeddedResource Include="OrderDetails\OrderDetails.css" />
+    <EmbeddedResource Include="OrderHistory\OrderHistory.html" />
+    <EmbeddedResource Include="OrderHistory\OrderHistory.css" />
+    <EmbeddedResource Include="ShoppingCart\ShoppingCart.css" />
+    <EmbeddedResource Include="ShoppingCart\ShoppingCart.html" />
+    <EmbeddedResource Include="MiniCart\MiniCart.html" />
+    <EmbeddedResource Include="Common\Images\loading_animation_lg.gif" />
+    <EmbeddedResource Include="Common\Images\update_bg.png" />
+    <EmbeddedResource Include="Common\Images\i_Close_48_on.png" />
+    <EmbeddedResource Include="Common\Images\banner_burst.png" />
+    <EmbeddedResource Include="Common\Images\btn_Checkout_sm.png" />
+    <EmbeddedResource Include="Common\Images\product_sm_cart_placeholder.png" />
+    <EmbeddedResource Include="Common\Images\i_Delete_16_on.png" />
+    <EmbeddedResource Include="Common\Images\input_bg.png" />
+    <EmbeddedResource Include="Common\Images\btn_i_back_lrg.png" />
+    <EmbeddedResource Include="Common\Images\btn_i_forward_lrg.png" />
+    <EmbeddedResource Include="Common\Images\btn_lrg_bl_bg.png" />
+    <EmbeddedResource Include="Common\Images\btn_lrg_bl_left.png" />
+    <EmbeddedResource Include="Common\Images\btn_lrg_bl_right.png" />
+    <EmbeddedResource Include="Common\Images\btn_lrg_gr_bg.png" />
+    <EmbeddedResource Include="Common\Images\btn_lrg_gr_left.png" />
+    <EmbeddedResource Include="Common\Images\btn_lrg_gr_right.png" />
+    <EmbeddedResource Include="Common\Images\i_Arrow_Left_16_on.png" />
+    <EmbeddedResource Include="Common\Images\i_Arrow_Right_16_on.png" />
+    <EmbeddedResource Include="Common\Images\i_Minus_16_on.png" />
+    <EmbeddedResource Include="Common\Images\i_Plus_16_on.png" />
+    <EmbeddedResource Include="Common\Images\btn_search.png" />
+    <EmbeddedResource Include="Common\Images\i_Edit_19_on.png" />
+    <EmbeddedResource Include="Common\Images\i_Update_24_on.png" />
+    <EmbeddedResource Include="Common\Images\i_Arrow_Left_24_on.png" />
+    <EmbeddedResource Include="Checkout\Images\electronic_delivery_info.png" />
+    <EmbeddedResource Include="Checkout\Images\i_shipping_truck.png" />
+    <EmbeddedResource Include="Checkout\Images\progress_end.png" />
+    <EmbeddedResource Include="Checkout\Images\progress_end_on.png" />
+    <EmbeddedResource Include="Checkout\Images\progress_step_bg.png" />
+    <EmbeddedResource Include="Checkout\Images\progress_step_bg_on.png" />
+    <EmbeddedResource Include="Checkout\Images\progress_step_left.png" />
+    <EmbeddedResource Include="Checkout\Images\progress_step_left_on.png" />
+    <EmbeddedResource Include="Checkout\Images\progress_step_right.png" />
+    <EmbeddedResource Include="Checkout\Images\progress_step_right_on.png" />
+    <EmbeddedResource Include="Checkout\Images\i_Info_16.png" />
+    <EmbeddedResource Include="ShoppingCart\Images\i_ShoppingCart_24.png" />
+    <EmbeddedResource Include="Common\Scripts.js" />
+  </ItemGroup>
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.targets')" />
+  <Target Name="CopyTypeScriptLibraries" BeforeTargets="PreComputeCompileTypeScript;">
+    <Copy SourceFiles="%(TypeScriptLibraries.Identity)" DestinationFiles="$(TypeScriptLibrariesOutDir)%(TypeScriptLibraries.FileName)%(TypeScriptLibraries.Extension)" SkipUnchangedFiles="true" Condition="Exists('%(TypeScriptLibraries.Identity)')" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

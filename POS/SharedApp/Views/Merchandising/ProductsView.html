@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ProductsView</title>
+    <link href="ProductsView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="fragment">
+        <!-- Progress Ring -->
+        <div data-bind="loader: { visible: viewModel.isProductsModeBusy }"></div>
+        <div data-bind="loader: { visible: viewModel.isCategoryModeBusy }"></div>
+
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="col grow panoramicGrid overflowYVisible" data-bind="with:viewModel, resx: { ariaLabel: 'string_4454' }">
+            <!-- Main content -->
+            <div class="row marginBottom1 gridHeader">
+                <div class="grow">
+                    <div class="row">
+                        <div class="marginRight4">
+                            <h2 id="productsPivot" tabindex="0" class="tabFontColor outlineFocus" data-bind="resx: { textContent: 'string_1016' },
+                                css: { active: isProductsModeActive }, click: switchToProductsMode, enterKeyPress: switchToProductsMode">
+                                Products
+                            </h2>
+                        </div>
+                        <div>
+                            <h2 id="customersPivot" tabindex="0" class="tabFontColor outlineFocus" data-bind="resx: { textContent: 'string_920' },
+                                css: { active: isCategoriesModeActive }, click: switchToCategoriesMode, enterKeyPress: switchToCategoriesMode">
+                                Categories
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="showViewMenu" data-bind="click: $root.showViewMenu.bind($root), visible: isProductsModeActive">
+                    <button class="iconListView iconButton noBorder iconBig" data-bind="resx: { ariaLabel: 'string_924' }"></button> <!-- Change view -->
+                </div>
+            </div>
+
+            <div class="tabsContent positionRelative grow col">
+                <div id="productsViewBrowseGrid" class="browseGrid" data-bind="visible: isProductsModeActive">
+                    <div id="productHeader" class="listViewHeader hide">
+                        <div class="ratio2">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_906' }">PRODUCT NUMBER</h6>
+                        </div>
+                        <div class="ratio6">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_907' }">PRODUCT NAME</h6>
+                        </div>
+                        <div class="ratio2 textRight">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_908' }">PRICE</h6>
+                        </div>
+                    </div>
+                    <div id="displayZeroProductsText" class="center grow tableContent" style="display: none">
+                        <h3 data-bind="resx: { textContent: 'string_913' }"> </h3> <!-- There are no products in this category -->
+                    </div>
+                    <div id="productsview" class="win-selectionstylefilled grow col"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                            selectionMode: 'multi',
+                            itemTemplate: select('#productSearchResultSmallCardTemplate'),
+                            layout: { type: WinJS.UI.GridLayout },
+                        }"
+                         data-bind="winControl: {
+                            incrementalDataSource: {dataManager: $data, 
+                                                    callerMethod: searchProducts, 
+                                                    pageSize: 60,
+                                                    pageLoadCallBack: Commerce.ProductPropertiesHelper.getActivePricesAndUpdateProductSearchResults,
+                                                    afterLoadComplete: '#displayZeroProductsText' , 
+                                                    onLoading: isProductsModeBusy },
+                            iteminvoked: showProductDetails,
+                            templateSwitch: [{ buttonId: '#showSmallCards',
+                                               templateId: '#productSearchResultSmallCardTemplate',
+                                               layoutType: { type: WinJS.UI.GridLayout , assignClassToId :'#productsViewBrowseGrid', cssClasses: 'browseGrid'},
+                                               appBarIds: ['#commandAppBar'] },
+                                            { buttonId: '#showList',
+                                                templateId: '#productSearchResultListTemplate',
+                                                layoutType: { type: WinJS.UI.ListLayout , assignClassToId :'#productsViewBrowseGrid', cssClasses: 'standardGrid col'},
+                                                displayElementId: '#productHeader' , appBarIds: ['#commandAppBar']},
+                                            { buttonId: '#showLargeCards',
+                                                templateId: '#productSearchResultLargeCardTemplate',
+                                                layoutType: { type: WinJS.UI.GridLayout , assignClassToId :'#productsViewBrowseGrid', cssClasses: 'browseGrid'},
+                                                appBarIds: ['#commandAppBar']}],
+                            selectionchanged: { eventHandlerCallBack: setSelectedItems, appBarId: '#commandAppBar' },
+                            clearListViewSelection : clearProductSelection,
+                            swipeBehavior: 'select'
+                        },
+                        resx: { ariaLabel: 'string_925' }">
+                        <!-- List of products -->
+                    </div>
+                </div>
+                <div id="browseGridCustomers" class="browseGrid" data-bind="visible: isCategoriesModeActive">
+                    <div id="displayZeroCategoriesText" class="center grow" data-bind="visible: areSubcategoriesEmpty">
+                        <h3 data-bind="resx: { textContent: 'string_914' }"> </h3> <!-- There are no subcategories in this category -->
+                    </div>
+                    <div id="categoriesview" class="categoriesview grow win-selectionstylefilled"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                            selectionMode: 'none',
+                            itemTemplate: select('#categoryCatalogTemplate'),
+                            layout: {type: WinJS.UI.GridLayout },
+                         }"
+                         data-bind="winControl: {
+                            itemDataSource: categories,
+                            loadingstatechanged: {AfterLoadComplete: '#displayZeroCategoriesText', OnLoading: isCategoryModeBusy },
+                            iteminvoked: showProductsForCategory
+                            },
+                            resx: { ariaLabel: 'string_1037' }">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="respondFlyout" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#showViewMenu', placement: 'bottom', alignment: 'left', toggleShowHide: $root.toggleShowHideMenu }">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'showList',label:'Show list'}" data-bind="resx: { label: 'string_900' }"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'showSmallCards',label:'Show small cards'}" data-bind="resx: { label: 'string_901' }"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'showLargeCards',label:'Show large cards'}" data-bind="resx: { label: 'string_902' }"></button>
+    </div>
+
+    <!-- Bottom app bar -->
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl"
+         data-win-options="{ sticky : true }" data-bind="visible: viewModel.isProductsModeActive">
+
+        <!-- Commenting out the compare functionality   -->
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'compare',
+                extraClass: 'winappbar-iconCompare'
+            }"
+                data-bind="winControl: { enabled: viewModel.canCompareSelectedItems, click: viewModel.compareSelectedItems.bind(viewModel)}, resx: {label: 'string_903'}" /><!-- Compare -->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'addtosale',
+                extraClass: 'winappbar-iconAdd'
+            }"
+                data-bind="winControl: { enabled: viewModel.canAddSelectedItemsToSale, click: viewModel.addSelectedItemsToCart.bind(viewModel) }, resx: { label: 'string_904' }" /><!-- Add to sale-->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'addtosale',
+                extraClass: 'winappbar-iconAdd'
+            }"
+                data-bind="winControl: { enabled: viewModel.canAddSelectedItemsToSale, click: viewModel.quickSellSelectedItems.bind(viewModel) }, resx: { label: 'string_922' }" /><!-- sell now-->
+    </div>
+</body>
+</html>

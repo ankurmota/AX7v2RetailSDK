@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ApprovePartialAmountDialog</title>
+</head>
+<body>
+    <div data-bind="customControlInternal: 'GiftCardDialog'">
+
+        <div class="approvePartialAmountDialog" data-bind="visible: indeterminateWaitVisible">
+            <progress class="win-ring win-large indeterminateWait"></progress>
+            <div class="indeterminateWaitBackground"></div>
+        </div>
+
+        <div data-bind="
+            dialog: {
+                title: Commerce.ViewModelAdapter.getResourceString('string_7500'), // Do you want to accept the partial amount?
+                subTitle: Commerce.ViewModelAdapter.getResourceString('string_7501'), // Only part of the requested amount was authorized
+                visible: visible,
+                buttonClick: approvePartialAmountClick,
+                closeOnEscButton: false,
+                buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_77'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, isPrimary: true, cssClass: 'okButton' },
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_78'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }]
+            }">
+
+            <!-- dialog content -->
+            <div class="row">
+                <div class="col">
+                    <label data-bind="resx: { textContent: 'string_7502' }" for="amountAuthorized">Amount authorized</label>
+                    <div class="padTop1">
+                        <h4 id="amountAuthorized" data-bind="text: amountAuthorizedText"></h4>
+                    </div>
+                </div>
+                <div class="col gutter4x4"></div>
+                <div class="col">
+                    <label data-bind="resx: { textContent: 'string_7503' }" for="amountRequested">Amount requested</label>
+                    <div class="padTop1">
+                        <h4 id="amountRequested" data-bind="text: amountRequestedText"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

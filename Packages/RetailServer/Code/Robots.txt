@@ -1,0 +1,5 @@
+﻿# robots.txt Need to copy it to the root the website, not on the root of RetailServer virtual directory
+User-agent: *
+Disallow: /
+Disallow: /RetailServer/
+Disallow: /MediaServer/

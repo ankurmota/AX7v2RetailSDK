@@ -1,0 +1,4 @@
+.tenderCountingView .countBorder .denominationTotal,
+.tenderCountingView .totalBorder .denominationCount {
+    border: none !important;
+}

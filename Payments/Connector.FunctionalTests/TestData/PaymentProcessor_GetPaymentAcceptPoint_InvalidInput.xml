@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+
+  <PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+    <TestDescriptor>Invalid merchant account</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable_InvalidProperties.xml</MerchantAccountXmlPath>
+    <CardType>Visa;MasterCard;Amex;Discover</CardType>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+    <ShowSameAsShippingAddress>False</ShowSameAsShippingAddress>
+    <CurrencyCode>USD</CurrencyCode>
+    <IndustryType>Retail</IndustryType>
+    <TransactionType>None</TransactionType>
+    <SupportCardTokenization>True</SupportCardTokenization>
+    <SupportCardSwipe>True</SupportCardSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <AllowVoiceAuthorization>False</AllowVoiceAuthorization>
+    <HostPageOrigin>https://www.contoso.com</HostPageOrigin>
+    <TerminalId>0001</TerminalId>
+    <Description>GetPaymentAcceptPoint</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+  <PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+    <TestDescriptor>Invalid transaction type (When TransactionType = None,  SupportCardTokenization must be true.)</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa;MasterCard;Amex;Discover</CardType>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+    <ShowSameAsShippingAddress>False</ShowSameAsShippingAddress>
+    <CurrencyCode>USD</CurrencyCode>
+    <IndustryType>Retail</IndustryType>
+    <TransactionType>None</TransactionType>
+    <SupportCardTokenization>False</SupportCardTokenization>
+    <SupportCardSwipe>True</SupportCardSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <AllowVoiceAuthorization>False</AllowVoiceAuthorization>
+    <HostPageOrigin>https://www.contoso.com</HostPageOrigin>
+    <TerminalId>0001</TerminalId>
+    <Description>GetPaymentAcceptPoint</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+  <PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+    <TestDescriptor>Invalid transaction type (Refund must not be supported)</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa;MasterCard;Amex;Discover</CardType>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+    <ShowSameAsShippingAddress>False</ShowSameAsShippingAddress>
+    <CurrencyCode>USD</CurrencyCode>
+    <IndustryType>Retail</IndustryType>
+    <TransactionType>Refund</TransactionType>
+    <SupportCardTokenization>False</SupportCardTokenization>
+    <SupportCardSwipe>True</SupportCardSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <AllowVoiceAuthorization>False</AllowVoiceAuthorization>
+    <HostPageOrigin>https://www.contoso.com</HostPageOrigin>
+    <TerminalId>0001</TerminalId>
+    <Description>GetPaymentAcceptPoint</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+  <PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+    <TestDescriptor>Missing HostPageOrigin</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa;MasterCard;Amex;Discover</CardType>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+    <ShowSameAsShippingAddress>False</ShowSameAsShippingAddress>
+    <CurrencyCode>USD</CurrencyCode>
+    <IndustryType>Retail</IndustryType>
+    <TransactionType>None</TransactionType>
+    <SupportCardTokenization>True</SupportCardTokenization>
+    <SupportCardSwipe>True</SupportCardSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <AllowVoiceAuthorization>False</AllowVoiceAuthorization>
+    <!--
+    <HostPageOrigin>https://www.contoso.com</HostPageOrigin>
+    -->
+    <TerminalId>0001</TerminalId>
+    <Description>GetPaymentAcceptPoint</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+
+  <PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+    <TestDescriptor>Invalid merchant account</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop_InvalidProperties.xml</MerchantAccountXmlPath>
+    <CardType>Visa;MasterCard;Amex;Discover</CardType>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+    <ShowSameAsShippingAddress>False</ShowSameAsShippingAddress>
+    <CurrencyCode>USD</CurrencyCode>
+    <IndustryType>Retail</IndustryType>
+    <TransactionType>None</TransactionType>
+    <SupportCardTokenization>True</SupportCardTokenization>
+    <SupportCardSwipe>True</SupportCardSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <AllowVoiceAuthorization>False</AllowVoiceAuthorization>
+    <HostPageOrigin>https://www.contoso.com</HostPageOrigin>
+    <TerminalId>0001</TerminalId>
+    <Description>GetPaymentAcceptPoint</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+  <PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+    <TestDescriptor>Invalid transaction type (When TransactionType = None,  SupportCardTokenization must be true.)</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa;MasterCard;Amex;Discover</CardType>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+    <ShowSameAsShippingAddress>False</ShowSameAsShippingAddress>
+    <CurrencyCode>USD</CurrencyCode>
+    <IndustryType>Retail</IndustryType>
+    <TransactionType>None</TransactionType>
+    <SupportCardTokenization>False</SupportCardTokenization>
+    <SupportCardSwipe>True</SupportCardSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <AllowVoiceAuthorization>False</AllowVoiceAuthorization>
+    <HostPageOrigin>https://www.contoso.com</HostPageOrigin>
+    <TerminalId>0001</TerminalId>
+    <Description>GetPaymentAcceptPoint</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+  <PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+    <TestDescriptor>Invalid transaction type (Refund must not be supported)</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa;MasterCard;Amex;Discover</CardType>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+    <ShowSameAsShippingAddress>False</ShowSameAsShippingAddress>
+    <CurrencyCode>USD</CurrencyCode>
+    <IndustryType>Retail</IndustryType>
+    <TransactionType>Refund</TransactionType>
+    <SupportCardTokenization>False</SupportCardTokenization>
+    <SupportCardSwipe>True</SupportCardSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <AllowVoiceAuthorization>False</AllowVoiceAuthorization>
+    <HostPageOrigin>https://www.contoso.com</HostPageOrigin>
+    <TerminalId>0001</TerminalId>
+    <Description>GetPaymentAcceptPoint</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+  <PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+    <TestDescriptor>Missing HostPageOrigin</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa;MasterCard;Amex;Discover</CardType>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+    <ShowSameAsShippingAddress>False</ShowSameAsShippingAddress>
+    <CurrencyCode>USD</CurrencyCode>
+    <IndustryType>Retail</IndustryType>
+    <TransactionType>None</TransactionType>
+    <SupportCardTokenization>True</SupportCardTokenization>
+    <SupportCardSwipe>True</SupportCardSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <AllowVoiceAuthorization>False</AllowVoiceAuthorization>
+    <!--
+    <HostPageOrigin>https://www.contoso.com</HostPageOrigin>
+    -->
+    <TerminalId>0001</TerminalId>
+    <Description>GetPaymentAcceptPoint</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_GetPaymentAcceptPoint_InvalidInput>
+
+  <PaymentProcessor_GetPaymentAcceptPoint_NullRequest>
+    <TestDescriptor>Null request</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GetPaymentAcceptPoint_NullRequest>
+  <PaymentProcessor_GetPaymentAcceptPoint_NullRequest>
+    <TestDescriptor>Null request</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GetPaymentAcceptPoint_NullRequest>
+  
+</TestData>

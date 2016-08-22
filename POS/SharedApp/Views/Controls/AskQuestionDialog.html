@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AskQuestionDialog</title>
+
+    <link href="AskQuestionDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'AskQuestionDialog'">
+
+        <div class="askQuestionDialog">
+            <div data-bind="dialog:
+                {
+                    title: title,
+                    subTitle: subTitle,
+                    visible: visible,
+                    buttonClick: buttonClickHandler,
+                    showProgressIndicator: indeterminateWaitVisible,
+                    buttons: [
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_77'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK },
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_78'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK }
+                    ],
+                }" class="askQuestionDialog modalWindowContentSection">
+
+                <!-- dialog content -->
+                <div class="content">
+                    <h3 class="questionArea" data-bind="text: _textContent">QUESTION</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

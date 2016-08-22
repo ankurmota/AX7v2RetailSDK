@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="no-shrink row grow">
+        <div class="grow">
+            <h4 class="title"
+                data-bind="resx: { textContent: 'string_10069' }">
+                HELP
+            </h4>
+        </div>
+    </div>
+    <div class="taskRecorderHelp">
+        <div class="padTop1 height100Percent">
+            <div>
+                <input type="text" autofocus="autofocus" data-bind="
+                       hasfocus: true, 
+                       value: searchText, 
+                       enterKeyPress: search,
+                       clearMark: true" 
+                />
+            </div>
+            <div class="row padTop3">
+                <div class="marginRight4"><h2 class="tabFontColor active" data-bind="css: { active: true }, resx: { textContent: 'string_10070' }"> Task Guides </h2></div>
+                <div class="marginRight4"><h2 class="tabFontColor" data-bind="css: { active: false }, resx: { textContent: 'string_10071' }"> Wiki </h2></div>
+            </div>
+            <div class="row padTop1 width34 padRight2 listSteps">
+                <label data-bind="visible: searchIsInProgress(), resx: { textContent: 'string_10106' }"> Loading help content. </label>
+                <label data-bind="visible: !searchIsInProgress() && listTaskGuides().length === 0, resx: { textContent: 'string_10031' }"> We didn't find anything to show here. </label>
+                <ul data-bind="foreach: listTaskGuides">
+                    <li class="col" data-bind="click: $parent.openStartTaskGuide.bind($parent, $data)">
+                        <div class="row grow clickable title" data-bind="text: title"> </div>
+                        <label class="description padTop05" data-bind="text: publisher"> </label>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row height4 padTop2">
+                <div class="marginRight4"><h2 class="tabFontColor active" data-bind="css: { active: true }, resx: { textContent: 'string_10075' }"> Resources </h2></div>
+            </div>
+            <div class="row scrollY padTop1 padBottom4">
+                <div class="col grow width38">
+                    <div class="height3 centerY listItem">
+                        <a class="h4" href="https://ax.help.dynamics.com/" data-bind="resx: { textContent: 'string_10077' }">AX Help Wiki</a>
+                    </div>
+                    <div class="height3 centerY listItem">
+                        <a class="h4" href="http://go.microsoft.com/fwlink/?LinkID=614892" data-bind="resx: { textContent: 'string_10108' }">Ask the community</a>
+                    </div>
+                    <div class="height3 centerY listItem">
+                        <a class="h4" href="http://go.microsoft.com/fwlink/?LinkID=614893" data-bind="resx: { textContent: 'string_10109' }">Customer source</a>
+                    </div>
+                    <div class="height3 centerY listItem">
+                        <a class="h4" href="http://go.microsoft.com/fwlink/?LinkID=271135" data-bind="resx: { textContent: 'string_10078' }">Privacy and Cookies</a>
+                    </div>
+                    <div class="height3 centerY listItem">
+                        <a class="h4" href="http://go.microsoft.com/fwlink/?LinkID=290927" data-bind="resx: { textContent: 'string_10079' }">Legal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

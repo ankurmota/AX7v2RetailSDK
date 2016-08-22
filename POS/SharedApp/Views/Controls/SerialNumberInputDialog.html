@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SerialNumberInputDialog</title>
+    <link href="SerialNumberInputDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'SerialNumberInputDialog'">
+
+        <div class="serialNumberInputDialog">
+            <div data-bind="dialog:
+                {
+                    title: title,
+                    subTitle: subTitle,
+                    visible: visible,
+                    buttonClick: buttonClickHandler,
+                    showProgressIndicator: indeterminateWaitVisible,
+                    subTitleCssClass: subTitleCssClass,
+                    closeOnEscButton:true,
+                    buttons: [
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_75'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, disable: _okButtonDisabled },
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK }
+                    ],
+                }">
+
+                <!-- dialog content -->
+                <div class="dialogSplitColumn content">
+                    <label for="serialNumberInput" data-bind="resx: { textContent: 'string_819' }">Serial number</label>
+                    <input type="text" id="serialNumberInput" autofocus="autofocus"
+                           data-bind="validator: {
+                                field: '_serialNumber',
+                                validatorType: 'CartLineValidator',
+                                validatorField: 'ItemSerialNumber'
+                            }" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

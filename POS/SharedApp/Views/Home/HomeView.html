@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8" />
+    <title>HomeView</title>
+    <link href="HomeView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="fragment homeView">
+        
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <!-- do not remove .homeViewContainer class -->
+        <section class="row scrollX homeViewContainer margin0 pad0 panoramic" data-bind="parallax: { parallaxBackgroundElement: '.homeBackgroundImageContainer', parallaxReverse: true }">
+            <div class="homeBackgroundImageContainer" data-bind="style: { backgroundImage: backgroundImageEncodingURL }">
+                <!-- acts as a spacer to obtain the proper amount of horizontal space for the background image -->
+                <img src="#" data-bind="attr: { src: backgroundImageEncodingSrc }" class="homeBackgroundImageSpacer" /> 
+            </div>
+
+            <div class="homeViewButtonGridContainer">
+                <!-- Adds additional space from header in landscape mode. -->
+                <div class="gutter4x4 hideInPortrait"></div>
+                <div class="padBottom0 row flip padTop4">
+
+                    <!-- ko foreach: viewModel.buttonGridData -->
+                    <div class="gutter4x4"></div>
+                    <div class="verticalAlignTop marginBottom0" data-bind="
+                            buttonGrid: {
+                                id: 'WelcomeScreenButtonGrid-' + $index(),
+                                buttonClick: $root.buttonGridClick,
+                                callbackContext: $root,
+                                data: $data,
+                                showName: true
+                            }">
+                    </div>
+                    <!--/ko-->
+
+                    <div class="gutter4x4"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

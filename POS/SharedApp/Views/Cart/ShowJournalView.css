@@ -1,0 +1,57 @@
+.showJournalView .receiptPreview {
+    color: #000000;
+    background-color: #ffffff;
+    align-self: stretch;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-left: -4em;
+    margin-right: 0;
+    margin-bottom: 2em;
+}
+
+body[dir="rtl"] .showJournalView .receiptPreview {
+    margin-right: -4em;
+    margin-left: 0; 
+}
+
+@media (orientation: portrait) {
+    .showJournalView .receiptPreview {
+        margin-left: 0;
+    }
+
+    body[dir="rtl"] .showJournalView .receiptPreview {
+        margin-right: 0;
+    }
+}
+
+/* treats the pesky height: 400px that's set by default in ui-dark.css */
+.showJournalView .standardGrid .win-listview {
+    height: calc(100% - 3em);
+}
+
+.showJournalView .transactionLinesGrid .win-listview {
+    height: 0px;
+}
+
+/* fixes appbar overlap issue if 6 or more items in the transaction. */
+.showJournalView .transactionLinesGrid > div {
+    height: 100%;
+}
+.showJournalView .transactionLinesGrid .tableContent {
+    flex: 1 1 auto;
+}
+
+/* 
+    Grid hides rows if display:none is used to hide it. 
+    To reproduce the problem scroll transactions select row then click show receipts. 
+    As a work around this is another way of hiding element. 
+*/
+.showJournalView .hiddenAbsolute {
+    visibility: hidden;
+    position: absolute;
+}
+
+.showJournalView *[role=main]{
+    overflow: hidden;
+
+}

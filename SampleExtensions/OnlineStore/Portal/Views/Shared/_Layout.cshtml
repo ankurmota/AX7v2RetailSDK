@@ -1,0 +1,260 @@
+@using System.Linq;
+@using System.Security.Claims;
+@using System.Threading.Tasks;
+@using Contoso.Commerce.RetailProxy;
+@using Contoso.Retail.Ecommerce.Sdk.Controls;
+@using Contoso.Retail.Ecommerce.Sdk.Core;
+@using Contoso.Retail.Ecommerce.Sdk.Core.OperationsHandlers;
+@using Contoso.Retail.Ecommerce.Web.Storefront;
+@using Contoso.Retail.Ecommerce.Web.Storefront.ViewModels;
+@using Contoso.Retail.Ecommerce.Web.Storefront.Models;
+@using Microsoft.Owin;
+
+@{
+
+    // UNIVERSAL LINKS AND PROPERTIES
+    // =================================================
+
+    IOwinContext ctx = this.Context.Request.GetOwinContext();
+    ClaimsPrincipal user = ctx.Authentication.User;
+    IEnumerable<Claim> claims = user.Claims;
+    SignedInUserViewModel signedInUserViewModel = new SignedInUserViewModel(claims);
+
+    EcommerceContext ecommerceContext = ServiceUtilities.GetEcommerceContext(this.Context); ;
+    if (Request.Url.AbsolutePath.Contains("SignOut"))
+    {
+        ecommerceContext = ecommerceContext.GetAnonymousContext(); // Act like anonymous user.
+    }
+
+    List<CustomLink> companyInfoLinks = new List<CustomLink>();
+    companyInfoLinks.Add(new CustomLink("https://www.bing.com", Resources.AboutContoso));
+    companyInfoLinks.Add(new CustomLink("https://www.bing.com", Resources.JobsAtContoso));
+    companyInfoLinks.Add(new CustomLink("https://www.bing.com", Resources.CorporateSales));
+
+    List<CustomLink> accountInfoLinks = new List<CustomLink>();
+    accountInfoLinks.Add(new CustomLink("http://www.bing.com", Resources.AccountDashboard));
+    accountInfoLinks.Add(new CustomLink("http://www.bing.com", Resources.OrderStatus));
+    accountInfoLinks.Add(new CustomLink("http://www.bing.com", Resources.Wishlists));
+
+    List<CustomLink> siteOptionsLinks = new List<CustomLink>();
+    siteOptionsLinks.Add(new CustomLink("http://www.bing.com", Resources.ViewMobileSite));
+    siteOptionsLinks.Add(new CustomLink("http://www.bing.com", Resources.StoreCatalogs));
+    siteOptionsLinks.Add(new CustomLink("http://www.bing.com", Resources.FAQ));
+
+
+    // PRODUCT CATEGORY LINKS
+    // ====================================================
+
+    // GETTING CATEGORIES
+    OrgUnitOperationsHandler orgUnitOperationsHandler = new OrgUnitOperationsHandler(ecommerceContext);
+    QueryResultSettings queryResultSettings = new QueryResultSettings() { Paging = new PagingInfo { Skip = 0, Top = 200 } };
+    PagedResult<Category> categories = null;
+    var getCategoriesTask = Task.Run(async () => { categories = await orgUnitOperationsHandler.GetNavigationalHierarchyCategories(queryResultSettings); });
+    getCategoriesTask.Wait();
+
+
+
+    // INITIALIZING PRODUCT LINKS
+
+    ProductNavigationModel productNav = new ProductNavigationModel();
+
+    IEnumerable<Category> root = categories.Where(c => c.ParentCategory == 0);
+    IEnumerable<Category> ParentCategoryRecords = categories.Where(c => c.ParentCategory == root.First<Category>().RecordId);
+
+    foreach (Category ParentCategory in ParentCategoryRecords)
+    {
+        ProductNavigationCategory navCategory = new ProductNavigationCategory();
+        navCategory.ParentCategory = new CustomLink("/ProductGallery?categoryId=" + ParentCategory.RecordId, ResourceHelper.GetLocalString(ParentCategory.Name));
+
+        IEnumerable<Category> childCategoryRecords = categories.Where(c => c.ParentCategory == ParentCategory.RecordId);
+        foreach (var childCategory in childCategoryRecords)
+        {
+            navCategory.ChildCategories.Add(new CustomLink("/ProductGallery?categoryId=" + childCategory.RecordId, ResourceHelper.GetLocalString(childCategory.Name)));
+        }
+
+        productNav.ParentCategories.Add(navCategory);
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="../../../Common/Styles/External/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/CSS/layout.css" />
+    <link rel="stylesheet" href="~/Content/CSS/DynamicsSymbols.css" />
+    <link rel="stylesheet" href="../../../Common/Styles/External/jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="../../../Common/Styles/MasterStyles.css" type="text/css" />
+
+    <!-- JS Code -->
+    <script type="text/javascript" src="../../../Common/Scripts/External/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../../../Common/Scripts/External/jquery-ui.js"></script>
+    <script type="text/javascript" src="../../../Common/Scripts/External/knockout-2.2.1.js"></script>
+    <script type="text/javascript" src="../../../Common/Scripts/External/Diagnostics.TypeScriptCore.js"></script>
+    <script type="text/javascript" src="../../../Common/Scripts/External/datajs-1.1.0.js"></script>
+    <script type="text/javascript" src="../../../Common/Scripts/External/Libraries.Proxies.Retail.TypeScript.js"></script>
+    <script type="text/javascript" src="../../../Common/Scripts/External/bootstrap.min.js"></script>
+
+    @MvcHelperExtension.GetBaseControlHeader()
+
+    @RenderSection("other", required: false)
+
+    @{
+        object isCheckoutPage = this.ViewContext.HttpContext.Items["IsCheckout"];
+        bool isCheckout = isCheckoutPage != null ? (bool)isCheckoutPage : false;
+    }
+
+    @MvcHelperExtension.GetMiniCartControlHeader("/Checkout", "/ShoppingCart", isCheckout)
+
+</head>
+<body>
+    <!-- Allow console to log messages in Non-IE browsers without breaking functionality in IE -->
+    <script>
+        if (!window.console) {
+            var console = {
+                log: function () { },
+                warn: function () { },
+                error: function () { },
+                time: function () { },
+                timeEnd: function () { }
+            }
+        }
+        $(document).ready(function () {
+            $("#startSearch").click(function () {
+                var searchText = $("#searchBox").val();
+                searchText = searchText.trim();
+                if (searchText != '') {
+                    var redirectUrl = encodeURI("/Products/Search?searchText=" + searchText);
+                    window.location.replace(redirectUrl);
+                }
+            });
+
+            $("#searchBox").keyup(function (event) {
+                // Pressing enter key should trigger search.
+                if (event.keyCode == 13) {
+                    $("#startSearch").click();
+                }
+            });
+        });
+    </script>
+    <div class="page-wrap">
+        <div id="nav">
+            <!-- Top Banner (the bar at the top of the screen)-->
+            <div id="nav-top-banner">
+                <div class="container">
+                    <div id="nav-top-banner-left" class="float-left">
+                        @Resources.UnitedStates                        
+                    </div>
+                    <input id="searchBox" type="text" class="padding-right-10 padding-left-10" placeholder="Search..." /><img type="button" id="startSearch" class="search-btn" />
+                    <div id="nav-top-banner-right" class="float-right">
+                        @if (!(Request.Url.AbsolutePath.Contains("SignIn")))
+                        {
+                            <div class="float-left">
+                                @MvcHelperExtension.GetMiniCartControl()
+                            </div>
+                        }
+
+                        <a id="Checkout" class="padding-right-10 padding-left-10 float-left" href="/Checkout">@Resources.Checkout</a>
+                        <a class="padding-left-10 float-left" href="#">@Resources.Wishlists</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <!-- "Middle Banner" -->
+                <div class="row" id="nav-middle-banner">
+                    <div id="nav-company-logo" class="padding-left-15 float-left">
+                        <a href="/">
+                            <img src="../Content/IMG/companyLogoMain.png" />
+                        </a>
+                    </div>
+                    <div class="float-right margin-top-15">
+                        @Html.Partial("_LoginStatus", signedInUserViewModel)
+                        @if (!(Request.Url.AbsolutePath.Contains("SignIn")))
+                        {
+                            <span class="nav-link-sep"> |</span>
+                        }
+                        <a id="MyAccount" href="/MyAccount">@Resources.Account</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <!-- "Bottom Banner" Category links-->
+                <div id="nav-bottom-banner" class="margin-bottom-20 margin-top-20">
+                    @foreach (ProductNavigationCategory navCategory in productNav.ParentCategories)
+                    {
+                        <div class="dropdown">
+                            <a class="dropdown-toggle page-title padding-left-10 padding-right-10" data-toggle="dropdown">@Html.Raw(navCategory.ParentCategory)</a>
+                            <ul class="dropdown-menu">
+                                @foreach (CustomLink childCategory in navCategory.ChildCategories)
+                                {
+                                    <li>@Html.Raw(childCategory)</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div id="body-wrapper">
+            <div class="container">
+                <!-- For individual page content-->
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer, still needs to be sticky (staying at the bottom) -->
+    <footer id="site-footer">
+        <div class="container" style="background-color: #eee;">
+            <div class="row">
+                <div class="footer-section col-sm-3 col-xs-6">
+                    <div class="footer-section-header">@Resources.CompanyInformation</div>
+                    <div class="footer-section-links">
+                        @foreach (CustomLink cl in companyInfoLinks)
+                        {
+                            @Html.Raw(cl)<br />
+                        }
+                    </div>
+                </div>
+
+                <div class="footer-section col-sm-3 col-xs-6">
+                    <div class="footer-section-header">@Resources.AccountInformation</div>
+                    <div class="footer-section-links">
+                        @foreach (CustomLink cl in accountInfoLinks)
+                        {
+                            @Html.Raw(cl)<br />
+                        }
+                    </div>
+                </div>
+
+                <div class="footer-section col-sm-3 col-xs-6">
+                    <div class="footer-section-header">@Resources.SiteOptions</div>
+                    <div class="footer-section-links">
+                        @foreach (CustomLink cl in siteOptionsLinks)
+                        {
+                            @Html.Raw(cl)<br />
+                        }
+                    </div>
+                </div>
+
+                <div class="footer-section col-sm-3 col-xs-6">
+                    <div class="footer-section-header">@Resources.ConnectWithUs</div>
+                    <div class="footer-section-links">
+                        <a>Facebook</a><br />
+                        <a>Twitter</a><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Specific JS -->
+    @*<script src="~/Content/JS/layout.js"></script>*@
+    @RenderSection("pageSpecificJs", required: false)
+</body>
+</html>

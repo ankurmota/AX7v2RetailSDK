@@ -1,0 +1,3 @@
+body{margin:0}.splash-screen{position:absolute;height:100vh;width:100vw;background-color:#00188e}.splash-screen .splash-screen-frame{position:absolute;top:50%;left:50%;margin-top:-130px;margin-left:-110px;width:220px;height:260px}.splash-screen .splash-screen-frame .splash-screen-logo{width:220px;height:220px;background:url("../Assets/SplashScreen.scale-100.png") no-repeat center}.splash-screen .splash-screen-frame .splash-screen-spinner{width:220px;height:40px;background:url("../Assets/spinner_white_40.gif") no-repeat center}
+
+/*# sourceMappingURL=SplashScreen.min.css.map */

@@ -1,0 +1,151 @@
+<DeploymentTopology catalogName="AX" productName="AX7">
+  <DeploymentComponents>
+    <DeploymentComponent identifier="RetailCloudPos" dnsRecordSetId="WebPos" topologyType="Demo">
+      <Customizations>
+        <Customization fieldName="Skip remaining scripts on failure" valueType="String" selectedValue="true" />
+      </Customizations>
+      <ScriptReference identifier="UnifiedSetup">
+        <Parameters>
+          <Parameter name="EnvironmentId" type="XPath">
+            <Value>
+              <Value>[TopologyInstance/EnvironmentId]</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="HostHeaders" type="Customization">
+            <Value>
+              <Value>RetailCloudPos.Https</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="RetailServerUrl" type="Customization">
+            <Value>
+              <Value>Retail Endpoint</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="ServiceName">
+            <Value>
+              <Value>RetailCloudPos</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildLocation">
+            <Value>
+              <Value>Services\RetailCloudPos\</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildId" type="Customization">
+            <Value>
+              <Value>ProductVersion</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="RetailClientCertificateThumbprint" type="XPath" >
+            <Value>
+              <Value>[TopologyInstance/Certificates/Certificate[@identifier="RetailClientCertificate"]/@thumbprint]</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="RetailCloudPOSPackageMetadata" type="Customization" continueOnSourceMissing="true">
+            <Value>
+              <Value>RetailCloudPOSPackages</Value>
+            </Value>
+          </Parameter>
+        </Parameters>
+      </ScriptReference>
+    </DeploymentComponent>
+
+    <DeploymentComponent identifier="RetailCloudPos" topologyType="DevTest" dnsRecordSetId="WebPos">
+        <ScriptReference identifier="UnifiedSetup">
+          <Parameters>
+            <Parameter name="EnvironmentId" type="XPath">
+              <Value>
+                <Value>[TopologyInstance/EnvironmentId]</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="HostHeaders" type="Customization">
+              <Value>
+                <Value>WebPos</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="RetailServerUrl" type="Customization">
+              <Value>
+                <Value>Retail Endpoint</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="ServiceName">
+              <Value>
+                <Value>RetailCloudPos</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="BuildLocation">
+              <Value>
+                <Value>Services\RetailCloudPos\</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="BuildId" type="Customization">
+              <Value>
+                <Value>ProductVersion</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="RetailClientCertificateThumbprint" type="XPath" >
+              <Value>
+                <Value>[TopologyInstance/Certificates/Certificate[@identifier="RetailClientCertificate"]/@thumbprint]</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="RetailCloudPOSPackageMetadata" type="Customization" continueOnSourceMissing="true">
+              <Value>
+                <Value>RetailCloudPOSPackages</Value>
+              </Value>
+            </Parameter>
+          </Parameters>
+        </ScriptReference>
+      </DeploymentComponent>
+	  
+    <DeploymentComponent identifier="RetailCloudPos" dnsRecordSetId="WebPos" topologyType="Production" >
+      <Customizations>
+        <Customization fieldName="Skip remaining scripts on failure" valueType="String" selectedValue="true" />
+      </Customizations>
+      <ScriptReference identifier="UnifiedSetup">
+        <Parameters>
+          <Parameter name="EnvironmentId" type="XPath">
+            <Value>
+              <Value>[TopologyInstance/EnvironmentId]</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="HostHeaders" type="Customization">
+            <Value>
+              <Value>WebPos</Value>
+            </Value>
+          </Parameter>
+		  <Parameter name="RetailServerUrl" type="Customization">
+            <Value>
+              <Value>Retail Endpoint</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="ServiceName">
+            <Value>
+              <Value>RetailCloudPos</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildLocation">
+            <Value>
+              <Value>Services\RetailCloudPos\</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildId" type="Customization">
+            <Value>
+              <Value>ProductVersion</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="RetailClientCertificateThumbprint" type="XPath" >
+            <Value>
+              <Value>[TopologyInstance/Certificates/Certificate[@identifier="RetailClientCertificate"]/@thumbprint]</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="RetailCloudPOSPackageMetadata" type="Customization" continueOnSourceMissing="true">
+            <Value>
+              <Value>RetailCloudPOSPackages</Value>
+            </Value>
+          </Parameter>
+        </Parameters>
+      </ScriptReference>
+    </DeploymentComponent>
+	
+  </DeploymentComponents>
+</DeploymentTopology>

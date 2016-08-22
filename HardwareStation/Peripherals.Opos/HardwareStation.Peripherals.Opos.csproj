@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{62464AB7-FD9D-4CA1-AFF1-AA853E9888B4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.HardwareStation.Peripherals.Opos</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.HardwareStation.Peripherals.Opos</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.OposCashDrawer.dll">
+      <HintPath>..\..\References\Interop.OposCashDrawer\5.0.0.0\Interop.OposCashDrawer.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.OposConstants.dll">
+      <HintPath>..\..\References\Interop.OposConstants\5.0.0.0\Interop.OposConstants.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.OposLineDisplay.dll">
+      <HintPath>..\..\References\Interop.OposLineDisplay\5.0.0.0\Interop.OposLineDisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.OposMSR.dll">
+      <HintPath>..\..\References\Interop.OposMSR\5.0.0.0\Interop.OposMSR.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.OposPinPad.dll">
+      <HintPath>..\..\References\Interop.OposPinPad\5.0.0.0\Interop.OposPinPad.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.OposPOSPrinter.dll">
+      <HintPath>..\..\References\Interop.OposPOSPrinter\5.0.0.0\Interop.OposPOSPrinter.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.OposScale.dll">
+      <HintPath>..\..\References\Interop.OposScale\5.0.0.0\Interop.OposScale.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.OposScanner.dll">
+      <HintPath>..\..\References\Interop.OposScanner\5.0.0.0\Interop.OposScanner.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.OposSigCap.dll">
+      <HintPath>..\..\References\Interop.OposSigCap\5.0.0.0\Interop.OposSigCap.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Core.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Contracts.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.HardwareStation.Peripherals.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.SDKManager.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Threading.Tasks.Dataflow.dll">
+      <HintPath>..\..\References\System.Threading.Tasks.Dataflow\4.5.25.0\System.Threading.Tasks.Dataflow.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BarcodeScanner\OposBarcodeScanner.cs" />
+    <Compile Include="CashDrawer\OposCashDrawer.cs" />
+    <Compile Include="LineDisplay\OposLineDisplay.cs" />
+    <Compile Include="MagneticSwipeReader\OposMagneticSwipeReader.cs" />
+    <Compile Include="Pinpad\OposPinPad.cs" />
+    <Compile Include="Printer\OposPrinter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scale\OposScale.cs" />
+    <Compile Include="SignatureCapture\OposSignatureCapture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Peripherals.OposLibrary\HardwareStation.Peripherals.OposLibrary.csproj">
+      <Project>{9D9B3D2B-AFF3-4324-8307-FE45DE47EF14}</Project>
+      <Name>HardwareStation.Peripherals.OposLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Peripherals.Printer.Library\HardwareStation.Peripherals.Printer.Library.csproj">
+      <Project>{02D01FA2-8FAF-4160-92C8-39863CE2E3F8}</Project>
+      <Name>HardwareStation.Peripherals.Printer.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

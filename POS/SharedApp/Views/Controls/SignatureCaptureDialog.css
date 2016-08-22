@@ -1,0 +1,15 @@
+/*
+ * Signature
+ */
+.signatureCaptureDialog .signatureCanvas {
+    border: 1px solid #E1E3E5;
+    background-size: inherit;
+}
+
+.signatureCaptureDialog .signatureEntry {
+    background: url(../../Assets/SignaturePanel_bg.png);
+}
+
+body[dir=rtl] .signatureCaptureDialog .signatureEntry {
+    background: url(../../Assets/SignaturePanel_bg_RTL.png);
+}

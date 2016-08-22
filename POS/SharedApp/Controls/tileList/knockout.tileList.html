@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout tile list handler.</title>
+    <link href="knockout.tileList.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- List with a tile that has two sections bottom left and center. -->
+<script type="text/html" id="tileListTemplate">
+    <div class="boundaries grow">
+        <div class="col wrap itemList" data-bind="foreach: { data: itemDataSource, as: 'dataRow', afterRender: afterRender }">
+            <div class="itemContainer accentBackground col marginRight1 marginBottom1" data-bind="css: { disabled: dataRow.disabled }, attr: {disabled: dataRow.disabled}">
+                <div class="col grow pad1 padBottom0">
+                        <!--Used for adding icon to the tile  -->
+                        <div class="row">
+                            <div class="row height3" data-bind="if: $parent.center">
+                                <div data-bind="css: $parent.center.cssClass">
+                                    <h4 class="margin0 noBorder textStart" data-bind="textConverter: {
+                                    data: dataRow,
+                                    field: $parent.center.field,
+                                    converter: $parent.center.converter,
+                                    cssClassField: $parent.center.cssClassField
+                                    }"></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="left1 marginRight1 row bottom06">
+                            <div class="bottomLeft" data-bind="if: $parent.bottomLeft">
+                                <div data-bind="css: $parent.bottomLeft.cssClass">
+                                    <h4 class="margin0" data-bind="textConverter: {
+                                    data: dataRow,
+                                    field:  $parent.bottomLeft.field,
+                                    converter:  $parent.bottomLeft.converter,
+                                    cssClassField: $parent.bottomLeft.cssClassField
+                                    }, attr: {disabled: dataRow.disabled}"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+</body>
+</html>

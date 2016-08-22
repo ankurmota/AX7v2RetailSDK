@@ -1,0 +1,47 @@
+.numPadControl button {
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #838588;
+    padding: 0;
+}
+
+.numPadControl button h1 {
+    font-weight: 800;
+}
+
+.numPadControl button.dark {
+    background-color: #343537;
+}
+
+.numPadTextbox,
+input.numPadTextbox,
+input.numPadTextbox[type=text] {
+    border: none;
+    height: 1.667em;
+    min-height: 1.667em;
+    margin: 0em 0em 0.333em 0em;
+    width: 10.333em;
+    font-size: 3em;
+    color: #333537;
+    text-align: right;
+    font-weight: 300;
+    background-color: #ffffff;
+}
+
+.numPadTitle {
+    height: 5em;
+}
+
+/* High contrast mode */
+@media screen and (-ms-high-contrast) {
+    .numPadControl button {
+        border-style: solid;
+    }
+
+    .numPadTextbox,
+    input.numPadTextbox,
+    input.numPadTextbox[type=text] {
+        border-style: solid;
+    }
+}

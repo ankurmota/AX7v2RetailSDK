@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ReportsResultsView</title>
+    <link href="ReportResultsView.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment reportresultsview">
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+        <section class="padBottom0 marginBottom1">
+            <h2 class="ellipsis" data-bind="text: ViewModel.ResultsCaption"></h2>
+        </section>
+        <section aria-label="Main content" role="main" class="panoramic marginBottom0 padLeft4">
+            <div class="col no-shrink marginBottom1">
+                <div data-bind="listView: summaryReportOptions" class="grow"></div>
+                <!--ko if: isTotalsEnabled-->
+                <div class="listViewTotal row headerBackground height5" data-bind="foreach: totalColumns">
+                    <div class="col" data-bind="css: cssClass">
+                        <div class="col">
+                            <h4 data-bind="text: value"></h4>
+                        </div>
+                        <div class="col">
+                            <h6 class="secondaryFontColor ellipsis" data-bind="text: title"></h6>
+                        </div>
+                    </div>
+                </div>
+                <!--/ko-->
+                <div class="row marginTop1 height1" data-bind="visible:isDisclaimerDisplayed">
+                    <div class="iconWarning secondaryFontColor"></div>
+                    <div class="marginTop01">
+                        <h4 class="secondaryFontColor" data-bind="resx: {textContent: 'string_2402' }"></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="gutter4x4" data-bind="visible: ChartVisible[0]"></div>
+            <div class="col ratio5" data-bind="visible: ChartVisible[0]">
+                <div id="chartPlaceHolder1" class="marginBottom3 grow no-shrink chartPlaceHolder"></div>
+            </div>
+            <div class="gutter4x4" data-bind="visible: ChartVisible[1]"></div>
+            <div class="col ratio5" data-bind="visible: ChartVisible[1]">
+                <div id="chartPlaceHolder2" class="marginBottom3  grow no-shrink chartPlaceHolder"></div>
+            </div>
+            <div class="gutter4x4" data-bind="visible: ChartVisible[2]"></div>
+            <div class="col ratio5" data-bind="visible: ChartVisible[2]">
+                <div id="chartPlaceHolder3" class="marginBottom3  grow no-shrink chartPlaceHolder"></div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

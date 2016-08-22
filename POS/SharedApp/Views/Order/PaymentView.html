@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Payment View</title>
+    <link href="PaymentView.css" rel="stylesheet" />
+</head>
+<body>
+    <form autocomplete="off">
+    <!-- Template declaration for foreign currency. -->
+    <div id="foreignCurrencyLineTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="row width25 marginTop1 no-shrink height3">
+            <div class="no-shrink marginTop05 marginLeft1">
+                <h4 data-win-bind="textContent: CurrencyCode">Currency code</h4>
+            </div>
+            <div class="marginTop05 marginRight2 grow">
+                <div class="textRight">
+                    <h4 data-win-bind="textContent: this Commerce.Core.Converter.PriceFormatter">Currency amount</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template declaration for denominations. -->
+    <div id="denominationTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="accentBackground highContrastBorder height12 width12">
+            <div class="marginLeft1 textBottom">
+                <h2 data-win-bind="textContent: this Commerce.Core.Converter.DenominationFormatter"></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="paymentView fragment">
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Payment terminal interaction dialog -->
+        <div data-bind="dialog:
+            {
+                title: Commerce.ViewModelAdapter.getResourceString('string_6908'), // Waiting for customer input...
+                message: Commerce.ViewModelAdapter.getResourceString('string_1174'), // Instruct the customer to complete the transaction on the payment device
+                visible: isPaymentTerminalDialogVisible,
+                buttonClick: cancelPaymentTerminalDialog,
+                buttons: [{ label: Commerce.ViewModelAdapter.getResourceString('string_107'), isPrimary: false }]
+            }">
+        </div>
+
+        <!-- Pin pad interaction dialog -->
+        <div data-bind="dialog:
+            {
+                message: Commerce.ViewModelAdapter.getResourceString('string_4921'), // Waiting for customer input.
+                visible: isPinPadDialogVisible,
+                buttonClick: cancelPinPadDialog,
+                buttons: [{ label: Commerce.ViewModelAdapter.getResourceString('string_107'), isPrimary: false }]
+            }">
+        </div>
+
+        <!-- Pin pad cancelled dialog -->
+        <div data-bind="dialog:
+            {
+                message: Commerce.ViewModelAdapter.getResourceString('string_4922'),  // The customer cancelled the operation from the device.
+                visible: isPinPadCancelledDialogVisible,
+                buttonClick: closePinPadCancelledDialog,
+                buttons: [{ label: Commerce.ViewModelAdapter.getResourceString('string_75'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK },]
+             }">
+        </div>
+
+        <!-- View payment accept disclaimer dialog -->
+        <div data-bind="dialog:
+            {
+                title: Commerce.ViewModelAdapter.getResourceString('string_7213'), // IMPORTANT NOTICE
+                message: Commerce.ViewModelAdapter.getResourceString('string_7214'), // This form is provided by your designated third-party payment provider. By clicking “Tender payment” you acknowledge your information will be transmitted directly to your payment provider, and will be handled in accordance with the terms and conditions and privacy statement that you agreed to with your payment provider. Microsoft does not collect, store, or transmit any of your payment card information, or provide rights for third-party products or services.
+                visible: isPaymentAcceptDisclaimerDialogVisible,
+                buttonClick: closePaymentAcceptDisclaimerDialog,
+                buttons: [{ label: Commerce.ViewModelAdapter.getResourceString('string_80') },] // Close
+            }">
+        </div>
+
+        <!-- Content -->
+        <!-- The content is split into three columns.
+             The columns displayed are payment type context dependent and state, and will only show that column for the payment type or
+             when capturing the signature.
+             For the showPaymentDetails column, the fields displayed will vary based on payment type.
+             Payment Type       Section 1                          Section 2                    Section 3
+             CARD               amountDueArea                      paymentAmountArea            paymentDetailsArea
+             CASH               amountDueArea                      paymentAmountArea            denominationsArea
+             CHECK              amountDueArea                      paymentAmountArea
+             CREDITMEMO         amountDueArea                      creditMemoDetailsArea
+             CURRENCY           amountDueArea/foreignCurrencyArea  paymentAmountArea            denominationsArea
+             CUSTOMERACCOUNT    amountDueArea                      paymentAmountArea            accountDetailsArea
+             GIFTCARD           amountDueArea                      paymentAmountArea            paymentDetailsArea
+             LOYALTYCARD        amountDueArea                      paymentAmountArea            paymentDetailsArea
+        -->
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">  <!-- Main content -->
+        
+            <!-- Payment amount due area -->
+        <div class="row no-shrink height49 maxWidth64">
+
+            <!-- Amount due and Currency area -->
+            <div class="col minWidth27">
+                <!-- Amount Due-->
+                <div>
+                    <div>
+                        <h2 data-bind="resx: { textContent: 'string_1817' }">Amount due</h2>
+                    </div>
+
+                    <div class="padTop1">
+                        <!-- ko ifnot: paymentViewModel.isCreditMemoPayment -->
+                        <a class="accent" data-bind="click: setFullAmountDue, enterKeyPress: setFullAmountDue">
+                            <h1 data-bind="text: paymentViewModel.paymentAmountTextAsCurrency" tabindex="0"></h1>
+                        </a>
+                        <!--/ko -->
+                        <!--ko if: paymentViewModel.isCreditMemoPayment-->
+                        <h1 data-bind="text: paymentViewModel.paymentAmountTextAsCurrency" tabindex="0"></h1>
+                        <!--/ko-->
+                    </div>
+                </div>
+
+                <!-- Foreign currencies area -->
+                <div class="gutter4x4" data-bind="visible: displayCurrencies && !paymentViewModel.isCreditMemoPayment"></div>
+                <div data-bind="visible: displayCurrencies">
+                    <div class="shrink">
+                        <h2 class="ellipsis" data-bind="resx: { textContent: 'string_1184' }">Payment currency</h2>
+                    </div>
+                    <div class="padTop1">
+                        <!-- Currently selected currency -->
+                        <a id="currencyFlyoutToggle" href="#" class="h1 ellipsis" data-bind="text: paymentViewModel.currency, click: toggleShowHideCurrencyCodeFlyout()"></a>
+                        <div id="formatTextFlyout"
+                             class="formatTextFlyout pad0 baseFont col grow"
+                             data-win-control="WinJS.UI.Flyout"
+                             data-bind="flyout: {
+                                        anchor: '#currencyFlyoutToggle',
+                                        placement: 'bottom',
+                                        alignment: 'left',
+                                        toggleShowHide: toggleShowHideCurrencyCodeFlyout,
+                                        hide: hideCurrencyCodeFlyout,
+                                        show: showCurrencyCodeFlyout,
+                                        sticky: false
+                                    },
+                                visible: false">
+                            <div id="foreignCurrenciesLinesView"
+                                 class="itemPicker win-selectionstylefilled"
+                                 data-win-control="WinJS.UI.ListView"
+                                 data-win-options="{ selectionMode: 'none', itemTemplate: select('#foreignCurrencyLineTemplate'), layout: { type: WinJS.UI.ListLayout }}"
+                                 data-bind="winControl: {
+                                            forceLayout: forceLayoutForeignCurrencyListView,
+                                            itemDataSource: paymentViewModel.currencyAmounts,
+                                            iteminvoked : foreignCurrencyItemInvokedHandler
+                                        },
+                                        hasFocus: _setFocusCurrencyList,
+                                        resx: { ariaLabel: 'string_1198' }">
+                                <!-- List of foreign currencies -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Check the styling for this -->
+                    <div class="padTop2">
+                        <label class="ellipsis" data-bind="resx: { textContent: 'string_1186' }" for="textExchangeRateValue">Exchange rate</label>
+                    </div>
+                    <div class="padTop1">
+                        <h4 id="textExchangeRateValue" class="ellipsis" data-bind="text: currencyConversionString"></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="gutter4x4"></div>
+            <!-- Payment amount input area -->
+            <div class="col no-shrink" data-bind="visible: !paymentViewModel.isCreditMemoPayment">
+                <!-- Section header -->
+                <div>
+                    <h2 class="ellipsis" data-win-bind="textContent: titlePaymentAmount">Payment amount</h2>
+                </div>
+
+                <!-- Numpad input area -->
+                <div class="padTop1">
+                    <input id="totalAmountInput"
+                           class="numPadTextbox"
+                           autocomplete="off"
+                           type="text"
+                           step="any"
+                           data-bind="disable: _options.tokenizeCard"/>
+                    <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                         data-win-options="{uri: 'Controls/numberPad/NumPad.html'}"
+                         data-bind="numpad: {
+                            textBoxId: 'totalAmountInput',
+                            onEnter: onNumPadEnterEventHandler,
+                            parser: new Commerce.DecimalNotRequiredParser(),
+                            value: paymentViewModel.paymentAmountText,
+                            decimalPrecision:Commerce.NumberExtensions.getDecimalPrecision(paymentViewModel.currency())
+                         }">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credit memo details area -->
+            <div class="minWidth27 maxWidth31" data-bind="visible: paymentViewModel.isCreditMemoPayment">
+                <!-- Section header -->
+                <h2 class="ellipsis" data-bind="resx: { textContent: 'string_1102' }">Payment details</h2>
+
+                <!-- Credit memo details -->
+                <div class="padTop1">
+                    <label class="ellipsis" data-bind="resx: { textContent: 'string_1147' }" for="inputCreditMemoNumber">Credit memo number</label>
+                    <input id="inputCreditMemoNumber" type="text" data-bind="value: paymentViewModel.creditMemoId, valueUpdate: 'afterkeydown'"/>
+                    <div class="padTop2">
+                        <button class="buttonEllipsis" data-bind="click: checkCreditMemoBalance, resx: { textContent: 'string_1148' }">Check amount</button>
+                    </div>
+                </div>
+
+                <!-- Available balance -->
+                <div class="padTop4" data-bind="visible: showCreditMemoBalance">
+                    <h3 class="ellipsis" data-bind="resx: { textContent: 'string_1149' }">Available amount</h3>
+                    <div class="padTop1">
+                        <h2 class="wrapText" data-bind="formatPrice: paymentViewModel.creditMemoAmount">Balance amount</h2>
+                    </div>
+                    <h4 class="ellipsis secondaryFontColor" data-bind="timestamp: paymentViewModel.creditMemoAmountTimestamp">Balance time stamp</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="gutter4x4"></div>
+
+        <div class="col grow no-shrink">
+                <div data-bind="visible: showPaymentDetails">
+                    <!-- Title -->
+                    <h2 data-bind="resx: {textContent: 'string_1102'}">Payment details</h2>
+                    <div class="padTop1"></div>
+
+                    
+                    <div data-bind="visible: paymentViewModel.isCardPayment, enable: paymentViewModel.isCardPayment">
+
+                        <!-- Displaying the credit card details section only if there is no payment accept page available -->
+                        <!-- Credit card details -->
+                        <!-- Different card details are displayed depending on the card input type
+                             Card Input Type             Sections
+                             Voice authorization code    Approval code entry data, Card number entry data, Expiration month and year
+                             Enter manually              Card number entry data, Expiration month and year, manual card entry data
+                             Swipe card                  Card number entry data, Expiration month and year
+                        -->
+
+                        <div class="row widthAuto marginRight2 no-shrink" data-bind="ifnot: isCardPaymentAcceptPage">
+                            <div class="stretch minWidth25 maxWidth32">
+                                <div>
+                                    <label class="ellipsis" data-bind="resx: { textContent: 'string_1181' }" for="selectCreditCardInput">Card input</label>
+                                    <select id="selectCreditCardInput" data-bind="options: _cardInputOptions,
+                                optionsText: function (item) { return item.caption; },
+                                optionsValue: function (item) { return item.value; },
+                                value: _cardInputOption"></select>
+                                </div>
+
+                                <!-- Card number entry data - Swipe (allows character entry to support masked data) -->
+                                <div class="padTop2" data-bind="visible: isSwipeCard">
+                                    <label class="ellipsis" data-bind="resx: {textContent: 'string_1103'}" for="inputCardNumberMasked">Card number</label>
+                                    <input id="inputCardNumberMasked" type="text" class="textLeft" disabled
+                                           data-bind="value: paymentViewModel.maskedCardNumber, valueUpdate: 'afterkeydown'" />
+                                </div>
+
+                                <!-- Card number entry data - Non-swipe -->
+                                <div class="padTop2" data-bind="visible: !isSwipeCard()">
+                                    <label class="ellipsis" data-bind="resx: {textContent: 'string_1103'}" for="inputCardNumber">Card number</label>
+                                    <input id="inputCardNumber" type="text" class="textLeft" disabled
+                                           data-bind="value: paymentViewModel.cardNumber,
+                                              valueUpdate: 'afterkeydown',
+                                              validator:{ validatorType: 'PaymentCardValidator', validatorField: 'CardNumber' },
+                                              attr: {'required': !canUsePaymentTerminal}" />
+                                </div>
+
+                                <!-- Expiration month - All card types-->
+                                <div class="padTop2">
+                                    <label class="ellipsis" data-bind="resx: { textContent: 'string_1125' }" for="selectExpirationMonth">Expiration month</label>
+                                    <select id="selectExpirationMonth" disabled data-bind="options: paymentViewModel.months,
+                                    optionsText: function (item) { return item.caption; },
+                                    optionsValue: function (item) { return item.value; },
+                                    value: paymentViewModel.paymentCard.ExpirationMonth"></select>
+                                </div>
+
+                                <!-- Expiration year - All card types-->
+                                <div class="padTop2">
+                                    <label class="ellipsis" data-bind="resx: { textContent: 'string_1126' }" for="selectExpirationYear">Expiration year</label>
+                                    <select id="selectExpirationYear" disabled data-bind="options: paymentViewModel.years,
+                                    optionsText: function (item) { return item.caption; },
+                                    optionsValue: function (item) { return item.value; },
+                                    value: paymentViewModel.paymentCard.ExpirationYear"></select>
+                                </div>
+
+                                <!-- Security code -->
+                                <div class="padTop2" data-bind="visible: !tokenizeCard()">
+                                    <label data-bind="resx: { textContent: 'string_1105' }" for="inputManualCardSecurityCode">Security code</label>
+                                    <input id="inputManualCardSecurityCode" type="text" disabled
+                                           data-bind="value: paymentViewModel.paymentCard.CCID,
+                                              	   valueUpdate: 'afterkeydown',
+                                                   validator: { validatorType: 'PaymentCardValidator', validatorField: 'CCID' }" />
+                                </div>
+
+                                <!-- Approval code card entry data - Approval code card input only -->
+                                <div class="padTop2" data-bind="visible: !tokenizeCard() && (isApprovalCode() || isManualCardEntry())">
+                                    <label data-bind="resx: { textContent: 'string_1130' }" for="inputApprovalCode">Voice authorization code</label>
+                                    <input id="inputApprovalCode" type="text"
+                                           data-bind="value: paymentViewModel.paymentCard.VoiceAuthorizationCode,
+                                              valueUpdate: 'afterkeydown',
+                                              enable: isApprovalCode() || isManualCardEntry(),
+                                              validator: { validatorType: 'PaymentCardValidator', validatorField: 'VoiceAuthorizationCode' },
+                                              attr: {'required': isApprovalCode}" />
+                                </div>
+                            </div>
+
+                            <div class="gutter4x4" data-bind="visible: isManualCardEntry"></div>
+
+                            <!-- Additional fields for manual card entry - Card input for manual entry only -->
+                            <div class="stretch minWidth25 maxWidth32" data-bind="visible: isManualCardEntry, enable: isManualCardEntry">
+                                <div>
+                                    <label data-bind="resx: { textContent: 'string_1316' }" for="inputManualCardAddress">Address</label>
+                                    <input id="inputManualCardAddress" type="text" disabled
+                                           data-bind="value: paymentViewModel.paymentCard.Address1,
+                                              valueUpdate: 'afterkeydown',
+                                              validator: { validatorType: 'PaymentCardValidator', validatorField: 'CardAddress' }" />
+                                </div>
+                                <div class="padTop2">
+                                    <label data-bind="resx: { textContent: 'string_1106' }" for="inputManualCardZipPostal">ZIP/Postal code</label>
+                                    <input id="inputManualCardZipPostal" type="text" disabled
+                                           data-bind="value: paymentViewModel.paymentCard.Zip,
+                                              valueUpdate: 'afterkeydown',
+                                              validator: { validatorType: 'PaymentCardValidator', validatorField: 'CardAddressZip' }" />
+                                </div>
+                                <div class="padTop2">
+                                    <label data-bind="resx: { textContent: 'string_1314' }" for="countryTabRead">Country/region</label>
+                                    <select id="countryTabRead" disabled data-bind="
+                                options: paymentViewModel.countries,
+                                optionsText: 'ShortName',
+                                optionsValue: 'ISOCode',
+                                value: paymentViewModel.paymentCard.Country,
+                                optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1315')
+                                "></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Displaying the payment accept page, if available -->
+                        <div id="cardPaymentAcceptPageContent" data-bind="if: isCardPaymentAcceptPage">
+                            <a id="viewDisclaimerLink" href="#" class="viewDisclaimerLink row iconWarning" data-bind="resx: {textContent: 'string_7212' }, click: $root.showPaymentAcceptDisclaimerDialog.bind($root)"></a> <!-- View disclaimer -->
+                            <iframe id="cardPaymentAcceptFrame" class="row minWidth25 maxWidth32 minHeight50" sandbox="allow-scripts allow-forms allow-same-origin" data-bind="attr: { src: cardPaymentAcceptPageUrl }"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Gift card details -->
+                    <div class="minWidth25 maxWidth32" data-bind="visible: paymentViewModel.isGiftCardPayment">
+                        <label data-bind="resx: { textContent: 'string_1103' }" for="inputGiftCardNumber">Card number</label>
+                        <input id="inputGiftCardNumber" type="text" data-bind="value: paymentViewModel.giftCardId, enterKeyPress: beginProcessingPayment, valueUpdate: 'afterkeydown'" />
+                        <div class="padTop2">
+                            <button class="buttonEllipsis" data-bind="click: checkGiftCardBalance, resx: {textContent: 'string_1144' }">Check balance</button>
+                        </div>
+
+                        <!-- Available balance -->
+                        <div class="padTop4" data-bind="visible: showGiftCardBalance">
+                            <h3 class="ellipsis" data-bind="resx: { textContent: 'string_1145' }">Available balance</h3>
+                            <div class="padTop1">
+                                <h2 class="wrapText" data-bind="formatPrice: paymentViewModel.giftCardBalance"></h2>
+                            </div>
+                            <div class="padTop1">
+                                <h4 class="ellipsis secondaryFontColor" data-bind="timestamp: paymentViewModel.giftCardBalanceTimestamp"></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loyalty card details -->
+                    <div class="minWidth25 maxWidth32" data-bind="visible: paymentViewModel.isLoyaltyCardPayment">
+                        <label data-bind="resx: { textContent: 'string_1103' }" for="inputLoyaltyCardNumber">Card number</label>
+                        <input id="inputLoyaltyCardNumber" type="text" data-bind="value: paymentViewModel.loyaltyCardId, valueUpdate: 'afterkeydown'" />
+                    </div>
+                </div>
+
+                <div class="minWidth25 maxWidth32" data-bind="visible: paymentViewModel.isCustomerAccountPayment">
+                    <!-- Title -->
+                    <h2 data-bind="resx: { textContent: 'string_1150' }">Account details</h2>
+                    <div class="padTop1"></div>
+
+                    <!-- Customer Card -->
+                    <div data-bind="customerCard: {data: _customerCardViewModel, template: 'customerDetailsCardTemplate'}"></div>
+
+                    <!-- Add or search customer -->
+                    <div data-bind="visible: !showAccountDetails()">
+                        <div data-bind="buttonBlock: {
+                            buttonClass: 'iconAdd'
+                            , labelTextResx: 'string_1152' // Create new customer
+                            , click: createNewCustomer
+                        }">
+                        </div>
+
+                        <div data-bind="buttonBlock: {
+                            buttonClass: 'iconSearch'
+                            , labelTextResx: 'string_1153' // Search customers
+                            , click: searchCustomers
+                        }">
+                        </div>
+                    </div>
+
+                    <!-- Change customer -->
+                    <div data-bind="visible: showAccountDetails">
+                        <div data-bind="buttonBlock: {
+                            buttonClass: 'iconChange'
+                            , labelTextResx: 'string_1151' // Change customer account
+                            , click: changeCustomerAccount
+                        }">
+                        </div>
+                    </div>
+                </div>
+
+        <div class="denominationsArea col grow" data-bind="visible: showDenominations">
+                    <!-- Title -->
+                    <div class="no-shrink">
+                        <h2 data-bind="resx: { textContent: 'string_1135' }">Denominations</h2>
+                    </div>
+
+                    <!-- The denominations -->
+                    <div id="denominationsListView"
+                         class="win-selectionstylefilled marginTop1 browseGrid"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                     selectionMode: 'none',
+                        itemTemplate: select('#denominationTemplate'),
+                     }"
+                         data-bind="winControl: {
+                                    itemDataSource: paymentViewModel.currencyDenominations,
+                                    iteminvoked : denominationInvokedHandler,
+                                            layout: {
+                                                    groupInfo: denominationsLineViewGroupInfo,
+                                                    itemInfoMethod: denominationsLineViewItemInfo,
+                                                    type: WinJS.UI.CellSpanningLayout
+                                                }
+                                },
+                                resx: { ariaLabel: 'string_1199' }">
+                        <!-- List of currency denominations -->
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'tenderPaymentAppBar', label:'Tender payment', extraClass: 'winappbar-iconPayTender'}"
+                    data-bind="invokeValidate: beginProcessingPayment, resx: { label: 'string_1132' }">
+            </button>
+        </div>
+
+    </div>
+    </form>
+</body>
+</html>

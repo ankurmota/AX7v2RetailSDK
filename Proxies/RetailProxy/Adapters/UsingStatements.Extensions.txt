@@ -1,0 +1,2 @@
+    // Unncomment the following line and add using statements for entity/complex types defined in customization dlls. 
+    // using Contoso.Commerce.Runtime.DataModel;

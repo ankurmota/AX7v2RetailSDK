@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <ProjectGuid>{0AF8626B-B929-4E8D-B569-C82D8340E7FB}</ProjectGuid>
+    <PackageName>RetailServer</PackageName>
+    <InputManifest>Scripts\InstallationInfo.xml</InputManifest>
+    <OutputManifest>content.folder\$(PackageName)\Scripts\InstallationInfo.xml</OutputManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <_Code_bin_File Include="@(CommerceRuntime_CustomizableFile)" />
+    <_Code_bin_File Include="@(RetailServer_CustomizableFile)" />
+    <_Database_File Include="@(DatabaseFile_FullSchema)" />
+    <_Database_Upgrade_Custom_File Include="@(DatabaseFile_Upgrade_Custom)" />
+    <_Database_Upgrade_Retail_File Include="@(DatabaseFile_Upgrade_Retail)" />
+  </ItemGroup>
+  <ItemGroup>
+    <_Code_Auth_Certs_File Include="Code\Auth\Certs\Certs.json" />
+    <_Code_Auth__well-known_openid-configuration_File Include="Code\Auth\.well-known\openid-configuration\openid-configuration.json" />
+    <_Code_bin_App_Browsers_File Include="Code\bin\App_Browsers\Mobile.browser" />
+    <_Code_bin_ar_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_cs_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_da_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_de-AT_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_de-CH_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_de_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_en-AU_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_en-CA_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_en-GB_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_en-IE_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_en-IN_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_en-MY_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_en-NZ_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_en-SG_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_en-ZA_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_es-MX_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_es_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_et_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Cache.MemoryCache.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Client.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.ConfigurationProviders.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataAccess.SqlServer.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.SqlServer.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Messages.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Desktop.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.PricingEngine.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.TransactionService.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Workflow.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.WorkflowFoundation.Activities.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.WorkflowFoundation.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Core.Desktop.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Notification.Contracts.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Notification.Proxy.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentManager.Reference.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentProcessor.Common.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Extensions.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentTerminal.Contracts.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.PaymentTerminal.L5300.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Resources.Strings.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.RetailServer.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.RetailServerLibrary.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.SDKManager.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.Security.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.SynchLibrary.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.TestConnector.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Dynamics.Retail.TestConnector.Portable.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.OData.Core\6.11.0.0\Microsoft.OData.Core.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.OData.Edm\6.11.0.0\Microsoft.OData.Edm.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Owin.Host.SystemWeb\3.0.0.0\Microsoft.Owin.Host.SystemWeb.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Owin.Security.ActiveDirectory\3.0.0.0\Microsoft.Owin.Security.ActiveDirectory.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Owin.Security.Jwt\3.0.0.0\Microsoft.Owin.Security.Jwt.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Owin.Security.OAuth\3.0.0.0\Microsoft.Owin.Security.OAuth.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Owin.Security\3.0.0.0\Microsoft.Owin.Security.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Owin\3.0.0.0\Microsoft.Owin.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Practices.Prism.Interactivity\4.1.0.0\Microsoft.Practices.Prism.Interactivity.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Practices.Prism\4.1.0.0\Microsoft.Practices.Prism.dll" />
+    <_Code_bin_File Include="..\..\References\Microsoft.Spatial\6.11.0.0\Microsoft.Spatial.dll" />
+    <_Code_bin_File Include="..\..\References\Newtonsoft.Json.Portable\6.0.0.0\Newtonsoft.Json.Portable.dll" />
+    <_Code_bin_File Include="..\..\References\Newtonsoft.Json\6.0.0.0\Newtonsoft.Json.dll" />
+    <_Code_bin_File Include="..\..\References\Owin\1.0.0.0\Owin.dll" />
+    <_Code_bin_File Include="..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll" />
+    <_Code_bin_File Include="..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll" />
+    <_Code_bin_File Include="..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll" />
+    <_Code_bin_File Include="..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll" />
+    <_Code_bin_File Include="..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll" />
+    <_Code_bin_File Include="..\..\References\System.IdentityModel.Tokens.Jwt\4.0.2.28\System.IdentityModel.Tokens.Jwt.dll" />
+    <_Code_bin_File Include="..\..\References\System.Net.Http.Formatting\5.2.2.0\System.Net.Http.Formatting.dll" />
+    <_Code_bin_File Include="..\..\References\System.Web.Http.WebHost\5.2.2.0\System.Web.Http.WebHost.dll" />
+    <_Code_bin_File Include="..\..\References\System.Web.Http\5.2.2.0\System.Web.Http.dll" />
+    <_Code_bin_File Include="..\..\References\System.Web.OData\5.5.1.0\System.Web.OData.dll" />
+    <!-- <_Code_bin_File Include="Code\bin\commerceRuntime.config" /> already found in @(CommerceRuntime_CustomizableFile) ItemGroup -->
+    <!-- <_Code_bin_File Include="Code\bin\workflowFoundation.config" /> already found in @(CommerceRuntime_CustomizableFile) ItemGroup -->
+    <_Code_bin_fi_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_fr-BE_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_fr-CA_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_fr-CH_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_fr_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_hu_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_is_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_it-CH_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_it_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_ja_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_lt_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_lv_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_nb-NO_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_nl-BE_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_nl_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_pl_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_pt-BR_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_ru_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_sv_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_th_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_tr_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_bin_Workflows_File Include="Code\bin\Workflows\DeleteCart.xaml" />
+    <_Code_bin_Workflows_File Include="Code\bin\Workflows\GetOrders.xaml" />
+    <_Code_bin_Workflows_File Include="Code\bin\Workflows\SaveCart.xaml" />
+    <_Code_bin_zh-Hans_File Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.resources.dll" />
+    <_Code_File Include="Code\Global.asax" />
+    <_Code_File Include="Code\Robots.txt" />
+    <_Code_File Include="Code\web.config" />
+    <_Data_File Include="Data\ApplyRetailDBScriptInSQLSU.ps1" />
+    <_Data_File Include="Data\ApplyRetailDBScriptInSQLSUDropObjects.ps1" />
+    <_Data_File Include="Data\ApplyRetailDBScriptInSQLSURetailSchema.ps1" />
+    <_Data_File Include="Data\CommerceRuntimeScripts_Create_7.0.1265.3015.sql" />
+    <_Data_File Include="Data\DropAllRetailChannelDbObjects.sql" />
+    <_Data_File Include="Data\DropAllUseDefinedDbObjects.sql" />
+    <_Data_File Include="Data\FixAxRetailChannelBackupDB.sql" />
+    <_Data_File Include="Data\RebuildFullTextCatalogAndWait.sql" />
+    <_Data_Upgrade_Custom_File Include="Data\Upgrade\Custom\Readme.txt" />
+    <_Data_Upgrade_Retail_File Include="Data\Upgrade\Retail\DB7.0.1186.16043_7.0.1265.3015.sql" />
+    <_Data_Upgrade_Retail_File Include="Data\Upgrade\Retail\DB7.0.1265.3015_7.0.1265.23014.sql" />
+    <_Data_Upgrade_Retail_File Include="Data\Upgrade\Retail\Readme.txt" />
+    <_ETWManifest_File Include="$(SdkAssetsPath)\Microsoft.Dynamics.Retail.Diagnostics.Sinks.man" />
+    <_ETWManifest_File Include="..\..\References\Microsoft.Dynamics.AX7Deployment.Instrumentation.dll" />
+    <_ETWManifest_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll" />
+    <_ETWManifest_File Include="..\..\References\Microsoft.Dynamics.Retail.Diagnostics.Sinks.dll" />
+    <_ETWManifest_File Include="..\..\References\Microsoft.Dynamics.Retail.RetailServer.dll" />
+    <_ETWManifest_File Include="ETWManifest\Microsoft.Dynamics.AX7Deployment.instrumentation.man" />
+    <_ETWManifest_File Include="ETWManifest\Microsoft.Dynamics.Retail.RetailServer.man" />
+    <_ETWManifest_File Include="ETWManifest\RetailCounterSets.xml" />
+    <_Scripts_File Include="$(SdkAssetsPath)\AutoETWManifestUpdate.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Configuration.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Database.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Upgrade.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Common-Web.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Deploy-Databases.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\Register-PerfCounters.ps1" />
+    <_Scripts_File Include="$(SdkAssetsPath)\SetConfigInstallationInfo.ps1" />
+    <_Scripts_File Include="..\..\References\Microsoft.Dynamics.AX.AXInstallationInfo.dll" />
+    <_Scripts_File Include="Scripts\AutoETWManifestRestore.ps1" />
+    <_Scripts_File Include="Scripts\Backup-RetailServer.ps1" />
+    <_Scripts_File Include="Scripts\Call-RetailServerServicing.ps1" />
+    <_Scripts_File Include="Scripts\CallRetailPostDeploymentConfigurationService.ps1" />
+    <_Scripts_File Include="Scripts\CallRetailPostDeploymentConfigurationServiceWrapper.ps1" />
+    <_Scripts_File Include="Scripts\channeldb-settings-test.xml" />
+    <_Scripts_File Include="Scripts\channeldb-settings.xml" />
+    <_Scripts_File Include="Scripts\channeldb-topology.xml" />
+    <_Scripts_File Include="Scripts\Common-Patching.ps1" />
+    <_Scripts_File Include="Scripts\Common-Servicing.psm1" />
+    <_Scripts_File Include="Scripts\Common-WinService.ps1" />
+    <_Scripts_File Include="Scripts\CommonDVTHelperModule.psm1" />
+    <_Scripts_File Include="Scripts\CommonRollbackUtilities.psm1" />
+    <_Scripts_File Include="Scripts\CreateRetailServerDSCConfiguration.ps1" />
+    <_Scripts_File Include="Scripts\FixAxRetailChannelBackupDB.sql" />
+    <_Scripts_File Include="Scripts\InstallationInfo.xml" />
+    <_Scripts_File Include="Scripts\Restore-RetailServer.ps1" />
+    <_Scripts_File Include="Scripts\RetailServerDSCConfiguration.ps1" />
+    <_Scripts_File Include="Scripts\RetailTenantUpdateTool.ps1" />
+    <_Scripts_File Include="Scripts\RunRetailPostDeploymentConfig.ps1" />
+    <_Scripts_File Include="Scripts\RunRetailServerDVT.ps1" />
+    <_Scripts_File Include="Scripts\ServiceModelUtilities.psm1" />
+    <_Scripts_File Include="Scripts\Setup-SettingsForDatabaseDeployment.ps1" />
+    <_Scripts_File Include="Scripts\Start-RetailServer.ps1" />
+    <_Scripts_File Include="Scripts\Stop-RetailServer.ps1" />
+    <_Scripts_File Include="Scripts\Uninstall.ps1" />
+    <_Scripts_File Include="Scripts\UpdateRetailServerAuthenticationKeys.ps1" />
+    <_Scripts_File Include="Scripts\UpdateRetailServerDeployment.ps1" />
+    <_Scripts_File Include="Scripts\UpdateRetailServerDeploymentWithConfigWrapper.ps1" />
+    <_Scripts_File Include="Scripts\ValidateRetailDeployment.ps1" />
+    <_Scripts_File Include="Scripts\ValidateRetailServer.ps1" />
+    <_Scripts_Upgrade_Core_File Include="$(SdkAssetsPath)\Common-Configuration.ps1" />
+    <_Scripts_Upgrade_Core_File Include="$(SdkAssetsPath)\Common-Database.ps1" />
+    <_Scripts_Upgrade_Core_File Include="$(SdkAssetsPath)\Common-Upgrade.ps1" />
+    <_Scripts_Upgrade_Core_File Include="$(SdkAssetsPath)\Common-Web.ps1" />
+    <_Scripts_Upgrade_Core_File Include="$(SdkAssetsPath)\Deploy-Databases.ps1" />
+    <_Scripts_Upgrade_Core_File Include="Scripts\Upgrade\Core\UpdateRetailServer.ps1" />
+    <_Scripts_Upgrade_Database_File Include="$(SdkAssetsPath)\Common-Configuration.ps1" />
+    <_Scripts_Upgrade_Database_File Include="$(SdkAssetsPath)\Common-Database.ps1" />
+    <_Scripts_Upgrade_Database_File Include="$(SdkAssetsPath)\Deploy-Databases.ps1" />
+    <_Scripts_Upgrade_Database_File Include="Scripts\Upgrade\Database\channeldb-settings.xml" />
+    <_Scripts_Upgrade_Database_File Include="Scripts\Upgrade\Database\channeldb-topology.xml" />
+    <_Scripts_Upgrade_Database_File Include="Scripts\Upgrade\Database\CommerceRuntimeScripts_Create_7.0.1265.3015.sql" />
+    <_Scripts_Upgrade_Database_File Include="Scripts\Upgrade\Database\Setup-SettingsForDatabaseDeployment.ps1" />
+    <_Scripts_xDynamics_DSCResources_RetailChannelDatabase_File Include="Scripts\xDynamics\DSCResources\RetailChannelDatabase\RetailChannelDatabase.psm1" />
+    <_Scripts_xDynamics_DSCResources_RetailChannelDatabase_File Include="Scripts\xDynamics\DSCResources\RetailChannelDatabase\RetailChannelDatabase.schema.mof" />
+    <_Scripts_xDynamics_File Include="Scripts\xDynamics\CommonDatabaseHelper.psm1" />
+    <_Scripts_xDynamics_File Include="Scripts\xDynamics\CommonLoggingHelper.psm1" />
+    <_Scripts_xDynamics_File Include="Scripts\xDynamics\CommonRetailDSCConfiguration.ps1" />
+    <_ServiceModel_File Include="ServiceModel\RetailService.xml" />
+    <_ServiceModel_File Include="ServiceModel\ServiceComponent.xml" />
+  </ItemGroup>
+  <Target Name="Build" Inputs="$(MSBuildAllProjects);@(_Code_Auth_Certs_File);@(_Code_Auth_File);@(_Code_Auth__well-known_File);@(_Code_Auth__well-known_openid-configuration_File);@(_Code_bin_App_Browsers_File);@(_Code_bin_ar_File);@(_Code_bin_cs_File);@(_Code_bin_da_File);@(_Code_bin_de-AT_File);@(_Code_bin_de-CH_File);@(_Code_bin_de_File);@(_Code_bin_en-AU_File);@(_Code_bin_en-CA_File);@(_Code_bin_en-GB_File);@(_Code_bin_en-IE_File);@(_Code_bin_en-IN_File);@(_Code_bin_en-MY_File);@(_Code_bin_en-NZ_File);@(_Code_bin_en-SG_File);@(_Code_bin_en-ZA_File);@(_Code_bin_es-MX_File);@(_Code_bin_es_File);@(_Code_bin_et_File);@(_Code_bin_File);@(_Code_bin_fi_File);@(_Code_bin_fr-BE_File);@(_Code_bin_fr-CA_File);@(_Code_bin_fr-CH_File);@(_Code_bin_fr_File);@(_Code_bin_hu_File);@(_Code_bin_is_File);@(_Code_bin_it-CH_File);@(_Code_bin_it_File);@(_Code_bin_ja_File);@(_Code_bin_lt_File);@(_Code_bin_lv_File);@(_Code_bin_nb-NO_File);@(_Code_bin_nl-BE_File);@(_Code_bin_nl_File);@(_Code_bin_pl_File);@(_Code_bin_ProductInfo_File);@(_Code_bin_pt-BR_File);@(_Code_bin_ru_File);@(_Code_bin_sv_File);@(_Code_bin_th_File);@(_Code_bin_tr_File);@(_Code_bin_Workflows_File);@(_Code_bin_zh-Hans_File);@(_Code_File);@(_Data_File);@(_Data_Upgrade_Custom_File);@(_Data_Upgrade_File);@(_Data_Upgrade_Retail_File);@(_ETWManifest_File);@(_Instructions_File);@(_Packages_File);@(_Scripts_File);@(_Scripts_Upgrade_Core_File);@(_Scripts_Upgrade_Database_File);@(_Scripts_Upgrade_File);@(_Scripts_xDynamics_DSCResources_File);@(_Scripts_xDynamics_DSCResources_RetailChannelDatabase_File);@(_Scripts_xDynamics_File);@(_ServiceModel_File);@(__File);@(_Database_File);@(_Database_Upgrade_Custom_File);@(_Database_Upgrade_Retail_File);@(_Update_Installer_Files)" Outputs="$(OutputPath)content.zip">
+    <CallTarget Targets="CopyPackageFiles" />
+    <Delete Files="$(OutputPath)content.zip" />
+    <GenerateHotfixInstallationInfo ContentFolder="$(OutputPath)content.folder" />
+    <Zip OutputFileName="$(OutputPath)content.zip" InputFolder="$(OutputPath)content.folder" />
+  </Target>
+  <Target Name="CopyPackageFiles">
+    <RemoveDir Directories="$(OutputPath)content.folder" />
+    <Copy SourceFiles="@(_Code_Auth_Certs_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\Auth\Certs" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_Auth_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\Auth" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_Auth__well-known_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\Auth\.well-known" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_Auth__well-known_openid-configuration_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\Auth\.well-known\openid-configuration" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_App_Browsers_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\App_Browsers" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_ar_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\ar" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_cs_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\cs" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_da_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\da" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_de-AT_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\de-AT" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_de-CH_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\de-CH" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_de_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\de" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_en-AU_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\en-AU" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_en-CA_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\en-CA" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_en-GB_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\en-GB" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_en-IE_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\en-IE" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_en-IN_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\en-IN" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_en-MY_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\en-MY" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_en-NZ_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\en-NZ" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_en-SG_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\en-SG" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_en-ZA_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\en-ZA" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_es-MX_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\es-MX" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_es_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\es" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_et_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\et" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_fi_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\fi" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_fr-BE_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\fr-BE" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_fr-CA_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\fr-CA" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_fr-CH_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\fr-CH" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_fr_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\fr" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_hu_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\hu" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_is_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\is" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_it-CH_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\it-CH" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_it_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\it" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_ja_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\ja" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_lt_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\lt" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_lv_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\lv" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_nb-NO_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\nb-NO" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_nl-BE_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\nl-BE" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_nl_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\nl" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_pl_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\pl" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_ProductInfo_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\ProductInfo" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_pt-BR_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\pt-BR" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_ru_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\ru" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_sv_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\sv" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_th_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\th" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_tr_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\tr" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_Workflows_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\Workflows" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_bin_zh-Hans_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code\bin\zh-Hans" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Code_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Code" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Data_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Data" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Data_Upgrade_Custom_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Data\Upgrade\Custom" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Data_Upgrade_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Data\Upgrade" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Data_Upgrade_Retail_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Data\Upgrade\Retail" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ETWManifest_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\ETWManifest" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Instructions_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Instructions" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Packages_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Packages" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Scripts" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_Upgrade_Core_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Scripts\Upgrade\Core" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_Upgrade_Database_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Scripts\Upgrade\Database" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_Upgrade_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Scripts\Upgrade" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_xDynamics_DSCResources_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Scripts\xDynamics\DSCResources" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_xDynamics_DSCResources_RetailChannelDatabase_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Scripts\xDynamics\DSCResources\RetailChannelDatabase" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Scripts_xDynamics_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\Scripts\xDynamics" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ServiceModel_File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\ServiceModel" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(__File)" DestinationFolder="$(OutputPath)content.folder\RetailServer\" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Database_File)" DestinationFolder="$(OutputPath)content.folder\$(PackageName)\Scripts\Upgrade\Database" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Database_Upgrade_Custom_File)" DestinationFolder="$(OutputPath)content.folder\$(PackageName)\Scripts\Upgrade\Database\Upgrade\Custom" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Database_Upgrade_Retail_File)" DestinationFolder="$(OutputPath)content.folder\$(PackageName)\Scripts\Upgrade\Database\Upgrade\Retail" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Update_Installer_Files)" DestinationFolder="$(OutputPath)content.folder" SkipUnchangedFiles="true" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+  <Target Name="BuildGenerated" />
+  <Target Name="BuildCompiled" />
+  <Target Name="BuildLinked" />
+  <Target Name="Rebuild">
+    <CallTarget Targets="Clean" />
+    <CallTarget Targets="Build" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(OutputPath)content.folder" />
+    <Delete Files="$(OutputPath)content.zip" />
+  </Target>
+</Project>

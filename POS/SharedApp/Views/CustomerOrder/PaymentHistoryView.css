@@ -1,0 +1,11 @@
+.paymentHistoryView *[role=main], .paymentHistoryView *[role=main] > .col {
+    height: 100%;
+}
+
+.paymentHistoryView *[role=group] {
+    flex:1 1 100%;
+}
+
+.paymentHistoryView *[role=listbox] {
+    overflow-y: auto;
+}

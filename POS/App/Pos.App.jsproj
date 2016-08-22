@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.Default.props" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputPath>bin</OutputPath>
+    <Platform Condition="'$(BuildingInsideVisualStudio)'!='true'">x86</Platform>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup>
+    <WindowsAppContainer>true</WindowsAppContainer>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <ProjectGuid>{A36B7924-55Db-420B-88A8-7C6Ffb43A59B}</ProjectGuid>
+    <AppxPackageName>RetailModernPOS_$(Platform)</AppxPackageName>
+    <WMSJSProject>WJProject</WMSJSProject>
+    <WMSJSProjectDirectory>Javascript</WMSJSProjectDirectory>
+    <ProcessorArchitecture>x86</ProcessorArchitecture>
+    <TypeScriptOutFile>Pos.js</TypeScriptOutFile>
+    <TypeScriptNoImplicitAny>false</TypeScriptNoImplicitAny>
+    <ShippingSourceCode>true</ShippingSourceCode>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageCertificateKeyFile>$(ModernPOSPackageCertificateKeyFile)</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="package.appxmanifest" Condition="'$(ProductName)'!='RetailModernPOSDemoMode'">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="Pos.js">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Content>
+    <Content Include="Views\TaskRecorder\EditTaskView.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.winmd">
+      <HintPath>..\..\References\Microsoft.IdentityModel.Clients.ActiveDirectory.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+      <CopyLocal>True</CopyLocal>
+    </Reference>
+    <Reference Include="Microsoft.winmd">
+      <HintPath>..\..\References\Microsoft.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.PricingEngine.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="..\..\References\Microsoft.Dynamics.Commerce.Runtime.Cache.MemoryCache.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Extensions.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Device\DualDisplayView.html" />
+    <Content Include="Views\Device\DualDisplayView.js">
+      <DependentUpon>DualDisplayView.html</DependentUpon>
+    </Content>
+    <Content Include="Pos.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Core\Activities\MerchantInformationActivityHelper.ts" />
+    <TypeScriptCompile Include="Core\Activities\ClearMerchantInformationActivityImpl.ts" />
+    <TypeScriptCompile Include="Core\Activities\SaveMerchantInformationActivityImpl.ts" />
+    <TypeScriptCompile Include="Core\TaskRecorderDialogHelper.ts" />
+    <TypeScriptCompile Include="Core\TaskRecorderDownloaderImpl.ts" />
+    <TypeScriptCompile Include="Core\TaskRecorderDownloadHelper.ts" />
+    <TypeScriptCompile Include="Host\WwaAADAuthenticationProvider.ts" />
+    <TypeScriptCompile Include="Host\WwaApplication.ts" />
+    <TypeScriptCompile Include="Host\WwaConfigurationProvider.ts" />
+    <TypeScriptCompile Include="Host\WwaGlobalization.ts" />
+    <TypeScriptCompile Include="Host\WwaHost.ts" />
+    <TypeScriptCompile Include="Peripherals\WindowsPeripherals.ts" />
+    <TypeScriptCompile Include="Peripherals\Facade\BarcodeScanner.ts" />
+    <TypeScriptCompile Include="Peripherals\Facade\MagneticStripeReader.ts" />
+    <TypeScriptCompile Include="Peripherals\Native\BarcodeScanner.ts" />
+    <TypeScriptCompile Include="Peripherals\Native\DualDisplay.ts" />
+    <TypeScriptCompile Include="Peripherals\Native\MagneticStripeReader.ts" />
+    <TypeScriptCompile Include="Peripherals\Native\Printer.ts" />
+    <TypeScriptCompile Include="Peripherals\Native\Proximity.ts" />
+    <TypeScriptCompile Include="Peripherals\Native\VfE255BarcodeScanner.ts" />
+    <TypeScriptCompile Include="Peripherals\Native\VfE255MagneticStripeReader.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4a0dddb5-7a95-4fbf-97cc-616d07737a77}" />
+  </ItemGroup>
+  <Import Project="..\SharedApp\Pos.SharedApp.projitems" />
+  <Import Project="..\SharedApp\PosWindows.SharedApp.projitems" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
+  <Import Project="$(INETROOT)\build\msbuild\MS.Dynamics.AppxVersioning.targets" Condition="False" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.targets')" />
+  <Target Name="CopyTypeScriptLibraries" BeforeTargets="PreComputeCompileTypeScript;">
+    <Copy SourceFiles="%(TypeScriptLibraries.Identity)" DestinationFiles="$(TypeScriptLibrariesOutDir)%(TypeScriptLibraries.FileName)%(TypeScriptLibraries.Extension)" SkipUnchangedFiles="true" Condition="Exists('%(TypeScriptLibraries.Identity)')" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

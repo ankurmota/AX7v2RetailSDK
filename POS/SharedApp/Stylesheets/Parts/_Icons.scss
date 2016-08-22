@@ -1,0 +1,897 @@
+﻿/*
+*
+*   POS/DYNAMICS ICONS
+*
+*   
+*/
+@font-face {
+    font-family: DynamicsFont;
+    src: url(../Assets/Fonts/dynamsymb.woff);
+}
+
+/* Dynamics Font */
+/* Usage: In order to use the icons in the win-appbar controller, you must
+   overwrite the Segoe UI Symbol font for the icons.
+    
+   Prefix the CSS rule with:
+      button.yourIconClass .win-commandimage
+
+   Include the following attribute in the html markup:
+      data-win-options="{extraClass: 'yourIconClass'}"
+*/
+.win-appbar.dynamicsSymbolFont {
+    font-family: DynamicsFont;
+}
+
+    .win-appbar.dynamicsSymbolFont button .win-commandimage {
+        font-family: DynamicsFont;
+        font-size: 12pt;
+        cursor: pointer;
+    }
+
+/*  Icon classes with no winappbar prefix can be applied to any element directly that
+        is not a child of a win app bar.
+     */
+.iconEdit, .iconEditBig, .iconEditSmall,
+.iconNavBack, .iconNavBackBig, .iconNavBackSmall,
+.iconBack, .iconBackBig, .iconBackSmall,
+.iconAdd, .iconAddBig, .iconAddSmall,
+.iconLocation, .iconLocationBig, .iconLocationSmall,
+.iconTarget, .iconTargetBig, .iconTargetSmall,
+.iconMagnify, .iconMagnifyBig, .iconMagnifySmall,
+.iconSearch, .iconSearchBig, .iconSearchSmall,
+.iconCancel, .iconCancelBig, .iconCancelSmall,
+.iconClipboard, .iconClipboardBig, .iconClipboardSmall,
+.iconSave, .iconSaveBig, .iconSaveSmall,
+.iconProgressInnerLoop, .iconProgressInnerLoopBig, .iconProgressInnerLoopSmall,
+.iconFieldCorrect, .iconFieldCorrectBig, .iconFieldCorrectSmall,
+.iconPhone, .iconPhoneBig, .iconPhoneSmall,
+.iconPrint, .iconPrintBig, .iconPrintSmall,
+.iconEmail, .iconEmailBig, .iconEmailSmall,
+.iconListView, .iconSmallCardView, .iconLargeCardView, 
+.iconLoyalty, .iconLoyaltyBig, .iconLoyaltySmall,
+.iconActions, .iconActionsBig, .iconActionsSmall,
+.iconRefresh, .iconRefreshBig, .iconRefreshSmall,
+.iconSync, .iconSyncBig, .iconSyncSmall,
+.iconChange, .iconChangeBig, .iconChangeSmall,
+.iconExpandSmall, .iconCollapseSmall, .iconExpandBig, .iconCollapseBig,
+.iconCheckMark, .iconCheckMarkSmall, .iconCheckMarkBig,
+.iconChangeCatalog, .iconChangeCatalogSmall, .iconChangeCatalogBig,
+.iconExpand, .iconCollapse, .iconInfoSmall, .iconInfo, .iconInfoBig,
+.iconWarningSmall, .iconWarning, .iconWarningBig,
+.iconDenominationCount, .iconDenominationCountBig, .iconDenominationCountSmall,
+.iconProducts, .iconProductsBig, .iconProductsSmall,
+.iconQuantity, .iconQuantityBig, .iconQuantitySmall,
+.iconCloseShift, .iconCloseShiftBig, .iconCloseShiftSmall,
+.iconOpenShift, .iconOpenShiftBig, .iconOpenShiftSmall,
+.iconTakeBreak, .iconTakeBreakBig, .iconTakeBreakSmall,
+.iconLunchBreak, .iconLunchBreakBig, .iconLunchBreakSmall,
+.iconBulletList, .iconBulletListBig, .iconBulletListSmall,
+.iconPerson, .iconPersonBig, .iconPersonSmall,
+.iconWorld, .iconWorldBig, .iconWorldSmall,
+.iconError, .iconErrorBig, .iconErrorSmall,
+.iconSettingsBig, .iconHelpBig,
+.iconRecordingInProgress, .iconTaskRecorder, 
+.iconContinue, .iconPause, .iconStop, 
+.iconStartTask, .iconEndTask,
+.iconEditStep,
+.iconSaveRecording, .iconSaveWordDocument, .iconSaveBpmPackage, .iconSaveToLifecycleServices,
+.iconOpenTaskRecorder {
+    font-family: DynamicsFont;
+    border-radius: 50%;
+    background-color: transparent;
+    padding: 0px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.roundedBorder {
+    border-radius: 50%;
+}
+
+.noBorder, .noBorder:hover:active {
+    border: none !important;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.iconDisabled {
+    border: 2px solid #414345;
+    color: #414345;
+}
+
+    .iconDisabled:hover {
+        border: 2px solid #414345;
+        color: #414345;
+        background-color: transparent;
+        cursor: default;
+    }
+
+.iconEditBig, .iconAddBig,
+.iconNavBackBig,
+.iconBackBig, .iconClipboardBig,
+.iconPrintBig, .iconSyncBig,
+.iconSearchBig, .iconCancelBig,
+.iconExpandBig, .iconCollapseBig,
+.iconSaveBig, .iconPhoneBig,
+.iconEmailBig, .iconLoyaltyBig,
+.iconActionsBig, .iconRefreshBig,
+.iconChangeBig, .iconLocationBig, 
+.iconCheckMarkBig, .iconDenominationCountBig,
+.iconChangeCatalogBig, .iconTargetBig, .iconMagnifyBig,
+.iconProductsBig, .iconQuantityBig, .iconCloseShiftBig,
+.iconOpenShiftBig, .iconTakeBreakBig,
+.iconLunchBreakBig, .iconBulletListBig,
+.iconSettingsBig, .iconHelpBig, .iconPersonBig,
+.iconWorldBig, .iconErrorBig, .iconInfoBig,
+.iconProgressInnerLoopBig, .iconFieldCorrectBig,
+.iconSaveRecording, .iconSaveWordDocument, .iconSaveBpmPackage, .iconSaveToLifecycleServices,
+.iconWarningBig {
+    min-width: 2em;
+    min-height:2em;
+    width: 2em;
+    height: 2em;
+    font-size: 2em;
+}
+
+.printReceiptDialog .iconPrintBig {
+    min-width: 2.5em;
+    min-height:2.5em;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.printReceiptDialog .iconDisabled {
+    background-color: rgba(0,0,0,0.29);
+    color: #ffffff;
+}
+
+.navButtons:disabled,
+.navButtons:disabled:hover,
+.navButtons:disabled:active{
+    background-color:transparent;
+}
+
+.navButtons,
+.navButtons:enabled:hover {
+    min-width: 1.5em;
+    min-height: 1.5em;
+    width: 100%;
+    height: 2.5em !important;
+    font-size: 2.4em;
+    font-family: DynamicsFont;
+    font-weight: 400;
+}
+
+.navButtons.navBarExtensionBackGround:focus {
+    border: none !important; //overrides noBorder style;
+}
+
+.navButtons:focus {
+    border: 1px dotted #fff !important; //overrides noBorder style;
+    outline: none; 
+}
+
+
+.navBarButtonColor, .iconChangeCatalog,
+.navBarButtonColor:enabled:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.navBarButtonColor:disabled,
+.navBarButtonColor:disabled:hover,
+.navBarButtonColor:disabled:active {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.iconButton {
+    width: auto;
+    height: auto;
+    min-height: 0px !important;
+    min-width: 0px !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.iconBig {
+    font-size:2.4em !important;
+    height: 1.25em;
+}
+
+div.iconBig {
+    width: 1em;
+    height:1em;
+    font-size:3.2em !important;
+    min-width: 1em;
+    min-height: 1em;
+    margin-left:-0.2em;
+}
+
+.iconExpand, .iconCollapse {
+    width: 23px;
+    height: 23px;
+    min-width: 23px;
+    min-height: 23px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.iconBack, .iconClipboard,
+.iconEdit, .iconAdd, .iconPrint,
+.iconSearch, .iconCancel,
+.iconSave, .iconPhone,
+.iconEmail, .iconLoyalty,
+.iconActions, .iconRefresh,
+.iconLocation, .iconBulletList, .iconChange,
+.iconCheckMark, .iconDenominationCount, 
+.iconChangeCatalog, .iconNavBack, .iconSync,
+.iconTarget, .iconMagnify, .iconProducts, 
+.iconQuantity, .iconCloseShift,
+.iconOpenShift, .iconTakeBreak,
+.iconLunchBreak, .iconBulletList,
+.iconPerson, .iconWorld,
+.iconError, .iconInfo, .iconWarning,
+.iconRecordingInProgress, .iconTaskRecorder, 
+.iconContinue, .iconPause, .iconStop, 
+.iconStartTask, .iconEndTask,
+.iconEditStep, .iconProgressInnerLoop,
+.iconFieldCorrect, .iconOpenTaskRecorder {
+    width: 2em;
+    height: 2em;
+    min-width: 2em;
+    min-height: 2em;
+    font-size: 1.5em;
+}
+
+.iconBackSmall, .iconClipboardSmall
+.iconEditSmall, .iconAddSmall,
+.iconExpandSmall, .iconCollapseSmall,
+.iconPrintSmall, .iconSearchSmall,
+.iconSaveSmall, .iconPhoneSmall,
+.iconEmailSmall, .iconLoyaltySmall,
+.iconActionsSmall, .iconRefreshSmall, .iconSyncSmall
+.iconLocationSmall, .iconInfoSmall, .iconChangeSmall,
+.iconCheckMarkSmall, .iconDenominationCountSmall,
+.iconChangeCatalogSmall, .iconTargetSmall, 
+.iconMagnifySmall, .iconProductsSmall, 
+.iconQuantitySmall, .iconCloseShiftSmall,
+.iconOpenShiftSmall, .iconTakeBreakSmall,
+.iconLunchBreakSmall, .iconBulletListSmall,
+.iconPersonSmall, .iconWorldSmall,
+.iconErrorSmall, .iconProgressInnerLoopSmall,
+.iconFieldCorrectSmall, .iconWarningSmall {
+    height: 2em;
+    width: 2em;
+    min-height: 2em;
+    min-width: 2em;
+    font-size: 1em;
+}
+
+    /* see pos-light-theme.css & pos-dark-theme.css for color rules */
+    .iconActions::before,
+    .iconActionsBig::before,
+    .iconActionsSmall::before,
+    .win-appbar.dynamicsSymbolFont button.winappbar-iconActions .win-commandimage:before {
+        content: "\E10C";
+    }
+
+.win-appbar button {
+    border-style: dotted;
+    border-width: 1px;
+    background-color: transparent !important;
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconActive .win-commandimage:before {
+    content: "\E50B";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconActivateLoyaltyCard .win-commandimage:before {
+    content: "\E1A7";
+}
+
+.iconAdd::before,
+.iconAddBig::before,
+.iconAddSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconAdd .win-commandimage:before {
+    content: "\E109";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconApply .win-commandimage:before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconAccept .win-commandimage:before {
+    content: "\E10B";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconAsterisk .win-commandimage:before {
+    content: "\E505";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconBrowseProducts .win-commandimage:before {
+    content: "\E14D";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCalendar .win-commandimage:before {
+    content: "\E702";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCalendarDay .win-commandimage:before {
+    content: "\E161";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCalendarWeek .win-commandimage:before {
+    content: "\E162";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCalendarMonth .win-commandimage:before {
+    content: "\E163";
+}
+
+.iconBack::before,
+.iconBackBig::before,
+.iconBackSmall::before {
+    content: "\E0BA";
+}
+
+.iconExpand::before,
+.iconExpandBig::before,
+.iconExpandSmall::before {
+    content: "\E015";
+    text-align: center;
+}
+
+.iconCollapse::before,
+.iconCollapseBig::before,
+.iconCollapseSmall::before {
+    content: "\E014";
+}
+
+.iconCheckMark::before,
+.iconCheckMarkSmall::before,
+.iconCheckMarkBig::before {
+    content: "\E10B";
+}
+
+.iconPerson::before,
+.iconPersonSmall::before,
+.iconPersonBig::before {
+    content: "\E13D";
+}
+
+.iconWorld::before,
+.iconWorldSmall::before,
+.iconWorldBig::before {
+    content: "\E12B";
+}
+
+.iconError::before,
+.iconErrorSmall::before,
+.iconErrorBig::before {
+    content: "\E501";
+}
+
+.iconProgressInnerLoop::before,
+.iconProgressInnerLoopSmall::before,
+.iconProgressInnerLoopBig::before {
+    content: "\E546";
+}
+
+.iconFieldCorrect::before,
+.iconFieldCorrectSmall::before,
+.iconFieldCorrectBig::before {
+    content: "\E29D";
+}
+
+.iconCancel::before,
+.iconCancelBig::before,
+.iconCancelSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCancel .win-commandimage:before {
+    content: "\E10A";
+}
+
+.iconChange::before,
+.iconChangeBig::before,
+.iconChangeSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconChange .win-commandimage:before {
+    content: "\E149";
+}
+
+.iconClipboard::before,
+.iconClipboardBig::before,
+.iconClipboardSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconClipboard .win-commandimage:before {
+    content: "\E16D";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconClock .win-commandimage:before {
+    content: "\E121";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCloseJournal .win-commandimage:before {
+    content: "\E177";
+}
+
+.iconCloseShift::before,
+.iconCloseShiftBig::before,
+.iconCloseShiftSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCloseShift .win-commandimage:before {
+    content: "\E523";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCommitJournal .win-commandimage:before {
+    content: "\E10B";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCreateCustomer .win-commandimage:before {
+    content: "\E1E2";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCreateDocument .win-commandimage:before {
+    content: "\E515";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCreateList .win-commandimage:before {
+    content: "\E16D";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-pickingAndPacking .win-commandimage:before {
+    content: "\EA05";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconCompare .win-commandimage:before {
+    content: "\E11E";
+}
+
+.iconDenominationCount::before,
+.iconDenominationCountBig::before,
+.iconDenominationCountSmall::before {
+    content: "\E536";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconDeclareAmount .win-commandimage:before {
+    content: "\E539";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconDelete .win-commandimage:before {
+    content: "\E107";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconDisassemble .win-commandimage:before {
+    content: "\E15E";
+}
+
+.iconEdit::before,
+.iconEditBig::before,
+.iconEditSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconEdit .win-commandimage:before {
+    content: "\E104";
+}
+
+.iconListView::before {
+    content: "\E50C";
+}
+
+.iconSmallCardView::before {
+    content: "\E18A";
+}
+
+.iconLargeCardView::before {
+    content: "\E138";
+}
+
+.iconEmail::before,
+.iconEmailBig::before,
+.iconEmailSmall::before {
+    content: "\E119";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconFilter .win-commandimage:before {
+    content: "\E16E";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconIssueLoyaltyCard .win-commandimage:before {
+    content: "\E1A6";
+}
+
+.iconTarget::before,
+.iconTargetBig::before,
+.iconTargetSmall::before {
+    content: "\E1D2";
+}
+
+.iconMagnify::before,
+.iconMagnifyBig::before,
+.iconMagnifySmall::before {
+    content: "\E1D9";
+}
+
+.iconLocation::before,
+.iconLocationBig::before,
+.iconLocationSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconLocation .win-commandimage:before {
+    content: "\E139";
+}
+
+.iconLoyalty::before,
+.iconLoyaltyBig::before,
+.iconLoyaltySmall::before {
+    content: "\E113";
+}
+
+
+.iconLunchBreak::before,
+.iconLunchBreakBig::before,
+.iconLunchBreakSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconLunchBreak .win-commandimage:before {
+    content: "\E706";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconMap .win-commandimage:before {
+    content: "\E1C4";
+}
+
+.iconOpenShift::before,
+.iconOpenShiftBig::before,
+.iconOpenShiftSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconOpenShift .win-commandimage:before {
+    content: "\E524";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconPair .win-commandimage:before {
+    content: "\E70A";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconPayTender .win-commandimage:before {
+    content: "\E534";
+}
+
+.iconPhone::before,
+.iconPhoneBig::before,
+.iconPhoneSmall::before {
+    content: "\E13A";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconPickAndReceive .win-commandimage:before {
+    content: "\E534";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconPickup .win-commandimage:before {
+    content: "\E181";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconPrice .win-commandimage:before {
+    content: "\E1CB";
+}
+
+.iconPrint::before,
+.iconPrintBig::before,
+.iconPrintSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconPrint .win-commandimage:before {
+    content: "\E509";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconRecalculate .win-commandimage:before {
+    content: "\E1D0";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconRecall .win-commandimage:before {
+    content: "\E001";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconReceipt .win-commandimage:before {
+    content: "\E532";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconPickupInStore .win-commandimage:before {
+    content: "\E533";
+}
+
+.iconBulletList::before,
+.iconBulletListBig::before,
+.iconBulletListSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconBulletList .win-commandimage:before {
+    content: "\E14C";
+}
+
+.iconNavExpand:before {
+    content: "\E542";
+}
+
+.iconNavBack:before {
+    content: "\E112";
+}
+
+.iconChangeCatalog:before,
+.iconChangeCatalogSmall:before,
+.iconChangeCatalogBig:before  {
+    content: "\E13C";
+}
+
+body[dir=rtl] .iconNavBack:before {
+    content: "\E111";
+}
+
+.iconNavHome:before {
+    content: "\E10F";
+}
+
+.iconNavSearch:before {
+    content: "\E11A";
+}
+
+.iconNavCategory:before{
+    content: "\E12F";
+}
+
+.iconNavCatalog:before{
+    content: "\E1D3";
+}
+
+.iconNavFilter:before{
+    content: "\E16E";
+}
+
+.iconNavMiniCart:before{
+    content: "\E14D";
+}
+
+.iconNavCartItems:before{
+    content: "\E14D";
+}
+
+.iconRefresh::before,
+.iconRefreshBig::before,
+.iconRefreshSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconRefresh .win-commandimage:before {
+    content: "\E1CD";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconReturn .win-commandimage:before {
+    content: "\E10E";
+}
+
+.iconSave::before,
+.iconSaveBig::before,
+.iconSaveSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSave .win-commandimage:before {
+    content: "\E105";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSearchCustomers .win-commandimage:before {
+    content: "\E125";
+}
+
+.iconSearch::before,
+.iconSearchBig::before,
+.iconSearchSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSearchProducts .win-commandimage:before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSearch .win-commandimage:before {
+    content: "\E11A";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconShowPrices .win-commandimage:before {
+    content: "\E1CB";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSearchStores .win-commandimage:before {
+    content: "\E128";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconReceiveAll .win-commandimage:before {
+    content: "\E151";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSeeAll .win-commandimage:before {
+    content: "\E14C";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSelectAll .win-commandimage:before {
+    content: "\E14E";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSelectStore .win-commandimage:before {
+    content: "\E715";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconShip .win-commandimage:before {
+    content: "\E535";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSort .win-commandimage:before {
+    content: "\E174";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconStockCount .win-commandimage:before {
+    content: "\E52E";
+}
+
+.iconSync::before,
+.iconSyncBig::before,
+.iconSyncSmall::before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconSync .win-commandimage:before {
+    content: "\E117";
+}
+
+.iconSettingsBig::before {
+    content: "\E115";
+}
+
+.iconHelpBig::before {
+    content: "\E504";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconUnpair .win-commandimage:before {
+    content: "\E70B";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconUndo .win-commandimage:before {
+    content: "\E10E";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconView .win-commandimage:before {
+    content: "\E18B";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconWorkBreak .win-commandimage:before {
+    content: "\E520";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconUndo .win-commandimage:before {
+    content: "\E10E";
+}
+
+body[dir=rtl] .win-appbar.dynamicsSymbolFont button.winappbar-iconUndo .win-commandimage:before {
+    content: "\E10D";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconKey .win-commandimage:before {
+    content: "\E192";
+}
+
+.iconWarning::before,
+.iconWarningBig::before,
+.iconWarningSmall:before {
+    content: "\E502";
+}
+
+.iconInfo::before,
+.iconInfoBig::before,
+.iconInfoSmall:before {
+    content: "\E503";
+}
+
+.win-appbar.dynamicsSymbolFont button.winappbar-iconClear .win-commandimage:before {
+    content: "\E1C5";
+}
+
+.iconProducts:before,
+.iconProductsBig:before,
+.iconProductsSmall:before {
+    content: "\EA9B";
+}
+
+.iconQuantity:before,
+.iconQuantityBig:before,
+.iconQuantitySmall:before,
+.win-appbar.dynamicsSymbolFont button.winappbar-iconQuantity .win-commandimage:before {
+    content: "\E559";
+}
+
+.iconTakeBreak:before,
+.iconTakeBreakSmall:before,
+.iconTakeBreakBig:before  {
+    content: "\E53E";
+}
+
+/*
+ * TRIANGLE-SHAPED ICON BACKGROUND
+ */
+body[dir=ltr] .triangleBackgroundTopLeft,
+body[dir=rtl] .triangleBackgroundTopRight {
+    border-top-width: 2em;
+    border-top-style: solid;
+    border-left-width: 2em;
+    border-left-style: solid;
+    border-bottom-width: 2em;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    border-right-width: 2em;
+    border-right-style: solid;
+    border-right-color: transparent;
+    height: 4em;
+    width: 4em;
+    /* color is specified separately */ 
+}
+
+body[dir=ltr] .triangleBackgroundTopRight,
+body[dir=rtl] .triangleBackgroundTopLeft {
+    border-top-width: 2em;
+    border-top-style: solid;
+    border-right-width: 2em;
+    border-right-style: solid;
+    border-bottom-width: 2em;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    border-left-width: 2em;
+    border-left-style: solid;
+    border-left-color: transparent;
+    height: 4em;
+    width: 4em;
+    /* color is specified separately */ 
+}
+    
+    /* "X" ICON */
+    .triangleIconCancel {
+        font-family: DynamicsFont;
+        font-size: 1.5em;
+        width: 1em;
+        height: 1em;
+    }
+    .triangleIconCancel::before {
+        content: "\E10A";
+    }
+
+/*
+ * TASK RECORDER ICONS
+ */
+
+.iconRecordingInProgress, .iconTaskRecorder, 
+.iconContinue, .iconPause, .iconStop, 
+.iconStartTask, .iconEndTask,
+.iconEditStep,
+.iconSaveRecording, .iconSaveWordDocument, .iconSaveBpmPackage, .iconSaveToLifecycleServices {
+    border: none !important;
+}
+
+.iconOpenTaskRecorder:before {
+    content: "\E55D";
+}
+
+.iconRecordingInProgress:before {
+    content: "\E072";
+    color: red;
+}
+
+.iconContinue:before {
+    content: "\E072";
+}
+    
+.iconPause:before {
+    content: "\E103";
+}
+
+.iconStop:before {
+    content: "\E004";
+}
+
+.iconTaskRecorder:before {
+    content: "\E14C";
+}
+
+.iconStartTask:before {
+    content: "\E291";
+}
+
+.iconEndTask:before {
+    content: "\E290";
+}
+
+.iconSaveRecording:before {
+    content: "\E55D";
+}
+
+.iconSaveWordDocument:before {
+    content: "\E51D";
+}
+
+.iconSaveBpmPackage:before {
+    content: "\E70F";
+}
+
+.iconSaveToLifecycleServices:before {
+    content: "\E105";
+}
+
+.iconEditStep:before {
+    content: "\E104";
+}

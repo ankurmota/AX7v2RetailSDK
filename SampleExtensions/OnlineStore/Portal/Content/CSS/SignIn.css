@@ -1,0 +1,55 @@
+.form-signin, .form-new-account, .sign-out, .form-activate, .form-unlink-account {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .forgot-password {    
+    padding: 5px 0;
+    line-height: 12px;
+    font-weight: normal;
+}
+
+.form-signin .identity-provider {   
+    border: 1px solid #a1a3a5;
+    height: 38px;
+    color: grey;
+    background-repeat: no-repeat;
+    background-position: 2% center;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 38px;
+    padding-right: 0px;    
+}
+
+.form-signin .identity-provider:hover {
+    box-shadow: inset 1px 1px 1px 1px #0066CC;
+}
+
+.form-signin > .btn {
+    margin-bottom: 20px;
+}
+
+.form-signin .identity-provider .provider-name {
+    font-size: 14px;
+    color: #717375;
+    text-indent: 15%;
+}
+
+
+.msg-divider {
+    color: #b1b3b5;
+    text-align: center;
+}
+
+.msg-signout {
+    text-align: center;
+}
+
+.lnk-activation {
+    font-size: inherit;
+}
+
+.msg-center {
+    text-align: center;
+}

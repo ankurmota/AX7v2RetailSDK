@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="taskRecorderControlPanel row grow" data-bind="visible: !isInRecordingCompletedState()">
+        <div class="col grow" data-bind="visible: isInRecordingState(), buttonBlock: {
+                buttonClass: 'iconRecordingInProgress',
+                labelTextResx: 'string_10061',       // Recording in progress...
+                ariaLabelResx: 'string_10061',       // Recording in progress...
+            }">
+        </div>
+        <div class="col grow" data-bind="visible: !isInRecordingState(), buttonBlock: {
+                buttonClass: 'iconContinue',
+                click: continueRecording,
+                labelTextResx: 'string_10022',       // Continue
+                ariaLabelResx: 'string_10022',       // Continue
+            }">
+        </div>
+        <div class="col grow" data-bind="visible: isInRecordingState(), buttonBlock: {
+                buttonClass: 'iconStop',
+                click: stopRecording,
+                labelTextResx: 'string_10024',       // Stop
+                ariaLabelResx: 'string_10024',       // Stop
+            }">
+        </div>
+        <div class="col grow padRight1" data-bind="buttonBlock: {
+                buttonClass: 'iconTaskRecorder',
+                click: toggleMainPanel,
+                labelTextResx: 'string_10011',       // Task recorder
+                ariaLabelResx: 'string_10011',       // Task recorder
+            }">
+        </div>
+    </div>
+</body>
+</html>

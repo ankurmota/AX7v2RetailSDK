@@ -1,0 +1,7 @@
+.customerAffiliationsView .listViewHandler {
+    flex: 1 0 auto;
+}
+
+.customerAffiliationsView *[role=group] {
+    height: auto;
+}

@@ -1,0 +1,9 @@
+.customerDetails progress.nestedIndeterminateWait {
+    position: absolute;
+    left: calc(50% - 40px);
+    top: 40%;
+}
+
+.customerDetails .customerSummary .customerImage {
+    background-color: #fff;
+}

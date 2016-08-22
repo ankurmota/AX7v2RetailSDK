@@ -1,0 +1,395 @@
+* {
+  margin: 0;
+  font-family: "Segoe UI" !important;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 990px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    color: inherit;
+}
+
+input[type=radio] {
+    margin-right: 10px !important;
+}
+
+.nav-link {
+    font-weight:bold;
+    display: inline-block;
+}
+
+.nav-link-sep {
+    margin: 0px 5px;
+    display: inline-block;
+}
+
+.nav-product-category {
+    color: #555;
+    padding: 10px;
+    padding-bottom: 0px;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.dropdown {
+    display: inline-block;
+    font-size: 20px;
+    margin: 5px 10px;
+}
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.mobile-menu-high {
+    background-color: #333;
+    padding: 5px;
+    font-size: 18px;
+    border-bottom-style: solid;
+}
+
+.mobile-menu-medium {
+    background-color: #444;
+    padding: 5px;
+    font-size: 16px;
+    border-bottom-style: solid;
+}
+
+.mobile-menu-low {
+    background-color: #555;
+    padding: 5px;
+    font-size: 14px;
+    border-bottom-style: solid;
+}
+
+.footer-section {
+    text-align: left;
+    margin: 10px 0px;
+}
+
+.footer-section-header {
+    font-size: 16px;
+    padding-bottom: 10px;
+    color: #4a4e4c;
+}
+
+#nav {
+    text-align: center;
+    background-color: white;
+    display: inline-block;
+    width: 100%;
+}
+
+#nav-bottom-banner {
+    display: inline-block;
+    text-align: center;
+}
+
+#nav-top-mobile {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#mobile-menu-img {
+    float: left;
+    height: 30px;
+    padding-right: 10px;
+}
+
+#mobile-company-logo {
+    height: 30px;
+    text-align: left;
+}
+
+#mobile-cart-img {
+    height: 30px;
+    float: right;
+    padding-left: 10px;
+}
+
+#nav-mobile-promotions{
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#mobile-menu {
+    position: absolute;
+    top: 50px;
+    z-index: 2;
+    background-color: #eee;
+    color: white;
+    padding: 5px;
+    text-align: left;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-color: #333;
+    border-width: 2px;
+    border-bottom-right-radius: 10px;
+    display: none;
+}
+
+#body-wrapper {
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -142px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+#site-footer, .page-wrap:after {
+  height: 142px; 
+}
+
+#site-footer {
+    -webkit-box-shadow: inset 0 10px 10px -10px rgba(0,0,0,0.5);
+    -moz-box-shadow: inset 0 10px 10px -10px rgba(0,0,0,0.5);
+    box-shadow: inset 0 10px 10px -10px rgba(0,0,0,0.5);
+    padding-top: 20px;
+    text-align: center;
+    background-color: #eee;
+    color: #333;
+}
+
+/* html element styles */
+
+label {
+    padding: 5px 0;
+    color: grey;
+    font-weight: normal;
+}
+
+a {
+    color: #0066CC;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* reusable element styles */
+
+.float-left {
+    float: left;
+}    
+
+.float-right {
+    float: right;
+}
+
+.display-block {
+    display: block;
+}
+
+.padding-left-10 {
+    padding-left: 10px;
+}
+
+.padding-left-15 {
+    padding-left: 15px;
+}
+
+.padding-right-10 {
+    padding-right: 10px;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+} 
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+/* style override from bootstrap default styles */
+
+.btn {  
+    cursor: pointer;
+    outline-style: none;
+    margin: 0;
+    color: #fff;
+    font-size: 14px;
+    font-family: "Segoe UI";
+    text-decoration: none;
+    background: url('../IMG/btn_lrg_bl_left.png') no-repeat scroll left center, url('../IMG/btn_lrg_bl_right.png') no-repeat scroll right center, url('../IMG/btn_lrg_bl_bg.png') repeat-x scroll center center;
+    border: none;
+    padding: 0px 15px;
+    height: 38px;
+    text-align: center;
+    min-width: 100px;
+    border-radius: 0px;  
+}
+
+.btn.btn-grey {
+    background: url('../IMG/btn_lrg_gr_left.png') no-repeat scroll left center, url('../IMG/btn_lrg_gr_right.png') no-repeat scroll right center, url('../IMG/btn_lrg_gr_bg.png') repeat-x scroll center center;
+}
+
+.btn.btn-blue.btn-forward-large {
+    background: url('../IMG/btn_lrg_bl_left.png') no-repeat scroll left center, url('../IMG/btn_lrg_bl_right.png') no-repeat scroll right center, url('../IMG/btn_i_forward_lrg.png') no-repeat scroll 90% center, url('../IMG/btn_lrg_bl_bg.png') repeat-x scroll center center;
+}
+
+.btn.btn-grey.btn-forward-large {
+    background: url('../IMG/btn_lrg_gr_left.png') no-repeat scroll left center, url('../IMG/btn_lrg_gr_right.png') no-repeat scroll right center, url('../IMG/btn_i_forward_lrg.png') no-repeat scroll 90% center, url('../IMG/btn_lrg_gr_bg.png') repeat-x scroll center center;
+}
+
+.form-control {
+    border-radius: 0px;
+    border: 2px solid lightgrey;
+    box-shadow: none;
+    height: 38px;
+}
+
+.form-control:focus {
+    border-color: #0066CC;
+    outline: 0;
+    box-shadow: inset 0px 1px 1px lightgrey;
+}
+
+[disabled].form-control {
+    background-color: white;
+}
+
+.input-group-addon {
+    border-radius: 0px;
+}
+
+.dropdown a, .breadcrumb a {
+    color: black;
+}
+
+#nav-top-banner {
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 36px;
+}
+
+.footer-section a {
+    color: #919399;
+}
+
+#nav-links-wrapper a {
+    color: white;
+    text-align: center;
+    line-height: 36px;
+}
+
+#nav-top-banner-middle {
+    margin-left: 30%;
+}
+
+#searchBox {
+    border: none;
+    font-style: italic;
+    color: black !important;
+    margin-left:50px;
+    height: 22px;
+    margin-bottom: 3px;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.search-btn {
+    background: url('../IMG/i_Search_16.png') no-repeat scroll center center;
+    background-clip: inherit;
+    min-width: 16px;
+    min-height: 16px;
+    background-color: black;
+    margin-bottom: 3px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+#nav-top-banner-right a {
+    color: white;
+}
+
+#nav-top-banner-right .msax-MiniCartControl {
+    background-color: #000000;
+}
+
+#nav-top-banner-right .msax-MiniCartControl .msax-MiniCartButton {
+    min-width: 80px;
+    height: 36px;
+}
+
+#SearchBar * {
+    height: 25px;
+}
+
+#SearchBar .input-group {
+    width: 100%;
+}
+
+#SearchBar [placeholder] {
+    line-height: normal;
+}
+
+#nav-top-banner-right #Checkout {
+    background: url('../IMG/btn_lrg_bl_left.png') no-repeat scroll left center, url('../IMG/btn_lrg_bl_right.png') no-repeat scroll right center, url('../IMG/btn_lrg_bl_bg.png') repeat-x scroll center center;
+}
+
+#nav-top-banner-right .msax-MiniCart a {
+    color: #0066CC;
+}
+
+#nav-top-banner-right .msax-MiniCart {    
+    color: black;
+    text-align: left;
+}
+
+.page-title, .page-title * {
+    font-size: 18px;
+}
+
+#CarouselSmall .carousel-indicators {
+    display: none;
+}
+
+.line-break {
+    border-color: #c1c3c5;
+    border-width: 1px;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+
+.msg-activate {
+    text-align: center;
+}
+
+.msg-error {
+    color: darkred;
+}

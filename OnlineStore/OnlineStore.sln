@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Ecommerce.Sdk.Controls", "Ecommerce.Sdk.Controls\Platform.Ecommerce.Sdk.Controls.csproj", "{1DFD5AD7-3634-4B84-9D4C-4961DC40EBDD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{90BAC836-16EE-4F8D-AD88-127F14864E78} = {90BAC836-16EE-4F8D-AD88-127F14864E78}
+		{2121DC41-CB98-4F39-A227-28BBE8030A05} = {2121DC41-CB98-4F39-A227-28BBE8030A05}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Ecommerce.Sdk.Core", "Ecommerce.Sdk.Core\Platform.Ecommerce.Sdk.Core.csproj", "{90BAC836-16EE-4F8D-AD88-127F14864E78}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AB373318-DA97-428E-B217-D519E8841658} = {AB373318-DA97-428E-B217-D519E8841658}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libraries.Proxies.Retail.TypeScript", "..\Proxies\Proxies.Retail.TypeScript\Libraries.Proxies.Retail.TypeScript.csproj", "{2121DC41-CB98-4F39-A227-28BBE8030A05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxies.RetailProxy", "..\Proxies\RetailProxy\Proxies.RetailProxy.csproj", "{AB373318-DA97-428E-B217-D519E8841658}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2121DC41-CB98-4F39-A227-28BBE8030A05} = {2121DC41-CB98-4F39-A227-28BBE8030A05}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DFD5AD7-3634-4B84-9D4C-4961DC40EBDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFD5AD7-3634-4B84-9D4C-4961DC40EBDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFD5AD7-3634-4B84-9D4C-4961DC40EBDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFD5AD7-3634-4B84-9D4C-4961DC40EBDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90BAC836-16EE-4F8D-AD88-127F14864E78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90BAC836-16EE-4F8D-AD88-127F14864E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90BAC836-16EE-4F8D-AD88-127F14864E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90BAC836-16EE-4F8D-AD88-127F14864E78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2121DC41-CB98-4F39-A227-28BBE8030A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2121DC41-CB98-4F39-A227-28BBE8030A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2121DC41-CB98-4F39-A227-28BBE8030A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2121DC41-CB98-4F39-A227-28BBE8030A05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB373318-DA97-428E-B217-D519E8841658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB373318-DA97-428E-B217-D519E8841658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB373318-DA97-428E-B217-D519E8841658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB373318-DA97-428E-B217-D519E8841658}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

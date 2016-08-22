@@ -1,0 +1,177 @@
+.commonHeader .searchButton,
+.commonHeader .searchLocationMenu,
+.commonHeader .searchButton:hover {
+    font-size: 2.4em !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #FFFFFF;
+    height: 2.14em;
+    min-height: 2.14em;
+    min-width: 2em;
+    padding: 0px;
+}
+
+.commonHeader .searchLocationMenu .blackText {
+    color: #000000;
+}
+
+/* common header */
+.commonHeader header {
+    margin-left: 12em;
+    align-self: flex-start;
+    height: 14em;
+    flex: 1 0 auto;
+}
+
+body[dir=rtl] .commonHeader header {
+    margin-left: 0;
+    margin-right: 12em;
+}
+
+body[dir=ltr] .commonflyout {
+    left : auto !important;
+    right : 1em !important;
+}
+    
+/* common navigation bar */
+.commonHeader nav {
+    align-self: flex-start;
+    height: 100%;
+    flex: 0 0 auto;
+    position: absolute;
+    z-index: 1008;
+    width: auto;
+}
+
+.commonHeader header h1 {
+    white-space: nowrap;
+}
+
+.commonHeader input[type=search] {
+    font-size: 2.4em;
+    font-weight: inherit;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #FFFFFF;
+}
+
+    .commonHeader input[type=search]::-ms-clear {
+        background-color: transparent;
+        color: #FFFFFF;
+    }
+
+.commonHeader .navBarExtensionPosition {
+    position: absolute;
+    display:none;
+}
+
+body[dir=ltr] .commonHeader .navBarExtensionPosition {
+    left: 8em;
+}
+
+body[dir=rtl] .commonHeader .navBarExtensionPosition {
+    right: 8em;
+}
+
+
+
+.commonHeader .navBarClickHandler {
+    top: 0em;
+    left: 0em;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1007;
+}
+
+.commonHeader .navBarBreakline {
+    background-image: url('../../Assets/Navbar_breakline_bg.png');
+    background-repeat: repeat-x;
+}
+
+.commonHeader .navZindex {
+    z-index: 0;
+}
+
+.commonHeader .navBarFullHeight {
+    height: 100%;
+}
+
+.commonHeader ul {
+    list-style: none;
+}
+
+.commonHeader .refinerControl > .pagecontrol {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* High contrast mode */
+@media screen and (-ms-high-contrast) {
+    .commonHeader input[type=search] {
+        border-style: solid !important;
+    }
+
+    .commonHeader .sideBorder {
+        border-right: solid;
+    }
+
+    body[dir=rtl] .commonHeader .sideBorder {
+        border-left: solid;
+        border-right: inherit;
+    }
+
+    .commonHeader .navBarExtensionBackGround {
+        border-right: solid;
+        border-left: solid;
+    }
+
+    .commonHeader .navBarExtensionBackGroundButton {
+        background-color: Highlight !important;
+    }
+}
+
+
+.commonHeader .miniCartBackground {
+    background-color:rgba(255, 255, 255, 0.15 ) !important;
+} 
+
+/* Light theme override */
+
+body .commonHeader nav,
+.commonHeader nav .primaryFontColor {
+    color: #fff;
+}
+
+/* Button state */
+.commonHeader button.primaryButton,
+.commonHeader button.primaryButton[type=button],
+.commonHeader button.primaryButton[type=submit],
+.commonHeader button.secondaryButton,
+.commonHeader button.secondaryButton[type=button],
+.commonHeader button.secondaryButton[type=submit] {
+    border-color: #fff;
+}
+
+.commonHeader .refinerFlyout button.primaryButton,
+.commonHeader .refinerFlyout button.primaryButton[type=button],
+.commonHeader .refinerFlyout button.primaryButton[type=submit],
+.commonHeader .refinerFlyout button.secondaryButton,
+.commonHeader .refinerFlyout button.secondaryButton[type=button],
+.commonHeader .refinerFlyout button.secondaryButton[type=submit] {
+    border-color: #1d1d1d;
+}
+
+.commonHeader button.primaryButton:disabled,
+.commonHeader button.primaryButton[type=button]:disabled,
+.commonHeader button.primaryButton[type=submit]:disabled,
+.commonHeader button.secondaryButton:disabled,
+.commonHeader button.secondaryButton[type=button]:disabled,
+.commonHeader button.secondaryButton[type=submit]:disabled {
+    border-color: #999;
+}
+
+/* Primary background */
+.commonHeader .primaryBackgroundColor {
+    background-color: rgba(17, 19, 21, 0.9);
+}

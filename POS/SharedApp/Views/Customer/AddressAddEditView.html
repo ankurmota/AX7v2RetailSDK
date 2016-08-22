@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AddressAddEditView</title>
+    <link href="AddressAddEditView.css" rel="stylesheet" />
+</head>
+<body>
+    <form autocomplete="off">
+        <div class="fragment addressAddEditView">
+            <!-- Indeterminate wait -->
+            <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+            <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+            <section role="main" class="row grow" data-bind="resx: { ariaLabel: 'string_4454' }">   <!-- Main content -->
+
+                <div class="row maxWidth68 minWidth52 grow-landscape">
+                    <!-- Left column -->
+                    <div class="col grow" style="flex-basis: 0">
+
+                        <!-- Address Type -->
+                        <div class="height5 marginBottom2">
+                            <label for="addressTypeTab" data-bind="resx: { textContent: 'string_4800' }">Address Type</label>
+                            <select id="addressTypeTab" title="Choose a sales tax group"
+                                    data-bind="options: Commerce.ViewControllers.AddressAddEditViewController.addressTypes,
+                                    optionsText: 'description',
+                                    optionsValue: 'id',
+                                    value: addressAddEditViewModel.addressProxy.AddressTypeValue,
+                                    optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_4801')"></select>
+                        </div>
+
+                        <!-- Primary address selection toggle -->
+                        <div class="height5">
+                            <label for="isPrimaryAddressToggle" data-bind="resx: { textContent: 'string_4809' }">Primary Address</label>
+                            <div id="isPrimaryAddressToggle" data-win-control="WinJS.UI.ToggleSwitch"
+                                data-bind="winControl: {
+                                    labelOn: 'string_1357',
+                                    labelOff: 'string_1358',
+                                    toggleChanged: setAddressProxyIsPrimary,
+                                    toggleOnOff: isPrimary}">
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="marginTop3 marginBottom1 shrink">
+                            <h2 data-bind="resx: { textContent: 'string_4802' }">Contact Information</h2>
+                        </div>
+
+                        <!-- Address name -->
+                        <!-- not to be confused with the Customer's name: this is the Address name -->
+                        <div class="height5 marginBottom2">
+                            <label for="nameTab" data-bind="resx: { textContent: 'string_4803' }">Name</label>
+                            <input type="text" id="nameTab"
+                                   data-bind="value: addressAddEditViewModel.addressProxy.Name, validator: {
+                                    data: addressAddEditViewModel.addressProxy,
+                                    field: 'Name',
+                                    validatorType: 'CustomerValidator'}" />
+                        </div>
+
+                        <!-- Address phone -->
+                        <!-- not to be confused with Phone from Customer model -->
+                        <div class="height5 marginBottom2">
+                            <label for="phoneTab" data-bind="resx: { textContent: 'string_4805' }">Phone</label>
+                            <input type="tel" id="phoneTab"
+                                data-bind="validator: {
+                                    data: addressAddEditViewModel.addressProxy,
+                                    field: 'Phone',
+                                    validatorType: 'AddressValidator',
+                                    validatorField: 'Phone'}" />
+                        </div>
+
+                        <!-- Address email -->
+                        <!-- not to be confused with ReceiptEmail from Customer model -->
+                        <div class="height5">
+                            <label for="emailTab" data-bind="resx: { textContent: 'string_4845' }">Contact email address</label>
+                            <input type="email" id="emailTab"
+                                data-bind="validator: {
+                                    data: addressAddEditViewModel.addressProxy,
+                                    field: 'Email',
+                                    validatorType: 'AddressValidator',
+                                    validatorField: 'Email'}" />
+                        </div>
+                        <div class="gutter4x4"></div>
+
+                        <div class="marginBottom1 shrink">
+                            <h2 data-bind="resx: { textContent: 'string_4806' }">Tax</h2>
+                        </div>
+
+                        <!-- Tax group -->
+                        <div class="height5 marginBottom2">
+                            <label for="taxGroupTab" data-bind="resx: { textContent: 'string_4807' }">Sales Tax Group</label>
+                            <select id="taxGroupTab" title="Choose a sales tax group" 
+                                data-bind="options: Commerce.ViewControllers.AddressAddEditViewController.salesTaxGroups,
+                                    optionsText: 'TaxGroupName',
+                                    optionsValue: 'TaxGroup',
+                                    value: addressAddEditViewModel.addressProxy.TaxGroup,
+                                    optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_4808')"></select>
+                        </div>
+
+                    </div>
+
+                    <div class="gutter4x4"></div>
+
+                    <div class="col grow" style="flex-basis: 0">
+                        <!-- Middle column -->
+
+
+                        <div class="marginTop1 marginBottom1 shrink">
+                            <h2 data-bind="resx: { textContent: 'string_4810' }">Address Information</h2>
+                        </div>
+
+                        <!-- Country -->
+                        <div class="height5 marginBottom2">
+                            <label for="countryTabRead" data-bind="resx: { textContent: 'string_1314' }">Country</label>
+                            <select id="countryTabRead" title="Choose a country"
+                                    data-bind="options: addressAddEditViewModel.countries,
+                                        optionsText: 'ShortName',
+                                        optionsValue: 'CountryRegionId',
+                                        value: addressAddEditViewModel.addressProxy.ThreeLetterISORegionName,
+                                        optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1315')"></select>
+                        </div>
+
+                        <!-- Street name -->
+                        <div class="height12 marginBottom2" data-bind="visible: showStreetName">
+                            <label for="streetNameTabRead" data-bind="resx: { textContent: 'string_4811' }">Street Name</label>
+                            <div class="height10">
+                                <textarea id="streetNameTabRead" rows="5"
+                                          data-bind="validator: {
+                                            data: addressAddEditViewModel.addressProxy,
+                                            field: 'Street',
+                                            validatorType: 'AddressValidator',
+                                            validatorField: 'Street'}"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Street number -->
+                        <div class="height5 marginBottom2" data-bind="visible: showStreetNumber">
+                            <label for="streetNumberTabRead" data-bind="resx: { textContent: 'string_4838' }">Street Number</label>
+                            <input type="text" id="streetNumberTabRead"
+                                   data-bind="validator: {
+                                        data: addressAddEditViewModel.addressProxy,
+                                        field: 'StreetNumber',
+                                        validatorType: 'AddressValidator',
+                                        validatorField: 'StreetNumber'}" />
+                        </div>
+
+                        <!-- Building complement -->
+                        <div class="height5 marginBottom2" data-bind="visible: showBuildingComplement">
+                            <label for="bcTabRead" data-bind="resx: { textContent: 'string_4839' }">Building Complement</label>
+                            <input type="text" id="bcTabRead"
+                                   data-bind="validator: {
+                                        data: addressAddEditViewModel.addressProxy,
+                                        field: 'BuildingCompliment',
+                                        validatorType: 'AddressValidator',
+                                        validatorField: 'BuildingCompliment'}" />
+                        </div>
+
+                        <!-- City -->
+                        <div class="height5 marginBottom2" data-bind="visible: showCity">
+                            <label for="cityTabRead" data-bind="resx: { textContent: 'string_1317' }">City</label>
+                            <input type="text" id="cityTabRead"
+                                   data-bind="validator: {
+                                        data: addressAddEditViewModel.addressProxy,
+                                        field: 'City',
+                                        validatorType: 'AddressValidator',
+                                        validatorField: 'City'}" />
+                        </div>
+
+                        <!-- County -->
+                        <div class="height5 marginBottom2" data-bind="visible: showCounty">
+                            <label for="countyTabRead" data-bind="resx: { textContent: 'string_4840' }">County</label>
+                            <input type="text" id="countyTabRead"
+                                   data-bind="validator: {
+                                        data: addressAddEditViewModel.addressProxy,
+                                        field: 'County',
+                                        validatorType: 'AddressValidator',
+                                        validatorField: 'County'}" />
+                        </div>
+
+                        <!-- District -->
+                        <div class="height5 marginBottom2" data-bind="visible: showDistrict">
+                            <label for="districtTabRead" data-bind="resx: { textContent: 'string_4841' }">District</label>
+                            <input type="text" id="districtTabRead"
+                                   data-bind="validator: {
+                                        data: addressAddEditViewModel.addressProxy,
+                                        field: 'DistrictName',
+                                        validatorType: 'AddressValidator',
+                                        validatorField: 'DistrictName'}" />
+                        </div>
+
+                        <!-- State -->
+                        <div class="height5 marginBottom2" data-bind="visible: showState">
+                            <label for="stateTabRead" data-bind="resx: { textContent: 'string_1318' }">State</label>
+                            <select id="stateTabRead" title="Choose a state"
+                                    data-bind="options: addressAddEditViewModel.states,
+                                        enable: enableState,
+                                        optionsText: 'StateName',
+                                        optionsValue: 'StateId',
+                                        value: addressAddEditViewModel.addressProxy.State,
+                                        optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1342')"></select>
+                        </div>
+
+                        <!-- Zip -->
+                        <div class="height5 marginBottom2" data-bind="visible: showZip">
+                            <label for="zipTabRead" data-bind="resx: { textContent: 'string_1319' }">Zip</label>
+                            <input type="text" id="zipTabRead"
+                                   data-bind="validator: {
+                                        data: addressAddEditViewModel.addressProxy,
+                                        field: 'ZipCode',
+                                        validatorType: 'AddressValidator',
+                                        validatorField: 'ZipCode'}" />
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl"  data-win-options="{
+            sticky : true
+        }">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{
+                        id:'cmdSaveCustomerAddress',
+                        extraClass: 'winappbar-iconSave',
+                        section:'global'
+                    }"
+                    data-bind="invokeValidate: saveClicked, resx: { label: 'string_1327' }"></button>
+        </div>
+
+    </form>
+</body>
+</html>

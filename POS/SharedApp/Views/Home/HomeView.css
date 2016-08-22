@@ -1,0 +1,18 @@
+/* do not remove; this CSS rule is required for the parallax on the homeView to work properly */
+.homeView .homeBackgroundImageContainer {
+    background-repeat: no-repeat;
+    z-index: -1;
+    flex: none !important;
+    overflow-y: hidden;
+}
+
+/* do not remove; this CSS rule is required for the parallax on the homeView to work properly */
+.homeView .homeBackgroundImageSpacer {
+    opacity: 0; /* actual <img /> is invisible and acts only as a horizontal spacer. */
+}
+/*Prevents overflow-y to occure because of the oveflow-x. In Chrome scroll-x is the part of the container height.*/
+@media(orientation: landscape) {
+    .homeView .homeBackgroundImageContainer {
+        max-height: 100%;
+    }
+}

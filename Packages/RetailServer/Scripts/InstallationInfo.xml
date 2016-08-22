@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceModelInstallationInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>RetailServer</Name>
+  <Description />
+  <InstallationDateTime>2016-07-21T14:04:15.9883714-07:00</InstallationDateTime>
+  <InstallationInfoFilePath>E:\bt\129158\Drop\retail\Services\RetailServer\Scripts\InstallationInfo.xml</InstallationInfoFilePath>
+  <Version>7.0.1265.23014</Version>
+  <Publisher>Microsoft Corporation</Publisher>
+  <GeneratedFromAXMetadata>false</GeneratedFromAXMetadata>
+  <Configuration />
+  <CustomName />
+  <CustomVersion />
+  <CustomDescription />
+  <CustomPublisher />
+</ServiceModelInstallationInfo>

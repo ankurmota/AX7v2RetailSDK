@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DeviceActivationView</title>
+</head>
+
+<body>
+    <form autocomplete="off">
+        <div id="deviceActivationPanel" class="fragment dynamicsBackground center">
+
+            <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+            <div id="deviceActivationSection" role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">
+                <!-- Main content -->
+                <div class="center">
+                    <div class="width50 margin4 panelBackgroundColor highContrastBorderThin">
+                        <div class="center">
+                            <img src="#" data-bind="attr: { src: 'Assets/WideLogo.scale-100.png', alt: Commerce.ViewModelAdapter.getResourceString('string_1473')}" />  <!-- Logo -->
+                        </div>
+
+                        <div class="padLeft4 padRight4 padBottom4">
+
+                            <div class="padBottom4">
+                                <div class="headerFont wrapTextWithoutHyphen" data-bind="text: appTitle">Activate Retail Modern POS</div>
+                            </div>
+
+                            <!-- Activation textfields -->
+                            <div class="shrink" data-bind="visible: !showErrorControl()">
+                                <div data-bind="visible: showServerUrl" class="padBottom2">
+                                    <label data-bind="resx: { textContent: 'string_1420' }" for="serviceURLBox">Server URL</label>
+
+                                    <input id="serviceURLBox" autofocus="autofocus" type="url"
+                                           data-bind="value: viewModel.serviceUrl, valueUpdate:'afterkeydown', enterKeyPress:ActivateDeviceHandler" />
+                                </div>
+
+                                <div class="padBottom2">
+                                    <label data-bind="resx: { textContent: 'string_1401' }" for="deviceNumberBox">Device ID</label>
+
+                                    <input id="deviceNumberBox" type="text"
+                                           data-bind="value: viewModel.deviceId, valueUpdate:'afterkeydown', enterKeyPress:ActivateDeviceHandler" />
+                                </div>
+
+                                <div class="padBottom2">
+                                    <label data-bind="resx: { textContent: 'string_1402' }" for="registerNumberBox">Register number</label>
+
+                                    <input id="registerNumberBox" type="text"
+                                           data-bind="value: viewModel.registerId, valueUpdate:'afterkeydown', enterKeyPress:ActivateDeviceHandler" />
+                                </div>
+
+                                <div class="padBottom2" data-bind="visible: !Commerce.Config.aadEnabled">
+                                    <label data-bind="resx: { textContent: 'string_1403' }" for="operatorIdBox">Operator ID</label>
+
+                                    <input id="operatorIdBox" type="text"
+                                           data-bind="value: operatorId, valueUpdate:'afterkeydown', enterKeyPress:ActivateDeviceHandler" />
+                                </div>
+
+                                <div class="padBottom2" data-bind="visible: !Commerce.Config.aadEnabled">
+                                    <label data-bind="resx: { textContent: 'string_1404' }" for="passwordBox">Password</label>
+
+                                    <input id="passwordBox" type="password"
+                                           data-bind="value: viewModel.password, valueUpdate:'afterkeydown', enterKeyPress:ActivateDeviceHandler" />
+                                </div>
+
+                                <div class="padTop2 row">
+                                    <div class="centerY padTop1">
+                                        <a href="#" class="h4" data-bind="click: navigateToGuidedActivation, resx: { textContent: 'string_1451' }">Use guided activation</a>
+                                    </div>
+                                    <div class="textRight">
+                                        <button id="activateButton" class="primaryButton dynamicsBackground"
+                                                data-bind="resx: { textContent: 'string_1405' }, invokeValidate: ActivateDeviceHandler, disable: disableActivateButton">
+                                            Activate
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- When any errors occur during device activation -->
+                            <div data-bind="visible: showErrorControl">
+                                <div id="activationErrorControl" class="activationErrorControl"
+                                     data-bind="userControl: {
+                                    uri: 'Views/Controls/ActivationErrorControl.html',
+                                    options: {
+                                        errorHeaderMessage: errorHeaderMessage,
+                                        clientErrorMessage: clientErrorMessage,
+                                        errorMessage: errorMessage,
+                                        errorDetails: errorDetails,
+                                        footerMessage: footerMessage,
+                                        continueLabel: continueLabel,
+                                        retryFunction: retryFunction.bind($root)
+                                    }
+                                 }">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

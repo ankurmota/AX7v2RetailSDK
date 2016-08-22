@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CustomerAffiliationsView</title>
+    <link href="CustomerAffiliationsView.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="fragment customerAffiliationsView">
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="col grow">
+            
+            <div class="col grow" data-bind="listView: {
+                    itemDataSource: customerDetailsViewModel.customerAffiliations,
+                    tapBehavior: 'toggleSelect',
+                    selectionchanged: { eventHandlerCallBack: currentTargetSelectionChanged, appBarId: '#commandAppBar' },
+                    columns: [
+                        { titleResx: 'string_5202', cssClass: 'ratio5', field: 'Name' }, // Name
+                        { titleResx: 'string_5203', cssClass: 'ratio5', field: 'Description' } // Description
+                 ]
+                 }"></div>
+
+        </section>
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl"  data-win-options="{ sticky : true }">
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'addAffiliationsAppBar',
+                    extraClass: 'winappbar-iconAdd',
+                    section:'selection'
+                }"
+                data-bind="winControl: { click: addAffiliationToCustomer }, resx: { label: 'string_6303' }"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'deleteAffiliationsAppBar',
+                    extraClass: 'winappbar-iconDelete',
+                    section:'selection'
+                }"
+                data-bind="winControl: { click: deleteAffiliationsFromCustomer }, resx: { label: 'string_6304' }"></button>
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'navigateToCustomerDetailAppBar',
+                    extraClass: 'winappbar-iconApply',
+                    section:'global'
+                }"
+                data-bind="winControl: { click: navigateToCustomerDetailPage }, resx: { label: 'string_6307' }"></button>
+
+    </div>
+
+</body>
+</html>

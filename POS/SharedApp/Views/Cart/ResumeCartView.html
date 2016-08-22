@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Resume Cart View</title>
+    <link href="ResumeCartView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="resumeCartView fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+            
+        <section role="main" class="col grow" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+            <div class = "grow" data-bind="listView: {
+                    itemDataSource: suspendedCarts,
+                    selectionchanged: { eventHandlerCallBack: cartSelectionChangedHandler, appBarId: '#commandAppBar' },
+                    tapBehavior: 'toggleSelect',
+                    columns: [
+                        { titleResx: 'string_4064', cssClass: 'ratio3', field: 'ModifiedDateTime', converter: 'Commerce.Core.Converter.ShortDateAndTime' },
+                        { titleResx: 'string_4047', cssClass: 'ratio2', field: 'StaffId' },
+                        { titleResx: 'string_4043', cssClass: 'ratio2', field: 'TerminalId' },
+                        { titleResx: 'string_4024', cssClass: 'ratio3 textRight', field: 'TotalAmount', converter: 'Commerce.Core.Converter.PriceFormatter' },
+                    ]
+                }"></div>
+        </section>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'performOperationAppBar', label:'Recall', extraClass: 'winappbar-iconRecall'}"
+                    data-bind="click: processOperation, disable: isRecallTransactionButtonDisabled, resx: { label: 'string_4081' }"></button>
+        </div>
+    </div>
+</body>
+</html>

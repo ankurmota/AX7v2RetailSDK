@@ -1,0 +1,21 @@
+.storeSearchButton {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    min-width: 2em !important;
+    padding: 0px !important;
+}
+
+.pickUpInStoreView input[type=text] {
+    background-color: rgba(255, 255, 255, 0.2) !important; /*matching with the commonHeader search textbox */
+    color: #FFFFFF;
+}
+
+/* High contrast mode */
+@media screen and (-ms-high-contrast) {
+    .pickUpInStoreView input[type=text] {
+        border-style: solid !important;
+    }
+
+    .storeSearchButton {
+        background-color: Highlight !important;
+    }
+}

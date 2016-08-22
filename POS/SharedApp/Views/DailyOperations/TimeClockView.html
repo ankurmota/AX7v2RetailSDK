@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Time Clock View</title>
+    <link href="TimeClockView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="timeClockView fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+        
+        <!-- Main content -->
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">    
+            <div class="col grow" data-bind="listView: {
+                itemDataSource: timeRegistrations,
+                selectionchanged: { eventHandlerCallBack: selectionChangedHandler },
+                columns: [
+                    { titleResx: 'string_4091', cssClass: 'ratio3', field: 'Activity' },
+                    { titleResx: 'string_4064', cssClass: 'ratio4', field: 'ActivityDateTimeOffset',  converter: 'Commerce.Core.Converter.ShortDateAndTime' },
+                    { titleResx: 'string_4092', cssClass: 'ratio3 textRight', field: 'StoreNumber' },
+                ]
+            }">
+            </div>
+        </section>
+
+       <div id="foreignCurrencyLineTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="foreignCurrencyLine listViewLine">
+                <h5 class="currencyCode" data-win-bind="textContent: CurrencyCode"></h5>
+                <h5 class="currencyAmount" data-win-bind="textContent: this Commerce.Core.Converter.PriceFormatter"></h5>
+            </div>
+        </div>
+
+        <div id="storeSelectionFlyout"
+             data-win-control="WinJS.UI.Menu"
+             data-bind="foreach: { data: availableStores, as: 'storeName' } ">
+            <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{ id: storeName, label: storeName }" data-bind="click: $root.setStoreFilter.bind($root), text: storeName"></button>
+        </div>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'last24HourFilter', label:'Last 24 hours', section:'selection', extraClass: 'winappbar-iconCalendarDay'}"
+                data-bind="click: setFilterLast24Hours, resx: { label: 'string_4093' }">
+            </button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'lastWeekFilter', label:'Last week', section:'selection', extraClass: 'winappbar-iconCalendarWeek'}"
+                data-bind="click: setFilterLastWeek, resx: { label: 'string_4094' }">
+            </button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'lastMonthFilter', label:'Last month', section:'selection', extraClass: 'winappbar-iconCalendarMonth'}"
+                data-bind="click: setFilterLastMonth, resx: { label: 'string_4095' }">
+            </button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'selectAStoreFilter',
+                extraClass: 'winappbar-iconSelectStore',
+                label:'Select a store',
+                section:'selection',
+                type: 'flyout',
+                flyout:select('#storeSelectionFlyout')}"
+                data-bind="resx: { label: 'string_4096' }" />
+        </div>
+    </div>
+</body>
+</html>

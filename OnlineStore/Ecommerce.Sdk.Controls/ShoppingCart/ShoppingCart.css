@@ -1,0 +1,183 @@
+.msax-ShoppingCart .msax-ButtonSection {
+    text-align: center;
+    margin-top: 20px;
+    clear: both;
+}
+
+.msax-ShoppingCart table {
+    color: #272727;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 0;
+    width: 100%;
+}
+
+    .msax-ShoppingCart .msax-ItemsGrid {
+        word-wrap: break-word;
+    }
+    
+    .msax-MiniShoppingCart .msax-ItemsGrid .msax-ProductDetails .msax-ProductImage .msax-NoImageContainer,
+    .msax-ShoppingCart .msax-ItemsGrid .msax-ProductDetails .msax-ProductImage .msax-NoImageContainer,
+    .msax-ItemLevelPreferenceSelection .msax-ProductDetails .msax-ProductImage .msax-NoImageContainer {
+        width: 50px;
+        height: 50px;
+        display: block;
+        background-image: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.product_sm_cart_placeholder.png")%>');
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+
+        .msax-ShoppingCart .msax-ItemsGrid .msax-ProductDetails button.msax-Delete16 {
+            margin-top: 10px;
+        }
+
+    .msax-ShoppingCart .msax-ItemsGrid .msax-Price {
+        text-align: right;
+    }
+
+    .msax-ShoppingCart .msax-ItemsGrid .msax-Quantity {
+        text-align: center;
+    }
+
+        .msax-ShoppingCart .msax-ItemsGrid .msax-Quantity input {
+            width: 40px;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .msax-ShoppingCart .msax-ItemsGrid .msax-Quantity button {
+            vertical-align: middle;
+        }
+
+    .msax-ShoppingCart .msax-ItemsGrid .msax-Total {
+        text-align: right;
+    }
+
+        .msax-ShoppingCart .msax-ItemsGrid .msax-Total .msax-LineDiscount {
+            color: #999999;
+        }
+
+    .msax-ShoppingCart .msax-ItemsGrid tr.msax-KitComponents > *:first-child, .msax-ShoppingCart .msax-ItemsGrid tr.msax-NoOfComponentsInKit > *:first-child {
+        padding-left: 60px;
+    }
+
+    .msax-ShoppingCart .msax-ItemsGrid tr.msax-KitComponents > *:last-child {
+        padding-right: 10px; /* overriding the inherited padding-right */
+    }  
+
+.msax-ShoppingCart .msax-ShoppingCartOrderInfo,
+.msax-ShoppingCart .msax-ShoppingCartSummary {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.msax-ShoppingCart .msax-ShoppingCartSummary {
+}
+
+    .msax-ShoppingCart .msax-ShoppingCartSummary div {
+        text-align: right;
+    }
+
+    .msax-ShoppingCart .msax-ShoppingCartSummary > div > div > div:first-child {
+        padding-bottom: 15px;
+    }
+
+    .msax-ShoppingCart .msax-ShoppingCartSummary > div > div > div:last-child {
+        width: 140px;
+    }
+        
+    .msax-ShoppingCart .msax-ShoppingCartSummary .msax-GrandTotal div {
+        margin-top: 15px;
+    }  
+
+    .msax-ShoppingCart .msax-ShoppingCartSummary .msax-GrandTotal .msax-FooterValue {
+        font-weight: bold;
+        text-align: right;
+    }
+
+    .msax-Control .msax-EditRewardCard .msax-RewardCardTextBox {
+        width: 300px;
+    }
+
+.msax-MiniCart {
+    padding: 0 10px;
+    position: absolute;
+    z-index: 1000;
+    top: -10000px;
+    width: 300px;
+    border: 0 none;
+    background: #272829;
+    opacity: 0.95;
+    filter: alpha(opacity=95); 
+}
+
+.msax-MiniCart .msax-ShoppingCartWrapper {
+    background-color: #ffffff;
+}  
+
+.msax-MiniCart .msax-ShoppingCartWrapper .msax-CartSummary {
+    /*width: 300px;*/
+}
+
+.msax-MiniCartControl {
+    background-color: #272829;
+}
+
+.msax-MiniCartControl .msax-MiniCartButton .msax-MiniCartButtonCount {
+    color: #fff;
+}
+
+    .msax-MiniCartControl .msax-MiniCartButton .msax-MiniCartButtonCount:before {
+        content: "[ ";
+    }
+
+    .msax-MiniCartControl .msax-MiniCartButton .msax-MiniCartButtonCount:after {
+        content: " ]";
+    }
+
+.msax-MiniCart .msax-ItemsGrid tr > *:first-child {
+        padding-left: 10px;
+    }
+
+    .msax-MiniCart .msax-ItemsGrid tr > *:last-child {
+        padding-right: 10px;
+    }
+
+    .msax-MiniCart .msax-ItemsGrid tr.msax-ProductDetails {
+        border-top: none;
+    }
+
+    .msax-MiniCart .msax-ItemsGrid .msax-ProductDetails {
+        width: 90%;
+    }
+
+.msax-MiniCart .msax-Top {
+    height: 30px;
+}
+
+    .msax-MiniCart .msax-Top .msax-Close {
+        background: inherit;
+        height: inherit;
+        padding: 0;
+        min-width: 0;
+        vertical-align: middle;
+        float: right;
+    }
+
+.msax-MiniCart .msax-OuterHeaderText {
+    color: #ffffff;
+}
+
+.msax-MiniCart .msax-Bottom {
+    height: 45px;
+}
+
+.msax-MiniCart .msax-CheckoutButton {
+    height:inherit;
+}
+
+.msax-ShoppingCart .row {
+    margin-right: 0px;
+    margin-left: 0px;
+}

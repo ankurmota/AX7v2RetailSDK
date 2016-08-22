@@ -1,0 +1,455 @@
+/**
+  * Stylesheet for MPOS and Bing maps infobox body tag content.
+  */
+body {
+    background-color: #212325;
+}
+
+body.dark .MicrosoftMap .Infobox2 .infobox-body {
+    background-color: rgba(17, 19, 21, 0.9);
+}
+
+.primaryFontColor, body {
+    color: #FFFFFF;
+}
+
+.outlineFocus:focus {
+    outline: 1px dotted #ffffff;
+}
+
+input[type=file]::-ms-browse:hover:active {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+}
+
+/* button styling */
+button.primaryButton,
+button.primaryButton[type=button],
+button.primaryButton[type=submit],
+input.primaryButton[type=button],
+input.primaryButton[type=submit],
+button.secondaryButton,
+button.secondaryButton[type=button],
+button.secondaryButton[type=submit],
+input.secondaryButton[type=button],
+input.secondaryButton[type=submit] {
+    border-color: #fff;
+}
+
+/* PRIMARY, SECONDARY, AND ALTERNATE COLORS */
+.primaryBackgroundColor {
+    background-color: rgba(17, 19, 21, 0.9);
+}
+
+.primaryPanelBackgroundColor {
+    background-color: rgba(17, 19, 21, 0.5);
+}
+
+.primaryPanelBarColor {
+    background-color: rgba(17, 19, 21, 1);
+}
+
+.primaryBorderColor {
+    border-color: #919395;
+}
+
+.standardGrid .tableContent,
+.standardGrid :not(.tableContent) .win-vertical.win-viewport,
+.standardGrid .listViewEmptyContentPlaceholder,
+.browseGrid .listViewEmptyContentPlaceholder {
+    background-color: rgba(17, 19, 21, 0.3) !important;
+}
+
+.standardGrid .listViewLine:nth-child(2n+1),
+.standardGrid .win-container:nth-child(2n+1):not(.win-selected) .listViewLine,
+.standardGrid .colspanRow,
+.standardGrid .listViewLine:nth-child(2n),
+.standardGrid .win-container:nth-child(2n):not(.win-selected) .listViewLine {
+    background-color: rgba(17, 19, 21, 0.5);
+}
+
+label,
+.secondaryFontColor {
+    color: #919395;
+}
+
+.secondaryBackgroundColor {
+    background-color: #717375;
+}
+
+*.alternateBackgroundColor1 {
+    background-color: #54585c;
+}
+
+.standardGrid.countingGrid .listViewFooter label,
+.standardGrid .subtitle,
+.standardGrid .subtitle, label,
+.secondaryFontColor {
+    color: #919395;
+}
+
+.win-selectionstylefilled.win-selected .secondaryFontColor,
+.win-selectionstylefilled.win-selected label {
+    color: #ffffff;
+}
+
+*.alternateBackgroundColor2 {
+    background-color: #333333;
+}
+
+.standardGrid.countingGrid .listViewFooter,
+.standardGrid .listViewHeader,
+.headerBackground {
+    background-color: rgba(17, 19, 21, 1);
+}
+
+.headerBackground * {
+    color: #ffffff;
+}
+
+.headerBackground .secondaryFontColor {
+     color: #919395;
+}
+
+/* Appbar default color */
+.primaryAppBarBackground {
+    background-color: rgba(49, 51, 53, 1);
+}
+
+.secondaryAppBarBackground {
+    background-color: #808080;
+}
+
+/* SEARCH BAR STYLING */
+.searchBoxColor {
+    background-color: rgba(255, 255, 255, 0.15);
+    fill: #FFFFFF;
+    border: none;
+}
+
+    input[type=search].searchBoxInputColor, input[type=search].searchBoxInputColor:focus,
+    input[type=search].searchBoxInputColor:active, input[type=search].searchBoxInputColor:hover,
+    input[type=search].searchBoxInputColor::-ms-clear, input[type=search].searchBoxInputColor::-ms-reveal,
+    input[type=search].searchBoxInputColor::-ms-clear:hover {
+        color: #FFFFFF;
+    }
+
+    button.searchButtonColor, button.searchButtonColor:focus,
+    button.searchButtonColor:active, button.searchButtonColor:hover {
+        color: #000000;
+    }
+
+*.dynamicsSymbolFont button .win-commandimage,
+*.dynamicsSymbolFont button:active .win-commandimage,
+*.dynamicsSymbolFont button:hover:active .win-commandimage {
+    color: #fff;
+}
+
+*.dynamicsSymbolFont button[disabled] .win-commandimage {
+    color: #717375;
+}
+
+*.dynamicsSymbolFont button:hover:active .win-commandimage {
+    color: #000000;
+}
+
+.win-selectionstylefilled.win-listview .win-selected button, .win-selectionstylefilled.win-listview .win-selected input[type=button], 
+.win-selectionstylefilled.win-listview .win-selected input[type=reset], .win-selectionstylefilled.win-listview .win-selected input[type=text], 
+.win-selectionstylefilled.win-listview .win-selected input[type=password], .win-selectionstylefilled.win-listview .win-selected input[type=email], 
+.win-selectionstylefilled.win-listview .win-selected input[type=number], .win-selectionstylefilled.win-listview .win-selected input[type=tel], 
+.win-selectionstylefilled.win-listview .win-selected input[type=url], .win-selectionstylefilled.win-listview .win-selected input[type=search], 
+.win-selectionstylefilled.win-listview .win-selected input::-ms-check, .win-selectionstylefilled.win-listview .win-selected textarea, 
+.win-selectionstylefilled.win-listview .win-selected .win-textarea, .win-selectionstylefilled.win-listview .win-selected select, 
+.win-selected.win-selectionstylefilled.win-itemcontainer button, .win-selected.win-selectionstylefilled.win-itemcontainer input[type=button], 
+.win-selected.win-selectionstylefilled.win-itemcontainer input[type=reset], .win-selected.win-selectionstylefilled.win-itemcontainer input[type=text], 
+.win-selected.win-selectionstylefilled.win-itemcontainer input[type=password], .win-selected.win-selectionstylefilled.win-itemcontainer input[type=email], 
+.win-selected.win-selectionstylefilled.win-itemcontainer input[type=number], .win-selected.win-selectionstylefilled.win-itemcontainer input[type=tel], 
+.win-selected.win-selectionstylefilled.win-itemcontainer input[type=url], .win-selected.win-selectionstylefilled.win-itemcontainer input[type=search], 
+.win-selected.win-selectionstylefilled.win-itemcontainer input::-ms-check, .win-selected.win-selectionstylefilled.win-itemcontainer textarea, 
+.win-selected.win-selectionstylefilled.win-itemcontainer .win-textarea, .win-selected.win-selectionstylefilled.win-itemcontainer select {
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+    background-color: transparent !important;
+}
+
+/* style for button icons */
+.roundedBorder {
+    border: 2px solid white;
+}
+
+.iconCheckMark, .iconCheckMarkSmall, .iconCheckMarkBig{
+    background-color: transparent;
+}
+
+.iconEdit, .iconEditBig, .iconEditSmall,
+.iconNavBack, .iconNavBackBig, .iconNavBackSmall,
+.iconAdd, .iconAddBig, .iconAddSmall,
+.iconClipboard, .iconClipboardBig, .iconClipboardSmall,
+.iconSearch, .iconSearchBig, .iconSearchSmall,
+.iconCancel, .iconCancelBig, .iconCancelSmall,
+.iconSave, .iconSaveBig, .iconSaveSmall,
+.iconPhone, .iconPhoneBig, .iconPhoneSmall,
+.iconEmail, .iconEmailBig, .iconEmailSmall,
+.iconListView .iconSmallCardView, .iconLargeCardView,
+.iconLoyalty, .iconLoyaltyBig, .iconLoyaltySmall,
+.iconAddress, .iconAddressBig, .iconAddressSmall,
+.iconMore, .iconMoreBig, .iconMoreSmall,
+.iconChange, .iconChangeBig, .iconChangeSmall,
+.iconDenominationCount, .iconDenominationCountBig, .iconDenominationCountSmall,
+.iconChangeCatalog, .iconChangeCatalogBig, .iconChangeCatalogSmall,
+.iconProducts, .iconProductsBig, .iconProductsSmall,
+.iconQuantity, .iconQuantityBig, .iconQuantitySmall,
+.iconCloseShift, .iconCloseShiftBig, .iconCloseShiftSmall,
+.iconOpenShift, .iconOpenShiftBig, .iconOpenShiftSmall,
+.iconTakeBreak, .iconTakeBreakBig, .iconTakeBreakSmall,
+.iconLunchBreak, .iconLunchBreakBig, .iconLunchBreakSmall,
+.iconBulletList, .iconBulletListBig, .iconBulletListSmall {
+    border: 2px solid #ffffff;
+    background-color: transparent;
+}
+
+.iconCollapseBig.accentBackground, .iconExpandBig.accentBackground, 
+.iconCollapseSmall.accentBackground, .iconExpandSmall.accentBackground,
+.iconExpand.accentBackground, .iconCollapse.accentBackground{
+    border: 2px solid #ffffff !important;
+    background-color: transparent;
+    color:#ffffff !important;
+}
+
+/* Active rules (for <button> elements, where button is being pressed) */
+.expanded .iconExpandSmall, .expanded .iconCollapseSmall, .expanded .iconExpandBig, 
+.expanded .iconCollapseBig, .expanded .iconExpand, .expanded .iconCollapse {
+    border: 2px solid #919395 !important;
+    background-color: transparent;
+    color:#919395 !important;
+}
+
+/* Whenever the line have been selected the icon should have white color no matter what theme is active. */
+.win-selectionstylefilled.win-selected .iconExpandSmall,
+.win-selectionstylefilled.win-selected .iconCollapseSmall, 
+.win-selectionstylefilled.win-selected .iconExpandBig, 
+.win-selectionstylefilled.win-selected .iconCollapseBig, 
+.win-selectionstylefilled.win-selected .iconExpand, 
+.win-selectionstylefilled.win-selected .iconCollapse,
+.win-selectionstylefilled.win-selected .expanded .iconExpandSmall,
+.win-selectionstylefilled.win-selected .expanded .iconCollapseSmall, 
+.win-selectionstylefilled.win-selected .expanded .iconExpandBig, 
+.win-selectionstylefilled.win-selected .expanded .iconCollapseBig, 
+.win-selectionstylefilled.win-selected .expanded .iconExpand, 
+.win-selectionstylefilled.win-selected .expanded .iconCollapse {
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+
+/* Rules for connection-status icons (special case) */
+.iconSyncButtonDisconnectedLight {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.iconSyncButtonDisconnectedDark {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.iconEdit:active, .iconEditBig:active, .iconEditSmall:active,
+.iconNavBack:active, .iconNavBackBig:active, .iconNavBackSmall:active,
+.iconAdd:active, .iconAddBig:active, .iconAddSmall:active,
+.iconClipboard:active, .iconClipboardBig:active, .iconClipboardSmall:active,
+.iconChange:active, .iconChangeBig:active, .iconChangeSmall:active,
+.iconSearch:active, .iconSearchBig:active, .iconSearchSmall:active,
+.iconCancel:active, .iconCancelBig:active, .iconCancelSmall:active,
+.iconSave:active, .iconSaveBig:active, .iconSaveSmall:active,
+.iconPhone:active, .iconPhoneBig:active, .iconPhoneSmall:active,
+.iconEmail:active, .iconEmailBig:active, .iconEmailSmall:active,
+.iconListView:active, .iconSmallCardView:active, .iconLargeCardView:active,
+.iconLoyalty:active, .iconLoyaltyBig:active, .iconLoyaltySmall:active,
+.iconAddress:active, .iconAddressBig:active, .iconAddressSmall:active,
+.iconMore:active, .iconMoreBig:active, .iconMoreSmall:active,
+.iconRefresh:active, .iconRefreshBig:active, .iconRefreshSmall:active,
+.iconProducts:active, .iconProductsBig:active, .iconProductsSmall:active,
+.iconQuantity:active, .iconQuantityBig:active, .iconQuantitySmall:active,
+.iconCheckMark:active, .iconCheckMarkSmall:active, .iconCheckMarkBig:active,   
+.iconCloseShift:active, .iconCloseShiftBig:active, .iconCloseShiftSmall:active,
+.iconOpenShift:active, .iconOpenShiftBig:active, .iconOpenShiftSmall:active,
+.iconTakeBreak:active, .iconTakeBreakBig:active, .iconTakeBreakSmall:active,
+.iconLunchBreak:active, .iconLunchBreakBig:active, .iconLunchBreakSmall:active,
+.iconBulletList:active, .iconBulletListBig:active, .iconBulletListSmall:active,
+
+/* Active hover rules (for <button> elements, where button is being hovered over and pressed. Needed for some overwrites. */
+.iconEdit:hover:active, .iconEditBig:hover:active, .iconEditSmall:hover:active,
+.iconNavBack:hover:active, .iconNavBackBig:hover:active, .iconNavBackSmall:hover:active,
+.iconAdd:hover:active, .iconAddBig:hover:active, .iconAddSmall:hover:active,
+.iconClipboard:hover:active, .iconClipboardBig:hover:active, .iconClipboardSmall:hover:active,
+.iconChange:hover:active, .iconChangeBig:hover:active, .iconChangeSmall:hover:active,
+.iconSearch:hover:active, .iconSearchBig:hover:active, .iconSearchSmall:hover:active,
+.iconCancel:hover:active, .iconCancelBig:hover:active, .iconCancelSmall:hover:active,
+.iconSave:hover:active, .iconSaveBig:hover:active, .iconSaveSmall:hover:active,
+.iconPhone:hover:active, .iconPhoneBig:hover:active, .iconPhoneSmall:hover:active,
+.iconEmail:hover:active, .iconEmailBig:hover:active, .iconEmailSmall:hover:active,
+.iconListView:hover:active, .iconSmallCardView:hover:active, .iconLargeCardView:hover:active,
+.iconLoyalty:hover:active, .iconLoyaltyBig:hover:active, .iconLoyaltySmall:hover:active,
+.iconAddress:hover:active, .iconAddressBig:hover:active, .iconAddressSmall:hover:active,
+.iconMore:hover:active, .iconMoreBig:hover:active, .iconMoreSmall:hover:active,
+.iconRefresh:hover:active, .iconRefreshBig:hover:active, .iconRefreshSmall:hover:active,
+.iconChangeCatalog:hover:active, .iconChangeCatalogBig:hover:active, .iconChangeCatalogSmall:hover:active,
+.iconProducts:hover:active, .iconProductsBig:hover:active, .iconProductsSmall:hover:active,
+.iconQuantity:hover:active, .iconQuantityBig:hover:active, .iconQuantitySmall:hover:active,
+.iconCloseShift:hover:active, .iconCloseShiftBig:hover:active, .iconCloseShiftSmall:hover:active,
+.iconOpenShift:hover:active, .iconOpenShiftBig:hover:active, .iconOpenShiftSmall:hover:active,
+.iconTakeBreak:hover:active, .iconTakeBreakBig:hover:active, .iconTakeBreakSmall:hover:active,
+.iconLunchBreak:hover:active, .iconLunchBreakBig:hover:active, .iconLunchBreakSmall:hover:active,
+.iconBulletList:hover:active, .iconBulletListBig:hover:active, .iconBulletListSmall:hover:active,
+
+/* rules for input type=submit buttons */
+input[type=submit].iconEdit:hover:active, input[type=submit].iconEditBig:hover:active, input[type=submit].iconEditSmall:hover:active,
+.iconCheckMark:hover:active, .iconCheckMarkSmall:hover:active, iconCheckMarkBig:hover:active,    
+input[type=submit].iconAdd:hover:active, input[type=submit].iconAddBig:hover:active, input[type=submit].iconAddSmall:hover:active,
+input[type=submit].iconClipboard:hover:active, input[type=submit].iconClipboardBig:hover:active, input[type=submit].iconClipboardSmall:hover:active,
+input[type=submit].iconSearch:hover:active, input[type=submit].iconSearchBig:hover:active, input[type=submit].iconSearchSmall:hover:active,
+input[type=submit].iconCancel:hover:active, input[type=submit].iconCancelBig:hover:active, input[type=submit].iconCancelSmall:hover:active,
+input[type=submit].iconSave:hover:active, input[type=submit].iconSaveBig:hover:active, input[type=submit].iconSaveSmall:hover:active,
+input[type=submit].iconPhone:hover:active, input[type=submit].iconPhoneBig:hover:active, input[type=submit].iconPhoneSmall:hover:active,
+input[type=submit].iconEmail:hover:active, input[type=submit].iconEmailBig:hover:active, input[type=submit].iconEmailSmall:hover:active,
+input[type=submit].iconLoyalty:hover:active, input[type=submit].iconLoyaltyBig:hover:active, input[type=submit].iconLoyaltySmall:hover:active,
+input[type=submit].iconAddress:hover:active, input[type=submit].iconAddressBig:hover:active, input[type=submit].iconAddressSmall:hover:active,
+input[type=submit].iconMore:hover:active, input[type=submit].iconMoreBig:hover:active, input[type=submit].iconMoreSmall:hover:active,
+input[type=submit].iconRefresh:hover:active, input[type=submit].iconRefreshBig:hover:active, input[type=submit].iconRefreshSmall:hover:active,
+input[type=submit].iconChange:hover:active, input[type=submit].iconChangeBig:hover:active, input[type=submit].iconChangeSmall:hover:active,
+input[type=submit].iconProducts:hover:active, input[type=submit].iconProductsBig:hover:active, input[type=submit].iconProductsSmall:hover:active,
+input[type=submit].iconQuantity:hover:active, input[type=submit].iconQuantityBig:hover:active, input[type=submit].iconQuantitySmall:hover:active, 
+input[type=submit].iconCloseShift:hover:active, input[type=submit].iconCloseShiftBig:hover:active, input[type=submit].iconCloseShiftSmall:hover:active,
+input[type=submit].iconOpenShift:hover:active, input[type=submit].iconOpenShiftBig:hover:active, input[type=submit].iconOpenShiftSmall:hover:active,
+input[type=submit].iconTakeBreak:hover:active, input[type=submit].iconTakeBreakBig:hover:active, input[type=submit].iconTakeBreakSmall:hover:active,
+input[type=submit].iconLunchBreak:hover:active, input[type=submit].iconLunchBreakBig:hover:active, input[type=submit].iconLunchBreakSmall:hover:active,
+input[type=submit].iconBulletList:hover:active, input[type=submit].iconBulletListBig:hover:active, input[type=submit].iconBulletListSmall:hover:active {
+    color: #000000;
+}
+
+.iconDisabled {
+    border: 2px solid #414345;
+    color: #414345;
+}
+
+    .iconDisabled:hover {
+        border: 2px solid #414345;
+        color: #414345;
+        background-color: transparent;
+    }
+
+.dimmed {
+    color: #54585c;
+}
+
+/* disabled input fields */
+input[disabled="disabled"],
+input[disabled="disabled"]:focus,
+select[disabled="disabled"],
+select[disabled="disabled"]:focus,
+textarea[disabled="disabled"],
+textarea[disabled="disabled"]:focus {
+    border: 2px inset #808080;
+    background-color: #eeeeee;
+    color: #444444;
+}
+
+input:focus,
+select:focus {
+    background-color: #ffffff;
+}
+
+.win-toggleswitch .win-label {
+    color: #ffffff;
+}
+
+.homePage, .sideButtonsPanel {
+    background-color: #121314;
+}
+
+/* PIVOT TABS & TAB CONTROL */
+/* PIVOT TABS & TAB CONTROL */
+*.tabBackgroundColor {
+    background-color: transparent;
+}
+    *.tabBackgroundColor:hover,
+    *.tabBackgroundColor.selected {
+       background-color: rgba(17, 19, 21, 0.5);
+    }
+
+*.tabFontColor.active,
+button.tabFontColor.active,
+button[type=submit].tabFontColor.active,
+div.tabFontColor.active,
+input[type=button].tabFontColor.active,
+input[type=submit].tabFontColor.active,
+*.tabFontColor.active:hover,
+button.tabFontColor.active:hover,
+button[type=submit].tabFontColor.active:hover,
+div.tabFontColor.active:hover,
+input[type=button].tabFontColor.active:hover,
+input[type=submit].tabFontColor.active:hover,
+*.tabFontColor.active:active,
+button.tabFontColor.active:active,
+button[type=submit].tabFontColor.active:active,
+div.tabFontColor.active:active,
+input[type=button].tabFontColor.active:active,
+input[type=submit].tabFontColor.active:active {
+    color: #ffffff;
+}
+
+*.tabFontColor,
+button.tabFontColor,
+button[type=submit].tabFontColor,
+div.tabFontColor,
+input[type=button].tabFontColor,
+input[type=submit].tabFontColor,
+*.tabFontColor:hover,
+button.tabFontColor:hover,
+button[type=submit].tabFontColor:hover,
+div.tabFontColor:hover,
+input[type=button].tabFontColor:hover,
+input[type=submit].tabFontColor:hover,
+*.tabFontColor:active,
+button.tabFontColor:active,
+button[type=submit].tabFontColor:active,
+div.tabFontColor:active,
+input[type=button].tabFontColor:active,
+input[type=submit].tabFontColor:active {
+    background-color: transparent;
+    color: #717375;
+}
+
+/*
+ *  BORDER STYLING
+ */
+.border {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.borderTop {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+} 
+.borderRight {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+} 
+.borderBottom {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+} 
+.borderLeft {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/**
+    Bing Maps Dark theme
+  */
+
+.dark .MicrosoftMap .Infobox2 .infobox-stalk {
+    background: url(../../Assets/darkinfoboxPointer.png) no-repeat;
+}
+
+.listViewThemeColor,
+.storeList .win-container:hover .win-itembox /* no hover effect for list of stores, set the background same as card color */ {
+    background-color: rgb(29, 29, 29) !important;
+}
+
+.tileList .itemContainer:focus {
+    border-color: #ffffff
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AddLoyaltyCardDialog</title>
+
+    <!-- WinJS references -->
+    <link href="AddLoyaltyCardDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'AddLoyaltyCardDialog'">
+        <div data-bind="
+            dialog: {
+                title:  Commerce.ViewModelAdapter.getResourceString('string_3250'),
+                message:  Commerce.ViewModelAdapter.getResourceString('string_3251'),
+                visible: visible,
+                showProgressIndicator: indeterminateWaitVisible,
+                buttonClick: addLoyaltyCardButtonClick,
+                closeOnEscButton: true,
+                buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_75'), disable: _isOKButtonDisabled, operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, cssClass: 'okButton' },
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }]
+            }">
+
+            <!-- dialog content -->
+            <div>
+                <label data-bind="resx: {textContent: 'string_3252'}" for="addLoyaltyCardDialogCardNumberText">Card number</label>
+                <input type="text" id="addLoyaltyCardDialogCardNumberText" class="width34" autofocus="autofocus"
+                       data-bind="hasFocus: _setFocusToCardNumberText,
+                               textInput: {select: _selectCardNumberText},
+                               value: _cardNumberText,
+                               valueUpdate: 'afterkeydown',
+                               validator: {
+                                   field: '_cardNumberText',
+                                   validatorType: 'LoyaltyCardValidator',
+                                   validatorField: 'CardNumber'
+                               }" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

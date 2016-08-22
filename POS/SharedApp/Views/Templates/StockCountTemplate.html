@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Count Templates</title>
+</head>
+<body>
+    <!-- Template for different stock count display views. -->
+    <div id="stockCountDetailsListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="listViewLine row height6" data-win-bind="title: itemName">
+            <div class="ratio3 col">
+                <h4 data-win-bind="textContent: itemId"></h4>
+                <h4 class="secondaryFontColor" data-win-bind="textContent: this Commerce.Core.Converter.StockCountVariantFormatter"></h4>
+            </div>
+            <div class="ratio2">
+                <h4 data-win-bind="textContent: itemName"></h4>
+            </div>
+            <div class="ratio2 textRight">
+                <h1 data-win-bind="textContent: counted Commerce.Core.Converter.DecimalFormatter"></h1>
+            </div>
+            <div class="ratio1"></div>
+            <div class="ratio2 accent accentBorder col textRight">
+                <h1 data-win-bind="textContent: quantity Commerce.Core.Converter.DecimalFormatter"></h1>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

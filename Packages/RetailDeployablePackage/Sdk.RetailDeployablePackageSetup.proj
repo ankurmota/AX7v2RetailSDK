@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <ProjectGuid>{80DD4B78-193A-40C3-9DE3-D064E1CF497A}</ProjectGuid>
+    <PackageName>RetailDeployablePackage</PackageName>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <_RetailServerCopyItems Include="$(SdkRootPath)\Packages\RetailServer\content.folder\**\*.*" />
+    <_RetailCloudPosCopyItems Include="$(SdkRootPath)\Packages\CloudPos\content.folder\**\*.*" />
+    <_RetailSelfServiceCopyItems Include="$(SdkRootPath)\Packages\RetailSelfService\content.folder\**\*.*" />
+</ItemGroup>
+
+  <Target Name="Build" Inputs="$(MSBuildAllProjects);@(_Update_Installer_Files);@(_RetailServerCopyItems);@(_RetailCloudPosCopyItems);@(_RetailSelfServiceCopyItems)" Outputs="$(OutputPath)RetailDeployablePackage.zip">
+    <CallTarget Targets="CopyPackageFiles" />
+    <Delete Files="$(OutputPath)RetailDeployablePackage.zip" />
+    <GenerateHotfixInstallationInfo ContentFolder="$(OutputPath)content.folder"/>
+    <Zip OutputFileName="$(OutputPath)RetailDeployablePackage.zip" InputFolder="$(OutputPath)content.folder" /> 
+  </Target>
+  
+  <Target Name="CopyPackageFiles">
+    <RemoveDir Directories="$(OutputPath)content.folder" />
+    <Copy SourceFiles="@(_RetailServerCopyItems)" DestinationFiles="@(_RetailServerCopyItems->'$(OutputPath)content.folder\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_RetailCloudPosCopyItems)" DestinationFiles="@(_RetailCloudPosCopyItems->'$(OutputPath)content.folder\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_RetailSelfServiceCopyItems)" DestinationFiles="@(_RetailSelfServiceCopyItems->'$(OutputPath)content.folder\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_Update_Installer_Files)" DestinationFolder="$(OutputPath)content.folder" SkipUnchangedFiles="true" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+  <Target Name="BuildGenerated" />
+  <Target Name="BuildCompiled" />
+  <Target Name="BuildLinked" />
+  <Target Name="Rebuild">
+    <CallTarget Targets="Clean" />
+    <CallTarget Targets="Build" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="$(OutputPath)content.folder" />
+    <Delete Files="$(OutputPath)content.zip" />
+  </Target>
+</Project>

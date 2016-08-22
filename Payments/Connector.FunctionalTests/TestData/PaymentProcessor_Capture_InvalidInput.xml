@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+
+  <PaymentProcessor_Capture_InvalidAmount>
+    <TestDescriptor>Invalid amount</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <CardVerificationValue>999</CardVerificationValue>
+    <CurrencyCode>USD</CurrencyCode>
+    <Amount>1.00</Amount>
+    <IndustryType>Retail</IndustryType>
+    <IsSwipe>False</IsSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <TerminalId>0001</TerminalId>
+    <Description>Authorization</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_Capture_InvalidAmount>
+
+  <PaymentProcessor_Capture_InvalidAmount>
+    <TestDescriptor>Invalid amount</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <CardVerificationValue>999</CardVerificationValue>
+    <CurrencyCode>USD</CurrencyCode>
+    <Amount>1.00</Amount>
+    <IndustryType>Retail</IndustryType>
+    <IsSwipe>False</IsSwipe>
+    <AllowPartialAuthorization>False</AllowPartialAuthorization>
+    <TerminalId>0001</TerminalId>
+    <Description>Authorization</Description>
+    <ExternalCustomerId>Cust0001</ExternalCustomerId>
+    <ExternalInvoiceNumber>Inv0001</ExternalInvoiceNumber>
+    <ExternalReferenceId>Ref0001</ExternalReferenceId>
+    <IsTestMode>True</IsTestMode>
+  </PaymentProcessor_Capture_InvalidAmount>
+
+  <PaymentProcessor_Capture_NullRequest>
+    <TestDescriptor>Null request</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_Capture_NullRequest>
+  <PaymentProcessor_Capture_NullRequest>
+    <TestDescriptor>Null request</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_Capture_NullRequest>
+
+</TestData>

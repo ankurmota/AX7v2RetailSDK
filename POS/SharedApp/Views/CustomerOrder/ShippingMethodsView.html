@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ShippingMethodsView</title>
+
+    <link href="ShippingMethodsView.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- Indeterminate wait -->
+    <div tabindex="-1" data-bind="loader: { visible: _indeterminateWaitVisible }"></div>
+
+    <!-- view -->
+    <div class="shippingMethodsView fragment">
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+
+            <!-- shipping address -->
+            <div class="width32 col no-shrink" aria-label="Shipping address">
+                <div class="no-shrink">
+                    <h2 data-bind="resx: { textContent: 'string_2502' }"></h2> <!-- Shipping address -->
+                </div>
+                <div class="gutter1x1"></div>
+                <!-- customer box -->
+                <!-- ko if: isShippingAddressProvided -->
+                <div data-bind="template: { name: 'shippingAddressTemplate', data: shippingAddress }"></div>
+                <!-- /ko -->
+
+                <div class="primaryPanelBackgroundColor col highContrastBorder" data-bind="visible: !isShippingAddressProvided">
+                    <div class="height14 center">
+                        <h4 data-bind="text: Commerce.ViewModelAdapter.getResourceString('string_2550')"></h4>
+                    </div>
+                </div>
+
+                <div class="col marginTop2">
+                    <!-- view all addresses button -->
+                    <div data-bind="visible: totalAddressesVisibility,
+                                    buttonBlock: {
+                                        buttonClass: 'iconActions',
+                                        click: viewAllCustomerAddresses,
+                                        labelValue: totalCustomerAddressesString // Use current store
+                                    }">
+                    </div>
+
+                    <!-- create new address button -->
+                    <div data-bind="visible: _isCustomerLoaded,
+                                    buttonBlock: {
+                                        buttonClass: 'iconAdd',
+                                        click: createNewAddressButtonClick,
+                                        labelTextResx: 'string_2503',       // Create a new shipping address
+                                        ariaLabelResx: 'string_2503',       // Create a new shipping address
+                                    }">
+                    </div>
+
+                    <!-- search customers button -->
+                    <div data-bind="visible: !_isCustomerLoaded(),
+                                    buttonBlock: {
+                                        buttonClass: 'iconSearch',
+                                        click: searchCustomers,
+                                        labelTextResx: 'string_1153',   // Search customers
+                                        ariaLabelResx: 'string_1153'    // Search customers
+                        }">
+                    </div>
+
+                    <!-- create customer button -->
+                    <div data-bind="visible: !_isCustomerLoaded(),
+                                    buttonBlock: {
+                                        buttonClass: 'iconAdd',
+                                        click: createCustomer,
+                                        labelTextResx: 'string_1152',   // Create customer
+                                        ariaLabelResx: 'string_1152'    // Create customer
+                        }">
+                    </div>
+                </div>
+            </div>
+
+            <div class="gutter4x4"></div>
+
+            <!-- shipping methods -->
+            <div aria-label="Shipping method" class="col">
+                <div class="marginBottom1 no-shrink">
+                    <h2 data-bind="resx: { textContent: 'string_2504' }"></h2> <!-- Shipping methods -->
+                </div>
+                <div class="col" data-bind="tileList: { itemDataSource: shippingMethods, iteminvoked: shippingMethodButtonClick, bottomLeft: { field: 'Description' }, flipInPortrait: true }"></div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

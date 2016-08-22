@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>KitDisassemblyView</title>
+    <link href="KitDisassemblyView.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="componentListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="listViewLine row height9" data-win-bind="title: itemName">
+            <div class="ratio4 row">
+                <div class="shrink">
+                    <img class="height7 width7" src="#" data-win-bind="src: component Commerce.Core.Converter.SmallProductImage; alt: itemName; onerror: Commerce.DefaultImages.ProductSmall Commerce.CustomBindings.SetDefaultImage" />
+                </div>
+
+                <div class="col marginTop1 ellipsis">
+                    <h4 data-win-bind="textContent: itemName"></h4>
+                    <h4 class="secondaryFontColor" data-win-bind="textContent: itemId"></h4>
+                    <h4 class="secondaryFontColor" data-win-bind="textContent: variantSummaryString"></h4>
+                </div>
+            </div>
+            <div class="ratio1 marginTop1">
+                <h4 data-win-bind="textContent: unit"></h4>
+            </div>
+            <div class="ratio1 marginTop1 textRight">
+                <h4 data-win-bind="textContent: totalQuantity"></h4>
+            </div>
+            <div class="ratio2 marginTop2 textRight">
+                <h1 data-win-bind="textContent: returnToInventoryQty"></h1>
+            </div>
+            <div class="ratio2 accentBorder textRight stretch">
+                <div class="padTop2">
+                    <a href="#" class="h1" data-win-bind="innerText: addToCartQty"></a>
+                </div>
+            </div>         
+        </div>
+    </div>
+
+    <div class="fragment kitDisassemblyView">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row padBottom4" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+
+            <!-- View for Component list Grid view -->
+            <div class="col grow no-select">
+                <div class="marginBottom1 no-shrink">
+                    <h2 data-bind="resx: { textContent: 'string_5355' }">Included products</h2>
+                </div>
+                <div class="countingGrid standardGrid">
+                    <!-- Column Headers of Products Grid -->
+                    <div class="listViewHeader">
+                        <div class="ratio4">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_5350' }">PRODUCT</h6>
+                        </div>
+                        <div class="ratio1">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_5351' }">UNIT</h6>
+                        </div>
+                        <div class="ratio1 textRight">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_5352' }">QUANTITY</h6>
+                        </div>
+                        <div class="ratio2 textRight">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_5353' }">RETURN TO INVENTORY</h6>
+                        </div>
+                        <div class="ratio2 textRight">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_5354' }">ADD TO CART</h6>
+                        </div>
+                    </div>
+                    <div class="center" data-bind="visible: isKitEnabled() === false">
+                        <h3 data-bind="resx: {textContent: 'string_1032'}">We didn't find anything to display here</h3>
+                    </div>
+
+                    <div id="standardGrid countingGrid kitDisassemblyViewList"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                                selectionMode: 'single',
+                                itemTemplate: select('#componentListTemplate'),
+                                tapBehavior: 'toggleSelect',
+                                layout: { type: WinJS.UI.ListLayout }
+                            }"
+                         data-bind="winControl: {
+                                itemDataSource: kitDisassemblyViewModel.componentLines,
+                                selectionchanged: { eventHandlerCallBack: componentLineSelectionChanged },
+                                templateSwitch: [
+                                    { buttonId: '#showComponentList', templateId: '#componentListTemplate', layoutType: { type: WinJS.UI.ListLayout }, displayElementId: '#componentListResultHeader' },
+                                ],
+                            },
+                            resx: { ariaLabel: 'string_5373' },
+                            visible: isKitEnabled"> <!-- List of components -->
+                    </div>
+
+                    <!-- Total count results footer -->
+                    <div class="listViewFooter height6">
+                        <div>
+                            <h2 data-bind="text: _totalProducts"></h2>
+                            <h4 class="secondaryFontColor" data-bind="resx: { textContent: 'string_3360' }">TOTAL PRODUCTS</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gutter4x4"></div>
+            <!-- View for Numpad -->
+            <div class="col no-shrink">
+                <div class="marginBottom1 no-shrink">
+                    <h2 data-bind="visible: enterProductVisible, resx: { textContent: 'string_5362' }">Enter product kit</h2>
+                    <h2 data-bind="visible: enterQuantityVisible, resx: { textContent: 'string_3372' }">Enter quantity</h2>
+                </div>
+                <div data-bind="visible: enterProductVisible">
+                    <input id="kitAssemblyProductInput" class="numPadTextbox" type="text" />
+                    <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                            data-win-options="{ uri: 'Controls/numberPad/NumPad.html' }"
+                            data-bind="alphanumericNumpad: {
+                            textBoxId: 'kitAssemblyProductInput',
+                            onEnter: enterProductNumpad,
+                            value: searchText
+                        }">
+                    </div>
+                </div>
+                <div data-bind="visible: enterQuantityVisible">
+                    <input id="kitAssemblyQuantityInput" class="numPadTextbox" type="text" />
+                    <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                            data-win-options="{ uri: 'Controls/numberPad/NumPad.html' }"
+                            data-bind="numpad: {
+                            textBoxId: 'kitAssemblyQuantityInput',
+                            onEnter: enterQuantityNumpad,
+                            value: searchText
+                        }">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- menu button to reset the page or quantities entered -->
+    <div id="resetButtonFlyout" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#resetActions', placement: 'top', alignment: 'left', toggleShowHide: toggleShowHideMenu }">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id: 'clearKitDetail'}" data-bind="resx: { label: 'string_5369' }, click: clearKitDetail "></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id: 'resetAddToSaleQuantities'}" data-bind="resx: { label: 'string_5370' }, click: resetAddToSaleQuantities "></button>
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl" 
+        data-win-options="{ sticky : true }">
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{
+                id:'resetActions',
+                extraClass: 'winappbar-iconActions',
+                section:'selection',
+                type: 'flyout',
+                flyout:select('#resetButtonFlyout')
+            }"
+            data-bind="resx: { label: 'string_5368' }, enable: isKitEnabled"  />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{
+                    id:'setKitQuantityToDisassemble',
+                    extraClass: 'winappbar-iconQuantity',
+                    section:'selection',
+                }"
+            data-bind="winControl: { click: setKitQuantityToDisassemble }, resx: { label: 'string_5363' }, enable: isKitEnabled" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{
+                    id:'commitKitTransaction',
+                    extraClass: 'winappbar-iconAccept',
+                    section:'global',
+                }"
+            data-bind="winControl: { click: commitKitTransaction }, resx: { label: 'string_5360' }, enable: isKitEnabled" />
+
+    </div>
+</body>
+</html>

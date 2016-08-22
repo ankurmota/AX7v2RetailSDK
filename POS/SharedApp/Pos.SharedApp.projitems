@@ -1,0 +1,2493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <JQueryUIVersion>1.11.2</JQueryUIVersion>
+    <RetailTestRestoreOnlineChannelSavePoint>
+    </RetailTestRestoreOnlineChannelSavePoint>
+    <RetailTestRestoreSavePoint>
+    </RetailTestRestoreSavePoint>
+    <RetailRoot>
+    </RetailRoot>
+    <RetailBuildRoot>
+    </RetailBuildRoot>
+    <RetailBuildScriptsRoot>
+    </RetailBuildScriptsRoot>
+    <RetailMSBuildRoot>
+    </RetailMSBuildRoot>
+    <RetailRulesetsRoot>
+    </RetailRulesetsRoot>
+    <RetailComponentsRoot>
+    </RetailComponentsRoot>
+    <RetailAppsRoot>
+    </RetailAppsRoot>
+    <RetailWebAppsRoot>
+    </RetailWebAppsRoot>
+    <RetailWindowsAppsRoot>
+    </RetailWindowsAppsRoot>
+    <RetailAppsPlatformRoot>
+    </RetailAppsPlatformRoot>
+    <RetailAppsLibrariesRoot>
+    </RetailAppsLibrariesRoot>
+    <RetailPlatformRoot>
+    </RetailPlatformRoot>
+    <RetailLibrariesRoot>
+    </RetailLibrariesRoot>
+    <RetailServicesRoot>
+    </RetailServicesRoot>
+    <RetailWebServicesRoot>
+    </RetailWebServicesRoot>
+    <RetailWindowsServicesRoot>
+    </RetailWindowsServicesRoot>
+    <RetailDependenciesRoot>
+    </RetailDependenciesRoot>
+    <RetailInternalRoot>
+    </RetailInternalRoot>
+    <RetailExternalRoot>
+    </RetailExternalRoot>
+    <RetailDeploymentRoot>
+    </RetailDeploymentRoot>
+    <RetailSelfServiceDeploymentRoot>
+    </RetailSelfServiceDeploymentRoot>
+    <RetailDesigner>
+    </RetailDesigner>
+    <RetailToolsRoot>
+    </RetailToolsRoot>
+    <RetailReferenceSettings>
+    </RetailReferenceSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\globalize\0.1.0\globalize.js">
+      <Link>Libraries\globalize\0.1.0\globalize.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\globalize\0.1.0\globalize.min.js">
+      <Link>Libraries\globalize\0.1.0\globalize.min.js</Link>
+      <InProject>True</InProject>
+      <DependentUpon>globalize.js</DependentUpon>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\globalize\0.1.0\globalize.min.js.map">
+      <Link>Libraries\globalize\0.1.0\globalize.min.js.map</Link>
+      <InProject>True</InProject>
+      <DependentUpon>globalize.js</DependentUpon>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\globalize\0.1.0\globalize.cultures.js">
+      <Link>Libraries\globalize\0.1.0\globalize.cultures.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\globalize\0.1.0\globalize.cultures.min.js">
+      <Link>Libraries\globalize\0.1.0\globalize.cultures.min.js</Link>
+      <InProject>True</InProject>
+      <DependentUpon>globalize.cultures.js</DependentUpon>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\globalize\0.1.0\globalize.cultures.min.js.map">
+      <Link>Libraries\globalize\0.1.0\globalize.cultures.min.js.map</Link>
+      <InProject>True</InProject>
+      <DependentUpon>globalize.cultures.js</DependentUpon>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\winjs\js\WinJS.js">
+      <Link>Libraries\winjs\js\WinJS.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\winjs\js\WinJS.min.js">
+      <Link>Libraries\winjs\js\WinJS.min.js</Link>
+      <InProject>True</InProject>
+      <DependentUpon>WinJS.js</DependentUpon>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\winjs\js\WinJS.min.js.map">
+      <Link>Libraries\winjs\js\WinJS.min.js.map</Link>
+      <InProject>True</InProject>
+      <DependentUpon>WinJS.js</DependentUpon>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\winjs\css\ui-dark.css">
+      <Link>Libraries\winjs\css\ui-dark.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\winjs\css\ui-light.css">
+      <Link>Libraries\winjs\css\ui-light.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\winjs\fonts\Symbols.ttf">
+      <Link>Libraries\winjs\fonts\Symbols.ttf</Link>
+      <InProject>True</InProject>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MsBuildThisFileDirectory)Pos.Shared.html">
+      <Link>Pos.Shared.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)TaskRecorder.config.json">
+      <Link>TaskRecorder.config.json</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)..\Core\Commerce.Core.js">
+      <Link>Commerce.Core.js</Link>
+      <InProject>True</InProject>
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)..\Core\Commerce.Core.js.map">
+      <DependentUpon>Commerce.Core.js</DependentUpon>
+      <Link>Commerce.Core.js.map</Link>
+      <InProject>True</InProject>
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)..\ViewModels\Commerce.ViewModels.js">
+      <Link>Commerce.ViewModels.js</Link>
+      <InProject>True</InProject>
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)..\ViewModels\Commerce.ViewModels.js.map">
+      <DependentUpon>Commerce.ViewModels.js</DependentUpon>
+      <Link>Commerce.ViewModels.js.map</Link>
+      <InProject>True</InProject>
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\highcharts.src.js">
+      <Link>Libraries\highcharts.src.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\jQueryUI\1.11.2\jquery-ui.min.js">
+      <Link>Libraries\jQueryUI\$(JQueryUIVersion)\jquery-ui.min.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\moment\moment-with-locales.min.js">
+      <Link>Libraries\moment\moment-with-locales.min.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\moment-timezone\moment-timezone-with-data.min.js">
+      <Link>Libraries\moment-timezone\moment-timezone-with-data.min.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)RetailLogger.js">
+      <Link>RetailLogger.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)RetailLogger.js.map">
+      <DependentUpon>RetailLogger.js</DependentUpon>
+      <Link>RetailLogger.js.map</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Diagnostics.TypeScriptCore.js">
+      <Link>Diagnostics.TypeScriptCore.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Diagnostics.TypeScriptCore.js.map">
+      <DependentUpon>Diagnostics.TypeScriptCore.js</DependentUpon>
+      <Link>Diagnostics.TypeScriptCore.js.map</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\mposGridlines.png">
+      <Link>Assets\mposGridlines.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\background_dark.png">
+      <Link>Assets\background_dark.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\background_light.png">
+      <Link>Assets\background_light.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\BackgroundFabrikam_1366x768.jpg">
+      <Link>Assets\BackgroundFabrikam_1366x768.jpg</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\Add.png">
+      <Link>Assets\Buttons\Add.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\Coupons.png">
+      <Link>Assets\Buttons\Coupons.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\Customers.png">
+      <Link>Assets\Buttons\Customers.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\DropDown.png">
+      <Link>Assets\Buttons\DropDown.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\Home.png">
+      <Link>Assets\Buttons\Home.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\ProductDetails.png">
+      <Link>Assets\Buttons\ProductDetails.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\RelatedProducts.png">
+      <Link>Assets\Buttons\RelatedProducts.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\Minus.png">
+      <Link>Assets\Buttons\Minus.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\Products.png">
+      <Link>Assets\Buttons\Products.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\Return.png">
+      <Link>Assets\Buttons\Return.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\Sale.png">
+      <Link>Assets\Buttons\Sale.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\StartNewSale.png">
+      <Link>Assets\Buttons\StartNewSale.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\Tasks.png">
+      <Link>Assets\Buttons\Tasks.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Buttons\TimeClock.png">
+      <Link>Assets\Buttons\TimeClock.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\fabrikam_all_products.jpg">
+      <Link>Assets\fabrikam_all_products.jpg</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Fonts\dynamsymb.woff">
+      <Link>Assets\Fonts\dynamsymb.woff</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Fonts\segoeui.woff">
+      <Link>Assets\Fonts\segoeui.woff</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Fonts\segoeuilight.woff">
+      <Link>Assets\Fonts\segoeuilight.woff</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Fonts\segoeuisemilight.woff">
+      <Link>Assets\Fonts\segoeuisemilight.woff</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\HomeBackground.png">
+      <Link>Assets\HomeBackground.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\HomeBackgroundFabrikam_956x768.jpg">
+      <Link>Assets\HomeBackgroundFabrikam_956x768.jpg</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_Add_32.png">
+      <Link>Assets\Icons\i_Add_32.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_Birthday_32.png">
+      <Link>Assets\Icons\i_Birthday_32.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_Change_32.png">
+      <Link>Assets\Icons\i_Change_32.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_Chat_32.png">
+      <Link>Assets\Icons\i_Chat_32.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_Email_32.png">
+      <Link>Assets\Icons\i_Email_32.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_Location_32.png">
+      <Link>Assets\Icons\i_Location_32.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_Loyalty_32.png">
+      <Link>Assets\Icons\i_Loyalty_32.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_nav_Catalog_40x40.png">
+      <Link>Assets\Icons\i_nav_Catalog_40x40.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_nav_Home_40x40.png">
+      <Link>Assets\Icons\i_nav_Home_40x40.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_nav_NewSale_40x40.png">
+      <Link>Assets\Icons\i_nav_NewSale_40x40.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Logo.scale-100.png">
+      <Link>Assets\Logo.scale-100.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\MediumLogo.scale-100.png">
+      <Link>Assets\MediumLogo.scale-100.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Navbar_breakline_bg.png">
+      <Link>Assets\Navbar_breakline_bg.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\SignaturePanel_bg.png">
+      <Link>Assets\SignaturePanel_bg.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\SignaturePanel_bg_RTL.png">
+      <Link>Assets\SignaturePanel_bg_RTL.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\SmallLogo.scale-100.png">
+      <Link>Assets\SmallLogo.scale-100.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\SplashScreen.scale-100.png">
+      <Link>Assets\SplashScreen.scale-100.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\spinner_white_40.gif">
+      <Link>Assets\spinner_white_40.gif</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\StoreLogo.scale-100.png">
+      <Link>Assets\StoreLogo.scale-100.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Common\_Fonts.scss">
+      <Link>Stylesheets\Common\_Fonts.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Common\_Constants.scss">
+      <Link>Stylesheets\Common\_Constants.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Parts\_Icons.scss">
+      <Link>Stylesheets\Parts\_Icons.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <Content Include="$(MsBuildThisFileDirectory)Stylesheets\Vendor\jQueryUI\1.11.2\jquery-ui.min.css">
+      <Link>Stylesheets\Vendor\jQueryUI\$(JQueryUIVersion)\jquery-ui.min.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Parts\_Layout.scss">
+      <Link>Stylesheets\Parts\_Layout.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Parts\_GridFramework.scss">
+      <Link>Stylesheets\Parts\_GridFramework.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Parts\_jQueryOverrides.scss">
+      <Link>Stylesheets\Parts\_jQueryOverrides.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Parts\_TaskRecorder.scss">
+      <Link>Stylesheets\Parts\_TaskRecorder.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <Content Include="$(MsBuildThisFileDirectory)\Stylesheets\Parts\ScrollbarStyle.min.css">
+      <Link>Stylesheets\Parts\ScrollbarStyle.min.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)\Stylesheets\Parts\DynamicAccentColor.css">
+      <Link>Stylesheets\Parts\DynamicAccentColor.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Stylesheets\Themes\PosDarkTheme.css">
+      <Link>Stylesheets\Themes\PosDarkTheme.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Stylesheets\Themes\PosLightTheme.css">
+      <Link>Stylesheets\Themes\PosLightTheme.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Stylesheets\Themes\DeveloperMode.css">
+      <Link>Stylesheets\Themes\DeveloperMode.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\defaultLarge.png">
+      <Link>Assets\defaultLarge.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\defaultSmall.png">
+      <Link>Assets\defaultSmall.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\Icons\i_Search_32.png">
+      <Link>Assets\Icons\i_Search_32.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\person_unavailable_large.png">
+      <Link>Assets\person_unavailable_large.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\person_unavailable_small.png">
+      <Link>Assets\person_unavailable_small.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\SignInBG_1366x768.jpg">
+      <Link>Assets\SignInBG_1366x768.jpg</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\DefaultUser.png">
+      <Link>Assets\DefaultUser.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\darkinfoboxPointer.png">
+      <Link>Assets\darkinfoboxPointer.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\lightinfoboxPointer.png">
+      <Link>Assets\lightinfoboxPointer.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Parts\_Pos.scss">
+      <Link>Stylesheets\Parts\_Pos.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Parts\_Pos.ie.scss">
+      <Link>Stylesheets\Parts\_Pos.ie.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\Parts\_StandardGrid.scss">
+      <Link>Stylesheets\Parts\_StandardGrid.scss</Link>
+      <InProject>True</InProject>
+    </None>
+    <Content Include="$(MsBuildThisFileDirectory)Stylesheets\Main.min.css">
+      <Link>Stylesheets\Main.min.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <None Include="$(MsBuildThisFileDirectory)Stylesheets\browserslist">
+      <Link>Stylesheets\browserslist</Link>
+      <InProject>True</InProject>
+    </None>
+    <Content Include="$(MsBuildThisFileDirectory)Assets\WideLogo.scale-100.png">
+      <Link>Assets\WideLogo.scale-100.png</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\Bing.Maps\map.html">
+      <Link>Controls\Bing.Maps\map.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\Bing.Maps\Bing.Map.Client.js">
+      <DependentUpon>map.html</DependentUpon>
+      <Link>Controls\Bing.Maps\Bing.Map.Client.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\Bing.Maps\map.css">
+      <DependentUpon>map.html</DependentUpon>
+      <Link>Controls\Bing.Maps\map.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\Bing.Maps\Bing.Maps.ts">
+      <DependentUpon>map.html</DependentUpon>
+      <Link>Controls\Bing.Maps\Bing.Map.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\Bubbles\BubbleControl.html">
+      <Link>Controls\Bubbles\BubbleControl.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\Bubbles\BubbleControl.ts">
+      <DependentUpon>BubbleControl.html</DependentUpon>
+      <Link>Controls\Bubbles\BubbleControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\Bubbles\bubble.config.json">
+      <DependentUpon>BubbleControl.html</DependentUpon>
+      <Link>Controls\Bubbles\bubble.config.json</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\Bubbles\BubbleControl.min.css">
+      <DependentUpon>BubbleControl.html</DependentUpon>
+      <Link>Controls\Bubbles\BubbleControl.min.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\buttonBlock\buttonBlock.html">
+      <Link>Controls\buttonBlock\buttonBlock.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\buttonBlock\knockout.buttonBlock.ts">
+      <DependentUpon>buttonBlock.html</DependentUpon>
+      <Link>Controls\buttonBlock\knockout.buttonBlock.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\buttonGrid\buttonGrid.css">
+      <Link>Controls\buttonGrid\buttonGrid.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\buttonGrid\knockout.win.buttonGrid.ts">
+      <Link>Controls\buttonGrid\knockout.win.buttonGrid.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\dialog\dialog.min.css">
+      <Link>Controls\dialog\dialog.min.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\dialog\knockout.dialog.ts">
+      <Link>Controls\dialog\knockout.dialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\listView\knockout.listView.html">
+      <Link>Controls\listView\knockout.listView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\numberPad\NumPad.html">
+      <Link>Controls\numberPad\NumPad.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\numberPad\NumPad.css">
+      <DependentUpon>NumPad.html</DependentUpon>
+      <Link>Controls\numberPad\NumPad.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\numberPad\knockout.numpad.ts">
+      <DependentUpon>NumPad.html</DependentUpon>
+      <Link>Controls\numberPad\knockout.numpad.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\parallax\knockout.parallax.ts">
+      <Link>Controls\parallax\knockout.parallax.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\tabControl\knockout.tabControl.ts">
+      <Link>Controls\tabControl\knockout.tabControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\knockout.image.ts">
+      <Link>Controls\knockout.image.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\knockout.numeric.ts">
+      <Link>Controls\knockout.numeric.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\knockout.totalsPanel.ts">
+      <Link>Controls\knockout.totalsPanel.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\knockout.clearMark.ts">
+      <Link>Controls\knockout.clearMark.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\knockout.winjs.ts">
+      <Link>Controls\knockout.winjs.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\MultiSelectRefinerControl\MultiSelectRefinerControl.css">
+      <Link>Controls\MultiSelectRefinerControl\MultiSelectRefinerControl.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\MultiSelectRefinerControl\MultiSelectRefinerControl.html">
+      <Link>Controls\MultiSelectRefinerControl\MultiSelectRefinerControl.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\SingleSelectRefinerControl\SingleSelectRefinerControl.html">
+      <Link>Controls\SingleSelectRefinerControl\SingleSelectRefinerControl.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\SliderRefinerControl\SliderRefinerControl.css">
+      <Link>Controls\SliderRefinerControl\SliderRefinerControl.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\SliderRefinerControl\SliderRefinerControl.html">
+      <Link>Controls\SliderRefinerControl\SliderRefinerControl.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\tabControl\tabControl.css">
+      <Link>Controls\tabControl\tabControl.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\tileList\knockout.tileList.css">
+      <Link>Controls\tileList\knockout.tileList.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\tileList\knockout.tileList.html">
+      <Link>Controls\tileList\knockout.tileList.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\loader\knockout.loader.min.css">
+      <Link>Controls\loader\knockout.loader.min.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Controls\loader\knockout.loader.html">
+      <Link>Controls\loader\knockout.loader.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Peripherals\Facade\Printer.ts">
+      <Link>Peripherals\Facade\Printer.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Affiliation\AffiliationsView.html">
+      <Link>Views\Affiliation\AffiliationsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Affiliation\AffiliationsView.css">
+      <DependentUpon>AffiliationsView.html</DependentUpon>
+      <Link>Views\Affiliation\AffiliationsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\ActivationErrorControl.html">
+      <Link>Views\Controls\ActivationErrorControl.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AddDiscountDialog.html">
+      <Link>Views\Controls\AddDiscountDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AddDiscountDialog.css">
+      <DependentUpon>AddDiscountDialog.html</DependentUpon>
+      <Link>Views\Controls\AddDiscountDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AddIssueGiftCardDialog.html">
+      <Link>Views\Controls\AddIssueGiftCardDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AddIssueGiftCardDialog.css">
+      <DependentUpon>AddIssueGiftCardDialog.html</DependentUpon>
+      <Link>Views\Controls\AddIssueGiftCardDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\GetQuotationExpirationDateDialog.html">
+      <Link>Views\Controls\GetQuotationExpirationDateDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SerialNumberInputDialog.html">
+      <Link>Views\Controls\SerialNumberInputDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SerialNumberInputDialog.css">
+      <DependentUpon>SerialNumberInputDialog.html</DependentUpon>
+      <Link>Views\Controls\SerialNumberInputDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AutocompleteComboboxDialog.html">
+      <Link>Views\Controls\AutocompleteComboboxDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AutocompleteComboboxDialog.css">
+      <DependentUpon>AutocompleteComboboxDialog.html</DependentUpon>
+      <Link>Views\Controls\AutocompleteComboboxDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\ApprovePartialAmountDialog.html">
+      <Link>Views\Controls\ApprovePartialAmountDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\GetCancellationChargeModalDialog.html">
+      <Link>Views\Controls\GetCancellationChargeModalDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\CommonHeader.html">
+      <Link>Views\Controls\CommonHeader.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\CommonHeader.css">
+      <DependentUpon>CommonHeader.html</DependentUpon>
+      <Link>Views\Controls\CommonHeader.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\DeveloperMode.html">
+      <Link>Views\Controls\DeveloperMode.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\DeveloperMode.css">
+      <DependentUpon>DeveloperMode.html</DependentUpon>
+      <Link>Views\Controls\DeveloperMode.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\EmailReceiptDialog.html">
+      <Link>Views\Controls\EmailReceiptDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\GetOrderTypeDialog.html">
+      <Link>Views\Controls\GetOrderTypeDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\GetShippingChargeDialog.html">
+      <Link>Views\Controls\GetShippingChargeDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\GetShippingDateDialog.html">
+      <Link>Views\Controls\GetShippingDateDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\MessageDialog.html">
+      <Link>Views\Controls\MessageDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\MessageDialog.css">
+      <DependentUpon>MessageDialog.html</DependentUpon>
+      <Link>Views\Controls\MessageDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SelectCustomerLoyaltyCardDialog.html">
+      <Link>Views\Controls\SelectCustomerLoyaltyCardDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\NumberInputDialog.html">
+      <Link>Views\Controls\NumberInputDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\NumberInputDialog.css">
+      <DependentUpon>NumberInputDialog.html</DependentUpon>
+      <Link>Views\Controls\NumberInputDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\PriceInputDialog.html">
+      <Link>Views\Controls\PriceInputDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\PriceInputDialog.css">
+      <DependentUpon>PriceInputDialog.html</DependentUpon>
+      <Link>Views\Controls\PriceInputDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\OrderCheckoutDialog.html">
+      <Link>Views\Controls\OrderCheckoutDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\OrderCheckoutDialog.css">
+      <DependentUpon>OrderCheckoutDialog.html</DependentUpon>
+      <Link>Views\Controls\OrderCheckoutDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\RefinerControl.html">
+      <Link>Views\Controls\RefinerControl.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\RefinerControl.css">
+      <DependentUpon>RefinerControl.html</DependentUpon>
+      <Link>Views\Controls\RefinerControl.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\PrintReceiptDialog.html">
+      <Link>Views\Controls\PrintReceiptDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\PrintReceiptDialog.css">
+      <DependentUpon>PrintReceiptDialog.html</DependentUpon>
+      <Link>Views\Controls\PrintReceiptDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\ReasonCodeDialog.html">
+      <Link>Views\Controls\ReasonCodeDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\TimeRegistrationDialog.html">
+      <Link>Views\Controls\TimeRegistrationDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\TimeRegistrationDialog.css">
+      <DependentUpon>TimeRegistrationDialog.html</DependentUpon>
+      <Link>Views\Controls\TimeRegistrationDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\WeighItemDialog.css">
+      <DependentUpon>WeighItemDialog.html</DependentUpon>
+      <Link>Views\Controls\WeighItemDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\WeighItemDialog.html">
+      <Link>Views\Controls\WeighItemDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\DepositOverrideView.html">
+      <Link>Views\CustomerOrder\DepositOverrideView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\DepositOverrideView.css">
+      <DependentUpon>DepositOverrideView.html</DependentUpon>
+      <Link>Views\CustomerOrder\DepositOverrideView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\ListInputDialog.html">
+      <Link>Views\Controls\ListInputDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\ListInputDialog.css">
+      <DependentUpon>ListInputDialog.html</DependentUpon>
+      <Link>Views\Controls\ListInputDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\AdvancedSearchOrdersView.html">
+      <Link>Views\CustomerOrder\AdvancedSearchOrdersView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\AdvancedSearchOrdersView.css">
+      <DependentUpon>AdvancedSearchOrdersView.html</DependentUpon>
+      <Link>Views\CustomerOrder\AdvancedSearchOrdersView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\PickUpInStoreView.html">
+      <Link>Views\CustomerOrder\PickUpInStoreView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\PickUpInStoreView.css">
+      <DependentUpon>PickUpInStoreView.html</DependentUpon>
+      <Link>Views\CustomerOrder\PickUpInStoreView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\PaymentHistoryView.html">
+      <Link>Views\CustomerOrder\PaymentHistoryView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\PaymentHistoryView.css">
+      <DependentUpon>PaymentHistoryView.html</DependentUpon>
+      <Link>Views\CustomerOrder\PaymentHistoryView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\SalesInvoiceDetailsView.html">
+      <Link>Views\CustomerOrder\SalesInvoiceDetailsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\SalesInvoiceDetailsView.css">
+      <DependentUpon>SalesInvoiceDetailsView.html</DependentUpon>
+      <Link>Views\CustomerOrder\SalesInvoiceDetailsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\SalesInvoicesView.html">
+      <Link>Views\CustomerOrder\SalesInvoicesView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\SalesInvoicesView.css">
+      <DependentUpon>SalesInvoicesView.html</DependentUpon>
+      <Link>Views\CustomerOrder\SalesInvoicesView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\SearchOrdersView.css">
+      <DependentUpon>SearchOrdersView.html</DependentUpon>
+      <Link>Views\CustomerOrder\SearchOrdersView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\SearchOrdersView.html">
+      <Link>Views\CustomerOrder\SearchOrdersView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\PickUpView.html">
+      <Link>Views\CustomerOrder\PickUpView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\PickUpView.css">
+      <DependentUpon>PickUpView.html</DependentUpon>
+      <Link>Views\CustomerOrder\PickUpView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\AddressAddEditView.css">
+      <DependentUpon>AddressAddEditView.html</DependentUpon>
+      <Link>Views\Customer\AddressAddEditView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\AddressAddEditView.html">
+      <Link>Views\Customer\AddressAddEditView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerAffiliationsView.css">
+      <DependentUpon>CustomerAffiliationsView.html</DependentUpon>
+      <Link>Views\Customer\CustomerAffiliationsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerAffiliationsView.html">
+      <Link>Views\Customer\CustomerAffiliationsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\ChangePasswordView.html">
+      <Link>Views\Login\ChangePasswordView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\ChangePasswordView.css">
+      <DependentUpon>ChangePasswordView.html</DependentUpon>
+      <Link>Views\Login\ChangePasswordView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\DeviceActivationProcessView.html">
+      <Link>Views\Login\DeviceActivationProcessView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\DeviceActivationView.html">
+      <Link>Views\Login\DeviceActivationView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\DeviceActivationView.css">
+      <DependentUpon>DeviceActivationView.html</DependentUpon>
+      <Link>Views\Login\DeviceActivationView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\ExtendedLogOnView.html">
+      <Link>Views\Login\ExtendedLogOnView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\GetStartedView.html">
+      <Link>Views\Login\GetStartedView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\GuidedActivationView.html">
+      <Link>Views\Login\GuidedActivationView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\ResetPasswordView.html">
+      <Link>Views\Login\ResetPasswordView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\ResetPasswordView.css">
+      <DependentUpon>ResetPasswordView.html</DependentUpon>
+      <Link>Views\Login\ResetPasswordView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Cart\CartView.html">
+      <Link>Views\Cart\CartView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Cart\CartView.min.css">
+      <DependentUpon>CartView.html</DependentUpon>
+      <Link>Views\Cart\CartView.min.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Cart\ResumeCartView.html">
+      <Link>Views\Cart\ResumeCartView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Cart\ResumeCartView.css">
+      <DependentUpon>ResumeCartView.html</DependentUpon>
+      <Link>Views\Cart\ResumeCartView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Cart\ShowJournalView.html">
+      <Link>Views\Cart\ShowJournalView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Cart\ShowJournalView.css">
+      <DependentUpon>ShowJournalView.html</DependentUpon>
+      <Link>Views\Cart\ShowJournalView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AddLoyaltyCardDialog.html">
+      <Link>Views\Controls\AddLoyaltyCardDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AddLoyaltyCardDialog.css">
+      <DependentUpon>AddLoyaltyCardDialog.html</DependentUpon>
+      <Link>Views\Controls\AddLoyaltyCardDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\DeviceDeactivation.html">
+      <Link>Views\Login\DeviceDeactivation.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\DeviceDeactivation.css">
+      <DependentUpon>DeviceDeactivation.html</DependentUpon>
+      <Link>Views\Login\DeviceDeactivation.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\CardTypeDialog.html">
+      <Link>Views\Controls\CardTypeDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\ReturnMultipleTransactionDialog.html">
+      <Link>Views\Controls\ReturnMultipleTransactionDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\ReturnMultipleTransactionDialog.css">
+      <DependentUpon>ReturnMultipleTransactionDialog.html</DependentUpon>
+      <Link>Views\Controls\ReturnMultipleTransactionDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SignatureCaptureDialog.html">
+      <Link>Views\Controls\SignatureCaptureDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SignatureCaptureDialog.css">
+      <DependentUpon>SignatureCaptureDialog.html</DependentUpon>
+      <Link>Views\Controls\SignatureCaptureDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SignatureDeviceDialog.html">
+      <Link>Views\Controls\SignatureDeviceDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\TaxOverrideDialog.html">
+      <Link>Views\Controls\TaxOverrideDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\TaxOverrideDialog.css">
+      <DependentUpon>TaxOverrideDialog.html</DependentUpon>
+      <Link>Views\Controls\TaxOverrideDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\TextInputDialog.html">
+      <Link>Views\Controls\TextInputDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\HardwareStationErrorDialog.html">
+      <Link>Views\Controls\HardwareStationErrorDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\TextInputDialog.css">
+      <DependentUpon>TextInputDialog.html</DependentUpon>
+      <Link>Views\Controls\TextInputDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AskQuestionDialog.html">
+      <Link>Views\Controls\AskQuestionDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\AskQuestionDialog.css">
+      <DependentUpon>AskQuestionDialog.html</DependentUpon>
+      <Link>Views\Controls\AskQuestionDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SelectDropDownDialog.html">
+      <Link>Views\Controls\SelectDropDownDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SelectDropDownDialog.css">
+      <DependentUpon>SelectDropDownDialog.html</DependentUpon>
+      <Link>Views\Controls\SelectDropDownDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\CashbackDialog.html">
+      <Link>Views\Controls\CashbackDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\CashDrawerInputDialog.html">
+      <Link>Views\Controls\CashDrawerInputDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\CashDrawerInputDialog.css">
+      <DependentUpon>CashDrawerInputDialog.html</DependentUpon>
+      <Link>Views\Controls\CashDrawerInputDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\ShiftActionDialog.html">
+      <Link>Views\Controls\ShiftActionDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\GetSalesPersonDialog.html">
+      <Link>Views\Controls\GetSalesPersonDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\DateInputDialog.html">
+      <Link>Views\Controls\DateInputDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\DateInputDialog.css">
+      <DependentUpon>DateInputDialog.html</DependentUpon>
+      <Link>Views\Controls\DateInputDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\ExtensionPropertiesControl.html">
+      <Link>Views\Controls\ExtensionPropertiesControl.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SetQuantityDialog.html">
+      <Link>Views\Controls\SetQuantityDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SetQuantityDialog.css">
+      <DependentUpon>SetQuantityDialog.html</DependentUpon>
+      <Link>Views\Controls\SetQuantityDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\TutorialVideoDialog.html">
+      <Link>Views\Controls\TutorialVideoDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\TutorialVideoDialog.css">
+      <DependentUpon>TutorialVideoDialog.html</DependentUpon>
+      <Link>Views\Controls\TutorialVideoDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\tutorialVideo.config.json">
+      <DependentUpon>TutorialVideoDialog.html</DependentUpon>
+      <Link>Views\Controls\tutorialVideo.config.json</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\VariantDialog.html">
+      <Link>Views\Controls\VariantDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\VariantDialog.css">
+      <DependentUpon>VariantDialog.html</DependentUpon>
+      <Link>Views\Controls\VariantDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SelectVariantDialog.html">
+      <Link>Views\Controls\SelectVariantDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SetDisassembleQuantityDialog.html">
+      <Link>Views\Controls\SetDisassembleQuantityDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\SetDisassembleQuantityDialog.css">
+      <DependentUpon>SetDisassembleQuantityDialog.html</DependentUpon>
+      <Link>Views\Controls\SetDisassembleQuantityDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\UnitOfMeasureDialog.html">
+      <Link>Views\Controls\UnitOfMeasureDialog.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Controls\UnitOfMeasureDialog.css">
+      <DependentUpon>UnitOfMeasureDialog.html</DependentUpon>
+      <Link>Views\Controls\UnitOfMeasureDialog.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerAddEditView.html">
+      <Link>Views\Customer\CustomerAddEditView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerAddEditView.css">
+      <DependentUpon>CustomerAddEditView.html</DependentUpon>
+      <Link>Views\Customer\CustomerAddEditView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerAddressesView.html">
+      <Link>Views\Customer\CustomerAddressesView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerAddressesView.css">
+      <DependentUpon>CustomerAddressesView.html</DependentUpon>
+      <Link>Views\Customer\CustomerAddressesView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerDetailsView.html">
+      <Link>Views\Customer\CustomerDetailsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerDetailsView.css">
+      <DependentUpon>CustomerDetailsView.html</DependentUpon>
+      <Link>Views\Customer\CustomerDetailsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\RecentPurchasesView.html">
+      <Link>Views\Customer\RecentPurchasesView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Customer\RecentPurchasesView.css">
+      <DependentUpon>RecentPurchasesView.html</DependentUpon>
+      <Link>Views\Customer\RecentPurchasesView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\ShippingMethodsView.html">
+      <Link>Views\CustomerOrder\ShippingMethodsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\ShippingMethodsView.css">
+      <DependentUpon>ShippingMethodsView.html</DependentUpon>
+      <Link>Views\CustomerOrder\ShippingMethodsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\BlindCloseView.html">
+      <Link>Views\DailyOperations\BlindCloseView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\BlindCloseView.css">
+      <DependentUpon>BlindCloseView.html</DependentUpon>
+      <Link>Views\DailyOperations\BlindCloseView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\CashManagementView.html">
+      <Link>Views\DailyOperations\CashManagementView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\CashManagementView.css">
+      <DependentUpon>CashManagementView.html</DependentUpon>
+      <Link>Views\DailyOperations\CashManagementView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\CostAccountView.html">
+      <Link>Views\DailyOperations\CostAccountView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\CostAccountView.css">
+      <DependentUpon>CostAccountView.html</DependentUpon>
+      <Link>Views\DailyOperations\CostAccountView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\ResumeShiftView.html">
+      <Link>Views\DailyOperations\ResumeShiftView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\ResumeShiftView.css">
+      <DependentUpon>ResumeShiftView.html</DependentUpon>
+      <Link>Views\DailyOperations\ResumeShiftView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\TenderCountingView.html">
+      <Link>Views\DailyOperations\TenderCountingView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\TenderCountingView.css">
+      <DependentUpon>TenderCountingView.html</DependentUpon>
+      <Link>Views\DailyOperations\TenderCountingView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\TimeClockManagerView.html">
+      <Link>Views\DailyOperations\TimeClockManagerView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\TimeClockManagerView.css">
+      <DependentUpon>TimeClockManagerView.html</DependentUpon>
+      <Link>Views\DailyOperations\TimeClockManagerView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\TimeClockView.html">
+      <Link>Views\DailyOperations\TimeClockView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\DailyOperations\TimeClockView.css">
+      <DependentUpon>TimeClockView.html</DependentUpon>
+      <Link>Views\DailyOperations\TimeClockView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Home\HomeView.html">
+      <Link>Views\Home\HomeView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Home\HomeView.css">
+      <DependentUpon>HomeView.html</DependentUpon>
+      <Link>Views\Home\HomeView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\LoginViewHelper.ts">
+      <Link>Views\Login\LoginViewHelper.ts</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\ManagerOverrideView.html">
+      <Link>Views\Login\ManagerOverrideView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\ManagerOverrideView.css">
+      <DependentUpon>ManagerOverrideView.html</DependentUpon>
+      <Link>Views\Login\ManagerOverrideView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\LockRegister.html">
+      <Link>Views\Login\LockRegister.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\LockRegister.css">
+      <DependentUpon>LockRegister.html</DependentUpon>
+      <Link>Views\Login\LockRegister.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\LoginView.html">
+      <Link>Views\Login\LoginView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Login\LoginView.css">
+      <DependentUpon>LoginView.html</DependentUpon>
+      <Link>Views\Login\LoginView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\AllStoresView.html">
+      <Link>Views\Merchandising\AllStoresView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\AllStoresView.css">
+      <DependentUpon>AllStoresView.html</DependentUpon>
+      <Link>Views\Merchandising\AllStoresView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\CatalogsView.html">
+      <Link>Views\Merchandising\CatalogsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\CatalogsView.css">
+      <DependentUpon>CatalogsView.html</DependentUpon>
+      <Link>Views\Merchandising\CatalogsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\CategoriesView.html">
+      <Link>Views\Merchandising\CategoriesView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\CategoriesView.css">
+      <DependentUpon>CategoriesView.html</DependentUpon>
+      <Link>Views\Merchandising\CategoriesView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\CompareProductsView.html">
+      <Link>Views\Merchandising\CompareProductsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\CompareProductsView.css">
+      <DependentUpon>CompareProductsView.html</DependentUpon>
+      <Link>Views\Merchandising\CompareProductsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\InventoryLookupView.html">
+      <Link>Views\Merchandising\InventoryLookupView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\InventoryLookupView.css">
+      <DependentUpon>InventoryLookupView.html</DependentUpon>
+      <Link>Views\Merchandising\InventoryLookupView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\KitDisassemblyView.html">
+      <Link>Views\Merchandising\KitDisassemblyView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\KitDisassemblyView.css">
+      <DependentUpon>KitDisassemblyView.html</DependentUpon>
+      <Link>Views\Merchandising\KitDisassemblyView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\PickingAndReceivingDetailsView.html">
+      <Link>Views\Merchandising\PickingAndReceivingDetailsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\PickingAndReceivingDetailsView.css">
+      <DependentUpon>PickingAndReceivingDetailsView.html</DependentUpon>
+      <Link>Views\Merchandising\PickingAndReceivingDetailsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\PriceCheckView.html">
+      <Link>Views\Merchandising\PriceCheckView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\PriceCheckView.css">
+      <DependentUpon>PriceCheckView.html</DependentUpon>
+      <Link>Views\Merchandising\PriceCheckView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\ProductDetailsView.html">
+      <Link>Views\Merchandising\ProductDetailsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\ProductDetailsView.css">
+      <DependentUpon>ProductDetailsView.html</DependentUpon>
+      <Link>Views\Merchandising\ProductDetailsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\ProductRichMediaView.html">
+      <Link>Views\Merchandising\ProductRichMediaView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\ProductRichMediaView.css">
+      <DependentUpon>ProductRichMediaView.html</DependentUpon>
+      <Link>Views\Merchandising\ProductRichMediaView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\ProductsView.html">
+      <Link>Views\Merchandising\ProductsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\ProductsView.css">
+      <DependentUpon>ProductsView.html</DependentUpon>
+      <Link>Views\Merchandising\ProductsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchPickingAndReceivingView.html">
+      <Link>Views\Merchandising\SearchPickingAndReceivingView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchPickingAndReceivingView.css">
+      <DependentUpon>SearchPickingAndReceivingView.html</DependentUpon>
+      <Link>Views\Merchandising\SearchPickingAndReceivingView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchReceiptsView.html">
+      <Link>Views\Merchandising\SearchReceiptsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchReceiptsView.css">
+      <DependentUpon>SearchReceiptsView.html</DependentUpon>
+      <Link>Views\Merchandising\SearchReceiptsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchStockCountView.html">
+      <Link>Views\Merchandising\SearchStockCountView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchStockCountView.css">
+      <DependentUpon>SearchStockCountView.html</DependentUpon>
+      <Link>Views\Merchandising\SearchStockCountView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchView.html">
+      <Link>Views\Merchandising\SearchView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchView.css">
+      <DependentUpon>SearchView.html</DependentUpon>
+      <Link>Views\Merchandising\SearchView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\StockCountDetailsView.html">
+      <Link>Views\Merchandising\StockCountDetailsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\StockCountDetailsView.css">
+      <DependentUpon>StockCountDetailsView.html</DependentUpon>
+      <Link>Views\Merchandising\StockCountDetailsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\StoreDetailsView.html">
+      <Link>Views\Merchandising\StoreDetailsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Merchandising\StoreDetailsView.css">
+      <DependentUpon>StoreDetailsView.html</DependentUpon>
+      <Link>Views\Merchandising\StoreDetailsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Order\IssueLoyaltyCardView.html">
+      <Link>Views\Order\IssueLoyaltyCardView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Order\IssueLoyaltyCardView.css">
+      <DependentUpon>IssueLoyaltyCardView.html</DependentUpon>
+      <Link>Views\Order\IssueLoyaltyCardView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Order\PaymentView.html">
+      <Link>Views\Order\PaymentView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Order\PaymentView.css">
+      <DependentUpon>PaymentView.html</DependentUpon>
+      <Link>Views\Order\PaymentView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Reports\ReportDetailsView.html">
+      <Link>Views\Reports\ReportDetailsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Reports\ReportDetailsView.css">
+      <DependentUpon>ReportDetailsView.html</DependentUpon>
+      <Link>Views\Reports\ReportDetailsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Reports\ReportResultsView.html">
+      <Link>Views\Reports\ReportResultsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Reports\ReportResultsView.css">
+      <DependentUpon>ReportResultsView.html</DependentUpon>
+      <Link>Views\Reports\ReportResultsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Reports\ReportsView.html">
+      <Link>Views\Reports\ReportsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Reports\ReportsView.css">
+      <DependentUpon>ReportsView.html</DependentUpon>
+      <Link>Views\Reports\ReportsView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\MainPanelView.html">
+      <Link>Views\TaskRecorder\MainPanelView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\ControlPanelView.html">
+      <Link>Views\TaskRecorder\ControlPanelView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\CompleteRecordingView.html">
+      <Link>Views\TaskRecorder\CompleteRecordingView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\EditStepView.html">
+      <Link>Views\TaskRecorder\EditStepView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\NewRecordingView.html">
+      <Link>Views\TaskRecorder\NewRecordingView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\NewTaskView.html">
+      <Link>Views\TaskRecorder\NewTaskView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\RecordingView.html">
+      <Link>Views\TaskRecorder\RecordingView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\WelcomeView.html">
+      <Link>Views\TaskRecorder\WelcomeView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\HelpView.html">
+      <Link>Views\TaskRecorder\HelpView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\TaskRecorder\StartTaskGuideView.html">
+      <Link>Views\TaskRecorder\StartTaskGuideView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Templates\CustomerTemplate.html">
+      <Link>Views\Templates\CustomerTemplate.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Templates\CustomerTemplate.css">
+      <DependentUpon>CustomerTemplate.html</DependentUpon>
+      <Link>Views\Templates\CustomerTemplate.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Templates\PickingAndReceivingTemplate.html">
+      <Link>Views\Templates\PickingAndReceivingTemplate.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Templates\PickingAndReceivingTemplate.css">
+      <DependentUpon>PickingAndReceivingTemplate.html</DependentUpon>
+      <Link>Views\Templates\PickingAndReceivingTemplate.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Templates\ProductTemplate.html">
+      <Link>Views\Templates\ProductTemplate.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Templates\ProductTemplate.css">
+      <DependentUpon>ProductTemplate.html</DependentUpon>
+      <Link>Views\Templates\ProductTemplate.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Templates\StockCountTemplate.html">
+      <Link>Views\Templates\StockCountTemplate.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Templates\StoreTemplate.html">
+      <Link>Views\Templates\StoreTemplate.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Templates\StoreTemplate.css">
+      <DependentUpon>StoreTemplate.html</DependentUpon>
+      <Link>Views\Templates\StoreTemplate.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Device\HardwareStationView.css">
+      <DependentUpon>HardwareStationView.html</DependentUpon>
+      <Link>Views\Device\HardwareStationView.css</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Device\HardwareStationView.html">
+      <Link>Views\Device\HardwareStationView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Device\DatabaseConnectionStatusView.ts">
+      <DependentUpon>DatabaseConnectionStatusView.html</DependentUpon>
+      <Link>Views\Device\DatabaseConnectionStatusView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Device\DatabaseConnectionStatusView.html">
+      <Link>Views\Device\DatabaseConnectionStatusView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Device\SettingsView.ts">
+      <DependentUpon>SettingsView.html</DependentUpon>
+      <Link>Views\Device\SettingsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Views\Device\SettingsView.html">
+      <Link>Views\Device\SettingsView.html</Link>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Core.winjs.ts">
+      <Link>Core\Core.winjs.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\datajs-1.1.0.js">
+      <Link>Libraries\datajs-1.1.0.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\datajs-1.1.0.min.js">
+      <Link>Libraries\datajs-1.1.0.min.js</Link>
+      <DependentUpon>datajs-1.1.0.js</DependentUpon>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\jQuery.js">
+      <Link>Libraries\jQuery.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\jQuery.min.js">
+      <Link>Libraries\jQuery.min.js</Link>
+      <DependentUpon>jQuery.js</DependentUpon>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\jQuery.min.map">
+      <Link>Libraries\jQuery.min.map</Link>
+      <DependentUpon>jQuery.js</DependentUpon>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\knockout-2.2.1.js">
+      <Link>Libraries\knockout-2.2.1.js</Link>
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="$(MsBuildThisFileDirectory)Libraries\knockout-2.2.1.debug.js">
+      <Link>Libraries\knockout-2.2.1.debug.js</Link>
+      <DependentUpon>knockout-2.2.1.js</DependentUpon>
+      <InProject>True</InProject>
+    </Content>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Libraries\WinSQLite.d.ts">
+      <Link>Libraries\WinSQLite.d.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetCustomerAccountDepositAmountImpl.ts">
+      <Link>Core\Activities\GetCustomerAccountDepositAmountImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetCustomerAccountDepositLineCommentsActivityImpl.ts">
+      <Link>Core\Activities\GetCustomerAccountDepositLineCommentsActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetQuotationExpirationDateActivityImpl.ts">
+      <Link>Core\Activities\GetQuotationExpirationDateActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetCancellationChargeActivityImpl.ts">
+      <Link>Core\Activities\GetCancellationChargeActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetLoyaltyCardActivityImpl.ts">
+      <Link>Core\Activities\GetLoyaltyCardActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetOrderTypeActivityImpl.ts">
+      <Link>Core\Activities\GetOrderTypeActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetPriceOverrideActivityImpl.ts">
+      <Link>Core\Activities\GetPriceOverrideActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetSalesPersonActivityImpl.ts">
+      <Link>Core\Activities\GetSalesPersonActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetProductKeyInPriceActivityImpl.ts">
+      <Link>Core\Activities\GetProductKeyInPriceActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetProductKeyInQuantityActivityImpl.ts">
+      <Link>Core\Activities\GetProductKeyInQuantityActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetProductsToReturnActivityImpl.ts">
+      <Link>Core\Activities\GetProductsToReturnActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetIncomeExpenseLineActivityImpl.ts">
+      <Link>Core\Activities\GetIncomeExpenseLineActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetDiscountCodeActivityImpl.ts">
+      <Link>Core\Activities\GetDiscountCodeActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetCartLineCommentsActivityImpl.ts">
+      <Link>Core\Activities\GetCartLineCommentsActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetCartLineQuantitiesActivityImpl.ts">
+      <Link>Core\Activities\GetCartLineQuantitiesActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetCartLineUnitOfMeasuresActivityImpl.ts">
+      <Link>Core\Activities\GetCartLineUnitOfMeasuresActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetCartLineWeightActivityImpl.ts">
+      <Link>Core\Activities\GetCartLineWeightActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetCashDrawerActivityImpl.ts">
+      <Link>Core\Activities\GetCashDrawerActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetShiftActionActivityImpl.ts">
+      <Link>Core\Activities\GetShiftActionActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetTransactionDiscountActivityImpl.ts">
+      <Link>Core\Activities\GetTransactionDiscountActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetCartLineDiscountsActivityImpl.ts">
+      <Link>Core\Activities\GetCartLineDiscountsActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetInvoiceCommentActivityImpl.ts">
+      <Link>Core\Activities\GetInvoiceCommentActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetShippingChargeActivityImpl.ts">
+      <Link>Core\Activities\GetShippingChargeActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetShippingDateActivityImpl.ts">
+      <Link>Core\Activities\GetShippingDateActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetTransactionCommentActivityImpl.ts">
+      <Link>Core\Activities\GetTransactionCommentActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetTransactionReturnLinesActivityImpl.ts">
+      <Link>Core\Activities\GetTransactionReturnLinesActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\ModalDialogHelper.ts">
+      <Link>Core\Activities\ModalDialogHelper.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\PrintReceiptActivityImpl.ts">
+      <Link>Core\Activities\PrintReceiptActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\SelectHardwareStationActivityImpl.ts">
+      <Link>Core\Activities\SelectHardwareStationActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\SelectTaxOverrideActivityImpl.ts">
+      <Link>Core\Activities\SelectTaxOverrideActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\ResumeShiftActivityImpl.ts">
+      <Link>Core\Activities\ResumeShiftActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\BindingHandlers.ts">
+      <Link>Core\BindingHandlers.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Converters.ts">
+      <Link>Core\Converters.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\CustomWinJSBindings.ts">
+      <Link>Core\CustomWinJSBindings.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\DefaultButtonGridHandler.ts">
+      <Link>Core\DefaultButtonGridHandler.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\JQueryUITouchExtensions.ts">
+      <Link>Core\JQueryUITouchExtensions.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetReasonCodeLinesActivityImpl.ts">
+      <Link>Core\Activities\GetReasonCodeLinesActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetSerialNumberActivityImpl.ts">
+      <Link>Core\Activities\GetSerialNumberActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\SelectVariantActivityImpl.ts">
+      <Link>Core\Activities\SelectVariantActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\RegisterTimeActivityImpl.ts">
+      <Link>Core\Activities\RegisterTimeActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetProductsActivityImpl.ts">
+      <Link>Core\Activities\GetProductsActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Activities\GetTransactionActivityImpl.ts">
+      <Link>Core\Activities\GetTransactionActivityImpl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Navigator.ts">
+      <Link>Core\Navigator.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\TaskRecorder.ts">
+      <Link>Core\TaskRecorder.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\TaskRecorderController.ts">
+      <Link>Core\TaskRecorderController.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Core\Tutorial.ts">
+      <Link>Core\Tutorial.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\AppBarControl.ts">
+      <Link>Controls\AppBarControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\AsyncImageControl.ts">
+      <Link>Controls\AsyncImageControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\knockout.invokeValidate.ts">
+      <Link>Controls\knockout.invokeValidate.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\knockout.validator.ts">
+      <Link>Controls\knockout.validator.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\knockout.customerCard.ts">
+      <Link>Controls\knockout.customerCard.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\knockout.datePicker.ts">
+      <Link>Controls\knockout.datePicker.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\listView\knockout.listView.ts">
+      <Link>Controls\listView\knockout.listView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\MultiSelectRefinerControl\MultiSelectRefinerControl.ts">
+      <Link>Controls\MultiSelectRefinerControl\MultiSelectRefinerControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\SingleSelectRefinerControl\SingleSelectRefinerControl.ts">
+      <Link>Controls\SingleSelectRefinerControl\SingleSelectRefinerControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\SliderRefinerControl\SliderRefinerControl.ts">
+      <Link>Controls\SliderRefinerControl\SliderRefinerControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\tileList\knockout.tileList.ts">
+      <Link>Controls\tileList\knockout.tileList.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Controls\loader\knockout.loader.ts">
+      <Link>Controls\loader\knockout.loader.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Pos.config.ts">
+      <Link>Pos.config.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Pos.ts">
+      <Link>Pos.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Affiliation\AffiliationsView.ts">
+      <DependentUpon>AffiliationsView.html</DependentUpon>
+      <Link>Views\Affiliation\AffiliationsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\ApprovePartialAmountDialog.ts">
+      <DependentUpon>ApprovePartialAmountDialog.html</DependentUpon>
+      <Link>Views\Controls\ApprovePartialAmountDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\GetQuotationExpirationDateDialog.ts">
+      <DependentUpon>GetQuotationExpirationDateDialog.html</DependentUpon>
+      <Link>Views\Controls\GetQuotationExpirationDateDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\SerialNumberInputDialog.ts">
+      <DependentUpon>SerialNumberInputDialog.html</DependentUpon>
+      <Link>Views\Controls\SerialNumberInputDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\AutocompleteComboboxDialog.ts">
+      <DependentUpon>AutocompleteComboboxDialog.html</DependentUpon>
+      <Link>Views\Controls\AutocompleteComboboxDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\DeveloperMode.ts">
+      <DependentUpon>DeveloperMode.html</DependentUpon>
+      <Link>Views\Controls\DeveloperMode.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\MessageDialog.ts">
+      <DependentUpon>MessageDialog.html</DependentUpon>
+      <Link>Views\Controls\MessageDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\SelectCustomerLoyaltyCardDialog.ts">
+      <DependentUpon>SelectCustomerLoyaltyCardDialog.html</DependentUpon>
+      <Link>Views\Controls\SelectCustomerLoyaltyCardDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\GetCancellationChargeModalDialog.ts">
+      <DependentUpon>GetCancellationChargeModalDialog.html</DependentUpon>
+      <Link>Views\Controls\GetCancellationChargeModalDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\RefinerControl.ts">
+      <DependentUpon>RefinerControl.html</DependentUpon>
+      <Link>Views\Controls\RefinerControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\WeighItemDialog.ts">
+      <DependentUpon>WeighItemDialog.html</DependentUpon>
+      <Link>Views\Controls\WeighItemDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\PaymentHistoryView.ts">
+      <DependentUpon>PaymentHistoryView.html</DependentUpon>
+      <Link>Views\CustomerOrder\PaymentHistoryView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerAffiliationsView.ts">
+      <DependentUpon>CustomerAffiliationsView.html</DependentUpon>
+      <Link>Views\Customer\CustomerAffiliationsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Home\HomeView.ts">
+      <DependentUpon>HomeView.html</DependentUpon>
+      <Link>Views\Home\HomeView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Cart\CartView.ts">
+      <DependentUpon>CartView.html</DependentUpon>
+      <Link>Views\Cart\CartView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Cart\ResumeCartView.ts">
+      <DependentUpon>ResumeCartView.html</DependentUpon>
+      <Link>Views\Cart\ResumeCartView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Cart\ShowJournalView.ts">
+      <DependentUpon>ShowJournalView.html</DependentUpon>
+      <Link>Views\Cart\ShowJournalView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\INavigationReturnOptions.ts">
+      <Link>Views\INavigationReturnOptions.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\IKeepAliveView.ts">
+      <Link>Views\IKeepAliveView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\AllStoresView.ts">
+      <DependentUpon>AllStoresView.html</DependentUpon>
+      <Link>Views\Merchandising\AllStoresView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\CatalogsView.ts">
+      <DependentUpon>CatalogsView.html</DependentUpon>
+      <Link>Views\Merchandising\CatalogsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Device\HardwareStationView.ts">
+      <DependentUpon>HardwareStationView.html</DependentUpon>
+      <Link>Views\Device\HardwareStationView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\ProductRichMediaView.ts">
+      <DependentUpon>ProductRichMediaView.html</DependentUpon>
+      <Link>Views\Merchandising\ProductRichMediaView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\ViewControllerBase.ts">
+      <Link>Views\ViewControllerBase.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\SalesInvoiceDetailsView.ts">
+      <DependentUpon>SalesInvoiceDetailsView.html</DependentUpon>
+      <Link>Views\CustomerOrder\SalesInvoiceDetailsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\ManagerOverrideView.ts">
+      <DependentUpon>ManagerOverrideView.html</DependentUpon>
+      <Link>Views\Login\ManagerOverrideView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\ActivationErrorControl.ts">
+      <DependentUpon>ActivationErrorControl.html</DependentUpon>
+      <Link>Views\Controls\ActivationErrorControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\AddDiscountDialog.ts">
+      <DependentUpon>AddDiscountDialog.html</DependentUpon>
+      <Link>Views\Controls\AddDiscountDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\AddIssueGiftCardDialog.ts">
+      <DependentUpon>AddIssueGiftCardDialog.html</DependentUpon>
+      <Link>Views\Controls\AddIssueGiftCardDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\AddLoyaltyCardDialog.ts">
+      <DependentUpon>AddLoyaltyCardDialog.html</DependentUpon>
+      <Link>Views\Controls\AddLoyaltyCardDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\EmailReceiptDialog.ts">
+      <DependentUpon>EmailReceiptDialog.html</DependentUpon>
+      <Link>Views\Controls\EmailReceiptDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\ListInputDialog.ts">
+      <DependentUpon>ListInputDialog.html</DependentUpon>
+      <Link>Views\Controls\ListInputDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\CommonHeader.ts">
+      <DependentUpon>CommonHeader.html</DependentUpon>
+      <Link>Views\Controls\CommonHeader.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\ModalDialog.ts">
+      <Link>Views\Controls\ModalDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\NumberInputDialog.ts">
+      <DependentUpon>NumberInputDialog.html</DependentUpon>
+      <Link>Views\Controls\NumberInputDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\PriceInputDialog.ts">
+      <DependentUpon>PriceInputDialog.html</DependentUpon>
+      <Link>Views\Controls\PriceInputDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\OrderCheckoutDialog.ts">
+      <DependentUpon>OrderCheckoutDialog.html</DependentUpon>
+      <Link>Views\Controls\OrderCheckoutDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\UserControl.ts">
+      <Link>Views\Controls\UserControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\ReturnMultipleTransactionDialog.ts">
+      <DependentUpon>ReturnMultipleTransactionDialog.html</DependentUpon>
+      <Link>Views\Controls\ReturnMultipleTransactionDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\TaxOverrideDialog.ts">
+      <DependentUpon>TaxOverrideDialog.html</DependentUpon>
+      <Link>Views\Controls\TaxOverrideDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\TextInputDialog.ts">
+      <DependentUpon>TextInputDialog.html</DependentUpon>
+      <Link>Views\Controls\TextInputDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\HardwareStationErrorDialog.ts">
+      <DependentUpon>HardwareStationErrorDialog.html</DependentUpon>
+      <Link>Views\Controls\HardwareStationErrorDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\AskQuestionDialog.ts">
+      <DependentUpon>AskQuestionDialog.html</DependentUpon>
+      <Link>Views\Controls\AskQuestionDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\CardTypeDialog.ts">
+      <DependentUpon>CardTypeDialog.html</DependentUpon>
+      <Link>Views\Controls\CardTypeDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\SelectDropDownDialog.ts">
+      <DependentUpon>SelectDropDownDialog.html</DependentUpon>
+      <Link>Views\Controls\SelectDropDownDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\CashbackDialog.ts">
+      <DependentUpon>CashbackDialog.html</DependentUpon>
+      <Link>Views\Controls\CashbackDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\CashDrawerInputDialog.ts">
+      <DependentUpon>CashDrawerInputDialog.html</DependentUpon>
+      <Link>Views\Controls\CashDrawerInputDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\ShiftActionDialog.ts">
+      <DependentUpon>ShiftActionDialog.html</DependentUpon>
+      <Link>Views\Controls\ShiftActionDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\TimeRegistrationDialog.ts">
+      <DependentUpon>TimeRegistrationDialog.html</DependentUpon>
+      <Link>Views\Controls\TimeRegistrationDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\GetSalesPersonDialog.ts">
+      <DependentUpon>GetSalesPersonDialog.html</DependentUpon>
+      <Link>Views\Controls\GetSalesPersonDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\DateInputDialog.ts">
+      <DependentUpon>DateInputDialog.html</DependentUpon>
+      <Link>Views\Controls\DateInputDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\ExtensionPropertiesControl.ts">
+      <DependentUpon>ExtensionPropertiesControl.html</DependentUpon>
+      <Link>Views\Controls\ExtensionPropertiesControl.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\GetShippingChargeDialog.ts">
+      <DependentUpon>GetShippingChargeDialog.html</DependentUpon>
+      <Link>Views\Controls\GetShippingChargeDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\GetShippingDateDialog.ts">
+      <DependentUpon>GetShippingDateDialog.html</DependentUpon>
+      <Link>Views\Controls\GetShippingDateDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\GetOrderTypeDialog.ts">
+      <DependentUpon>GetOrderTypeDialog.html</DependentUpon>
+      <Link>Views\Controls\GetOrderTypeDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\ReasonCodeDialog.ts">
+      <DependentUpon>ReasonCodeDialog.html</DependentUpon>
+      <Link>Views\Controls\ReasonCodeDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\PrintReceiptDialog.ts">
+      <DependentUpon>PrintReceiptDialog.html</DependentUpon>
+      <Link>Views\Controls\PrintReceiptDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\SetQuantityDialog.ts">
+      <DependentUpon>SetQuantityDialog.html</DependentUpon>
+      <Link>Views\Controls\SetQuantityDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\SignatureCaptureDialog.ts">
+      <DependentUpon>SignatureCaptureDialog.html</DependentUpon>
+      <Link>Views\Controls\SignatureCaptureDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\SignatureDeviceDialog.ts">
+      <DependentUpon>SignatureDeviceDialog.html</DependentUpon>
+      <Link>Views\Controls\SignatureDeviceDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\TutorialVideoDialog.ts">
+      <DependentUpon>TutorialVideoDialog.html</DependentUpon>
+      <Link>Views\Controls\TutorialVideoDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\UnitOfMeasureDialog.ts">
+      <DependentUpon>UnitOfMeasureDialog.html</DependentUpon>
+      <Link>Views\Controls\UnitOfMeasureDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\VariantDialog.ts">
+      <DependentUpon>VariantDialog.html</DependentUpon>
+      <Link>Views\Controls\VariantDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\SelectVariantDialog.ts">
+      <DependentUpon>SelectVariantDialog.html</DependentUpon>
+      <Link>Views\Controls\SelectVariantDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Controls\SetDisassembleQuantityDialog.ts">
+      <DependentUpon>SetDisassembleQuantityDialog.html</DependentUpon>
+      <Link>Views\Controls\SetDisassembleQuantityDialog.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\DepositOverrideView.ts">
+      <DependentUpon>DepositOverrideView.html</DependentUpon>
+      <Link>Views\CustomerOrder\DepositOverrideView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\SearchOrdersView.ts">
+      <DependentUpon>SearchOrdersView.html</DependentUpon>
+      <Link>Views\CustomerOrder\SearchOrdersView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\SalesInvoicesView.ts">
+      <DependentUpon>SalesInvoicesView.html</DependentUpon>
+      <Link>Views\CustomerOrder\SalesInvoicesView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Customer\AddressAddEditView.ts">
+      <DependentUpon>AddressAddEditView.html</DependentUpon>
+      <Link>Views\Customer\AddressAddEditView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerAddEditView.ts">
+      <DependentUpon>CustomerAddEditView.html</DependentUpon>
+      <Link>Views\Customer\CustomerAddEditView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerAddressesView.ts">
+      <DependentUpon>CustomerAddressesView.html</DependentUpon>
+      <Link>Views\Customer\CustomerAddressesView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Customer\CustomerDetailsView.ts">
+      <DependentUpon>CustomerDetailsView.html</DependentUpon>
+      <Link>Views\Customer\CustomerDetailsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Customer\RecentPurchasesView.ts">
+      <DependentUpon>RecentPurchasesView.html</DependentUpon>
+      <Link>Views\Customer\RecentPurchasesView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\AdvancedSearchOrdersView.ts">
+      <DependentUpon>AdvancedSearchOrdersView.html</DependentUpon>
+      <Link>Views\CustomerOrder\AdvancedSearchOrdersView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\PickUpInStoreView.ts">
+      <DependentUpon>PickUpInStoreView.html</DependentUpon>
+      <Link>Views\CustomerOrder\PickUpInStoreView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\PickUpView.ts">
+      <DependentUpon>PickUpView.html</DependentUpon>
+      <Link>Views\CustomerOrder\PickUpView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\CustomerOrder\ShippingMethodsView.ts">
+      <DependentUpon>ShippingMethodsView.html</DependentUpon>
+      <Link>Views\CustomerOrder\ShippingMethodsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\DailyOperations\BlindCloseView.ts">
+      <DependentUpon>BlindCloseView.html</DependentUpon>
+      <Link>Views\DailyOperations\BlindCloseView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\DailyOperations\CashManagementView.ts">
+      <DependentUpon>CashManagementView.html</DependentUpon>
+      <Link>Views\DailyOperations\CashManagementView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\DailyOperations\CostAccountView.ts">
+      <DependentUpon>CostAccountView.html</DependentUpon>
+      <Link>Views\DailyOperations\CostAccountView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\DailyOperations\ResumeShiftView.ts">
+      <DependentUpon>ResumeShiftView.html</DependentUpon>
+      <Link>Views\DailyOperations\ResumeShiftView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\DailyOperations\TenderCountingView.ts">
+      <DependentUpon>TenderCountingView.html</DependentUpon>
+      <Link>Views\DailyOperations\TenderCountingView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\DailyOperations\TimeClockManagerView.ts">
+      <DependentUpon>TimeClockManagerView.html</DependentUpon>
+      <Link>Views\DailyOperations\TimeClockManagerView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\DailyOperations\TimeClockView.ts">
+      <DependentUpon>TimeClockView.html</DependentUpon>
+      <Link>Views\DailyOperations\TimeClockView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\ChangePasswordView.ts">
+      <DependentUpon>ChangePasswordView.html</DependentUpon>
+      <Link>Views\Login\ChangePasswordView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\DeviceActivationProcessView.ts">
+      <DependentUpon>DeviceActivationProcessView.html</DependentUpon>
+      <Link>Views\Login\DeviceActivationProcessView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\DeviceActivationView.ts">
+      <DependentUpon>DeviceActivationView.html</DependentUpon>
+      <Link>Views\Login\DeviceActivationView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\ExtendedLogOnView.ts">
+      <DependentUpon>ExtendedLogOnView.html</DependentUpon>
+      <Link>Views\Login\ExtendedLogOnView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\GetStartedView.ts">
+      <DependentUpon>GetStartedView.html</DependentUpon>
+      <Link>Views\Login\GetStartedView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\GuidedActivationView.ts">
+      <DependentUpon>GuidedActivationView.html</DependentUpon>
+      <Link>Views\Login\GuidedActivationView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\LockRegister.ts">
+      <DependentUpon>LockRegister.html</DependentUpon>
+      <Link>Views\Login\LockRegister.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\LoginView.ts">
+      <DependentUpon>LoginView.html</DependentUpon>
+      <Link>Views\Login\LoginView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\ResetPasswordView.ts">
+      <DependentUpon>ResetPasswordView.html</DependentUpon>
+      <Link>Views\Login\ResetPasswordView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\CategoriesView.ts">
+      <DependentUpon>CategoriesView.html</DependentUpon>
+      <Link>Views\Merchandising\CategoriesView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\CompareProductsView.ts">
+      <DependentUpon>CompareProductsView.html</DependentUpon>
+      <Link>Views\Merchandising\CompareProductsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\InventoryLookupView.ts">
+      <DependentUpon>InventoryLookupView.html</DependentUpon>
+      <Link>Views\Merchandising\InventoryLookupView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\KitDisassemblyView.ts">
+      <DependentUpon>KitDisassemblyView.html</DependentUpon>
+      <Link>Views\Merchandising\KitDisassemblyView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\PickingAndReceivingDetailsView.ts">
+      <DependentUpon>PickingAndReceivingDetailsView.html</DependentUpon>
+      <Link>Views\Merchandising\PickingAndReceivingDetailsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\PriceCheckView.ts">
+      <DependentUpon>PriceCheckView.html</DependentUpon>
+      <Link>Views\Merchandising\PriceCheckView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\ProductDetailsView.ts">
+      <DependentUpon>ProductDetailsView.html</DependentUpon>
+      <Link>Views\Merchandising\ProductDetailsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\ProductsView.ts">
+      <DependentUpon>ProductsView.html</DependentUpon>
+      <Link>Views\Merchandising\ProductsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchPickingAndReceivingView.ts">
+      <DependentUpon>SearchPickingAndReceivingView.html</DependentUpon>
+      <Link>Views\Merchandising\SearchPickingAndReceivingView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\StoreDetailsView.ts">
+      <DependentUpon>StoreDetailsView.html</DependentUpon>
+      <Link>Views\Merchandising\StoreDetailsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Login\DeviceDeactivation.ts">
+      <DependentUpon>DeviceDeactivation.html</DependentUpon>
+      <Link>Views\Login\DeviceDeactivation.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchReceiptsView.ts">
+      <DependentUpon>SearchReceiptsView.html</DependentUpon>
+      <Link>Views\Merchandising\SearchReceiptsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchStockCountView.ts">
+      <DependentUpon>SearchStockCountView.html</DependentUpon>
+      <Link>Views\Merchandising\SearchStockCountView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\SearchView.ts">
+      <DependentUpon>SearchView.html</DependentUpon>
+      <Link>Views\Merchandising\SearchView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Merchandising\StockCountDetailsView.ts">
+      <DependentUpon>StockCountDetailsView.html</DependentUpon>
+      <Link>Views\Merchandising\StockCountDetailsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Order\IssueLoyaltyCardView.ts">
+      <DependentUpon>IssueLoyaltyCardView.html</DependentUpon>
+      <Link>Views\Order\IssueLoyaltyCardView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Order\PaymentView.ts">
+      <DependentUpon>PaymentView.html</DependentUpon>
+      <Link>Views\Order\PaymentView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Reports\ReportDetailsView.ts">
+      <DependentUpon>ReportDetailsView.html</DependentUpon>
+      <Link>Views\Reports\ReportDetailsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Reports\ReportResultsView.ts">
+      <DependentUpon>ReportResultsView.html</DependentUpon>
+      <Link>Views\Reports\ReportResultsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Views\Reports\ReportsView.ts">
+      <DependentUpon>ReportsView.html</DependentUpon>
+      <Link>Views\Reports\ReportsView.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Debug'">
+    <TypeScriptCompile Include="$(MsBuildThisFileDirectory)Pos.Debug.config.ts">
+      <DependentUpon>Pos.config.ts</DependentUpon>
+      <Link>Pos.Debug.config.ts</Link>
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup Label="Libraries">
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)Core.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)..\Core\Commerce.Core.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)..\ViewModels\Commerce.ViewModels.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)DataJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)Diagnostics.TypeScriptCore.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)JQuery.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)KnockoutJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)moment.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)moment-node.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)moment-timezone.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)RetailLogger.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)WinRT.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)globalize.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)WinJS.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)ActiveDirectory.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)HighCharts.src.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+    <TypeScriptLibraries Include="$(MsBuildThisFileDirectory)JQueryUI.d.ts">
+      <Visible>False</Visible>
+    </TypeScriptLibraries>
+  </ItemGroup>
+  <PropertyGroup>
+    <TypeScriptLibrariesOutDir>$(MsBuildThisFileDirectory)</TypeScriptLibrariesOutDir>
+  </PropertyGroup>
+</Project>

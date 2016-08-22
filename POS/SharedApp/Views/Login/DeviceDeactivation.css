@@ -1,0 +1,24 @@
+.win-settingsflyout header {
+    background-color: #00188f;
+}
+
+.win-settingsflyout .win-backbutton {
+    position: relative;
+}
+
+.win-settingsflyout .win-header * {
+    color: #ffffff;
+    border-color: #ffffff;
+    top: 10px;
+}
+
+.win-settingsflyout .win-header .win-label {
+    display: block;
+    padding-left: 0px;
+    font-size: auto;
+    line-height: auto;
+}
+
+.win-settingsflyout .win-content .win-settings-section .button {
+    margin-bottom: 7px;
+}

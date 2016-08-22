@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SignatureCaptureDialog</title>
+    <link href="SignatureCaptureDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'SignatureCaptureDialog'">
+        <div class="signatureCaptureDialog">
+            <div data-bind="dialog:
+                {
+                    visible: visible,
+                    buttonClick: signatureCaptureDialogButtonClickHandler,
+                    buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_6903'), operationId: 'skip', flowLeft: true, visible: allowSkip, isPrimary: false },  // Skip
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_6902'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, disable: hasNoSignatureData, isPrimary: true }, // Accept
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_6901'), operationId: 'clear', visible: allowClear, isPrimary: false }, // Clear
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_107'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, visible: allowCancel, isPrimary: false }, // Cancel
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_6904'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, visible: allowReject, isPrimary: false } // Reject
+                    ]
+                }">
+                <div class="row">
+                    <h2 data-bind="resx: {textContent: 'string_6900'}">Signature</h2>
+                    <div class="textRight ellipsis">
+                        <h2 data-bind="formatPrice: paymentAmount">$0.00</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <canvas class="height20 signatureCanvas" id="signaturecanvas" data-bind="disable: !allowSignatureEntry(), css: { signatureEntry: allowSignatureEntry }"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

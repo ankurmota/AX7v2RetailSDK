@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>StoreDetailsView</title>
+    <link href="StoreDetailsView.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- view -->
+    <div class="storeDetailsView fragment">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+            <div id="storeDetailsMapContent" class="col minWidth40">
+                <div class="shrink marginBottom1">
+                    <h2 data-bind="resx: { textContent: 'string_5420' }">Location</h2>
+                </div>
+
+                <!-- Bing Maps will be located here, created dynamically by Bing.Maps.ts -->
+            </div>
+
+            <div class="gutter4x4"></div>
+
+            <div class="col stretch">
+                <div class="shrink marginBottom1">
+                    <h2 data-bind="resx: { textContent: 'string_5421' }">Details</h2>
+                </div>
+
+                <div>
+                    <div class="row width28 listViewThemeColor" data-bind="visible: _storeDetailsVisible">
+
+                        <!-- First column, contains store pin number -->
+                        <div class="padLeft1 padTop2 shrink padRight2">
+                            <h3><span class="pushPin" data-bind="text: _storeNumber">Store order number</span></h3>
+                        </div>
+
+                        <!-- Second column, contains store details -->
+                        <div class="padTop1">
+                            <div class="row">
+                                <div class="padTop1 shrink">
+                                    <a class="h3" href="#" data-bind="text: storeDetailsViewModel.storeDetails().OrgUnitName, click: popupMapInfobox">Store name</a>
+                                </div>
+                            </div>
+                            <h4 class="ellipsis" data-bind="text: storeDetailsViewModel.storeDetails().OrgUnitNumber">Store number</h4>
+                            <div class="padRight1 maxWidth22">
+                                <div class="secondaryFontColor" data-bind="html: Commerce.Formatters.CommonAddressFormatterWithHtmlEscape(storeDetailsViewModel.storeDetails().OrgUnitAddress)">Address</div>
+                                <div class="row textRight secondaryFontColor">
+                                    <div class="marginTop06">
+                                        <h3 data-bind="text: storeDetailsViewModel.distance">Store distance from current store</h3>
+                                    </div>
+                                    <div class="shrink padLeft05 marginTop1">
+                                        <h4 data-bind="text: storeDetailsViewModel.distanceUnit">Distance Unit</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!--
+            // BEGIN SDKSAMPLE_STOREHOURS (do not remove this)
+            <div class="col stretch" data-bind="visible:storeDetailsViewModel.isStoreDayHoursVisible">
+                <div class=" shrink marginbottom1">
+                    <h2 data-bind="resx: { textContent: 'string_30000' }">Store Hours</h2>
+                </div>
+                <div class="height30 width30 " data-bind="listView:
+                     {
+                        itemDataSource: storeDetailsViewModel.storeDayHours,
+                        columns: [
+                            { titleResx: 'string_30001', field: 'DayOfWeek', converter: 'Commerce.Core.Converter.DayOfWeek'  },
+                            { titleResx: 'string_30002', cssClass: 'ratio3', field: 'OpenTime' , converter: 'Commerce.Core.Converter.TimeOfDayFromSeconds'  },
+                            { titleResx: 'string_30003', cssClass: 'ratio3', field: 'CloseTime', converter: 'Commerce.Core.Converter.TimeOfDayFromSeconds'  },
+                        ]
+                    },
+                    visible:storeDetailsViewModel.isStoreDayHoursVisible"></div>
+            </div>
+            // END SDKSAMPLE_STOREHOURS (do not remove this)
+            -->
+        </section>
+
+    </div>
+
+</body>
+
+</html>

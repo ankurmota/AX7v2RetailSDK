@@ -1,0 +1,12 @@
+<Project ToolsVersion="14.0" DefaultTargets="Build" BuildInParallel="false" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+    <ItemGroup>
+		<ProjectFiles Include="CommerceRuntime\CommerceRuntimeSamples.sln" />
+		<ProjectFiles Include="RetailServer\dirs.proj" />
+		<ProjectFiles Include="HardwareStation\SampleHardwareStation.sln" />
+		<ProjectFiles Include="OnlineStore\SampleExtensions.OnlineStore.sln" />
+		<ProjectFiles Include="OpenIdConnectUtility\App\OpenIdConnectUtility.App.csproj" />
+    </ItemGroup>
+    <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.traversal.targets" />
+</Project>

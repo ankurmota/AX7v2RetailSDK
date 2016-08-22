@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>NumberInputDialog</title>
+
+    <link href="NumberInputDialog.css" rel="stylesheet"/>
+</head>
+<body>
+<div data-bind="customControlInternal: 'NumberInputDialog'">
+
+    <div class="numberInputDialog">
+        <div data-bind="dialog:
+                {
+                    title: title,
+                    subTitle: subTitle,
+                    visible: visible,
+                    buttonClick: buttonClickHandler,
+                    subTitleCssClass: subTitleCssClass,
+                    showProgressIndicator: indeterminateWaitVisible,
+                    buttons: [
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_75'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK },
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK }
+                    ],
+                }" class="numberInputDialog modalWindowContentSection">
+
+            <!-- dialog content -->
+            <div class="dialogSplitColumn col">
+                <label for="numberInput" data-bind="if: label, text: label">Label text</label>
+                <input id="numberInput"
+                       type="number"
+                       class="numberInputArea"
+                       required="required"
+                       step="any"
+                       data-bind="numeric: true, value: _numberContent,
+                                        valueUpdate: 'input',
+                                        hasFocus: true,
+                                        textInput: {select: selectNumberInput}"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<Project ToolsVersion="14.0" DefaultTargets="Build" BuildInParallel="false" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+    <ItemGroup>
+		<ProjectFiles Include="Extensions.CrossLoyaltySample\RetailServer.Extensions.CrossLoyaltySample.csproj" />
+		<ProjectFiles Include="Extensions.StoreHoursSample\RetailServer.Extensions.StoreHoursSample.csproj" />
+		<ProjectFiles Include="Extensions.TestClient\RetailServer.Extensions.TestClient.sln" />
+    </ItemGroup>
+    <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.traversal.targets" />
+</Project>

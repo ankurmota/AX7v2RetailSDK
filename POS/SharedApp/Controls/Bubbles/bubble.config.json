@@ -1,0 +1,162 @@
+{
+    "_comment":  "If you made changes to this file, please update pos.appcache so update is fetched by the browser.",
+    "byPage": {
+        "CartView": [
+            {
+                "title": [ "string_7600" ],
+                "targetElement": "ButtonGrid5Control_0",
+                "position": { "top": 20, "left": 20 },
+                "rotation": 135,
+                "size": "large"
+            },
+            {
+                "title": [ "string_7602" ],
+                "targetElement": "grid_payments",
+                "position": { "bottom": 20, "right": 20 },
+                "rotation": -45,
+                "size": "large"
+            },
+            {
+                "title": [ "string_7603" ],
+                "targetElement": "grid_products",
+                "position": { "bottom": 20, "right": 20 },
+                "rotation": -45,
+                "size": "large"
+            },
+            {
+                "title": [ "string_7604" ],
+                "targetElement": "tab_numpad",
+                "position": { "top": 20, "left": 20 },
+                "rotation": 135,
+                "size": "large"
+            },
+            {
+                "title": [ "string_7605" ],
+                "targetElement": "tab_actions",
+                "position": { "top": 20, "left": 20 },
+                "rotation": 45,
+                "size": "large"
+            },
+            {
+                "title": [ "string_7606" ],
+                "targetElement": "viewport",
+                "position": { "anchor": "center" },
+                "isArrowVisible": false,
+                "size": "large"
+            }
+        ],
+        "HomeView": [
+
+            {
+                "title": [ "string_7607" ],
+                "targetElement": "viewport",
+                "position": { "anchor": "bottom-right" },
+                "rotation": 90,
+                "size": "large"
+            },
+            {
+                "title": [ "string_7608" ],
+                "targetElement": "viewport",
+                "position": { "anchor": "center" },
+                "rotation": 0,
+                "isArrowVisible": false,
+                "size": "large"
+            }
+        ]
+    },
+
+    "global": [
+        {
+            "title": [ "string_7609" ],
+            "targetElement": "nav_transaction",
+            "position": { "right": 20, "bottom": 20 },
+            "rotation": -135,
+            "size": "large"
+        },
+        {
+            "title": [ "string_7610" ],
+            "targetElement": "nav_count",
+            "position": { "top": 20, "right": 20 },
+            "rotation": -135,
+            "size": "large"
+        },
+        {
+            "title": [ "string_7611" ],
+            "targetElement": "nav_filter",
+            "position": { "right": 20, "bottom": 20 },
+            "rotation": -45,
+            "size": "large"
+        },
+        {
+            "title": [ "string_7612" ],
+            "targetElement": "nav_category",
+            "position": { "right": 20, "bottom": 20 },
+            "rotation": -45,
+            "size": "large"
+        },
+        {
+            "title": [ "string_7613" ],
+            "targetElement": "nav_catalog",
+            "position": { "right": 20, "bottom": 20 },
+            "rotation": -45,
+            "size": "large"
+        },
+        {
+            "title": [ "string_7614" ],
+            "targetElement": "nav_search",
+            "position": { "top": 20, "right": 20 },
+            "rotation": -45,
+            "size": "large"
+        },
+        {
+            "title": [ "string_7615" ],
+            "targetElement": "nav_gohome",
+            "position": { "right": 20, "bottom": 20 },
+            "rotation": -45,
+            "size": "large"
+        },
+        {
+            "title": [ "string_7616" ],
+            "targetElement": "nav_expand",
+            "position": { "right": 20, "bottom": 20 },
+            "rotation": -45,
+            "size": "large"
+        },
+        {
+            "title": [ "string_7617" ],
+            "targetElement": "nav_user",
+            "position": { "left": 20, "bottom": 20 },
+            "rotation": 45,
+            "size": "large"
+        }
+    ],
+
+    "intro": [
+        {
+            "title": [ "string_7618" ],
+            "targetElement": "nav_stopTour",
+            "position": { "right": 20, "bottom": 20 },
+            "rotation": -135,
+            "size": "large"
+        },
+        {
+            "title": [ "string_7619" ],
+            "targetElement": "viewport",
+            "position": { "anchor": "center" },
+            "rotation": 0,
+            "isArrowVisible": false,
+            "size": "large"
+        }
+
+    ],
+
+    "stopTourBubble": {
+        "title": [ "string_7620" ],
+        "targetElement": "nav_settings",
+        "position": { "left": 20, "bottom": 20, "anchor": "bottom-left" },
+        "rotation": 45,
+        "size": "large"
+    },
+
+    "totalCount": 20
+}

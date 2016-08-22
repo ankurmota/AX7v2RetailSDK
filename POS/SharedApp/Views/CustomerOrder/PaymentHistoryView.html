@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Payment history view</title>
+    <link href="PaymentHistoryView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="fragment paymentHistoryView">
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="col" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+
+            <div data-bind="listView: {
+                    itemDataSource: historicalTenderLines,
+                    selectionMode: 'none',
+                    tapBehavior: 'none',
+                    columns: [
+                        { titleResx: 'string_6500', cssClass: 'ratio3', field: 'TenderDate', converter: 'Commerce.Core.Converter.DateWithoutTime' },
+                        { titleResx: 'string_115', cssClass: 'ratio3', field: 'Currency' },
+                        { titleResx: 'string_116', cssClass: 'ratio4 textRight', field: 'Amount', converter: 'Commerce.Core.Converter.PriceFormatter' }
+                 ]
+                 }">
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>

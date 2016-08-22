@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>WeighItemDialog</title>
+
+    <!-- WinJS references -->
+    <link href="WeighItemDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'WeighItemDialog'">
+        <div class="weighItemDialog">
+            <div data-bind="dialog:
+                {
+                    title: title,
+                    subTitle: subTitle,
+                    visible: visible,
+                    backButtonVisible: _backButtonVisible,
+                    backClick: itemGoBack,
+                    buttonClick: onButtonClick,
+                    showProgressIndicator: indeterminateWaitVisible,
+                    buttons: [
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_75'), disable: _isOKButtonDisabled, operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, cssClass: 'okButton' },
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }]
+                }" class="weighItemDialog modalWindowContentSection">
+
+
+                <!-- dialog content -->
+                <div class="content row">
+                    <div data-bind="visible: _scaleSectionVisible">
+                        <h3 data-bind="resx: {textContent: 'string_5321'}">Place the item on the scale.</h3>
+                    </div>
+                    <div data-bind="visible: _weightSectionVisible">
+                        <label for="weightNumberText" data-bind="resx: {textContent: 'string_5318'}">Weight</label>
+                        <input type="number"
+                               id="weightNumberText"
+                               step="any"
+                               data-bind="numeric: true, value: _itemWeight,
+                                    textInput: { select: focusOnInput },
+                                    event: { keyup: weightChanged },
+                                    hasFocus: _inputHasFocus,
+                                    validator: {
+                                        field: '_itemWeight',
+                                        validatorField: 'ItemWeight',
+                                        validatorType: 'CartLineValidator'
+                                    }" />
+                    </div>
+                    <div class="col marginLeft4" data-bind="visible: _unitOfMeasureVisible">
+                        <label data-bind="resx: {textContent: 'string_5307'}">Unit of measure</label>
+                        <h3 class="marginBottom0" data-bind="text: _unitOfMeasureDescription"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>HardwareStationErrorDialog</title>
+</head>
+<body>
+    <div data-bind="customControlInternal: 'HardwareStationErrorDialog'">
+
+        <div class="hardwareStationErrorDialog">
+            <div data-bind="dialog:
+                {
+                    title: Commerce.ViewModelAdapter.getResourceString('string_12000'),
+                    subTitle: subTitleValue,
+                    message: messageValue,
+                    visible: visible,
+                    buttonClick: buttonClickHandler,
+                    closeOnEscButton: true,
+                    buttons: [
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_12001'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, isPrimary: true },
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_12002'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK,
+                            visible: hardwareStationSelectionAvailable },
+                       
+                    ],
+                }" class="modalWindowContentSection">
+
+                <!-- dialog content -->
+                <div class="content">
+                    <div class="padTop1 row">
+                        <input id="dontShow" type="checkbox" data-bind="checked: dontShow" />
+                        <div class="padTop05">
+                            <label for="dontShow" data-bind="resx: { textContent: 'string_12003' }">Don't show me this again</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

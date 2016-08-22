@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ReportsView</title>
+    <link href="ReportsView.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment reportsview">
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="col grow marginBottom0" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+            <div class="scrollX grow" data-bind="tileList: { itemDataSource: ViewModel.ReportsList, iteminvoked: ReportInvokedHandler, width: 12, height: 12, bottomLeft: { field: 'REPORTTITLE' } }"></div>
+        </section>
+    </div>  
+</body>
+</html>

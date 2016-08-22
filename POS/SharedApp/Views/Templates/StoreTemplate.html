@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Store Templates</title>
+    <link href="StoreTemplate.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- location list view template -->
+    <div id="storeListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="row minWidth28 height16 primaryBackgroundColor">
+
+            <!-- First column, contains store pin number -->
+            <div class="padLeft1 padTop2 padRight2" data-win-bind="onclick: storeUrlSelected">
+                <h3><span class="pushPin" data-win-bind="textContent: Number"></span></h3>
+            </div>
+
+            <!-- Second column, contains store details -->
+            <div class="padTop1 grow">
+                <div class="row grow">
+                    <div class="padTop1 grow">
+                        <!-- Store name -->
+                        <a class="h3" href="#" data-win-bind="textContent: store.OrgUnitName; onclick: storeUrlSelected"></a>
+                    </div>
+                    <div class="textRight padRight1">
+                        <!-- Select store -->
+                        <button class="iconCheckMark" data-win-bind="onclick: storeSelected" data-bind="resx: { ariaLabel: 'string_2553' }"></button>
+                    </div>
+                </div>
+                <div data-win-bind="onclick: storeSelected">
+                    <!-- Store number -->
+                    <h4 class="ellipsis" data-win-bind="textContent: store.OrgUnitNumber"></h4>
+                    <div class="padRight1 maxWidth22">
+                        <!-- Address -->
+                        <div class="height7 secondaryFontColor" data-win-bind="innerHTML: orgUnit.OrgUnitAddress Commerce.Core.Converter.threeLineAddressFormatterWithHtmlEscape"></div>
+                        <div class="row alignRight secondaryFontColor">
+                            <div class="marginTop02">
+                                <!-- Store distance from current store -->
+                                <h3 data-win-bind="textContent: distanceString"></h3>
+                            </div>
+                            <div class="shrink padLeft05 marginTop03">
+                                <!-- Distance Unit -->
+                                <h4 data-win-bind="textContent: distanceUnit"></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

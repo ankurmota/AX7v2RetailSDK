@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement version="1.0" namespace="" eventVersion="1" timestamp="2013-05-31T17:00:00.0000000Z">
+
+  <Events>
+    <CounterSets>
+      <CounterSet eventName="NodeCounterSetPT15S" sampleRateInSeconds="15" storeType="Local">
+        <Counter>\Dynamics Retail - Channel DB - Execute Query Boundary\AverageLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Execute Query Boundary\FailedCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Execute Query Boundary\FailedCallsRatio</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Execute Query Boundary\LastLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Execute Query Boundary\SucceededCalls</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Execute Query Boundary\SucceededCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Execute Query Boundary\TotalCalls</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Execute Query Boundary\TotalCallsPerSecond</Counter>
+
+        <Counter>\Dynamics Retail - Channel DB - Stored Proc Boundary\AverageLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Stored Proc Boundary\FailedCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Stored Proc Boundary\FailedCallsRatio</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Stored Proc Boundary\LastLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Stored Proc Boundary\SucceededCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - Channel DB - Stored Proc Boundary\TotalCallsPerSecond</Counter>
+
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\AverageLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\BytesReceivedAverage</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\BytesSentAverage</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\FailedCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\FailedCallsRatio</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\LastLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\ResultsCountAverage</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\SucceededCalls</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\SucceededCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\TotalCalls</Counter>
+        <Counter>\Dynamics Retail - Realtime Service - Client Request Boundary\TotalCallsPerSecond</Counter>
+
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\AverageLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\BytesReceivedAverage</Counter>
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\BytesSentAverage</Counter>
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\FailedCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\FailedCallsRatio</Counter>
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\LastLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\SucceededCalls</Counter>
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\SucceededCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\TotalCalls</Counter>
+        <Counter>\Dynamics Retail - Retail Server - Request Boundary\TotalCallsPerSecond</Counter>
+
+        <Counter>\Dynamics Retail - CDX - Upload job\AverageLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - CDX - Upload job\FailedCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - CDX - Upload job\FailedCallsRatio</Counter>
+        <Counter>\Dynamics Retail - CDX - Upload job\LastLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - CDX - Upload job\SucceededCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - CDX - Upload job\TotalCallsPerSecond</Counter>
+
+        <Counter>\Dynamics Retail - CDX - Download jobs\AverageLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - CDX - Download jobs\FailedCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - CDX - Download jobs\FailedCallsRatio</Counter>
+        <Counter>\Dynamics Retail - CDX - Download jobs\LastLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - CDX - Download jobs\SucceededCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - CDX - Download jobs\TotalCallsPerSecond</Counter>
+
+        <Counter>\Dynamics Retail - CDX - Download Offline Data\AverageLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - CDX - Download Offline Data\FailedCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - CDX - Download Offline Data\FailedCallsRatio</Counter>
+        <Counter>\Dynamics Retail - CDX - Download Offline Data\LastLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - CDX - Download Offline Data\SucceededCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - CDX - Download Offline Data\TotalCallsPerSecond</Counter>
+
+        <Counter>\Dynamics Retail - CDX - Apply Offline Data\AverageLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - CDX - Apply Offline Data\FailedCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - CDX - Apply Offline Data\FailedCallsRatio</Counter>
+        <Counter>\Dynamics Retail - CDX - Apply Offline Data\LastLatencyInMs</Counter>
+        <Counter>\Dynamics Retail - CDX - Apply Offline Data\SucceededCallsPerSecond</Counter>
+        <Counter>\Dynamics Retail - CDX - Apply Offline Data\TotalCallsPerSecond</Counter>
+      </CounterSet>
+    </CounterSets>
+  </Events>
+</MonitoringManagement>

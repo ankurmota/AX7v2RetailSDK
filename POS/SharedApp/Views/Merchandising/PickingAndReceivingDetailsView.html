@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>PickingAndReceivingDetailsView</title>
+</head>
+<body>
+
+    <div class="fragment pickingAndReceivingDetailsView">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row grow" >
+            <div class="col grow">
+
+                <h2 data-bind="resx: { textContent: 'string_3741' }"></h2> <!-- Lines -->
+
+                <div id="listviewContainer" class="standardGrid">
+
+                    <div class="listViewHeader">
+
+                        <div class="ratio2"><h6 data-bind="resx: { textWithTooltip:'string_3720' }"></h6></div> <!-- PRODUCT NUMBER -->
+                        <div class="ratio3"><h6 data-bind="resx: { textWithTooltip:'string_3721' }"></h6></div> <!-- DESCRIPTION -->
+                        <div class="ratio2 textRight"><h6 data-bind="text: orderedOrTransferredLabel, attr: {title: orderedOrTransferredLabel}"></h6></div> <!-- ORDERED / TRANSFERRED / TRANSFER QUANTITY -->
+                        <div class="ratio1 textRight"><h6 data-bind="text: receivedOrShippedLabel, attr: {title: receivedOrShippedLabel}"></h6></div> <!-- RECEIVED / SHIPPED -->
+                        <div class="ratio1 textRight"><h6 data-bind="text: receivedNowOrShippedNowLabel, attr: {title: receivedNowOrShippedNowLabel}"></h6></div> <!-- RECEIVED NOW / SHIPPED NOW -->
+                        <div class="ratio1"><h6 data-bind="resx: { textWithTooltip: 'string_3725' }"></h6></div> <!-- UOM -->
+
+                    </div>
+
+                    <div id="pickAndReceiveDetailsView" class="win-selectionstylefilled"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                                selectionMode: 'single',
+                                tapBehavior: 'toggleSelect',
+                                itemTemplate: select('#pickAndReceiveDetailsListTemplate'),
+                                layout: { type: WinJS.UI.ListLayout }
+                            }"
+                         data-bind="winControl: {
+                                itemDataSource: detailsViewModel.lineDetails,
+                                selectionchanged: { eventHandlerCallBack: productSelectionChanged, appBarId: '#commandAppBar' }
+                            },
+                            resx: { ariaLabel: 'string_3874' }">
+                        <!-- List of picking and receiving details -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="gutter4x4"></div>
+
+            <!-- Numpad -->
+            <div class="col no-shrink" >
+                <h2 data-bind="visible: enterReceivedNowVisible, text: receivedNowOrShippedNowLabel"></h2><!-- Received now/Ship now -->
+                <h2 data-bind="visible: enterProductVisible, resx: { textContent: 'string_3743' }"></h2><!-- Enter product -->
+                <h2 data-bind="visible: addToReceivedNowVisible, text: addToReceivedNowOrShippedNowLabel"></h2><!-- Add to Received/Ship now -->
+
+                <!-- Product input numpad -->
+                <div data-bind="visible: textMode() === Commerce.ViewControllers.PickingAndReceivingTextMode.EnterProduct">
+                    <input id="productInput" class="numPadTextbox" type="text" />
+                    <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                         data-win-options="{ uri: 'Controls/numberPad/NumPad.html' }"
+                         data-bind="alphanumericNumpad: {
+                            textBoxId: 'productInput',
+                            onEnter: enterProductOrReceivedNowNumpad,
+                            value: searchKeyword,
+                            disableDecimalSeparator: true
+                     }">
+                    </div>
+                </div>
+                
+                <!-- Quantity input numpad -->
+                <div data-bind="visible: textMode() !== Commerce.ViewControllers.PickingAndReceivingTextMode.EnterProduct">
+                    <input id="quantityInput" class="numPadTextbox" type="text" />
+                    <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                         data-win-options="{ uri: 'Controls/numberPad/NumPad.html' }"
+                         data-bind="numpad: {
+                            textBoxId: 'quantityInput',
+                            onEnter: enterProductOrReceivedNowNumpad,
+                            value: searchKeyword
+                     }">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl" 
+         data-win-options="{ sticky : true }">
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'searchForProduct',
+                    extraClass: 'winappbar-iconReceiveAll',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: receiveOrShipAllLines}, visible: isTransferOut, resx: { label: 'string_4303' }" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'searchForProduct',
+                    extraClass: 'winappbar-iconReceiveAll',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: receiveOrShipAllLines}, visible: !isTransferOut(), resx: { label: 'string_3820' }" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'searchProducts',
+                    extraClass: 'winappbar-iconSearchProducts',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: searchForProduct, disabled: enterReceivedNowVisible }, resx: { label: 'string_3821' }" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'commitJournal',
+                    extraClass:'winappbar-iconCommitJournal',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: commitJournal }, resx: { label: 'string_3823' }" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'saveJournal',
+                    extraClass: 'winappbar-iconSave',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: saveJournal, disabled: enterReceivedNowVisible }, resx: { label: 'string_3824' }" />
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+\<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>UnitOfMeasureDialog</title>
+
+    <!-- WinJS references -->
+    <link href="UnitOfMeasureDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'UnitOfMeasureDialog'">
+        <div data-bind="dialog:
+            {
+                title: title,
+                subTitle: subTitle,
+                message: Commerce.ViewModelAdapter.getResourceString('string_3202'),
+                visible: visible,
+                backButtonVisible: _backButtonVisible,
+                backClick: itemGoBack,
+                closeOnEscButton: true,
+                buttonClick: setUnitOfMeasureDialogButtonClick,
+                showProgressIndicator: indeterminateWaitVisible,
+                buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_76'), isPrimary: false, operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }]
+            }">
+            <!-- dialog content -->
+            <div id="unitOfMeasuresButtonGrid" class="scrollX height15" data-bind="tileList: {
+                    iteminvoked: unitOfMeasureInvokedHandler,
+                    itemDataSource: _unitsOfMeasureForProduct,
+                    bottomLeft: { field: 'Description' }
+                }">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

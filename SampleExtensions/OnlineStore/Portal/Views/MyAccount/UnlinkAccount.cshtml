@@ -1,0 +1,13 @@
+@model System.String
+
+@section other{
+    <link href="~/Content/CSS/SignIn.css" rel="stylesheet" />
+}
+
+<h5 class="margin-bottom-15 msg-error msg-center">Caution: Hitting 'Done' will unlink your login with the current Contoso account.</h5>
+<h5 class="margin-bottom-15 msg-center">You will be signed out of the website, and will need to sign-in again.</h5>
+
+<form class="form-unlink-account" action="/MyAccount/UnlinkAccountConfirm" method="post">
+    <h5 class="msg-center">Account number : @Model</h5>
+    <button id="SubmitUnlinkAccount" class="btn btn-blue btn-forward-large btn-lg btn-block" type="submit">Unlink</button>
+</form>

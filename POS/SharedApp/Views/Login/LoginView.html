@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>LoginView</title>
+    <link href="LoginView.css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="fragment" data-bind="css: { loginBackgroundImage: !_isPortraitOrientation(), loginBackgroundImagePortrait: _isPortraitOrientation() }">
+    <div data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+    <!-- Indeterminate wait -->
+    <div tabindex="-1" data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+    <!--Login panel for accepting user credentials-->
+    <section role="main" class="full-screen col grow pad4" data-bind="resx: { ariaLabel: 'string_4454' }"> <!-- Main content -->
+        <div class="center marginBottom14">
+            <!-- User / password textbox field -->
+            <div class="width50 pad4 primaryBackgroundColor" data-bind="visible: !firstTimeUsageVisible()">
+                <div>
+                    <h1 class="wrapTextWithoutHyphen" data-bind="resx: { textContent: 'string_500' }">Sign In</h1>
+                </div>
+
+                <div class="padTop4">
+                    <label data-bind="resx: { textContent: 'string_501' }">Store</label>
+                    <h4 data-bind="text: viewModel.storeId">Store</h4>
+                </div>
+                <div class="padTop2">
+                    <label data-bind="resx: { textContent: 'string_502' }" for="operatorTextBox">Operator ID</label>
+
+                    <!-- Depending on the value showListAtStaffLogon show either the text box or select box-->
+                    <input id="operatorTextBox" type="text" autocomplete="off" autofocus="autofocus" tabindex="1"
+                           data-ax-barcode-scanner-enabled="true"
+                           data-bind="value: operatorId, 
+                                        valueUpdate: 'afterkeydown',
+                                        visible: isOperatorIdTextVisible, 
+                                        disable: disableInput,
+                                        enterKeyPress: signInHandler,
+                                        validator: {
+                                            validatorField: 'UserId',
+                                            validatorType: 'ConnectionRequestValidator'
+                                        }" />
+                    <select id="operatorBox" autofocus="autofocus" tabindex="1" data-bind="
+                            options: operatorList,
+                            optionsText: 'StaffId',
+                            value: selectedOperator,
+                            visible: isOperatorIdSelectVisible,
+                            disable: disableInput"></select>
+                </div>
+
+                <div class="padTop2">
+                    <label data-bind="resx: { textContent: 'string_503' }" for="passwordBox">Password</label>
+
+                        <input id="passwordBox" type="password" tabindex="2" required="required"
+                               data-bind="value: password, 
+                                            valueUpdate: 'afterkeydown',
+                                            disable: disableInput,
+                                            enterKeyPress: signInHandler,
+                                            validator: {
+                                                validatorField: 'Password',
+                                                validatorType: 'ConnectionRequestValidator'
+                                            }"/>
+                </div>
+
+                <div class="padTop4 textRight">
+                    <button id="signInButton" class="primaryButton" tabindex="3"
+                            data-bind="resx: { textContent: 'string_500' }, click: signInHandler, disable: disableSignInButton, setElementRef: signInButton">
+                        Sign in
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading view when user logon the first time after device activation -->
+            <div class="width50 height40 col shrink center primaryBackgroundColor" data-bind="visible: firstTimeUsageVisible">
+                <img src="#" data-bind="attr: { src: 'Assets/WideLogo.scale-100.png' }" />
+
+                <h4 data-bind="resx: { textContent: 'string_8030' }">Setting up device for first time use...</h4>
+
+                <div class="padTop4 shrink" data-bind="loader: { visible: true, type: Commerce.Controls.LoaderType.Nested }"></div>
+            </div>
+
+        </div>
+
+        <h4 id="version" class="bottom0 right0" data-bind="text: applicationVersion"></h4>
+    </section>
+</div>
+</body>
+</html>

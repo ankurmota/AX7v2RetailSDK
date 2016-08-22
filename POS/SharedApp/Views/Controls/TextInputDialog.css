@@ -1,0 +1,8 @@
+.textInputDialog .textInputArea {
+    border: 1px solid;
+    width:100%;
+    box-sizing: border-box;
+    padding: 0.2em 0.5em 0.5em 0.7em;
+    resize:none;
+}
+

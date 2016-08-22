@@ -1,0 +1,17 @@
+@model Contoso.Retail.Ecommerce.Web.Storefront.ViewModels.SignedInUserViewModel
+@if (!(Request.Url.AbsolutePath.Contains("SignIn")))
+{
+    if (Request.IsAuthenticated)
+    {
+        <span>Welcome @Model.FullName (@Model.EmailAddress)</span>
+        var signOutUrl = @"/SignIn/SignOut";
+        <span class="nav-link-sep"> |</span>
+        <a href="@signOutUrl">Sign out</a>
+
+    }
+    else
+    {
+        var signInUrl = @"/SignIn/";
+        <span><a href="@signInUrl">Sign in</a></span>
+    }
+}

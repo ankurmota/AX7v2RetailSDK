@@ -1,0 +1,22 @@
+/* Dynamics symbol font */
+@font-face {
+    font-family: DynamicsFont;
+    src: url(../FONT/dynamsymb.woff);
+}
+
+.dynamics-symbol-font {
+    font-family: DynamicsFont;
+    font-size: 12pt;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Specific symbols */
+
+.forward-symbol-big {
+    font-size: 20px;
+}
+
+.forward-symbol-big::before {
+    content: "\E111";
+}

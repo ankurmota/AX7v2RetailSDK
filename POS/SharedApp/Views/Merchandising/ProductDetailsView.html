@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ProductDetailsView</title>
+    <link href="ProductDetailsView.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="productimagepreviewtemplate" data-win-control="WinJS.Binding.Template">
+        <div>
+            <img class="height8 width8" src="#" data-win-bind="src: Url Commerce.Core.Converter.AbsoluteImageUrl; alt: AltText;
+                 onerror: Commerce.DefaultImages.ProductSmall Commerce.CustomBindings.SetDefaultImage" />
+        </div>
+    </div>
+
+    <div id="productimageflipviewtemplate" data-win-control="WinJS.Binding.Template">
+        <div class="col width32 height32">
+            <div class="width32 height28">
+                <img class="width32 height32" src="#" data-win-bind="src: Url Commerce.Core.Converter.AbsoluteImageUrl; alt: AltText;
+                     onerror: Commerce.DefaultImages.ProductLarge Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="fragment productdetails">
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <section role="main" class="col grow" data-bind="resx: { ariaLabel: 'string_4454' }, visible: changeComponentEnabled()">
+            <div class="marginBottom1">
+                <div class="row">
+                    <div class="grow">
+                        <h2 tabindex="0" data-bind="resx: { textContent: 'string_821' }">Change product</h2>
+                    </div>
+                    <div id="showSubstitutesViewMenu" class="no-shrink" data-bind="click: showSubstitutesViewMenu">
+                        <button class="iconListView iconButton noBorder iconBig" data-bind="resx: { ariaLabel: 'string_924' }"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="templateBrowseListView" class="browseGrid">
+                <div id="productHeader" class="listViewHeader hide">
+                    <div class="ratio2">
+                        <h6 data-bind="resx: { textWithTooltip: 'string_906' }">PRODUCT NUMBER</h6>
+                    </div>
+                    <div class="ratio4">
+                        <h6 data-bind="resx: { textWithTooltip: 'string_907' }">PRODUCT NAME</h6>
+                    </div>
+                    <div class="ratio2 textRight">
+                        <h6 data-bind="resx: { textWithTooltip: 'string_5352' }">QUANTITY</h6>
+                    </div>
+                    <div class="ratio2 textRight">
+                        <h6 data-bind="resx: { textWithTooltip: 'string_5372' }">CHARGE</h6>
+                    </div>
+                </div>
+
+                <div id="productsView" class="win-selectionstylefilled"
+                     data-win-control="WinJS.UI.ListView"
+                     data-win-options="{
+                              selectionMode: 'single',
+                              itemTemplate: select('#kitComponentLargeCardTemplate'),
+                              layout: { type: WinJS.UI.GridLayout },
+                              loadingBehavior: 'incremental',
+                              pagesToLoadThreshold: 2,
+                              pagesToLoad: 2,
+                              automaticallyLoadPages: true,
+                          }"
+                     data-bind="winControl: {
+                          itemDataSource: substituteProductsDisplayData,
+                          iteminvoked: viewProductInformation,
+                          templateSwitch: [
+                              {   buttonId: '#showLargeCards',
+                                  templateId: '#kitComponentLargeCardTemplate',
+                                  layoutType: { type: WinJS.UI.GridLayout , assignClassToId :'#templateBrowseListView', cssClasses: 'browseGrid' },
+                              },
+                              {   buttonId: '#showList',
+                                  templateId: '#kitComponentListTemplate',
+                                  layoutType: { type: WinJS.UI.ListLayout , assignClassToId :'#templateBrowseListView', cssClasses: 'standardGrid' },
+                                  displayElementId: '#productHeader',
+                              },
+                              {   buttonId: '#showSmallCards',
+                                  templateId: '#kitComponentSmallCardTemplate',
+                                  layoutType: { type: WinJS.UI.GridLayout , assignClassToId :'#templateBrowseListView', cssClasses: 'browseGrid' },
+                              },
+                          ],
+                          selectionchanged: { eventHandlerCallBack: substituteSelectionChangedEventHandler, appBarId: '#commandAppBar' },
+                      }">
+                </div>
+            </div>
+
+        </section>
+        <section role="main" class="panoramic padBottom0" data-bind="resx: { ariaLabel: 'string_4454' }, visible: !changeComponentEnabled()">
+            <div class=" width32 col imageDirection" data-bind="visible: ViewModel.images().length >0">
+                <div class="col no-shrink height32">
+                    <div class="height28">
+                        <div class="noMargin height32" id="productimageflipview"
+                             data-win-control="WinJS.UI.FlipView"
+                             data-win-options="{
+                                    itemTemplate: select('#productimageflipviewtemplate'),
+                                    orientation: 'horizontal'
+                                }"
+                             data-bind="winControl: {
+                                    itemDataSource: ViewModel.images,
+                                    selectListViewItem: { listViewId: '#productimagepreviewviewlist'}
+                                },
+                                resx: { ariaLabel: 'string_926' }">
+                            <!-- Product image -->
+                        </div>
+                    </div>
+                    <div class="padRight05 padBottom05 overLayZIndex textRight" data-bind="visible: ViewModel.images().length > 0">
+                        <button class="iconMagnify secondaryFontColor" data-bind="click: navigateToRichMediaView, resx: { ariaLabel: 'string_928' }"></button>  <!-- View image -->
+                    </div>
+                </div>
+                <div class="gutter1x1"></div>
+                <div class="col no-shrink">
+                    <!-- Product images -->
+                    <div class="noMargin browseGrid plainSelectionBorder">
+                        <div id="productimagepreviewviewlist" class="win-selectionstylefilled browseGrid maxHeight12"
+                             data-win-control="WinJS.UI.ListView"
+                             data-win-options="{
+                                selectionMode: 'single',
+                                tapBehavior: 'directSelect',
+                                itemTemplate: select('#productimagepreviewtemplate'),
+                                layout: {type: WinJS.UI.GridLayout}
+                            }"
+                             data-bind="winControl: {
+                                itemDataSource: ViewModel.images,
+                                flipItem: { flipViewId: '#productimageflipview' }
+                            },
+                            resx: { ariaLabel: 'string_927' }">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gutter4x4" data-bind="visible: ViewModel.images().length >0"></div>
+            <div class="width28" data-bind="if:ViewModel.product()">
+                <div class="padBottom2">
+                    <h2 class="wrapText" data-bind="text: localizedProductName">  </h2>
+                </div>
+                <div class="padBottom3">
+                    <h4 data-bind="text: ViewModel.product().ItemId"></h4>
+                </div>
+                <div class="padBottom1">
+                    <h1 data-bind="formatPrice: priceCheckViewModel.productPrice"></h1>
+                </div>
+            </div>
+            <div class="gutter4x4"></div>
+            <div class="no-shrink minWidth32" data-bind="if: ViewModel.product(), visible: isDimensionSectionVisible">
+                <div class="primaryBackgroundColor highContrastBorderThin" data-bind="if: !ViewModel.product().IsKit, visible: !ViewModel.product().IsKit">
+                    <div class="pad2">
+                        <div class="col grow">
+                            <!-- ko foreach: ViewModel.dimensionValue -->
+                            <h4 class="secondaryFontColor" data-bind="text: Optionstext"></h4>
+                            <select data-bind="options: AvailableOptions, 
+                                        optionsText: 'text', 
+                                        optionsValue: 'value', 
+                                        optionsCaption: OptionCaption, 
+                                        value: SelectedOption, 
+                                        enable: IsSelectionEnabled,
+                                        attr: { 'aria-label': OptionCaption }"></select>
+                            <div class="gutter3x3"></div>
+                            <!-- /ko -->
+                        </div>
+                        <button class="primaryButton" data-bind="resx: { textContent: 'string_911' }, click: AddProductToCart, visible: _productDetailOptions().productAddModeEnum == Commerce.ViewModels.ProductAddModeEnum.AddToCart">Add item</button>
+                    </div>
+                </div>
+                <div data-bind="if: ViewModel.product().IsKit, visible: ViewModel.product().IsKit">
+                    <h2 data-bind="resx: { textContent: 'string_822' }">Included Products</h2>
+
+                    <div class="row marginTop2" data-bind="foreach: { data: ViewModel.kitComponentsForDisplay, as: 'KitComponent' }">
+                        <div class="col width35 primaryPanelBackgroundColor highContrastBorderThin">
+                            <div class="row padLeft2 padRight2 padTop2 padBottom1 shrink">
+                                <div class="marginRight1 no-shrink">
+                                    <img class="height7 width7" src="#" data-bind="attr: { src: Commerce.Formatters.ImageUrlFormatter(KitComponent.ImageUrl), alt: AltText }, setImageOnError: Commerce.DefaultImages.ProductSmall"/>
+                                </div>
+                                <div class="col ellipsis padTop1 grow">
+                                    <a href="#" class="h4" data-bind="text: KitComponent.ProductName, click: ViewComponentDetails, data: RecordId">Component name</a>
+                                    <h4 class="secondaryFontColor" data-bind="text: KitComponent.ItemId"></h4>
+                                    <div class="row">
+                                        <div class="col grow">
+                                            <h4 class="secondaryFontColor" data-bind="text: KitComponent.Quantity"></h4>
+                                        </div>
+                                        <div class="textRight">
+                                            <h3 data-bind="text: KitComponent.Charge"></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="padLeft2 padRight2">
+                                <div data-bind="foreach: { data: KitComponent.Dimensionvalue, as: 'dimension' }">
+                                    <label data-bind="text: dimension.Optionstext" for="dimensionSelector"></label>
+                                    <div class="padBottom2">
+                                        <select id="dimensionSelector" data-bind="options: dimension.AvailableOptions, optionsText: 'text', optionsValue: 'value', optionsCaption: dimension.OptionCaption, value: dimension.SelectedOption, enable: dimension.IsSelectionEnabled"></select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="button" aria-labelledby="changeProductButton" class="centerY marginBottom1 height5 padLeft2" data-bind="click: function(data) { $parent.ChangeProduct.call($parent, data); },  visible: KitComponent.ProductSubtitutionApplicable" tabindex="0">
+                                <button id="changeProductButton" data-bind="resx: { ariaLabel: 'string_821' }" class="iconProducts"></button>
+                                <div class="marginLeft1" tabindex="-1">
+                                    <h4 class="margin0" data-bind="resx: { textContent: 'string_821' }">Change product</h4>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Hides the element for the last item. -->
+                        <div class="gutter4x4" data-bind="visible: $parent.ViewModel.kitComponentsForDisplay().length > ($index() + 1)"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="gutter4x4" data-bind="visible:ViewModel.productProperty().length>0"></div>
+            <div class="width50 padBottom6 col" data-bind="visible:ViewModel.productProperty().length>0">
+                <div>
+                    <h2 data-bind="resx: { textContent: 'string_801' }"></h2> <!--Specifications-->
+                </div>
+                <div class="marginTop2 padRight2 scrollX scrollY grow">
+                    <div data-bind="foreach: { data: ViewModel.productProperty, as: 'property' }">
+                        <div class="marginBottom1 marginTop05 secondaryBackgroundColor highContrastRowLine height01"></div>
+                        <div class="row padTop1 padBottom1">
+                            <div class="ratio5">
+                                <h6 data-bind="text: property.FriendlyName" class="wrapText secondaryFontColor"></h6>
+                            </div>
+                            <div>
+                                <h4 data-bind="text: property.ValueString" class="wrapText"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="marginBottom1 marginTop05 secondaryBackgroundColor highContrastRowLine height01"></div>
+                </div>
+            </div>
+            <div class="gutter4x4"></div>
+            <div class="col width35" data-bind="visible: ViewModel.product()">
+                <div>
+                    <h2 data-bind="resx: { textContent: 'string_824' }"></h2> <!--Description-->
+                </div>
+                <div class="padBottom1 padTop2 scrollY grow">
+                    <h4 class="wrapText" data-bind="text: localizedProductDescription"></h4>
+                </div>
+            </div>
+            <div class="gutter4x4"></div>
+            <div class="width50 col" data-bind="visible:ViewModel.relatedProductsForDisplay().length != 0 ">
+                <div>
+                    <h2 data-bind="resx: { textContent: 'string_802' }"></h2> <!--Related products-->
+                </div>
+                <div class="height2">
+                    <a href="#" data-bind="click: displayAllRelatedProducts, visible: seeAllRelatedProductsLabelVisible">
+                        <h4 data-bind="resx: { textContent: 'string_809' }"></h4>
+                    </a>
+                </div>
+                <div class="browseGrid col noMargin">
+                    <div data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                                selectionMode: 'none',
+                                itemTemplate: select('#productLargeCardTemplate'),
+                                tapBehavior: 'invokeOnly',
+                                layout: { type: WinJS.UI.GridLayout }
+                            }"
+                         data-bind="winControl: {
+                                itemDataSource: ViewModel.relatedProductsForDisplay,
+                                iteminvoked: viewProductInformation
+                            },
+                            resx: { ariaLabel: 'string_802' }">
+                        <!-- Related products -->
+                    </div>
+                </div>
+            </div>
+            <div class="gutter4x4" data-bind="visible: _isExtensionPropertyAvailable"></div>
+            <div class="width35 col" data-bind="visible: _isExtensionPropertyAvailable">
+                <h2 data-bind="resx: { textContent: 'string_823' }"></h2>   <!--Additional properties-->
+                <div class="marginTop2 padRight2 scrollY">
+                    <div id="extensionPropertiesControl" data-bind="userControl: {
+                        uri: 'Views/Controls/ExtensionPropertiesControl.html',
+                        options: { controlHandle: '_extensionPropertiesControl',  data: ViewModel.product(), extensionVisible: _isExtensionPropertyAvailable }
+                    }"></div>
+                </div>
+            </div>
+            <div class="gutter4x4"></div>
+        </section>
+    </div>
+
+    <div id="respondFlyout" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#showSubstitutesViewMenu', placement: 'bottom', alignment: 'left', toggleShowHide: toggleShowHideMenu }">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'showList',label:'Show list'}" data-bind="resx: { label: 'string_900' }"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'showSmallCards',label:'Show small cards'}" data-bind="resx: { label: 'string_901' }"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{id:'showLargeCards',label:'Show large cards'}" data-bind="resx: { label: 'string_902' }"></button>
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl"
+         data-win-options="{ sticky : true }">
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'addtosale', extraClass: 'winappbar-iconAdd'}"
+                data-bind="visible: changeComponentEnabled()? false:  _productDetailOptions().productAddModeEnum == Commerce.ViewModels.ProductAddModeEnum.AddToCart, enable: ViewModel.product(),  winControl: { click: AddProductToCart }, resx: { label: 'string_911' }" /><!-- Add item-->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{ id:'inventoryLookupCommand', extraClass: 'winappbar-iconApply'}"
+                data-bind="visible: changeComponentEnabled()? false:  _productDetailOptions().productAddModeEnum >= Commerce.ViewModels.ProductAddModeEnum.InventoryLookup, enable: ViewModel.product(), winControl: { click: addProductToCallbackPage }, resx: { label: 'string_6405' }" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{ id:'addtosale',extraClass: 'winappbar-iconAdd'}"
+                data-bind="visible: changeComponentEnabled()? false: _productDetailOptions().productAddModeEnum == Commerce.ViewModels.ProductAddModeEnum.AddToCart, enable: ViewModel.product(), winControl: { click: QuickSale }, resx: { label: 'string_922' }" /><!-- Sell now-->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'substitute', extraClass: 'winappbar-iconApply'}"
+                data-bind="visible: changeComponentEnabled(), enable: selectedsubstituteProduct(), winControl: {click: substituteSelectionHandler }, resx: { label: 'string_75' }" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'cancelButton', label:'Cancel', extraClass: 'winappbar-iconCancel'}"
+                data-bind="click: substituteCancelHandler, resx: { label: 'string_1611' }, visible: changeComponentEnabled()"></button>
+
+    </div>
+</body>
+</html>

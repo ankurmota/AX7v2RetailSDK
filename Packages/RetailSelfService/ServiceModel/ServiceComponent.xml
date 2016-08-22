@@ -1,0 +1,122 @@
+<DeploymentTopology catalogName="AX" productName="AX7">
+  <DeploymentComponents>
+  
+	<DeploymentComponent identifier="RetailSelfService" dnsRecordSetId="RetailServer" topologyType="Demo">
+      <Customizations>
+        <Customization fieldName="Skip remaining scripts on failure" valueType="String" selectedValue="true" />
+      </Customizations>
+      <ScriptReference identifier="UnifiedSetup">
+        <Parameters>
+          <Parameter name="ServiceName">
+            <Value>
+              <Value>RetailSelfService</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildLocation">
+            <Value>
+              <Value>Services\RetailSelfService\</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildId" type="Customization">
+            <Value>
+              <Value>ProductVersion</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="AOSWebsiteName">
+            <Value>
+              <Value>AOSService</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="AOSServiceUser">
+            <Value>
+              <Value>NETWORK_SERVICE</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="RetailSelfServicePackageMetadata" type="Customization">
+            <Value>
+              <Value>RetailSelfServicePackages</Value>
+            </Value>
+          </Parameter>
+        </Parameters>
+      </ScriptReference>
+    </DeploymentComponent>
+
+    <DeploymentComponent identifier="RetailSelfService" dnsRecordSetId="RetailServer" topologyType="DevTest">
+        <ScriptReference identifier="UnifiedSetup">
+          <Parameters>
+            <Parameter name="ServiceName">
+              <Value>
+                <Value>RetailSelfService</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="BuildLocation">
+              <Value>
+                <Value>Services\RetailSelfService\</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="BuildId" type="Customization">
+              <Value>
+                <Value>ProductVersion</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="AOSWebsiteName">
+              <Value>
+                <Value>AOSService</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="AOSServiceUser">
+              <Value>
+                <Value>NETWORK_SERVICE</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="RetailSelfServicePackageMetadata" type="Customization">
+              <Value>
+                <Value>RetailSelfServicePackages</Value>
+              </Value>
+            </Parameter>
+          </Parameters>
+        </ScriptReference>
+      </DeploymentComponent>
+	
+    <DeploymentComponent identifier="RetailSelfService" dnsRecordSetId="RetailServer" topologyType="Production">
+      <Customizations>
+        <Customization fieldName="Skip remaining scripts on failure" valueType="String" selectedValue="true" />
+      </Customizations>
+      <ScriptReference identifier="UnifiedSetup">
+        <Parameters>
+          <Parameter name="ServiceName">
+            <Value>
+              <Value>RetailSelfService</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildLocation">
+            <Value>
+              <Value>Services\RetailSelfService\</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildId" type="Customization">
+            <Value>
+              <Value>ProductVersion</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="AOSWebsiteName">
+            <Value>
+              <Value>AOSService</Value>
+            </Value>
+          </Parameter>
+           <Parameter name="AOSServiceUser">
+            <Value>
+              <Value>NETWORK_SERVICE</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="RetailSelfServicePackageMetadata" type="Customization">
+            <Value>
+              <Value>RetailSelfServicePackages</Value>
+            </Value>
+          </Parameter>
+        </Parameters>
+      </ScriptReference>
+    </DeploymentComponent>
+	
+  </DeploymentComponents>
+</DeploymentTopology>

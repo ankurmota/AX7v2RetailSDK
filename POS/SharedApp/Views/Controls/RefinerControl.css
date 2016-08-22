@@ -1,0 +1,34 @@
+.refinerList > div {
+    margin-top: 2em;
+    flex: 0 1 auto !important;
+}
+
+.refinerControlView {
+    height: 100%;
+}
+
+.refinerList {
+    height: inherit;
+}
+
+.refinerControlView .buttonWidth {
+    width: 100%;
+}
+
+.refinerControlView .accentBackground, .refinerControlView .secondaryBackgroundColor {
+    color: #fff !important;
+}
+
+.refinerControlView .win-flyout {
+    width: 28em;
+}
+
+.refinerButtonContainer {
+    margin: 0;
+    width: 100%;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #E6EDF3;
+}

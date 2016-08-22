@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>GiftCardDialog</title>
+
+    <!-- WinJS references -->
+    <link href="AddIssueGiftCardDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'GiftCardDialog'">
+        <div tabindex="-1" data-bind="
+            dialog: {
+                title: title,
+                message: dialogMessage,
+                visible: visible,
+                buttonClick: giftCardButtonClick,
+                showProgressIndicator: indeterminateWaitVisible,
+                closeOnEscButton: true,
+                tabIndexButton: 3,
+                buttons: [
+                    { label: okButtonLabel, disable: _isOKButtonDisabled, operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, cssClass: 'giftCardOk', isPrimary: true },
+                    { label: cancelButtonLabel, disable: _isCancelButtonDisabled, operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'giftCardCancel' }]
+            }">
+
+            <!-- dialog content -->
+            <div class="row">
+                <div class="col">
+                    <label for="addIssueGiftCardNumberText" data-bind="resx: { textContent: 'string_5150' }">Card number</label>
+                    <input type="text" id="addIssueGiftCardNumberText" autofocus tabindex="1" data-bind="
+                        enable: _controlsEnabled,
+                        textInput: { select: selectGiftCardNumberText },
+                        valueUpdate: 'afterkeydown',
+                        value: giftCardNumber,
+                        validator: {
+                            field: 'giftCardNumber',
+                            validatorType: 'GiftCardValidator',
+                            validatorField: 'CardNumber'
+                        }" />
+                </div>
+                <div class="col gutter4x4"></div>
+                <div class="col">
+                    <label data-bind="resx: { textContent: 'string_5151' }" for="addIssueGiftCardAmount">Amount</label>
+                    <input type="text" id="addIssueGiftCardAmount" tabindex="2" data-bind="
+                        valueUpdate: 'afterkeydown',
+                        attr: { 'readonly': amountReadOnly },
+                        enable: _controlsEnabled,
+                        value: giftCardAmount,
+                        validator: {
+                            field: 'giftCardAmount',
+                            validatorType: 'GiftCardValidator',
+                            validatorField: 'Amount'
+                        },
+                        visible: isInputAmount" />
+                    <div class="padTop1" data-bind="visible: isNotInputAmount">
+                        <h4 data-bind="text: giftCardAmountBalance"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

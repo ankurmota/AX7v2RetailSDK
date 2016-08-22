@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SelectVariantDialog</title>
+</head>
+<body>
+    <div data-bind="customControlInternal: 'SelectVariantDialog'">
+        <div data-bind="dialog: {
+            title: title,
+            visible: visible,
+            buttonClick: dialogButtonClick,
+            showProgressIndicator: indeterminateWaitVisible,
+            dialogType: Commerce.Controls.Dialog.DialogTypes.SEQUENCE,
+            backButtonVisible: _viewModel._allowUndoPreviousSelection,
+            backClick: undoPreviousSelection,
+            buttons: [
+                { label: Commerce.ViewModelAdapter.getResourceString('string_76'), isPrimary: false, operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }
+            ],
+        }">
+            <div>
+                <div class="marginBottom2">
+                    <h4 data-bind="text: subTitle"></h4>
+                </div>
+                <div class="marginBottom2">
+                    <h4 class="secondaryFontColor" data-bind="text: _viewModel._selectedValuesText"></h4>
+                </div>
+                <div>
+                    <h4 class="secondaryFontColor" data-bind="text: _viewModel._selectionType"></h4>
+                </div>
+                <div class="scrollX height15 no-shrink"
+                     data-bind="tileList: {
+                        iteminvoked: selectionInvokedHandler,
+                        itemDataSource: _viewModel._selectionOptions,
+                        bottomLeft: { field: 'Value' }
+                    }">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

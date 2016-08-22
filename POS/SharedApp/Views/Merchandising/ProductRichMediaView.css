@@ -1,0 +1,28 @@
+body[dir=rtl] .productRichMediaView .imageDirection {
+    direction:ltr;
+}
+
+.productRichMediaView .zoomElement {
+    overflow: auto;
+    -ms-content-zooming: zoom;
+    -ms-scroll-rails: none;
+    -ms-content-zoom-limit-min: 100%;
+    -ms-content-zoom-limit-max: 500%;
+    -ms-overflow-style: none;
+}
+
+.productRichMediaView *[role=main] {
+    margin-bottom: 0;
+}
+
+.productRichMediaView .zoomElement {
+    overflow: hidden;
+}
+
+.productRichMediaView  *[role=group] {
+    height: 8.2em;
+}
+
+.productRichMediaView .center {
+    height: auto;
+}

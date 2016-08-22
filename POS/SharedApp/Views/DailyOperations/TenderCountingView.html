@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tender Counting View</title>
+    <link href="TenderCountingView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="tenderCountingView fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+
+        <!-- Payment method template -->
+        <div id="paymentMethodTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="listViewLine">
+                <div class="col ratio5">
+                    <h3 data-win-bind="innerText: tenderName"></h3>
+                    <label data-win-bind="innerText: currencyCode"></label>
+                </div>
+                <div class="ratio2">
+                    <div class="padTop05 padLeft1">
+                        <button class="win-interactive iconDenominationCount" data-win-bind="style.display: hasDenominations Commerce.Core.Converter.ShouldDisplay" data-bind="resx: { ariaLabel: 'string_4162' }"></button>   <!-- Denomination count -->
+                    </div>
+                </div>
+                <div class="ratio3 textRight col accentBorder">
+                    <a href="#" class="h1" data-win-bind="innerText: totalAmountInCurrencyToDisplay"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Denomination template -->
+        <div id="denominationTemplate" data-win-control="WinJS.Binding.Template">
+            <div class="listViewLine">
+                <div class="col ratio4">
+                    <h3 data-win-bind="innerText: denominationValueToDisplay"></h3>
+                    <label data-win-bind="innerText: Currency"></label>
+                </div>
+                <div class="denominationCount col ratio3 textRight accentBorder">
+                    <a href="#" class="h1" data-win-bind="innerText: CountedAmount Commerce.Core.Converter.QuantityFormatter"></a>
+                </div>
+                <div class="denominationTotal col ratio3 accentBorder textRight">
+                    <a href="#" class="h1" data-win-bind="textContent: countedValueToDisplay"></a>
+                </div>
+            </div>
+        </div>
+
+        <section role="main" class="row marginBottom9" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <!-- Main content -->
+            <div class="col grow no-select">
+                <div class="standardGrid countingGrid" data-bind="visible: viewMode() == Commerce.ViewControllers.TenderCountingViewMode.PaymentMethods">
+                    <h2 class="marginBottom08 no-shrink" data-bind="resx: { textContent: 'string_4020' }">Payment method</h2>
+                    <div class="listViewHeader">
+                        <div class="ratio5">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_4023' }">PAYMENT METHOD</h6>
+                        </div>
+                        <div class="ratio2">
+                            <h6 class="padLeft05" data-bind="resx: { textWithTooltip: 'string_4028' }">COUNT</h6>
+                        </div>
+                        <div class="ratio3 textRight">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_4024' }">TOTAL</h6>
+                        </div>
+                    </div>
+                    <div id="paymentMethodList"
+                         class="col"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                            itemTemplate: select('#paymentMethodTemplate'),
+                            selectionMode: 'single',
+                            tapBehavior: 'toggleSelect',
+                            layout: { type: WinJS.UI.ListLayout }
+                        }"
+                         data-bind="winControl: { itemDataSource: tenderCountingLines, selectionchanged: { eventHandlerCallBack: tenderSelectionChangedHandler }, click: clickCountButton }">
+                    </div>
+                    <div class="listViewFooter height6">
+                        <div class="textRight no-shrink">
+                            <h2 class="wrapText" data-bind="formatPrice: totalAmountCounted"></h2>
+                            <label data-bind="resx: { textContent: 'string_4027' }">Total</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="standardGrid countingGrid" data-bind="visible: viewMode() == Commerce.ViewControllers.TenderCountingViewMode.Denominations">
+                    <h2 class="marginBottom08 no-shrink" data-bind="resx: { textContent: 'string_4021' }">Denomination</h2>
+                    <div class="listViewHeader">
+                        <div class="ratio4">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_4025' }">DENOMINATION</h6>
+                        </div>
+                        <div class="ratio3 textRight">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_4026' }">QUANTITY</h6>
+                        </div>
+                        <div class="ratio3 textRight">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_4024' }">TOTAL</h6>
+                        </div>
+                    </div>
+                    <div id="denominationList"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                            itemTemplate: select('#denominationTemplate'),
+                            selectionMode: 'single',
+                            tapBehavior: 'toggleSelect',
+                            layout: { type: WinJS.UI.ListLayout }
+                        }"
+                         data-bind="winControl: { itemDataSource: denominationLines, selectionchanged: { eventHandlerCallBack: denominationSelectionChangedHandler }, click: clickDenominationLine }, css: { countBorder: !useDenominationTotal(), totalBorder: useDenominationTotal }">
+                    </div>
+                    <div class="listViewFooter height6">
+                        <div class="textRight">
+                            <h2 class="wrapText" data-bind="formatPrice: totalDenominationCounted"></h2>
+                            <label data-bind="resx: { textContent: 'string_4027' }">Total</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gutter4x4"></div>
+
+            <!-- Amount entry area -->
+            <div class="col numpadSection">
+                <h2 class="marginBottom08" data-bind="resx: { textContent: 'string_4011' }">Enter amount</h2>
+
+                <input id="amountInput" class="numPadTextbox" type="text" 
+                       data-bind="onFocus: focusAmountInput, resx: { ariaLabel: 'string_4011' }" />  <!-- Enter amount -->
+                <!-- Num pad -->
+                <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                     data-win-options="{uri: 'Controls/numberPad/NumPad.html'}"
+                     data-bind="numpad: {
+                        textBoxId: 'amountInput',
+                        onEnter: changeAmountHandler,
+                        decimalPrecision: Commerce.NumberExtensions.getDecimalPrecision(Commerce.ApplicationContext.Instance.deviceConfiguration.Currency),
+                        parser: new Commerce.DecimalNotRequiredParser(),
+                        value: tenderAmountInput
+                     }">
+                </div>
+                <div class="gutter1x1"></div>
+            </div>
+        </section>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl" data-bind="winControl: { visible: appBarVisible }">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'performOperationAppBar', label:'Save', extraClass: 'winappbar-iconSave'}"
+                    data-bind="click: showBagNumberDialog, resx: { label: 'string_4302' }">
+                Save
+            </button>
+        </div>
+    </div>
+</body>
+</html>

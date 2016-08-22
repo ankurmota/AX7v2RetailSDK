@@ -1,0 +1,106 @@
+﻿
+
+
+<instrumentationManifest xmlns="http://schemas.microsoft.com/win/2004/08/events">
+ <instrumentation xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events" xmlns:dyn="http://manifests.microsoft.com/dynamics/events">
+  <events xmlns="http://schemas.microsoft.com/win/2004/08/events">
+<provider name="Microsoft-Dynamics-AX-AX7Deployment" guid="{4A9C59E6-7364-4ef8-9374-ED88C0A820D4}" message="$(string.Provider.Microsoft-Dynamics-AX-AX7Deployment)" resourceFileName="%APPROOT%\Microsoft.Dynamics.AX7Deployment.Instrumentation.dll" messageFileName="%APPROOT%\Microsoft.Dynamics.AX7Deployment.Instrumentation.dll" symbol="AX7DeploymentEventSource">
+ <channels>
+  <channel chid="Admin" name="Microsoft-Dynamics-AX-AX7Deployment/Admin" message="$(string.Channel.Microsoft-Dynamics-AX-AX7Deployment/Admin)" type="Admin" enabled="true"/>
+  <channel chid="Operational" name="Microsoft-Dynamics-AX-AX7Deployment/Operational" message="$(string.Channel.Microsoft-Dynamics-AX-AX7Deployment/Operational)" type="Operational" enabled="true"/>
+  <channel chid="Analytic" name="Microsoft-Dynamics-AX-AX7Deployment/Analytic" message="$(string.Channel.Microsoft-Dynamics-AX-AX7Deployment/Analytic)" type="Analytic" enabled="false"/>
+  <channel chid="Debug" name="Microsoft-Dynamics-AX-AX7Deployment/Debug" message="$(string.Channel.Microsoft-Dynamics-AX-AX7Deployment/Debug)" type="Debug" enabled="false"/>
+ </channels>
+ <tasks>
+  <task name="DeploymentTask" message="$(string.Task.DeploymentTask)" value="1"/>
+  <task name="DeploymentInfo" message="$(string.Task.DeploymentInfo)" value="2"/>
+  <task name="DeploymentError" message="$(string.Task.DeploymentError)" value="3"/>
+  <task name="DeploymentWarning" message="$(string.Task.DeploymentWarning)" value="4"/>
+  <task name="DeploymentDebug" message="$(string.Task.DeploymentDebug)" value="5"/>
+ </tasks>
+ <opcodes>
+	<opcode name="dyn:Startup" message="$(string.OpCode.Startup)" value="11"/>
+	<opcode name="dyn:Shutdown" message="$(string.OpCode.Shutdown)" value="12"/>
+ </opcodes>
+ <keywords>
+   <keyword name="Performance" message="$(string.Keyword.Performance)" mask="0x01"/>
+   <keyword name="Diagnostic" message="$(string.Keyword.Diagnostic)" mask="0x02"/>
+   <keyword name="Exception" message="$(string.Keyword.Exception)" mask="0x04"/>
+   <keyword name="Availability" message="$(string.Keyword.Availability)" mask="0x08"/>
+   <keyword name="Usability" message="$(string.Keyword.Usability)" mask="0x10"/>
+   <keyword name="Configuration" message="$(string.Keyword.Configuration)" mask="0x20"/>
+   <keyword name="Context" message="$(string.Keyword.Context)" mask="0x40"/>
+   <keyword name="Customization" message="$(string.Keyword.Customization)" mask="0x80"/>
+   <keyword name="Platform" message="$(string.Keyword.Platform)" mask="0x100"/>
+   <keyword name="Application" message="$(string.Keyword.Application)" mask="0x200"/>
+   <keyword name="AX7Deployment" message="$(string.Keyword.AX7Deployment)" mask="0x100000000"/>
+</keywords>
+<templates>
+  <template tid="EmptyTemplate" />
+   <template tid="AX7DeploymentExceptionTemplate">
+     <data name="machineName" inType="win:UnicodeString" outType="xs:string" />
+     <data name="exceptionMessage" inType="win:UnicodeString" outType="xs:string" />
+     <data name="exceptionType" inType="win:UnicodeString" outType="xs:string" />
+     <data name="stackTrace" inType="win:UnicodeString" outType="xs:string" />
+     <data name="componentName" inType="win:UnicodeString" outType="xs:string" />
+     <data name="userAlias" inType="win:UnicodeString" outType="xs:string" />
+     <data name="buildVersion" inType="win:UnicodeString" outType="xs:string" />
+     <data name="buildBranch" inType="win:UnicodeString" outType="xs:string" />
+   </template>
+   <template tid="AX7DeploymentInfoTemplate">
+     <data name="machineName" inType="win:UnicodeString" outType="xs:string" />
+     <data name="infoMessage" inType="win:UnicodeString" outType="xs:string" />
+     <data name="componentName" inType="win:UnicodeString" outType="xs:string" />
+     <data name="userAlias" inType="win:UnicodeString" outType="xs:string" />
+     <data name="buildVersion" inType="win:UnicodeString" outType="xs:string" />
+     <data name="buildBranch" inType="win:UnicodeString" outType="xs:string" />
+   </template>
+ </templates>
+ <events>
+  <event value="0" version="0" keywords="AX7Deployment Diagnostic" level="win:Informational" symbol="DeploymentTaskStart" opcode="win:Start" template="AX7DeploymentInfoTemplate" task="DeploymentTask" channel="Operational" message="$(string.TaskEvent.DeploymentTask.Start)"/>
+  <event value="1" version="0" keywords="AX7Deployment Diagnostic" level="win:Informational" symbol="DeploymentTaskStop" opcode="win:Stop" template="AX7DeploymentInfoTemplate" task="DeploymentTask" channel="Operational" message="$(string.TaskEvent.DeploymentTask.Stop)"/>
+  <event value="2" version="0" keywords="AX7Deployment" level="win:Informational" symbol="DeploymentInfo" opcode="win:Info" template="AX7DeploymentInfoTemplate" task="DeploymentInfo" channel="Operational" message="$(string.MarkerEvent.DeploymentInfo)"/>
+  <event value="3" version="0" keywords="AX7Deployment Exception" level="win:Error" symbol="DeploymentError" opcode="win:Info" template="AX7DeploymentExceptionTemplate" task="DeploymentError" channel="Operational" message="$(string.MarkerEvent.DeploymentError)"/>
+  <event value="4" version="0" keywords="AX7Deployment" level="win:Warning" symbol="DeploymentWarning" opcode="win:Info" template="AX7DeploymentInfoTemplate" task="DeploymentWarning" channel="Operational" message="$(string.MarkerEvent.DeploymentWarning)"/>
+  <event value="5" version="0" keywords="Diagnostic AX7Deployment" level="win:Verbose" symbol="DeploymentDebug" opcode="win:Info" template="AX7DeploymentInfoTemplate" task="DeploymentDebug" channel="Operational" message="$(string.MarkerEvent.DeploymentDebug)"/>
+ </events>
+</provider>
+</events>
+</instrumentation>
+<localization>
+ <resources culture="en-US">
+  <stringTable>
+   <string id="Channel.Microsoft-Dynamics-AX-AX7Deployment/Admin" value="Admin"/>
+   <string id="Channel.Microsoft-Dynamics-AX-AX7Deployment/Analytic" value="Analytic"/>
+   <string id="Channel.Microsoft-Dynamics-AX-AX7Deployment/Debug" value="Debug"/>
+   <string id="Channel.Microsoft-Dynamics-AX-AX7Deployment/Operational" value="Operational"/>
+   <string id="Keyword.Application" value="Application"/>
+   <string id="Keyword.Availability" value="Availability"/>
+   <string id="Keyword.AX7Deployment" value="AX7Deployment"/>
+   <string id="Keyword.Configuration" value="Configuration"/>
+   <string id="Keyword.Context" value="Context"/>
+   <string id="Keyword.Customization" value="Customization"/>
+   <string id="Keyword.Diagnostic" value="Diagnostic"/>
+   <string id="Keyword.Exception" value="Exception"/>
+   <string id="Keyword.Performance" value="Performance"/>
+   <string id="Keyword.Platform" value="Platform"/>
+   <string id="Keyword.Usability" value="Usability"/>
+   <string id="MarkerEvent.DeploymentDebug" value="AX7 Deployment"/>
+   <string id="MarkerEvent.DeploymentError" value="AX7 Deployment"/>
+   <string id="MarkerEvent.DeploymentInfo" value="AX7 Deployment"/>
+   <string id="MarkerEvent.DeploymentWarning" value="AX7 Deployment"/>
+   <string id="Provider.Microsoft-Dynamics-AX-AX7Deployment" value="Microsoft Dynamics AX7 Deployment"/>
+   <string id="Task.DeploymentDebug" value="DeploymentDebug"/>
+   <string id="Task.DeploymentError" value="DeploymentError"/>
+   <string id="Task.DeploymentInfo" value="DeploymentInfo"/>
+   <string id="Task.DeploymentTask" value="DeploymentTask"/>
+   <string id="Task.DeploymentWarning" value="DeploymentWarning"/>
+   <string id="TaskEvent.DeploymentTask.Start" value="AX7 Deployment: Deployment task (Start)"/>
+   <string id="TaskEvent.DeploymentTask.Stop" value="AX7 Deployment: Deployment task (Stop)"/>
+	 <string id="OpCode.Startup" value="Startup"/>
+	 <string id="OpCode.Shutdown" value="Shutdown"/>
+  </stringTable>
+ </resources>
+</localization>
+</instrumentationManifest>
+

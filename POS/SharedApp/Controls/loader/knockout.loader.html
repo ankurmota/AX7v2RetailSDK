@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout loader markup.</title>
+    <link href="knockout.loader.min.css" rel="stylesheet" />
+</head>
+<body>
+    <script type="text/html" id="loader-template">
+        <div class="loader" dir="ltr" data-bind="css: { 'loader-small': $data.isSmall }">
+            <div class="circle circle-1">
+                <div data-bind="css: $data.innerCircleClass">
+                </div>
+            </div>
+            <div class="circle circle-2">
+                <div data-bind="css: $data.innerCircleClass">
+                </div>
+            </div>
+            <div class="circle circle-3">
+                <div data-bind="css: $data.innerCircleClass">
+                </div>
+            </div>
+            <div class="circle circle-4">
+                <div data-bind="css: $data.innerCircleClass">
+                </div>
+            </div>
+            <div class="circle circle-5">
+                <div data-bind="css: $data.innerCircleClass">
+                </div>
+            </div>
+        </div>
+    </script>
+</body>
+</html>

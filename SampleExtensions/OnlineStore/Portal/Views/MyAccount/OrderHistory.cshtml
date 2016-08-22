@@ -1,0 +1,17 @@
+@using Contoso.Retail.Ecommerce.Sdk.Controls
+@using Contoso.Retail.Ecommerce.Web.Storefront.Models;
+
+@{
+    ViewBag.Title = "Order history - Contoso";
+}
+
+@section other {
+    @MvcHelperExtension.GetOrderHistoryControlHeader(10, true, "/OrderDetails")
+}
+
+<div class="msax-PageTitle">
+    <h1>@ResourceHelper.GetLocalString("OrderHistory")</h1> <!-- Order history -->
+</div>
+<p class="msax-OrderHistoryDescription">@ResourceHelper.GetLocalString("AllOrdersCanBeTrackedHere")</p>
+
+    @MvcHelperExtension.GetOrderHistoryControl()

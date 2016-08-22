@@ -1,0 +1,20 @@
+.compareProductsView .removeButton {
+    cursor: pointer;
+}
+
+@media screen and (-ms-high-contrast) {
+
+    .compareProductsView .removeButton .primaryBorderColor {
+        border-top-color: Background;
+        border-bottom-color: transparent;
+        border-left-color: Background;
+        border-right-color: transparent
+    }
+
+    body[dir=rtl] .compareProductsView .removeButton .primaryBorderColor {
+        border-top-color: Background;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-right-color: Background
+    }
+}

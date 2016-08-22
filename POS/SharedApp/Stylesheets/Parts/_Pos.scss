@@ -1,0 +1,850 @@
+﻿@import '../Common/_Constants.scss';
+@import '../Common/_Fonts.scss';
+@import '_Pos.ie.scss';
+/*
+*	FONT SIZES
+*/
+/* Note: the body base font size is what specifies what "1em" is. ("font-size: 10px" -> "1em == 10px") */
+.baseFont {
+    font-size: 10px;
+}
+
+body {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    font-size: 10px;
+}
+
+div {
+    line-height: 1em; /* counter-reset default line-height to avoid different font top/bottom spacing */
+}
+
+/*  
+*	Common block header style.
+*/
+@mixin header-block($font-size-em, $font-weight: 400) {
+    display: block;
+    padding: 0;
+    font-size: $font-size-em;
+    font-weight: $font-weight;
+    @if ($font-size-em >= 3em) {
+        line-height: 1em / $font-size-em * 4;
+    } @else if ($font-size-em >= 1.8em) {
+        line-height: 1em / $font-size-em * 3;
+    } @else {
+        line-height: 1em / $font-size-em * 2;
+    }
+    white-space: nowrap;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/*
+*	(Page title) 5 block sizes
+*/
+.h1, h1 {
+    @include header-block(4.2em, 200);
+
+    margin-top: -0.15em;
+    margin-bottom: 0.15em;
+    letter-spacing: 0.00em;
+    font-family: "Segoe UI Light";
+}
+
+/*
+*	(Section headers, Grid pivots) 3 block sizes
+*/
+.h2, h2 {
+    @include header-block(2.40em, 300);
+    margin-top: -0.33em;
+    margin-bottom: 0.33em;
+    letter-spacing: 0.02em;
+    font-family: "Segoe UI Semilight";
+}
+
+/*
+*	(Subheader, Entity title) 2 block sizes
+*/
+.h3, h3 {
+    @include header-block(1.80em);
+    margin-top: -0.5em;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.02em;
+    font-family: "Segoe UI Semilight";
+}
+
+/*
+*	(Standard page content, body text, list/row contents, secondary information) 2 block sizes
+*/
+label, .h4, h4 {
+    display: block;
+    padding: 0;
+    font-size: 1.4em; 
+    font-weight: 400;
+    line-height: 1.4289; //gives line height equal to 20.0046px
+    margin-top: -0.31em;
+    margin-bottom: 0.31em;
+    letter-spacing: 0.02em;
+    white-space: normal;
+    font-family: "Segoe UI Semilight";
+    outline: none;
+}
+
+/*
+*	Expanding grid primary font size
+*/
+.h5, h5 {
+    @include header-block(1.60em);
+    margin-top: -0.31em;
+    margin-bottom: 0.31em;
+    white-space: normal;
+    font-family: "Segoe UI";
+}
+
+/*
+*	(Section Titles, Column headers) 2 block sizes
+*/
+.h6, h6 {
+    @include header-block(1.20em);
+    margin-top: -0.51em;
+    margin-bottom: 0.51em;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-family: "Segoe UI";
+}
+
+.headerFont {
+    font-size: 2.8em;
+    line-height: calc(1em/2.8 * 3);
+    margin-top: -0.2em;
+    margin-bottom: 0.2em;
+    font-family: 'Segoe UI Light';
+    white-space: nowrap;
+    display: block;
+}
+
+/* extends .h1 - .h6 for inline font flow while retaining top and bottom margins */
+.inlineBlock {
+    display: inline-block;
+}
+
+input[placeholder]:-ms-input-placeholder {
+    font-family: "Segoe UI Semilight";
+    font-style: italic;
+}
+
+.accentBackground {
+    background-color: #00B0F0; /* default color untill theme is loaded */
+}
+
+/*
+*	ELEMENT RULES
+*/
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+label {
+    flex: 1 0 auto;
+}
+
+#contenthost {
+    height: 100%;
+    width: 100%;
+}
+
+form {
+    height: 100%;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=number],
+input[type=tel], input[type=url], input[type=search], select {
+    width: 100%;
+    height: 2.14em;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+iframe {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    padding: 0.2em 0.7em;
+    resize: none;
+}
+
+.genericDialogBackground {
+    background-color: #000000;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    opacity: 0.6;
+    z-index: 1009;
+}
+
+progress.win-ring {
+    color: #00B0F0; /* default color untill theme is loaded */
+}
+
+input {
+    line-height: 0.8em;
+    padding: 0.6em;
+    width: 100%;
+    display: block;
+}
+
+    /* overwriting styles in ui-dark.css */
+    select, input,
+    input[type=text], input[type=password], input[type=email],
+    input[type=number], input[type=tel], input[type=url],
+    input[type=search], textarea {
+        font-size: 1.4em;
+        font-weight: inherit;
+        margin: 0px;
+    }
+
+        input[type=number] {
+            text-align: right;
+        }
+
+body[dir="rtl"] input[type=number] {
+    text-align: left;
+}
+
+/* Button styles */ 
+button.primaryButton,
+button.primaryButton[type=button],
+button.primaryButton[type=submit],
+input.primaryButton[type=button],
+input.primaryButton[type=submit],
+button.secondaryButton,
+button.secondaryButton[type=button],
+button.secondaryButton[type=submit],
+input.secondaryButton[type=button],
+input.secondaryButton[type=submit] {
+    border-style: solid;
+    background-clip: padding-box;
+    margin: 0px;
+    min-height: calc(1em/1.6 * 4); 
+    min-width: calc(1em/1.6 * 9);
+    padding: calc(1em/1.6 * 0.4) calc(1em/1.6 * 1.8);
+    padding-top: calc(1em/1.6 * 0.2);
+    border-width: calc(1em/1.6 * 0.2);
+    font-size: 1.6em;
+    font-weight: normal;
+    width:auto;
+    cursor: pointer;
+    color: #fff;
+}
+
+button.primaryButton:focus,
+button.primaryButton[type=button]:focus,
+button.primaryButton[type=submit]:focus,
+input.primaryButton[type=button]:focus,
+input.primaryButton[type=submit]:focus,
+button.secondaryButton:focus,
+button.secondaryButton[type=button]:focus,
+button.secondaryButton[type=submit]:focus,
+input.secondaryButton[type=button]:focus,
+input.secondaryButton[type=submit]:focus  {
+    border-style: dotted;
+    outline: none;
+}
+
+button.primaryButton:disabled,
+button.primaryButton[type=submit]:disabled,
+button.primaryButton[type=button]:disabled,
+input.primaryButton[type=button]:disabled,
+input.primaryButton[type=submit]:disabled,
+button.primaryButton:disabled:hover,
+button.primaryButton[type=submit]:disabled:hover,
+button.primaryButton[type=button]:disabled:hover,
+input.primaryButton[type=button]:disabled:hover,
+input.primaryButton[type=submit]:disabled:hover,
+button.primaryButton:disabled:hover:active,
+button.primaryButton[type=submit]:disabled:hover:active,
+button.primaryButton[type=button]:disabled:hover:active,
+input.primaryButton[type=button]:disabled:hover:active,
+input.primaryButton[type=submit]:disabled:hover:active,
+button.secondaryButton:disabled,
+button.secondaryButton[type=submit]:disabled,
+button.secondaryButton[type=button]:disabled,
+input.secondaryButton[type=button]:disabled,
+input.secondaryButton[type=submit]:disabled,
+button.secondaryButton:disabled:hover,
+button.secondaryButton[type=submit]:disabled:hover,
+button.secondaryButton[type=button]:disabled:hover,
+input.secondaryButton[type=button]:disabled:hover,
+input.secondaryButton[type=submit]:disabled:hover,
+button.secondaryButton:disabled:hover:active,
+button.secondaryButton[type=submit]:disabled:hover:active,
+button.secondaryButton[type=button]:disabled:hover:active,
+input.secondaryButton[type=button]:disabled:hover:active,
+input.secondaryButton[type=submit]:disabled:hover:active {
+    background-color: #ccc;
+    border-color: #999;
+    color: #999;
+    cursor: default;
+}
+
+button.secondaryButton,
+button.secondaryButton[type=submit],
+button.secondaryButton[type=button],
+input.secondaryButton[type=button],
+input.secondaryButton[type=submit] {
+    background-color: #a6a6a6;
+}
+
+button.secondaryButton:hover,
+button.secondaryButton[type=submit]:hover,
+button.secondaryButton[type=button]:hover,
+input.secondaryButton[type=button]:hover,
+input.secondaryButton[type=submit]:hover {
+    background-color: #b8b8b8;
+}
+
+button.secondaryButton:hover:active,
+button.secondaryButton[type=submit]:hover:active,
+button.secondaryButton[type=button]:hover:active,
+input.secondaryButton[type=button]:hover:active,
+input.secondaryButton[type=submit]:hover:active {
+    background-color: #858585;
+}
+
+/* High contrast mode */
+@media screen and (-ms-high-contrast) {
+   
+    button.primaryButton,
+    button.primaryButton[type=submit],
+    button.primaryButton[type=button],
+    input.primaryButton[type=button],
+    input.primaryButton[type=submit] {
+        background-color: Highlight;     /* Set primary button to have system selected color as background */
+        color: HighlightText;
+    }
+
+    button.primaryButton:disabled,
+    button.primaryButton[type=submit]:disabled,
+    button.primaryButton[type=button]:disabled,
+    input.primaryButton[type=button]:disabled,
+    input.primaryButton[type=submit]:disabled,
+    button.primaryButton:disabled:hover,
+    button.primaryButton[type=submit]:disabled:hover,
+    button.primaryButton[type=button]:disabled:hover,
+    input.primaryButton[type=button]:disabled:hover,
+    input.primaryButton[type=submit]:disabled:hover,
+    button.primaryButton:disabled:hover:active,
+    button.primaryButton[type=submit]:disabled:hover:active,
+    button.primaryButton[type=button]:disabled:hover:active,
+    input.primaryButton[type=button]:disabled:hover:active,
+    input.primaryButton[type=submit]:disabled:hover:active,
+    button.secondaryButton:disabled,
+    button.secondaryButton[type=submit]:disabled,
+    button.secondaryButton[type=button]:disabled,
+    input.secondaryButton[type=button]:disabled,
+    input.secondaryButton[type=submit]:disabled,
+    button.secondaryButton:disabled:hover,
+    button.secondaryButton[type=submit]:disabled:hover,
+    button.secondaryButton[type=button]:disabled:hover,
+    input.secondaryButton[type=button]:disabled:hover,
+    input.secondaryButton[type=submit]:disabled:hover,
+    button.secondaryButton:disabled:hover:active,
+    button.secondaryButton[type=submit]:disabled:hover:active,
+    button.secondaryButton[type=button]:disabled:hover:active,
+    input.secondaryButton[type=button]:disabled:hover:active,
+    input.secondaryButton[type=submit]:disabled:hover:active {
+        background-color: transparent;
+        border-color: GrayText; /* System disabled text color */
+        color: GrayText;
+    }
+
+    button.primaryButton:hover,
+    button.primaryButton[type=submit]:hover,
+    button.primaryButton[type=button]:hover,
+    input.primaryButton[type=button]:hover,
+    input.primaryButton[type=submit]:hover,
+    button.secondaryButton:hover,
+    button.secondaryButton[type=submit]:hover,
+    button.secondaryButton[type=button]:hover,
+    input.secondaryButton[type=button]:hover,
+    input.secondaryButton[type=submit]:hover {
+        color: HighlightText;
+    }
+}
+
+
+/* Background for button from ui-dark.css */
+button[type=submit], input[type=submit] {
+    background-color: transparent;
+}
+
+    button[type=submit]:hover, input[type=submit]:hover {
+        background-color: #008A00;
+    }
+
+/* Developer mode styles. */
+#mposGridlines {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    display: none;
+}
+
+#mposGridlines, #mposGridlinesContainer .row {
+    background-color: transparent !important;
+}
+
+/* selectable lables */
+.selectable {
+    cursor: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+/* dynamically injected grid cells */
+#mposGridCoords {
+    background-color: rgba(10, 11, 12, 0.85) !important;
+    color: red;
+    position: absolute;
+    cursor: pointer;
+    z-index: 9000;
+}
+
+.ellipsis {
+    text-overflow: ellipsis;    
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.buttonEllipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    width: auto;
+    max-width: 100%;
+    text-overflow: ellipsis;
+}
+
+.wrapText {
+    white-space: normal;
+    word-wrap: break-word;
+    -ms-hyphens: auto;
+}
+
+.wrapTextWithoutHyphen {
+    white-space: normal;
+    word-wrap: break-word;
+    -ms-hyphens: none;
+}
+
+.inlineBlock {
+    display: inline-block;
+}
+
+.verticalAlignTop {
+    vertical-align: top;
+}
+
+.opacity4 {
+    opacity: .4;
+}
+
+/**
+  * Date picker stylings
+  */
+div.win-datepicker {
+    min-width: 46em;
+    max-width: 68em;
+}
+
+/**
+  * Toggle stylings
+  */
+/* All size calculations need to be adjusted for the 1.4 em setting for input set in pos.css */
+
+.win-toggleswitch .win-label {
+    padding-right: 7.8em;
+}
+
+.win-toggleswitch .win-toggleswitch-value {
+  font-size: 1.4em;
+}
+
+body[dir=rtl] .win-toggleswitch .win-label {
+    padding-left: 7.8em;
+    padding-right: 0em;
+}
+
+/* overwrite for ui-*.css that subtracts 20px 
+    from the width of the appbar in portrait mode */
+.win-reduced.win-commandlayout {
+    width: 100%;
+}
+
+/* Narrow buttons and no labels */  
+.win-reduced button.win-command .win-label {
+    display: block;
+}
+
+.win-appbarclickeater, .win-flyoutmenuclickeater {
+    outline: none;
+}
+
+.noWinLabel .win-label {
+    width: 0;
+    display: none;
+}
+
+.win-toggleswitch .win-switch {
+    height: calc(1em/1.4 * 3); /* 2 em plus 1 em for the padding */
+    width: calc(1em/1.4 * 6); /* 5 em plus 1 em for the padding */
+    padding: calc(1em/1.4 * .5); /* matches the padding as in ui-dark.css */
+}
+
+    .win-toggleswitch .win-switch::-ms-track {
+        height: calc(1em/1.4 * 1.6);
+        width: calc(1em/1.4 * 4.6);
+        border-width: calc(1em/1.4 * .2);
+    }
+
+    .win-toggleswitch .win-switch::-ms-fill-lower,
+    .win-toggleswitch .win-switch::-ms-fill-upper {
+        height: calc(1em/1.4 * 1.4);
+        padding: 0;
+    }
+
+    .win-toggleswitch .win-switch::-ms-thumb {
+        height: calc(1em/1.4 * 2);
+        width: calc(1em/1.4 * 1.2);
+    }
+
+    .win-toggleswitch .win-switch::-ms-fill-lower {
+        margin-left: calc(1em/1.4 * .1);
+    }
+
+    .win-toggleswitch .win-switch:-ms-lang(ar, dv, fa, he, ku-Arab, pa-Arab, prs, ps, sd-Arab, syr, ug, ur, qps-plocm)::-ms-fill-lower {
+        margin-right: calc(1em/1.4 * .1);
+    }
+
+    .win-toggleswitch .win-switch::-ms-fill-upper {
+        margin-right: calc(1em/1.4 * .1);
+    }
+
+    .win-toggleswitch .win-switch:-ms-lang(ar, dv, fa, he, ku-Arab, pa-Arab, prs, ps, sd-Arab, syr, ug, ur, qps-plocm)::-ms-fill-upper {
+        margin-left: calc(1em/1.4 * .1);
+    }
+
+/*
+ * Item picker list view styles.
+ */
+.itemPicker.win-listview {
+    height: auto;
+    overflow: auto;
+}
+        .itemPicker.win-listview .win-container,
+        .itemPicker.win-listview .win-itemscontainer,
+        .itemPicker.win-listview .win-itemsblock,
+        .itemPicker.win-listview .win-itembox {
+            margin: 0px;
+            padding: 0px;
+            background-color: #fff;
+        }
+
+
+        .itemPicker.win-rtl.win-listview > .win-vertical .win-container {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        /* Overwrite the color set for h4 in ui-dark and ui-light */
+        .itemPicker.win-listview h4 {
+            color: #000000;
+        }
+
+        .itemPicker .win-viewport.win-vertical {
+            overflow-y: hidden !important;
+        }
+
+        .itemPicker.win-listview .win-focused h4 {
+            color: #FFFFFF;
+        }
+
+        .itemPicker.win-listview .win-listlayout.win-surface {
+            margin: 0px;
+        }
+
+        .itemPicker.win-listview .win-focusedoutline {
+            outline: none;
+        }
+
+        .itemPicker.win-listview .win-itembox:not(.win-focused) .win-item:hover {
+            background-color: #F0F0F0;
+        }
+
+        .itemPicker.win-listview .win-vertical .win-itemscontainer, 
+        .itemPicker.win-listview .win-vertical .win-itemsblock:not(.win-clip){
+            margin: 0px;
+            padding: 0px;
+        }
+
+
+/* OVERLAYS */
+.overLayZIndex {
+    z-index: 10;
+}
+
+.borderBottom0 {
+    border-bottom: 0;
+}
+
+
+/* High contrast mode */
+@media screen and (-ms-high-contrast) {
+    .highContrastBorder {
+        border-style: solid;
+    }
+
+    .highContrastBorderThin {
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    .highContrastRowLine {
+        border-bottom-style: dashed;
+        border-bottom-width: 1px;
+    }
+
+    .itemPicker.win-listview .win-focused {
+        background-color: Highlight;
+        color: HighlightText;
+    }
+
+    .itemPicker.win-listview .win-itembox:not(.win-focused) .win-item:hover {
+        background-color: Highlight;
+        color: HighlightText;
+    }
+
+    option:hover {
+        background-color: Highlight;
+        color: HighlightText;
+    }
+}
+
+/* Overwrites the 28px left and right margin set in the rule .win-commandicon in ui-dark.css */
+.win-appbar button.win-command .win-commandicon {
+    margin: 0 2.8em;
+}
+
+/* Sets the button label placement to match the appbar button icon margin */
+.win-appbar button.win-command .win-label {
+    margin: 0 2.8em;
+}
+
+/*Z index for lower app bar*/
+.win-appbar {
+    z-index: 1008;
+}
+
+.win-settingsflyout {
+    z-index: 1008;
+}
+
+/**
+    Navigation bar extension background color for light theme
+  */
+.navBarColor {
+    background-color: #00B0F0;
+}
+
+.bubble-close {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #131415;
+    text-align: center;
+    cursor: pointer;
+    z-index: 2;
+        
+}
+
+.bubble-close::after {
+    font-family: DynamicsFont;
+    line-height: 48px;
+    content: '\E10A';
+    color: #FFFFFF;
+    font-size: 30px;
+}
+
+.bubble-close-shadow {
+    height: 56px;
+    width: 56px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-top: -4px;
+    position: absolute;
+    margin-left: -4px;
+    border-radius: 50%;
+    z-index: 1;
+    
+}
+
+.navBarExtensionBackGround {
+    color: #ffffff !important;
+    border-color: #ffffff;
+}
+
+.refinerMultiSelectBorderColor {
+    border-color: #000000;
+}
+
+/**
+    Accent background needs to applied to Slider Control from Jquery UI
+  */
+.ui-widget-header{
+    background-color: #00B0F0;
+}
+
+.win-menu button.win-command:hover{
+    background-color: ButtonFace !important;
+}
+
+.win-menu button.win-command{
+    background-color: transparent !important;
+}
+
+.win-menu button.win-command:hover{
+    background-color: ButtonFace !important;
+}
+
+
+.win-menu button.win-command{
+    background-color: transparent !important;
+}
+
+.standardGrid.countingGrid .win-container:not(.win-selected) .accentBorder {
+    border: none
+}
+
+/*
+    App bar has min-height 88px, disign requires 90px.
+    Cannot use em, base font different on one of the parent elements.
+*/
+.win-commandlayout.win-appbar-shown {
+    min-height: $app-bar-height;
+}
+
+/*
+    Fix for two column layout with numpad on the right. Stock count, Picking and receiving, bank and safe drop. 
+    gridSection and numpadSection are only for this fix. 
+*/
+.pickingAndReceivingDetailsView section.row,
+.stockCountDetailsView section.row,
+.tenderCountingView section.row {
+    height: calc(100% - 14em); /* Height of the screen - height of the header */
+}
+
+.fragment .gridSection {
+    flex: 1 1 200px !important;
+}
+
+    .fragment .gridSection .win-listview {
+        overflow-y: auto;
+        height: calc(100% - 15em); /* Height of the grid - height of the header and footer */
+    }
+
+.fragment .numpadSection {
+    flex: 0 0 auto !important;
+}
+
+.win-appbar button[type=submit] {
+    background-color: transparent;
+}
+
+body[dir=rtl] .win-selectioncheckmark,
+body[dir=rtl] .win-selectioncheckmarkbackground {
+    left: 0;
+    right: auto;
+}
+
+.printReceiptDialog .win-toggleswitch .win-toggleswitch-header {
+    width: 12em !important;
+}
+
+.search-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    .clear-mark {
+      cursor: pointer;
+      font-family: DynamicsFont;
+      top: calc(50% - 0.5em);
+      position: absolute;
+    }
+
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration 
+    {
+        display: none; 
+    }
+}
+
+input[type=search]::-ms-clear, 
+input[type=search]::-ms-reveal {
+  display: none;
+}
+
+body[dir="ltr"] .clear-mark {
+  right: 0.5em;
+}
+
+body[dir="rtl"] .clear-mark {
+  left: 0.5em;
+}
+
+/*
+    Style for input-button combination.
+    This is used for non-theme or activation pages only.
+*/
+div {
+    input.nothemeInputButton.noBorder:focus,
+    input.nothemeInputButton.noBorder:not(:focus),
+    input.nothemeInputButton.noBorder:disabled,
+    input.nothemeInputButton.noBorder:hover,
+    button.nothemeInputButton.noBorder:focus,
+    button.nothemeInputButton.noBorder:not(:focus),
+    button.nothemeInputButton.noBorder:disabled,
+    button.nothemeInputButton.noBorder:hover {
+        color: #000000;
+        background-color: #FFFFFF;
+    }
+}
+
+div.nothemeInputButton {
+    border: 2px solid;
+    background-color: #FFFFFF;
+}

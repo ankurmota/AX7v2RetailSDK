@@ -1,0 +1,48 @@
+@using Contoso.Retail.Ecommerce.Sdk.Controls
+@using Contoso.Retail.Ecommerce.Web.Storefront.Models;
+
+@{
+    ViewBag.Title = "My account - Contoso";
+}
+
+@section other {
+    @MvcHelperExtension.GetOrderHistoryControlHeader(6, false, "/OrderDetails")
+    @MvcHelperExtension.GetCustomerAddressControlHeader()
+}
+
+<div class="msax-MyAccount msax-MarginTop30 msax-OrderHistory msax-PaddingRight20 container">
+
+    <div class="msax-PageTitle">
+        <h1>@ResourceHelper.GetLocalString("MyAccount")</h1> <!-- My account -->
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="msax-PageSubTitle msax-FloatLeft">
+                <h1>@ResourceHelper.GetLocalString("RecentOrders")</h1> <!-- Recent orders -->
+                <a class="msax-Link msax-FloatRight msax-PaddingBottom20 msax-Button msax-OrderHistoryLink" href="/MyAccount/OrderHistory">
+                    <span class="msax-ButtonText">@ResourceHelper.GetLocalString("ViewAllOrders")</span>
+                </a>
+            </div>
+            
+            <p class="msax-RecentOrdersDescription">The last six orders are shown below. For a full list click on View all orders.</p>
+
+            @MvcHelperExtension.GetOrderHistoryControl()
+        </div>
+        <div class="col-sm-6">
+            <div class="msax-PageSubTitle msax-FloatLeft">
+                <h1>@ResourceHelper.GetLocalString("AddressBook")</h1> <!-- Address book -->
+            </div>
+            @MvcHelperExtension.GetCustomerAddressControl()
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="msax-PageSubTitle msax-FloatLeft">
+       <h1><a href="/MyAccount/UnlinkAccount">Click here</a> to unlink your account.</h1>
+    </div>
+</div>

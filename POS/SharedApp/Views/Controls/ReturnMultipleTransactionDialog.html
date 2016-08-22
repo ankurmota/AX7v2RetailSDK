@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ReturnMultipleTransactionDialog</title>
+
+    <!-- WinJS references -->
+    <link href="ReturnMultipleTransactionDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'ReturnMultipleTransactionDialog'">
+        <div data-bind="dialog:
+            {
+                title: Commerce.ViewModelAdapter.getResourceString('string_1221'),   // More than one transaction exists for this receipt number
+                message: Commerce.ViewModelAdapter.getResourceString('string_1222'), // Select the store and register shown on the receipt
+                visible: visible,
+                buttonClick: returnMultipleTransactionDialogButtonClick,
+                buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_75'), disable: _isOKButtonDisabled, operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, cssClass: 'okButton' },
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }]
+            }">
+
+            <!-- dialog content -->
+            <div class="content">
+                <div class="width40">
+                    <label data-bind="resx: {textContent: 'string_1223'}" for="multipleTransactionStoreNames">Store name</label>
+                    <select id="multipleTransactionStoreNames" data-bind="
+                            hasfocus: _multipleTransactionStoreNameFocus,
+                            options: _multipleTransactionStoreNames,
+                            optionsText: 'storeName',
+                            optionsValue: 'registers',
+                            value: _multipleTransactionStore,
+                            optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1240')"> // Store name
+                    </select>
+                </div>
+                <div class="width40 marginTop2">
+                    <label data-bind="resx: {textContent: 'string_1224'}" for="multipleTransactionRegisterNumbers">Register number</label>
+                    <select id="multipleTransactionRegisterNumbers" data-bind="
+                            hasfocus: _multipleTransactionRegisterNumberFocus,
+                            disable: _multipleTransactionRegisterNumberDisabled,
+                            options: _multipleTransactionRegisterNumbers,
+                            optionsText: 'terminalId',
+                            optionsValue: 'salesOrder',
+                            value: _multipleTransactionRegister,
+                            optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1241')"> // Register number
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

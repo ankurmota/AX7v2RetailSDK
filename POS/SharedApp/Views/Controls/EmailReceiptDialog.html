@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>EmailReceiptDialog</title>
+</head>
+<body>
+    <div data-bind="customControlInternal: 'EmailReceiptDialog'">
+        <div data-bind="
+            dialog: {
+                title: _dialogTitle,
+                message: _dialoDescription,
+                visible: visible,
+                buttonClick: buttonClickHandler,
+                closeOnEscButton:true,
+                buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_1804'), disable: _okButtonDisabled, operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, cssClass: 'okButton' },
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_1805'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }]
+                }">
+            <div class="row">
+                <div class="shrink marginRight4">
+                    <div class="dialogIcon center accentBackground">
+                        <div class="dialogEmailIcon"></div>
+                    </div>
+                </div>
+                <div class="width33">
+                    <div>
+                        <label for="emailInput" data-bind="resx: { textContent: 'string_1802' }">Email address</label>
+                        <input id="emailInput" type="email" data-bind="
+                                validator: {
+                                    field: '_emailAddress',
+                                    validatorField: 'Email',
+                                    validatorType: 'AddressValidator'
+                                }
+                                " />
+                    </div>
+                    <div class="padTop1 row" data-bind="visible: _shouldPromptToSaveEmail">
+                        <input id="saveEmailCheckbox" type="checkbox" data-bind="checked: _shouldSaveEmail" />
+                        <div class="padTop05">
+                            <label for="saveEmailCheckbox" data-bind="resx: { textContent: 'string_1803' }">Save changes for the customer</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

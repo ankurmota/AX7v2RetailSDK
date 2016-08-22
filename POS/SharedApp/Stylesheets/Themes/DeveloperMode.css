@@ -1,0 +1,13 @@
+.col {
+    background-color: rgba(255, 50, 0, 0.3);
+}
+.row {
+    background-color: rgba(0, 50, 255, 0.3);
+}
+.gutter4x4, .gutter2x2 {
+    background-color: rgba(255, 255, 0, 0.3);
+}
+
+.center > div {
+    background-color: rgba(255, 0, 255, 0.3);
+}

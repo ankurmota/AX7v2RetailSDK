@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Common Header</title>
+    <link href="CommonHeader.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div data-bind="loader: { visible: commonHeaderData.indeterminateWaitVisible }"></div>
+
+    <div class="row commonHeader" data-bind="setElementRef: commonHeaderData.controlElement">
+        <script id="categoryListTemplate" type="text/html">
+            <div class="pad0 marginTop0" data-bind="foreach: $data.values ">
+                <div>
+                    <button type="button" class="noBorder pad0 textLeft baseFont navBarExtensionBackGround" data-bind="click: $parent.onClick">
+                        <div class="maxWidth22">
+                            <h4 class="nowrap margin0 ellipsis primaryFontColor" data-bind="text: Commerce.Formatters.CategoryNameTranslator(value)"></h4>
+                        </div>
+                    </button>
+                    <div class="padLeft2" data-bind="template: {name:'categoryListTemplate', data:{values: children, onClick: $parent.onClick}}"></div>
+                </div>      
+            </div>
+        </script>
+
+        <nav class="row" data-bind="visible: commonHeaderData.navigationBarVisible, css: { navBarColor: commonHeaderData.viewNavigationBar, navZindex: !commonHeaderData.viewNavigationBar(), sideBorder: commonHeaderData.viewNavigationBar() }">
+            <div class="col width8">
+                <div class="no-shrink">
+                    <div class="height6 minWidth8">
+                        <button data-ax-bubble="nav_expand" class="iconNavExpand navButtons navBarButtonColor accentBackground noBorder" type="button" data-bind="visible: commonHeaderData.expandButtonVisible, click: commonHeaderData.showHideNavigationBar, resx: { ariaLabel: 'string_48' }"></button> <!-- Show or hide navigation bar -->
+                    </div>
+                    <div class="height6 minWidth8 center padBottom1">
+                        <button class="iconNavBack navBarButtonColor accentBackground" type="button" data-bind="visible: commonHeaderData.backButtonVisible, enable: commonHeaderData.backButtonVisible, resx: { ariaLabel: 'string_49' }"></button>     <!-- Back -->
+                    </div>
+                </div>
+                <div id="lowerNavBar" class="col" data-bind="visible: commonHeaderData.navigationActionsVisible">
+                    <div class="navBarBreakline height2 minWidth8"></div>
+                    <div class="no-shrink">
+                        <div class="maxHeight6 minWidth8">
+                            <button data-ax-bubble="nav_gohome" class="iconNavHome navButtons navBarButtonColor accentBackground noBorder" type="button" data-bind="click: commonHeaderData.navigateHome, resx: { ariaLabel: 'string_21' }"></button> <!-- Home -->
+                        </div>
+                    </div>
+                    <div class="navBarBreakline height2 minWidth8"></div>
+                    <div class="no-shrink">
+                        <div class="maxHeight6 minWidth8">
+                            <button data-ax-bubble="nav_search" class="iconNavSearch navButtons navBarButtonColor accentBackground noBorder" type="button"
+                                    data-bind="click: commonHeaderData.navSearch, css: { navBarExtensionBackGround: commonHeaderData.navBarSearch, navBarExtensionBackGroundButton: commonHeaderData.navBarSearch},
+                                                    navBarKeyboardSupport: { handler: commonHeaderData.navSearch, keyValues: [39] },
+                                                    resx: { ariaLabel: 'string_50' }"></button> <!-- Search -->
+                        </div>
+                        <div class="maxHeight6 minWidth8">
+                            <button data-ax-bubble="nav_catalog" class="iconNavCatalog navButtons navBarButtonColor accentBackground noBorder" type="button" data-bind="click: commonHeaderData.navigateToCatagoriesView, resx: { ariaLabel: 'string_920' }"></button> <!-- Categories -->
+                        </div>
+                        <div class="maxHeight6 minWidth8">
+                            <button data-ax-bubble="nav_category" class="iconNavCategory navButtons navBarButtonColor accentBackground noBorder" type="button" data-bind="click: commonHeaderData.navCategories,
+                                                                                                                            css: { navBarExtensionBackGround: $root.commonHeaderData.navBarCategories, navBarExtensionBackGroundButton: $root.commonHeaderData.navBarCategories},
+                                                                                                                            navBarKeyboardSupport: { handler: commonHeaderData.navCategories, keyValues: [39] },
+                                                                                                                            resx: { ariaLabel: 'string_47' } "></button> <!-- Category tree -->
+                        </div>
+                        <div class="maxHeight6 minWidth8" data-bind="enable:commonHeaderData.enableFilterButton">
+                            <button data-ax-bubble="nav_filter" class="iconNavFilter navButtons navBarButtonColor accentBackground noBorder" type="button" data-bind="click: commonHeaderData.navFilter, enable: commonHeaderData.enableFilterButton,
+                                                                                                                            navBarKeyboardSupport: { handler: commonHeaderData.navFilter, keyValues: [39] },
+                                                                                                                            resx: { ariaLabel: 'string_4104' },
+                                                                                                                            css: { 
+                                                                                                                                     navBarExtensionBackGround: commonHeaderData.navBarFilter, 
+                                                                                                                                     navBarExtensionBackGroundButton: commonHeaderData.navBarFilter
+                                                                                                                                 }"></button> <!-- Filters -->
+                        </div>
+                    </div>
+                    <div class="navBarBreakline height2 minWidth8"></div>
+                    <div class="no-shrink">
+                        <div class="maxHeight6 minWidth8" >
+                            <button data-ax-bubble="nav_transaction" class="iconNavMiniCart navButtons navBarButtonColor accentBackground noBorder" type="button" data-bind="click: commonHeaderData.navigateToCart, resx: { ariaLabel: 'string_23' } "></button> <!-- Sale -->
+                        </div>
+                        <div class="maxHeight6 minWidth8 center" data-bind="click: commonHeaderData.navMiniCart, toggleClass: commonHeaderData.viewCartLineCount, bindingOptions: { className:'miniCartBackground',updateCount: commonHeaderData.updateMiniCartCount}">
+                            <button data-ax-bubble="nav_count" aria-label="Mini cart" type="button" class="navButtons navBarButtonColor accentBackground noBorder" data-bind="text: commonHeaderData.currentCartItemCount, css: { navBarExtensionBackGround: commonHeaderData.navBarMiniCart, navBarExtensionBackGroundButton: commonHeaderData.navBarMiniCart}, navBarKeyboardSupport: { handler:commonHeaderData.navMiniCart, keyValues: [39]}"></button>
+                        </div>
+                    </div>
+                    <div class="no-shrink marginTop2" data-bind="visible: Commerce.UI.Tutorial.isBubbleTourInProgress">
+                        <div class="maxHeight6 minWidth8 center">
+                            <div data-ax-bubble="nav_stopTour" data-bind="click: Commerce.UI.Tutorial.stopBubbleTour" class="bubble-close">
+                                <div class="bubble-close-shadow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navBarExtensionBackGround navBarFullHeight navBarExtensionPosition col padLeft2 padRight2 width32" data-bind="showHideWithFocus: commonHeaderData.viewNavigationBarExtension, navBarKeyboardSupport: { handler:commonHeaderData.offScreenClickHandler, keyValues: [27,37]} ">
+                <div data-bind="fadeVisible: commonHeaderData.navBarSearch, bindingOptions: { fadeIn: 1000, fadeOut: 10 }, setfocusElement: '.focusInput'">
+                    <div class="padTop2 height6">
+                        <h2 data-bind="resx: { textContent: 'string_1604' }"></h2> <!-- Search -->
+                    </div>
+                    <div class="height6">
+                        <form class="searchBoxColor row noBorder">
+                            <input id="searchText" class="focusInput searchBoxColor noBorder noPad margin0 ratio minHeight2 " type="search" autocomplete="off" name="mposSearchText" 
+                                   data-bind="enterKeyPress: commonHeaderData.navBarSearchHandler, 
+                                        validator: commonHeaderData.searchValidator, 
+                                        value: commonHeaderData.navBarSearchText, 
+                                        valueUpdate: 'afterkeydown', 
+                                        clearMark: true, 
+                                        resx: { ariaLabel: 'string_1604' }" />    <!-- Search -->
+                            <button class="searchButton iconSearch noBorder margin0" type="submit" data-bind="invokeValidate: commonHeaderData.navBarSearchHandler, resx: { ariaLabel: 'string_50' }"></button>    <!-- Search -->
+                        </form>
+                    </div>
+                    <div class="navBarBreakline height2"></div>
+                </div>
+                <div class="col navBarFullHeight " data-bind="fadeVisible: commonHeaderData.navBarCategories, bindingOptions: { fadeIn: 1000, fadeOut: 10 }">
+                    <div class="height6 padTop2">
+                        <h2 data-bind="text: commonHeaderData.catalogName"></h2>
+                    </div>
+                    <div class="row height6 center padBottom1" data-bind="buttonBlock: {  buttonClass: 'iconChangeCatalog'
+                                                      , labelTextResx: 'string_34' // Change catalog
+                                                      , click: commonHeaderData.navigateToCatalogsView
+                                                     }">
+                    </div>
+
+                    <div class="navBarBreakline height2"></div>
+                    <div class="scrollY col" data-bind="css: { marginBottom11: Commerce.isAppBarVisible() }">
+                        <div class="pad0 padRight2 padBottom10 marginTop0" data-bind="template: { name: 'categoryListTemplate', data: {values: commonHeaderData.categoryTree, onClick: commonHeaderData.navigateToProductsView}  }"></div>
+                    </div>
+
+                </div>
+                <div class="col navBarFullHeight " data-bind="fadeVisible: commonHeaderData.navBarFilter, bindingOptions: { fadeIn: 1000, fadeOut: 10 }">
+                    <div id="refinerControl" class="col grow refinerControl" data-bind="userControl: {
+                        uri: 'views/Controls/RefinerControl.html',
+                        options: { controlHandle: '_productRefinerControl', resetProductRefinersHandler: commonHeaderData.resetProductRefinersHandler, applyRefinerHandler: commonHeaderData.applyClearRefiner, getRefinersHandler: commonHeaderData.getRefinersHandler, getRefinerValuesHandler: commonHeaderData.getRefinerValuesHandler }}">
+                    </div>
+                </div>
+                <div class="col navBarFullHeight" data-bind="fadeVisible: commonHeaderData.navBarMiniCart, bindingOptions: { fadeIn: 1000, fadeOut: 10 }">
+                    <div class="padTop2 height6">
+                        <h2 data-bind="text: commonHeaderData.miniCartItemCount"></h2>
+                    </div>
+
+                    <div class="height6 padTop1" data-bind="with : commonHeaderData.miniCart">
+                        <h1 class="textRight" data-bind="formatPrice: TotalAmount"></h1>
+                    </div>
+                    <div class="navBarBreakline height2"></div>
+                    <div class="scrollY col" data-bind="with : commonHeaderData.miniCart">
+                        <div class="padBottom10" data-bind="foreach: { data: CartLines, as: 'miniCartLine' }">
+                            <!-- ko ifnot: miniCartLine.IsVoided -->
+                            <div class="width28 height7 row marginBottom1">
+                                <div class="width7 height7 col">
+                                    <div class="width7 height4">
+                                        <img class="width7 height7" src="#" data-bind="attr: { src: Commerce.Controls.CommonHeaderData.getProductPrimaryImageUri(miniCartLine.ProductId) }, setImageOnError: Commerce.DefaultImages.ProductSmall" />
+                                    </div>
+                                    <div class="width7 height3 overLayZIndex primaryBackgroundColor padTop1 padLeft1">
+                                        <h4 class="ellipsis" data-bind="text: miniCartLine.Quantity"></h4>
+                                    </div>
+                                </div>
+                                <div class="padLeft1 width21 padRight1 padTop1">
+                                    <h4 class="ellipsis" data-bind="textConverter: { data: miniCartLine, field: '$data', converter: 'Commerce.Core.Converter.ProductNameFormatter' }"></h4>
+                                    <h4 class="ellipsis" data-bind="text: miniCartLine.ItemId"></h4>
+                                    <h4 class="secondaryFontColor ellipsis " data-bind="textConverter: { data: miniCartLine, field: '$data', converter: 'Commerce.Formatters.VariantNameFormatter' }"></h4>
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <div class="height5"></div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="navBarClickHandler" data-bind="visible: commonHeaderData.viewNavigationBarExtension, event: { mousedown: commonHeaderData.offScreenClickHandler, keypress: commonHeaderData.offScreenClickHandler}"></div>
+
+        <header data-bind="visible: commonHeaderData.viewHeader">
+            <div class="minHeight6 row padRight6">
+                <div class="padTop3 ratio8 row shrink">
+                    <div class="marginRight1 shrink"><h6 data-bind="text: commonHeaderData.sectionTitle">Section Title</h6></div>
+                    <a class="h6" href="#" data-bind="visible: commonHeaderData.viewSectionInfo, text: commonHeaderData.sectionInfo, click: commonHeaderData.navigateLink">Hub Information</a>
+                </div>
+            </div>
+            <div class="minHeight6 padTop1" data-bind="visible: commonHeaderData.viewCategoryName">
+                <h1 data-bind="text: commonHeaderData.categoryName">Category Name</h1>
+            </div>
+            <div class="row" data-bind="visible: commonHeaderData.viewSearchBox">
+                <form class="searchBoxColor row height5 width50" data-bind="submit: commonHeaderData.searchClick">
+                    <input class="searchBoxColor noBorder marginTop0 marginBottom0 noPad margin0 iconBig minHeight2" type="search" autocomplete="off" name="mposSearchText" id="searchText" data-bind="
+                            hasfocus: true,
+                            validator: commonHeaderData.searchValidator,
+                            valueUpdate: 'afterkeydown',
+                            value: commonHeaderData.searchText,
+                            clearMark: true,
+                            resx: { ariaLabel: 'string_50' }" />  <!-- Search -->
+                    <button class="searchButton iconSearch noBorder margin0 iconBig" type="submit" data-bind="resx: { ariaLabel: 'string_50' }"></button> <!-- Search -->
+                </form>
+                <div class="row minHeight5 width25 marginLeft2 marginRight2 searchBoxColor" data-bind="visible: commonHeaderData.enableSearchLocationMenu">
+                    <select class="noBorder marginTop0 marginBottom0 noPad margin0 iconBig minHeight2 searchLocationMenu" data-bind="
+                            foreach: commonHeaderData.searchLocations,
+                            value: commonHeaderData.selectedSearchLocation
+                            ">
+                            <option class="blackText" data-bind="
+                                    text: $data.name,
+                                    value: $data.value
+                                    ">
+                            </option>
+                    </select>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="row right1 top0">
+        <div class="row height4">
+            <div class="row" data-bind="if: commonHeaderData.isUserLoggedOn">
+                <div id="userInfoText" tabindex="0" class="padRight05 padTop05 outlineFocus" data-bind="click: commonHeaderData.showUserMenu.bind(commonHeaderData), enterKeyPress: commonHeaderData.showUserMenu.bind(commonHeaderData)">
+                    <h4 class="textRight" data-bind="text: Commerce.Session.instance.userName()"></h4>
+                    <h4 class="textRight secondaryFontColor" data-bind="visible: commonHeaderData.userAditionalInformationVisible, text: Commerce.Session.instance.shiftId() + ' - ' + Commerce.Session.instance.shiftTerminalId()">Additional information</h4>
+                </div>
+                <div id="userInfo" tabindex="0" class="width4 outlineFocus" role="button" data-bind="click: commonHeaderData.showUserMenu.bind(commonHeaderData), enterKeyPress: commonHeaderData.showUserMenu.bind(commonHeaderData), setElementRef: commonHeaderData.userInfoMenuAnchor, resx: { ariaLabel: 'string_514' }"> <!-- User image -->
+                    <img data-ax-bubble="nav_user" data-bind="attr: { src: Commerce.Session.instance.picture() }, setImageOnError: Commerce.DefaultImages.DefaultUser" class="height4 width4" src="#" />
+                </div>
+                <div id="connectionInfo" class="width4 centerY">
+                    <button class="iconSyncBig noBorder margin0" type="button" data-bind="
+                        click: commonHeaderData.showConnectionInfo.bind(commonHeaderData), 
+                        setElementRef: commonHeaderData.connectionInfoMenuAnchor, 
+                        visible: commonHeaderData.connectivityButtonVisible, 
+                        css: {iconSyncButtonDisconnectedLight: commonHeaderData.connectionStatusIsDisconnected}, 
+                        resx: { ariaLabel: 'string_6618' }"></button> <!-- Sync -->
+                </div>
+            </div>
+            <div class="width4 centerY">
+                <button data-ax-bubble="nav_settings" class="button iconSettingsBig noBorder margin0" type="button" 
+                        data-bind="visible: commonHeaderData.settingsButtonVisible, 
+                            click: commonHeaderData.navigateToSettings.bind(commonHeaderData),
+                            resx: { ariaLabel: 'string_7400' }"></button> <!-- Settings -->
+            </div>
+        </div>
+    </div>
+    <div id="UserInformationViewMenu" class="commonflyout" data-win-control="WinJS.UI.Menu" data-bind="hidden: commonHeaderData.menuVisible, setElementRef: commonHeaderData.userInfoMenu">
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{ id:'lockRegister', label: 'Lock register' }" data-bind="resx: { label: 'string_3900'}, click: commonHeaderData.lockRegister, visible: commonHeaderData.lockRegisterMenuItemVisible">Lock register</button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-win-options="{ id:'logOff', label: 'Log off' }" data-bind="resx: { label: 'string_3901'}, click: commonHeaderData.logOff.bind(commonHeaderData)">Log off</button>
+    </div>
+    <div id="ConnectionInformationView" class="pad1 width30 commonflyout baseFont" data-win-control="WinJS.UI.Flyout" data-bind="setElementRef: commonHeaderData.connectionInfoMenu">
+        <div class="padTop1 row">
+            <div class="padTop05 width3 height3 centerY">
+                <div class="iconSyncBig" data-bind="css: {iconSyncButtonDisconnectedDark: commonHeaderData.connectionStatusIsDisconnected}"></div>
+            </div>
+            <div class="shrink padLeft1">
+                <h3 data-bind="text: Commerce.Session.instance.connectionStatusAsString"></h3>
+            </div>
+        </div>
+        <div class="pad1">
+            <div data-bind="visible: Commerce.StringExtensions.isNullOrWhitespace(Commerce.Config.onlineDatabase)">
+                <label data-bind="resx: { textContent: 'string_6604' }">Retail server</label>
+                <h4 data-bind="text: Commerce.Config.retailServerUrl" />
+            </div>
+            <div data-bind="visible: !Commerce.StringExtensions.isNullOrWhitespace(Commerce.Config.onlineDatabase)">
+                <label data-bind="resx: { textContent: 'string_6612' }" for="connectionStringBox">Store database</label>
+                <h4 id="connectionStringBox" data-bind="text: Commerce.Config.onlineDatabase" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

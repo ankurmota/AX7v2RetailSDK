@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.Default.props" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputPath>bin</OutputPath>
+    <ApplicationCacheManifestPath>pos.appcache</ApplicationCacheManifestPath>
+    <TypeScriptOutFile>Pos.js</TypeScriptOutFile>
+    <TypeScriptNoImplicitAny>false</TypeScriptNoImplicitAny>
+    <AutoprefixerEnabled>true</AutoprefixerEnabled>
+    <ProjectGuid>{54FF87A6-F9E7-43F4-9EA3-BC95AB714F3E}</ProjectGuid>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <OutputType>Library</OutputType>
+    <AssemblyName>$(AssemblyNamePrefix).Pos.Web</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <UseGlobalApplicationHostFile />
+    <DeployOnBuild Condition="'$(BuildingInsideVisualStudio)'!='true'">true</DeployOnBuild>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+    <TypeScriptGeneratesDeclarations>true</TypeScriptGeneratesDeclarations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptMapRoot>$(MsBuildThisFileDirectory)</TypeScriptMapRoot>
+  </PropertyGroup>
+  <!-- NOTE: do not remove the property group. The project will be opened properly in VS. Otherwise it will be upgraded. -->
+  <PropertyGroup>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Stylesheets\SplashScreen.min.css" />
+    <Content Include="$(ApplicationCacheManifestPath)" />
+    <Content Include="Libraries\AppInsights\ai.0.15.0-build12287.js" />
+    <Content Include="Libraries\AppInsights\ai.0.15.0-build12287.min.js">
+      <DependentUpon>ai.0.15.0-build12287.js</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="Libraries\adal.js\adal.d.ts">
+      <InProject>True</InProject>
+    </TypeScriptCompile>
+    <Content Include="Libraries\adal.js\adal.min.js">
+      <InProject>True</InProject>
+    </Content>
+    <Content Include="Pos.js">
+      <IgnoreDuringSdkGeneration>true</IgnoreDuringSdkGeneration>
+    </Content>
+    <Content Include="web.config" />
+    <Content Include="config.json" />
+    <Content Include="Controls\Bing.Maps\web.config" />
+    <Content Include="Pos.html" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Core\Activities\ClearMerchantInformationActivityImpl.ts" />
+    <TypeScriptCompile Include="Core\Activities\SaveMerchantInformationActivityImpl.ts" />
+    <TypeScriptCompile Include="Core\TaskRecorderDownloaderImpl.ts" />
+    <TypeScriptCompile Include="Host\UI\HorizontalScoll.ts" />
+    <TypeScriptCompile Include="Host\UI\SwipeBinding.ts" />
+    <TypeScriptCompile Include="Host\WebAADAuthenticationProvider.ts" />
+    <TypeScriptCompile Include="Host\WebConfigurationProvider.ts" />
+    <TypeScriptCompile Include="Host\WebApplication.ts" />
+    <TypeScriptCompile Include="Host\WebGlobalization.ts" />
+    <TypeScriptCompile Include="Host\WebHost.ts" />
+    <TypeScriptCompile Include="Host\WindowTimersExtension\MessageChannelWindowTimersExtension.ts" />
+    <TypeScriptCompile Include="Host\WindowTimersExtension\SetTimeoutWindowTimersExtension.ts" />
+    <TypeScriptCompile Include="Host\WindowTimersExtension\WindowTimersExtensionBase.ts" />
+    <TypeScriptCompile Include="Host\WindowTimersExtension\WindowTimersExtensionFactory.ts" />
+    <TypeScriptCompile Include="Peripherals\WebPeripherals.ts" />
+    <TypeScriptCompile Include="Pos.Web.Config.ts" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:34546/cloudpos</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl></CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\SharedApp\Pos.SharedApp.projitems" />
+  <Import Project="..\SharedApp\PosWeb.SharedApp.projitems" />
+  <!-- NOTE: do not remove the import. The project will be opened properly in VS. Otherwise it will be upgraded. The target is imported in Build.Retail.targets. -->
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="False" />
+  <Target Name="CopyLinkedContentFilesIntoProject" AfterTargets="AfterBuild">
+    <Copy Condition=" '%(Content.Link)' != '' " SourceFiles="%(Content.Identity)" DestinationFiles="%(Content.Link)" OverwriteReadOnlyFiles="false" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CalculateAppCacheManifestFiles">
+    <!-- List all files required for CloudPOS -->
+    <ItemGroup>
+      <CacheManifestIncludeFiles Include="%(Content.Link)" Condition=" '%(Content.Link)' != '' " />
+      <CacheManifestIncludeFiles Include="%(Content.Identity)" Condition=" '%(Content.Link)' == '' " />
+      <!-- We should never include manifest file itself in pos.appcashe, or it will be near impossible to update client's app cache. -->
+      <CacheManifestExcludeFiles Include="$(ApplicationCacheManifestPath)" />
+      <!-- No need to cache *.scss, *.map and *.ts files, needed only for debug purposes. -->
+      <CacheManifestExcludeFiles Include="%(CacheManifestIncludeFiles.Identity)" Condition=" '%(CacheManifestIncludeFiles.Extension)' == '.scss' " />
+      <CacheManifestExcludeFiles Include="%(CacheManifestIncludeFiles.Identity)" Condition=" '%(CacheManifestIncludeFiles.Extension)' == '.ts' " />
+      <CacheManifestExcludeFiles Include="%(CacheManifestIncludeFiles.Identity)" Condition=" '%(CacheManifestIncludeFiles.Extension)' == '.map' " />
+      <!-- Web.config is a content, however cant be downoaded by the browser, so excluding it hence. -->
+      <CacheManifestExcludeFiles Include="%(CacheManifestIncludeFiles.Identity)" Condition=" '%(CacheManifestIncludeFiles.Extension)' == '.config' " />
+      <CacheManifestFiles Include="@(CacheManifestIncludeFiles)" Exclude="@(CacheManifestExcludeFiles)" />
+    </ItemGroup>
+  </Target>
+  <Target Name="CreateAppCacheManifest" DependsOnTargets="CalculateAppCacheManifestFiles" BeforeTargets="CollectFilesFromContent;CopyLinkedContentFilesIntoProject" Inputs="@(CacheManifestFiles)" Outputs="$(ApplicationCacheManifestPath)">
+    <WriteLinesToFile File="$(ApplicationCacheManifestPath)" Lines="CACHE MANIFEST%0A# This manifest was autogenerated by MSBuild.%0A# If you don't use MSBuild please update this file manually, when making changes to CloudPOS content.%0A# Time: $([System.DateTime]::Now.ToString())%0A%0ACACHE:%0A" Overwrite="true" />
+    <WriteLinesToFile File="$(ApplicationCacheManifestPath)" Lines="@(CacheManifestFiles -&gt; Replace('\','/'),'%0A')" Overwrite="false" />
+    <WriteLinesToFile File="$(ApplicationCacheManifestPath)" Lines="%0ANETWORK:%0A*%0A" Overwrite="false" />
+    <WriteLinesToFile File="$(ApplicationCacheManifestPath)" Lines="SETTINGS:%0Aprefer-online%0A" Overwrite="false" />
+  </Target>
+  <Target Name="CleanAppCacheManifest" BeforeTargets="BeforeClean">
+    <Delete Files="$(ApplicationCacheManifestPath)" TreatErrorsAsWarnings="true" />
+  </Target>
+  <Target Name="CleanLinkedContentFilesInProject" BeforeTargets="BeforeClean">
+    <Delete Condition=" '%(Content.Link)' != '' " Files="%(Content.Link)" TreatErrorsAsWarnings="true" />
+  </Target>
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.jsproj.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(TypeScriptPath)\Microsoft.TypeScript.targets" Condition="Exists('$(TypeScriptPath)\Microsoft.TypeScript.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" />
+  <Target Name="CopyTypeScriptLibraries" BeforeTargets="PreComputeCompileTypeScript;">
+    <Copy SourceFiles="%(TypeScriptLibraries.Identity)" DestinationFiles="$(TypeScriptLibrariesOutDir)%(TypeScriptLibraries.FileName)%(TypeScriptLibraries.Extension)" SkipUnchangedFiles="true" Condition="Exists('%(TypeScriptLibraries.Identity)')" />
+  </Target>
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

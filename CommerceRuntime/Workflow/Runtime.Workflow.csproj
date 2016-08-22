@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{85BA5B1B-AC17-4EAB-BCE1-D0E4F5EF4D73}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.Runtime.Workflow</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.Runtime.Workflow</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ChannelProductAvailability\ChannelAvailabilityHelper.cs" />
+    <Compile Include="ChannelProductAvailability\GetItemAvailableQuantitiesRequestHandler.cs" />
+    <Compile Include="ChannelProductAvailability\GetListingAvailableQuantitiesRequestHandler.cs" />
+    <Compile Include="ChannelProductAvailability\GetStoresProductAvailabilityRequestHandler.cs" />
+    <Compile Include="ChannelProductAvailability\ItemAvailabilityByQuantityDescendingComparer.cs" />
+    <Compile Include="Channels\ChangeShiftStatusRequestHandler.cs" />
+    <Compile Include="Channels\CreateShiftRequestHandler.cs" />
+    <Compile Include="Channels\GetAddressRequestHandler.cs" />
+    <Compile Include="Channels\GetAvailableShiftsRequestHandler.cs" />
+    <Compile Include="Channels\GetChannelCurrencyRequestHandler.cs" />
+    <Compile Include="Channels\GetOnlineChannelRequestHandler.cs" />
+    <Compile Include="Channels\NumberSequenceRequestHandler.cs" />
+    <Compile Include="Channels\ReceiptMaskFiller.cs" />
+    <Compile Include="Channels\ShiftCalculator.cs" />
+    <Compile Include="Channels\ShiftTransitionHelper.cs" />
+    <Compile Include="Customers\CreateCustomerRequestHandler.cs" />
+    <Compile Include="Customers\CustomerHelper.cs" />
+    <Compile Include="Customers\CustomerSearchRequestHandler.cs" />
+    <Compile Include="Customers\InitiateLinkToExistingCustomerRequestHandler.cs" />
+    <Compile Include="Customers\SendCustomerEmailRequestHandler.cs" />
+    <Compile Include="Customers\UpdateCustomerRequestHandler.cs" />
+    <Compile Include="DeviceConfiguration\GetDeviceConfigurationRequestHandler.cs" />
+    <Compile Include="Employee\EmployeeTimeRegistrationRequestHandler.cs" />
+    <Compile Include="Employee\EmployeeTimeRegistrationWorkflowHelper.cs" />
+    <Compile Include="Employee\GetCurrentEmployeeRequestHandler.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="HardwareStationProfile\GetHardwareStationProfileRequestHandler.cs" />
+    <Compile Include="Inventory\DeleteStockCountRequestHandler.cs" />
+    <Compile Include="Inventory\GetStockCountRequestHandler.cs" />
+    <Compile Include="Inventory\PriceCheckRequestHandler.cs" />
+    <Compile Include="Inventory\SaveStockCountRequestHandler.cs" />
+    <Compile Include="Inventory\SyncStockCountRequestHandler.cs" />
+    <Compile Include="KitOperation\SaveKitTransactionRequestHandler.cs" />
+    <Compile Include="Loyalty\GetCustomerLoyaltyCardsRequestHandler.cs" />
+    <Compile Include="Loyalty\GetLoyaltyCardTransactionsRequestHandler.cs" />
+    <Compile Include="Loyalty\IssueLoyaltyCardRequestHandler.cs" />
+    <Compile Include="Merchandising\BeginReadChangedProductsRequestHandler.cs" />
+    <Compile Include="Merchandising\EndReadChangedProductsRequestHandler.cs" />
+    <Compile Include="Merchandising\GetActiveProductPriceRequestHandler.cs" />
+    <Compile Include="Merchandising\GetBarcodeRequestHandler.cs" />
+    <Compile Include="Merchandising\GetChangedProductsRequestHandler.cs" />
+    <Compile Include="Merchandising\GetCommerceListRequestHandler.cs" />
+    <Compile Include="Merchandising\GetIndependentProductPriceDiscountRequestHandler.cs" />
+    <Compile Include="Merchandising\GetItemByIdRequestHandler.cs" />
+    <Compile Include="Merchandising\SearchProductsRequestHandler.cs" />
+    <Compile Include="Merchandising\VerifyProductExistenceRequestHandler.cs" />
+    <Compile Include="Orders\AccountDepositHelper.cs" />
+    <Compile Include="Orders\AddOrRemoveDiscountCodesRequestHandler.cs" />
+    <Compile Include="Orders\CancelOrderRequestHandler.cs" />
+    <Compile Include="Orders\CartWorkflowHelper.cs" />
+    <Compile Include="Orders\CopyCartRequestHandler.cs" />
+    <Compile Include="Orders\CustomerOrderWorkflowHelper.cs" />
+    <Compile Include="Orders\GetCardPaymentAcceptPointRequestHandler.cs" />
+    <Compile Include="Orders\GetCartRequestHandler.cs" />
+    <Compile Include="Orders\GetDeliveryOptionsRequestHandler.cs" />
+    <Compile Include="Orders\GetDiscountCodesRequestHandler.cs" />
+    <Compile Include="Orders\GetOrdersRequestHandler.cs" />
+    <Compile Include="Orders\GetPromotionsRequestHandler.cs" />
+    <Compile Include="Orders\GetReceiptRequestHandler.cs" />
+    <Compile Include="Orders\GetScanResultRequestHandler.cs" />
+    <Compile Include="Orders\GetSupportedCardTypesRequestHandler.cs" />
+    <Compile Include="Orders\GetXAndZReportReceiptRequestHandler.cs" />
+    <Compile Include="Orders\GiftCardWorkflowHelper.cs" />
+    <Compile Include="Orders\IssueOrAddToGiftCardRequestHandler.cs" />
+    <Compile Include="Orders\ItemAvailabilityHelper.cs" />
+    <Compile Include="Orders\OrderWorkflowHelper.cs" />
+    <Compile Include="Orders\PickAndPackOrderRequestHandler.cs" />
+    <Compile Include="Orders\PickupAtStoreRequestHandler.cs" />
+    <Compile Include="Orders\ReasonCodesWorkflowHelper.cs" />
+    <Compile Include="Orders\RecalculateOrderRequestHandler.cs" />
+    <Compile Include="Orders\RecallCustomerOrderRequestHandler.cs" />
+    <Compile Include="Orders\RecallSalesInvoiceRequestHandler.cs" />
+    <Compile Include="Orders\ResumeCartRequestHandler.cs" />
+    <Compile Include="Orders\SaveCartLinesRequestHandler.cs" />
+    <Compile Include="Orders\SaveCartRequestHandler.cs" />
+    <Compile Include="Orders\SaveCustomerOrderRequestHandler.cs" />
+    <Compile Include="Orders\SaveReasonCodeLineRequestHandler.cs" />
+    <Compile Include="Orders\SaveTenderLineRequestHandler.cs" />
+    <Compile Include="Orders\SaveVoidTransactionRequestHandler.cs" />
+    <Compile Include="Orders\SubmitOrderRequestHandler.cs" />
+    <Compile Include="Orders\SubmitSalesTransactionRequestHandler.cs" />
+    <Compile Include="Orders\SuspendCartRequestHandler.cs" />
+    <Compile Include="Orders\TransferCartRequestHandler.cs" />
+    <Compile Include="Orders\UploadOrderRequestHandler.cs" />
+    <Compile Include="Orders\ValidateTenderLineForAddRequestHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provisioning\ChangeDatabaseConnectionRequestHandler.cs" />
+    <Compile Include="Receipt\ReceiptWorkflowHelper.cs" />
+    <Compile Include="RequestHandler\PipelineRequestHandler.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\AuthenticationHelper.cs" />
+    <Compile Include="Security\DataAuthorizationTrigger.cs" />
+    <Compile Include="Security\DeactivateDeviceRequestHandler.cs" />
+    <Compile Include="Security\EmployeePermissionHelper.cs" />
+    <Compile Include="Security\EndSessionRequestHandler.cs" />
+    <Compile Include="Security\EnrollUserCredentialsRequestHandler.cs" />
+    <Compile Include="Security\GetAvailableStoresRequestHandler.cs" />
+    <Compile Include="Security\GetEmployeePermissionRequestHandler.cs" />
+    <Compile Include="Security\OperationAccessCheckTrigger.cs" />
+    <Compile Include="Security\ServicesAuthorizationTrigger.cs" />
+    <Compile Include="Security\StartSessionRequestHandler.cs" />
+    <Compile Include="Security\UnenrollUserCredentialsRequestHandler.cs" />
+    <Compile Include="Security\UnlockRegisterRequestHandler.cs" />
+    <Compile Include="Security\UserAuthenticationRenewalRequestHandler.cs" />
+    <Compile Include="Security\UserAuthenticationRequestHandler.cs" />
+    <Compile Include="Security\UserLogOffRequestHandler.cs" />
+    <Compile Include="Security\WorkflowsAuthorizationTrigger.cs" />
+    <Compile Include="ShiftDataDataServiceHelper.cs" />
+    <Compile Include="Shipping\GetProductDeliveryOptionsRequestHandler.cs" />
+    <Compile Include="Shipping\GetShipmentPublishingStatusRequestHandler.cs" />
+    <Compile Include="Shipping\ShippingHelper.cs" />
+    <Compile Include="Shipping\UpdateDeliverySpecificationsRequestHandler.cs" />
+    <Compile Include="StoreOperation\ResumeShiftRequestHandler.cs" />
+    <Compile Include="StoreOperation\UseExistingShiftRequestHandler.cs" />
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Data.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

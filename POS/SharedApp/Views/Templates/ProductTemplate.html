@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Templates</title>
+    <link href="ProductTemplate.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Template for different product display views. -->
+    <div id="productListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="listViewLine clickable" data-win-bind="title: ProductName">
+            <div class="ratio2">
+                <h4 class="ellipsis" data-win-bind="textContent: ItemId"></h4>
+            </div>
+            <div class="ratio6">
+                <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+            </div>
+            <div class="ratio2 textRight">
+                <h4 class="ellipsis" data-win-bind="textContent: Price Commerce.Core.Converter.PriceFormatter"></h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template for ProductSearchResult entity. -->
+    <div id="productSearchResultListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="listViewLine clickable" data-win-bind="title: Name">
+            <div class="ratio2">
+                <h4 class="ellipsis" data-win-bind="textContent: ItemId"></h4>
+            </div>
+            <div class="ratio6">
+                <h4 class="ellipsis" data-win-bind="textContent: Name"></h4>
+            </div>
+            <div class="ratio2 textRight">
+                <h4 class="ellipsis" data-win-bind="textContent: Price Commerce.Core.Converter.PriceFormatter"></h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Large Card Templates -->
+    <div id="productLargeCardTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width24 height23 col" data-win-bind="title: ProductName">
+            <div class="width24 height16 col">
+                <img class="width24 height23" src="#" data-win-bind="src: this Commerce.Core.Converter.LargeProductImage; alt: ProductName; onerror: Commerce.DefaultImages.ProductLarge Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+            <div class="padLeft1 width24 padRight1 height7 padTop1 primaryBackgroundColor overLayZIndex">
+                <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+                <div class="height1 padTop02">
+                    <h6 class="secondaryFontColor" data-win-bind="textContent: ItemId"></h6>
+                </div>
+                <div class="padTop08">
+                    <h3 class="textRight" data-win-bind="textContent: Price Commerce.Core.Converter.PriceFormatter"></h3>
+                </div>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+
+    <!-- Large card template for ProductSearchResult entity. -->
+    <div id="productSearchResultLargeCardTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width24 height23 col" data-win-bind="title: Name">
+            <div class="width24 height16 col">
+                <div class="width24 height23" data-win-control="Commerce.AsyncImageControl" data-win-options="{offlineBinaryImageHandlerProperty: 'OfflineImageHandler', defaultImage: '/Assets/defaultLarge.png'}" data-win-bind="winControl.data: this; winControl.alt: Name; winControl.onlineImage: PrimaryImageUrl"></div>
+            </div>
+            <div class="padLeft1 width24 padRight1 height7 padTop1 primaryBackgroundColor overLayZIndex">
+                <h4 class="ellipsis" data-win-bind="textContent: Name"></h4>
+                <div class="height1 padTop02">
+                    <h6 class="secondaryFontColor" data-win-bind="textContent: ItemId"></h6>
+                </div>
+                <div class="padTop08">
+                    <h3 class="textRight" data-win-bind="textContent: Price Commerce.Core.Converter.PriceFormatter"></h3>
+                </div>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+
+    <!-- Small Card Templates -->
+    <div id="productSmallCardTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width31 height7 row" data-win-bind="title: ProductName">
+            <div class="width7 height7 col">
+                <img class="width7 height7" src="#" data-win-bind="src: this Commerce.Core.Converter.SmallProductImage; alt: ProductName; onerror: Commerce.DefaultImages.ProductSmall Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+            <div class="padLeft1 width24 padRight1 height7 padTop1 primaryBackgroundColor">
+                <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+                <div class="height1 padTop02">
+                    <h6 class="secondaryFontColor" data-win-bind="textContent: ItemId"></h6>
+                </div>
+                <div class="padTop08">
+                    <h3 class="textRight" data-win-bind="textContent: Price Commerce.Core.Converter.PriceFormatter"></h3>
+                </div>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+
+    <!-- Small card template for ProductSearchResult entity. -->
+    <div id="productSearchResultSmallCardTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width31 height7 row" data-win-bind="title: Name">
+            <div class="width7 height7 col">
+                <div class="width7 height7" data-win-control="Commerce.AsyncImageControl" data-win-options="{offlineBinaryImageHandlerProperty: 'OfflineImageHandler', defaultImage: '/Assets/defaultSmall.png'}" data-win-bind="winControl.data: this; winControl.alt: Name; winControl.onlineImage: PrimaryImageUrl"></div>
+            </div>
+            <div class="padLeft1 width24 padRight1 height7 padTop1 primaryBackgroundColor">
+                <h4 class="ellipsis" data-win-bind="textContent: Name"></h4>
+                <div class="height1 padTop02">
+                    <h6 class="secondaryFontColor" data-win-bind="textContent: ItemId"></h6>
+                </div>
+                <div class="padTop08">
+                    <h3 class="textRight" data-win-bind="textContent: Price Commerce.Core.Converter.PriceFormatter"></h3>
+                </div>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+
+    <!-- Category and Catalog templates. -->
+    <div id="categoryCatalogTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width24 height23 col">
+            <div class="width24 height16 col">
+                <img class="width24 height23" src="#" data-win-bind="src: this Commerce.Core.Converter.CategoryImage; alt: Name; onerror: Commerce.DefaultImages.ProductLarge Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+            <div class="padLeft1 width24 padRight1 padTop1 primaryBackgroundColor overLayZIndex col grow">
+                <h3 class="ellipsis" data-win-bind="textContent: this Commerce.Core.Converter.CategoryNameFormatter"></h3>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+
+    <!-- Suggested Products Small Card View -->
+    <div id="productGridTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width31 height7 row" data-win-bind="title: ProductName">
+            <div class="width7 height7 col">
+                <img class="width7 height7" src="#" data-win-bind="src: Image Commerce.Core.Converter.SmallProductImage; alt: ProductName; onerror: Commerce.DefaultImages.ProductSmall Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+            <div class="padLeft1 width24 padRight1 padTop1 height7 primaryBackgroundColor">
+                <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+                <div class="height1 padTop02">
+                    <h6 class="secondaryFontColor" data-win-bind="textContent: ItemId"></h6>
+                </div>
+                <div class="padTop08">
+                    <h3 class="textRight" data-win-bind="textContent: Price Commerce.Core.Converter.PriceFormatter"></h3>
+                </div>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+
+
+    <!--Kit Related Templates-->
+    <!-- Template for different kit component list views. -->
+    <div id="kitComponentListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="listViewLine" data-win-bind="title: Component.ProductName">
+            <div class="ratio2">
+                <a class="h4 ellipsis" href="#" data-win-bind="text: Component.ItemId"></a>
+            </div>
+            <div class="ratio4">
+                <h4 class="ellipsis" data-win-bind="textContent: Component.ProductName"></h4>
+            </div>
+            <div class="ratio2 textRight">
+                <h4 class="ellipsis" data-win-bind="textContent: ComponentProperty.Quantity"></h4>
+            </div>
+            <div class="ratio2 textRight">
+                <h4 class="ellipsis" data-win-bind="textContent: ComponentProperty.Charge"></h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kit component Small Card Templates -->
+    <div id="kitComponentSmallCardTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width31 height7 row" data-win-bind="title: Component.ProductName">
+            <div class="width7 height7 col">
+                <img class="width7 height7" src="#" data-win-bind="src: Component Commerce.Core.Converter.SmallProductImage; alt: Component.ProductName; onerror: Commerce.DefaultImages.ProductSmall Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+            <div class="padLeft1 width24 padRight1 height7 padTop1 primaryBackgroundColor">
+                <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+                <div class="height1 padTop02">
+                    <h6 class="secondaryFontColor" data-win-bind="textContent: ItemId"></h6>
+                </div>
+                <div class="padTop08">
+                    <h3 class="textRight" data-win-bind="textContent: Price Commerce.Core.Converter.PriceFormatter"></h3>
+                </div>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+
+    <!-- Kit component Large Card Templates -->
+    <div id="kitComponentLargeCardTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width24 height23 col" data-win-bind="title: Component.ProductName">
+            <div class="width24 height16 col">
+                <img class="width24 height23" src="#" data-win-bind="src: Component Commerce.Core.Converter.LargeProductImage; alt: Component.ProductName; onerror: Commerce.DefaultImages.ProductLarge Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+            <div class="padLeft1 width24 padRight1 height7 padTop1 primaryBackgroundColor overLayZIndex">
+                <h4 class="ellipsis" data-win-bind="textContent: Component.ProductName"></h4>
+                <div class="height1 padTop02">
+                    <h6 class="secondaryFontColor" data-win-bind="textContent: ComponentProperty.Quantity"></h6>
+                </div>
+                <div class="padTop08">
+                    <h3 class="textRight" data-win-bind="textContent: ComponentProperty.Charge"></h3>
+                </div>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+
+    <!--Recent Purchases related templates-->
+    <!-- Recent Purchases List Grid View -->
+    <div id="productRecentPurchasesListTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="listViewLine" data-win-bind="title: ProductName">
+            <div class="ratio2">
+                <a class="h4 ellipsis" href="#" data-win-bind="text: ItemId"></a>
+            </div>
+            <div class="ratio4 no-shrink">
+                <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+            </div>
+            <div class="ratio2">
+                <h4 class="ellipsis" data-win-bind="textContent: DatePurchased Commerce.Core.Converter.ShortDateAndTime"></h4>
+            </div>
+            <!-- Show either ReceiptId or OrderId -->
+            <div class="ratio2">
+                <h4 class="ellipsis" data-win-bind="textContent: this Commerce.Core.Converter.RecentPurchaseIdFormatter"></h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Purchases Large Card View -->
+    <div id="productLargeRecentPurchaseTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width24 height23 col" data-win-bind="title: ProductName">
+            <div class="width24 height16 col">
+                <img class="width24 height23" src="#" data-win-bind="src: ImageUrl Commerce.Core.Converter.LargeRecentPurchaseImage; alt: ProductName; onerror: Commerce.DefaultImages.ProductLarge Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+            <div class="padLeft1 width24 padRight1 height7 padTop1 primaryBackgroundColor overLayZIndex">
+                <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+                <div class="height1 padTop02">
+                    <h6 class="secondaryFontColor" data-win-bind="textContent: DatePurchased Commerce.Core.Converter.ShortDateAndTime"></h6>
+                </div>
+                <!-- Show either ReceiptId or OrderId -->
+                <div class="padTop08">
+                    <h3 class="textRight" data-win-bind="textContent: this Commerce.Core.Converter.RecentPurchaseIdFormatter"></h3>
+                </div>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+
+    <!-- Recent Purchases Small Card View -->
+    <div id="productRecentPurchaseTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="width31 height7 row" data-win-bind="title: ProductName">
+            <div class="width7 height7 col">
+                <img class="width7 height7" src="#" data-win-bind="src: ImageUrl Commerce.Core.Converter.SmallRecentPurchaseImage; alt: ProductName; onerror: Commerce.DefaultImages.ProductSmall Commerce.CustomBindings.SetDefaultImage" />
+            </div>
+            <div class="padLeft1 width24 padRight1 height7 padTop1 primaryBackgroundColor">
+                <h4 class="ellipsis" data-win-bind="textContent: ProductName"></h4>
+                <div class="height1 padTop02">
+                    <h6 class="secondaryFontColor ellipsis" data-win-bind="textContent: DatePurchased Commerce.Core.Converter.ShortDateAndTime"></h6>
+                </div>
+                <!-- Show either ReceiptId or OrderId -->
+                <div class="padTop08">
+                    <h3 class="textRight" data-win-bind="textContent: this Commerce.Core.Converter.RecentPurchaseIdFormatter"></h3>
+                </div>
+            </div>
+            <div class="cardHover accentBorder overLayZIndex"></div>
+        </div>
+    </div>
+</body>
+</html>

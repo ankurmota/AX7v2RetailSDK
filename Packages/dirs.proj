@@ -1,0 +1,15 @@
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+    <ItemGroup>
+        <ProjectFiles Include="BootstrapperLibrary\Setup.BootStrapperLibrary.csproj" />
+        <ProjectFiles Include="ModernPOS\Sdk.ModernPOSSetup.csproj" />
+        <ProjectFiles Include="ModernPOSOffline\Sdk.ModernPOSSetupOffline.csproj" />
+        <ProjectFiles Include="HardwareStation\Sdk.HardwareStationSetup.csproj" />
+        <ProjectFiles Include="RetailServer\Sdk.RetailServerSetup.proj" />
+        <ProjectFiles Include="CloudPos\Sdk.CloudPosSetup.proj" />
+        <ProjectFiles Include="RetailSelfService\Sdk.RetailSelfServiceSetup.proj" />
+        <ProjectFiles Include="RetailDeployablePackage\Sdk.RetailDeployablePackageSetup.proj" />
+    </ItemGroup>
+    <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.traversal.targets" />
+</Project>

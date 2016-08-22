@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cash Management View</title>
+    <link href="CashManagementView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="cashManagementView fragment">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+            <!-- Amount entry area -->
+            <div class="row">
+                <div class="width32">
+                    <div class="marginBottom1 col">
+                        <h2 data-bind="resx: { textContent: 'string_4011' }">Enter Amount</h2>
+                    </div>
+
+                    <input id="amountInput" class="numPadTextbox" tabindex="1" type="text" data-bind="
+                            hasfocus: true,
+                            resx: { ariaLabel: 'string_4011' }" />  <!-- Enter amount -->
+
+                    <!-- Num pad -->
+                    <div id="numPad" data-win-control="WinJS.UI.HtmlControl"
+                         data-win-options="{ uri: 'Controls/numberPad/NumPad.html' }"
+                         data-bind="numpad: {
+                            textBoxId: 'amountInput',
+                            onEnter: enterAmount,
+                            decimalPrecision: Commerce.NumberExtensions.getDecimalPrecision(Commerce.ApplicationContext.Instance.deviceConfiguration.Currency),
+                            parser: new Commerce.DecimalNotRequiredParser(),
+                            value: amountToChange
+                         }">
+                    </div>
+                </div>
+
+                <div class="gutter4x4"></div>
+
+                <!-- Operation details area -->
+                <div class="maxWidth32 grow">
+                    <div class="marginBottom1 col">
+                        <h2 data-bind="resx: { textContent: 'string_4012' }">Amount</h2>
+                    </div>
+                    <h1 class="textRight" data-bind="formatPrice: totalAmountToDeclare"></h1>
+
+                    <div class="col no-shrink marginBottom1">
+                        <label for="cashManagementCurrencyValue" data-bind="resx: { textContent: 'string_4013' }">Currency</label>
+                        <h2 id="cashManagementCurrencyValue" data-bind="text: storeCurrency"></h2>
+                    </div>
+
+                    <div>
+                        <label for="cashManagementNotesTextArea" data-bind="resx: { textContent: 'string_4014' }">Notes</label>
+                        <div class="col no-shrink height33"><textarea id="cashManagementNotesTextArea" tabindex="2" data-bind="value: operationComment, valueUpdate: 'afterkeydown'"></textarea></div> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl" data-win-options="{sticky: true}">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    tabindex="3"
+                    data-win-options="{id:'performOperationAppBar', label:'Save', extraClass: 'winappbar-iconSave'}"
+                    data-bind="click: processOperation, resx: { label: 'string_1327' }, winControl: { disabled: isSaveDisabled }"></button>
+        </div>
+    </div>
+</body>
+</html>

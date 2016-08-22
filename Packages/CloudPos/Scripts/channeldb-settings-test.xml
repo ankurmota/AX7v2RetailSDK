@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+SAMPLE CODE NOTICE
+
+THIS SAMPLE CODE IS MADE AVAILABLE AS IS.  MICROSOFT MAKES NO WARRANTIES, WHETHER EXPRESS OR IMPLIED, 
+OF FITNESS FOR A PARTICULAR PURPOSE, OF ACCURACY OR COMPLETENESS OF RESPONSES, OF RESULTS, OR CONDITIONS OF MERCHANTABILITY.  
+THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS SAMPLE CODE REMAINS WITH THE USER.  
+NO TECHNICAL SUPPORT IS PROVIDED.  YOU MAY NOT DISTRIBUTE THIS CODE UNLESS YOU HAVE A LICENSE AGREEMENT WITH MICROSOFT THAT ALLOWS YOU TO DO SO.
+-->
+<Settings>
+  <Setting key="ChannelDatabaseServerName" value="localhost" />
+  <!-- Note: Format for a SQL instance name is either the server name or the full instance name. I.e. valid names are: "localhost", "localhost\instance2", "server1", "server1\instance2"-->
+  <Setting key="ChannelDatabaseServerNamedInstanceName" value="localhost" />
+  <Setting key="ChannelDatabaseName" value="%ChannelDatabase%" />
+  <Setting key="SqlUserName" value="" />
+  <Setting key="SqlUserPassword" value="" />
+</Settings>

@@ -1,0 +1,18 @@
+@model System.Uri
+
+@if (@Model != null)
+{
+<script type="text/javascript">
+    window.open('@Model.AbsoluteUri', '', 'titlebar=no,toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,width=0,height=0,left=100000,top=100000');
+</script>
+}
+
+@section other{
+    <link href="~/Content/CSS/SignIn.css" rel="stylesheet" />
+}
+
+<div class="sign-out">
+    <div class="msg-signout ">You are being signed out.</div>
+    <br />
+    <div class="msg-signout"><a href="/">Continue shopping as a guest.</a></div>
+</div>

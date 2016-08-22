@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CustomersView</title>
+
+    <link href="customerDetailsView.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <!-- Sort order history menu -->
+    <div id="sortOrderHistoryByPopup" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#sortColumn', placement: 'bottom', alignment: 'right', toggleShowHide: toggleShowHideMenu }">
+        <button data-win-control="WinJS.UI.MenuCommand" data-bind="click: function() { customerDetailsViewModel.sortOrderHistory(Commerce.ViewModels.OrderHistorySortField.Date) }, resx: { textContent: 'string_244' }"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-bind="click: function() { customerDetailsViewModel.sortOrderHistory(Commerce.ViewModels.OrderHistorySortField.Number) }, resx: { textContent: 'string_245' }"></button>
+        <button data-win-control="WinJS.UI.MenuCommand" data-bind="click: function() { customerDetailsViewModel.sortOrderHistory(Commerce.ViewModels.OrderHistorySortField.Total) }, resx: { textContent: 'string_246' }"></button>
+    </div>
+
+    <div class="fragment customerDetails">
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <!-- Main content -->
+        <section role="main" class="panoramic marginLeft8 padLeft4" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <!-- Customer Summary -->
+            <div class="col width35">
+                <div class="col no-shrink padRight1 primaryPanelBackgroundColor highContrastBorderThin borderBottom0">
+                    <div>
+                        <div class="row">
+                            <div class="width15 height15 marginRight1">
+                                <img class="width15 height15" src="#" data-bind="attr: { src: Commerce.Formatters.ImageFormatter(customerDetailsViewModel.customerImage(), Commerce.DefaultImages.CustomerLarge) }, setImageOnError: Commerce.DefaultImages.CustomerLarge" />
+                            </div>
+                            <div class="padTop1">
+
+                                <!--Customer account number -->
+                                <div class="padTop1">
+                                    <label data-bind="resx: { textContent: 'string_206' }">CUSTOMER ACCOUNT</label>
+                                    <h4 data-bind="text: customerDetailsViewModel.customerAccount"></h4>
+                                </div>
+
+                                <!--Invoice account number of the customer. Only display if customer has an invoice account. -->
+                                <div class="padTop1" data-bind="visible: !Commerce.StringExtensions.isNullOrWhitespace(customerDetailsViewModel.invoiceAccount())">
+                                    <label data-bind="resx: { textContent: 'string_207' }">INVOICE ACCOUNT</label>
+                                    <h4 data-bind="text: customerDetailsViewModel.invoiceAccount"></h4>
+                                </div>
+
+                                <!-- date of last visit. currently using most recent purchase date for visit date -->
+                                <div class="padTop1" data-bind="visible: !Commerce.StringExtensions.isNullOrWhitespace(customerDetailsViewModel.dateOfLastVisitString())">
+                                    <label data-bind="resx: { textContent: 'string_201' }">Last store visit</label>
+                                    <h4 data-bind="text: customerDetailsViewModel.dateOfLastVisitString">Date of last visit</h4>
+                                </div>
+
+                                <!-- date customer created -->
+                                <div class="padTop1" data-bind="visible: !Commerce.StringExtensions.isNullOrWhitespace(customerDetailsViewModel.dateCreatedString())">
+                                    <label data-bind="resx: { textContent: 'string_202' }">Customer since</label>
+                                    <h4 data-bind="text: customerDetailsViewModel.dateCreatedString">Date created</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="row" data-bind="visible: !Commerce.StringExtensions.isNullOrWhitespace(customerEmail())">
+                                <div class="width35 col" data-bind="buttonBlock: {
+                                                    buttonClass: 'iconEmail',
+                                                    labelValue: customerEmail,
+                                                    click: openEmailHref
+                                    }"></div>
+                            </div>
+
+                            <div class="row" data-bind="visible: !Commerce.StringExtensions.isNullOrWhitespace(customerPhone())">
+                                <div class="width35" data-bind="buttonBlock: {
+                                                    buttonClass: 'iconPhone',
+                                                    labelValue: customerPhone,    // Phone number
+                                                    click: openPhoneHref
+                                    }"></div>
+                            </div>
+                            <!-- # of customer addresses / add new address -->
+                            <div class="height3 row padBottom1 maxWidth32 padLeft1" data-bind="visible: addressFilled()">
+                                <div class="marginTop1 stretch">
+                                    <a class="h4" href="#" data-bind="text: numberOfAddressesText, click: gotoAddressesView"></a>
+                                </div>
+                                <button class="iconAdd" data-bind="click: gotoAddNewAddress, resx: { ariaLabel: 'string_4842' }"></button>  <!-- Add address -->
+                            </div>
+                            <!-- Postponed -->
+                            <!--<a href="#" class="iconLink iconLoyalty" href="#">
+                            <span data-bind="text: Customer().Loyalty"></span>
+                        </a>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div data-bind="customerCard: {data: _customerCardViewModel, template: 'customerPrimaryAddressCardTemplate'}"></div>
+
+            </div>  <!-- end customer summary -->
+
+            <div class="gutter4x4"></div>
+
+            <!-- Loyalty Cards -->
+            <div class="width32 no-shrink col">
+                <h2 data-bind="resx: { textContent: 'string_270' }">Loyalty cards</h2>
+
+                <div class="col grow" data-bind="visible: !loyaltyCardsIndeterminateWaitVisible()">
+                    <div class="marginTop1 no-shrink" data-bind="ifnot: zeroLoyaltyCardVisible">
+                        <a href="#" class="h4" data-bind="click: refreshLoyaltyCards, text: customerDetailsViewModel.totalLoyaltyCardsString"></a>
+                    </div>
+                    <h4 class="wrapText secondaryFontColor" data-bind="visible: zeroLoyaltyCardVisible, resx: { textContent: 'string_273' }">There are no loyalty cards</h4>
+
+                    <div class="browseGrid oneColumn noMargin col grow">
+                        <div class="win-selectionstylefilled"
+                             data-win-control="WinJS.UI.ListView"
+                             data-win-options="{ selectionMode: 'none', itemTemplate: select('#customersLoyaltyCardTemplate'), layout: { type: WinJS.UI.GridLayout }}"
+                             data-bind="winControl: {
+                                itemDataSource: customerDetailsViewModel.loyaltyCards,
+                                iteminvoked: loyaltyCardItemInvokedHandler
+                            },
+                            resx: { ariaLabel: 'string_270' }">
+                            <!-- Loyalty cards -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indeterminate wait -->
+                <div class="center" data-bind="loader: { visible: loyaltyCardsIndeterminateWaitVisible, type: Commerce.Controls.LoaderType.Nested }"></div>
+
+            </div>  <!-- end Loyalty Cards -->
+
+            <div class="gutter3x3"></div>
+
+            <!-- Recent Purchases -->
+            <div class="width32 col">
+                <h2 data-bind="resx: { textContent: 'string_203' }">Recent purchases</h2>
+
+                <div class="col grow" data-bind="visible: !recentPurchasesIndeterminateWaitVisible()">
+                    <div class="marginTop1 no-shrink" data-bind="ifnot: customerDetailsViewModel.displayZeroProductsText">
+                        <a href="#" class="h4" data-bind="click: viewAllRecentPurchases, resx: { textContent: 'string_809' }"><!-- See all --></a>
+                    </div>
+                    <div class="col grow">
+
+                        <h4 class="wrapText secondaryFontColor" data-bind="visible: customerDetailsViewModel.displayZeroProductsText, resx: { textContent: 'string_235' }">There are no recent purchases</h4>
+
+                        <div class="browseGrid oneColumn noMargin col minHeight40">
+                            <div class="win-selectionstylefilled"
+                                 data-win-control="WinJS.UI.ListView"
+                                 data-win-options="{ selectionMode: 'multi', itemTemplate: select('#productRecentPurchaseTemplate'), layout: { type: WinJS.UI.GridLayout } }"
+                                 data-bind="winControl: {
+                                    itemDataSource: customerDetailsViewModel.recentPurchases,
+                                    iteminvoked: recentPurchaseInvokedHandler,
+                                    forcelayout: forceRecentPurchasesLayout,
+                                    selectionchanged: { eventHandlerCallBack: recentPurchasesSelectionChangedEventHandler, appBarId: '#commandAppBar' }
+                                },
+                                resx: { ariaLabel: 'string_230' }">
+                                <!-- Recent purchases -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indeterminate wait -->
+                <div class="center" data-bind="loader: { visible: recentPurchasesIndeterminateWaitVisible, type: Commerce.Controls.LoaderType.Nested } "></div>
+
+            </div>  <!-- end recent purchases -->
+
+            <div class="gutter3x3"></div>
+
+            <!-- Wish List -->
+            <div class="width32 no-shrink col">
+                <h2 data-bind="resx: { textContent: 'string_254' }">Wish list</h2>
+
+                <div data-bind="visible: !wishListIndeterminateWaitVisible()">
+                    <div class="marginTop1 no-shrink" data-bind="ifnot: zeroWishListVisible">
+                        <a href="#" class="h4" data-bind="text: customerDetailsViewModel.totalWishListsString, click: refreshWishListPanel"><!-- # wish lists --></a>
+                    </div>
+
+                    <div class="col grow">
+                        <h4 class="wrapText secondaryFontColor" data-bind="visible: zeroWishListVisible, resx: { textContent: 'string_255' }">There are no wish lists</h4>
+
+                        <div class="browseGrid oneColumn noMargin col minHeight40">
+                            <div class="win-selectionstylefilled"
+                                 data-win-control="WinJS.UI.ListView"
+                                 data-win-options="{ selectionMode: 'none', itemTemplate: select('#wishListTemplate'),
+                                                layout: { type: WinJS.UI.GridLayout } }"
+                                 data-bind="winControl: {
+                                    itemDataSource: customerDetailsViewModel.wishLists,
+                                    iteminvoked: wishListItemInvokedHandler,
+                                    forcelayout: forceWishListLayout
+                                },
+                                resx: { ariaLabel: 'string_254' }">
+                                <!-- Wish lists -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indeterminate wait -->
+                <div class="center" data-bind="loader: { visible: wishListIndeterminateWaitVisible, type: Commerce.Controls.LoaderType.Nested }"></div>
+
+            </div>  <!-- end wish list -->
+
+            <div class="gutter3x3"></div>
+
+            <!-- Suggested Products -->
+            <div class="width32 col">
+
+                <h2 data-bind="resx: { textContent: 'string_205' }">Suggested products</h2>
+
+                <div data-bind="visible: !suggestedProductsIndeterminateWaitVisible()">
+                    <div class="marginTop1" data-bind="ifnot: zeroSuggestedProductsVisible">
+                        <a href="#" class="h4" data-bind="click:showAllSuggestedProducts, text: customerDetailsViewModel.totalSuggestedProductsString"></a>
+                    </div>
+
+                    <div class="col grow">
+
+                        <h4 class="wrapText secondaryFontColor" data-bind="visible: zeroSuggestedProductsVisible, resx: { textContent: 'string_260' }">There are no suggested products</h4>
+
+                        <div class="browseGrid oneColumn noMargin col minHeight40">
+                            <div class="win-selectionstylefilled"
+                                 data-win-control="WinJS.UI.ListView"
+                                 data-win-options="{ selectionMode: 'multi', itemTemplate: select('#productGridTemplate'), layout: { type: WinJS.UI.GridLayout }}"
+                                 data-bind="winControl: {
+                                    itemDataSource: customerDetailsViewModel.suggestedProductsForDisplay,
+                                    iteminvoked: productInvokedHandler,
+                                    forcelayout: forceSuggestedProductsLayout,
+                                    selectionchanged: { eventHandlerCallBack: suggestedProductsSelectionChangedEventHandler, appBarId: '#commandAppBar' }
+                                },
+                                resx: { ariaLabel: 'string_205' }">
+                                <!-- Suggested products -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indeterminate wait -->
+                <div class="center" data-bind="loader: { visible: suggestedProductsIndeterminateWaitVisible, type: Commerce.Controls.LoaderType.Nested }"></div>
+
+
+            </div>  <!-- end suggested products -->
+
+            <div class="gutter3x3"></div>
+
+            <!-- Order History -->
+            <div class="orderhistory width40 col">
+
+                <h2 data-bind="resx: { textContent: 'string_204' }">Order history</h2>
+
+                <div class="col grow marginBottom4" data-bind="visible: !orderHistoryIndeterminateWaitVisible()">
+                    <div class="marginTop1" data-bind="ifnot: customerDetailsViewModel.displayZeroSalesOrdersText">
+                        <a href="#" class="h4" data-bind="click: showAllOrderHistory, resx: { textContent: 'string_250' }"></a><!-- # orders -->
+                    </div>
+
+                    <div class="row grow">
+
+                        <h4 class="wrapText secondaryFontColor" data-bind="visible: customerDetailsViewModel.displayZeroSalesOrdersText, resx: { textContent: 'string_248' }">There are no sales orders</h4>
+
+                        <div class="col grow noMargin" data-bind="
+                        visible: customerDetailsViewModel.displaySalesOrdersGrid,
+                        listView: {
+                            itemDataSource: customerDetailsViewModel.salesOrdersToDisplay,
+                            selectionMode: 'none',
+                            tapBehavior: 'invokeOnly',
+                            iteminvoked: clickReceiptCommand,
+                            forceControlLayout: forceOrderListLayout,
+                            columns: [
+                                { titleResx: 'string_240', cssClass: 'ratio3', field: 'CreatedDateTime', converter: 'Commerce.Core.Converter.DateWithoutTime' },
+                                { titleResx: 'string_241', cssClass: 'ratio4', field: '$data', converter: 'Commerce.Core.Converter.OrderIdFormatter' },
+                                { titleResx: 'string_242', cssClass: 'ratio3 textRight', field: 'TotalAmount', converter: 'Commerce.Core.Converter.PriceFormatter' },
+                            ]
+                        }">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indeterminate wait -->
+                <div class="center" data-bind="loader: { visible: orderHistoryIndeterminateWaitVisible, type: Commerce.Controls.LoaderType.Nested }"></div>
+
+            </div>  <!-- end order history -->
+
+            <div class="gutter4x4"></div>
+
+            <!-- Customer Affiliations -->
+            <div class="width32 col">
+
+                <h2 data-bind="resx: { textContent: 'string_5200' }">Affiliations</h2>
+
+                <div class="col grow" data-bind="visible: !affiliationsIndeterminateWaitVisible()">
+                    <div class="row marginBottom1">
+                        <!--ko ifnot: customerDetailsViewModel.isCustomerAffiliationsTextVisible -->
+                        <div class="col marginTop1 marginRight1 grow">
+                            <a href="#" class="h4" data-bind="click: showAllCustomerAffiliations, text: customerDetailsViewModel.totalCustomerAffiliationsString"><!-- # affiliations --></a>
+                        </div>
+                        <!--/ko-->
+                        <div class="col marginTop1 marginRight1 grow" data-bind="visible: customerDetailsViewModel.isCustomerAffiliationsTextVisible">
+                            <h4 class="wrapText secondaryFontColor" data-bind="resx: { textContent: 'string_6300' }">There are no customer affiliations</h4>
+                        </div>
+
+                        <div class="col width3">
+                            <button class="iconAdd" data-bind="click: addAffiliationToCustomer, resx: { ariaLabel: 'string_5201' }"></button> <!-- Add affiliations -->
+                        </div>
+                    </div>
+
+                    <div class="row grow">
+                        <div class="col grow" data-bind="
+                        visible: customerDetailsViewModel.isCustomerAffiliationsGridVisible,
+                        listView: {
+                            itemDataSource: customerDetailsViewModel.customerAffiliations,
+                            columns: [
+                                { titleResx: 'string_5202', cssClass: 'ratio4', field: 'Name' },    // Name
+                                { titleResx: 'string_5203', cssClass: 'ratio6', field: 'Description' }   // Description
+                            ]
+                        }">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indeterminate wait -->
+                <div class="center" data-bind="loader: { visible: affiliationsIndeterminateWaitVisible, type: Commerce.Controls.LoaderType.Nested }"></div>
+
+            </div>  <!-- end customer affiliations -->
+
+            <div class="gutter4x4"></div>
+
+            <!-- Additional properties -->
+            <div class="width35 padBottom10 col" data-bind="with: customerDetailsViewModel.Customer">
+                <h2 data-bind="resx: { textContent: 'string_823' }">additional properties</h2>
+                <div class="col grow ellipsis">
+                    <div id="extensionPropertiesControl" data-bind="userControl: {
+                        uri: 'Views/Controls/ExtensionPropertiesControl.html',
+                        options: { data: $data }
+                    }"></div>
+                </div>
+            </div>
+
+            <div class="gutter4x4"></div>
+
+        </section>
+    </div>
+
+    <!-- Bottom app bar -->
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl" data-win-options="{
+            sticky : true
+        }">
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'cmdEditCustomer',
+                extraClass: 'winappbar-iconEdit',
+                section:'global'
+            }"
+                data-bind="winControl: { disabled: editCustomerDisabled, click: editCustomerClick }, resx: { label: 'string_302' }"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'cmdAddCustomerToSale',
+                extraClass: 'winappbar-iconAdd',
+                section:'global'
+            }"
+                data-bind="winControl: { disabled: addToCartDisabled, click: addToCartClick }, resx: { label: 'string_301' }"></button>
+    </div>
+</body>
+</html>

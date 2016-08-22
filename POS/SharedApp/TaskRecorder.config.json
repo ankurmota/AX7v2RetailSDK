@@ -1,0 +1,638 @@
+﻿{
+  "events": [
+    {
+      "eventName": "invoke",
+      "custom": {
+        "startEvents": [ "mousedown", "pointerdown" ],
+        "endEvents": [ "mouseup", "pointerup" ],
+        "runAction": true,
+        "elementEvents": {
+          "acceptEvents": [ "mouseenter" ],
+          "declineEvents": [ "mouseleave", "contextmenu" ]
+        }
+      },
+      "rules": [
+        {
+          "classNames": [ "win-itembox" ],
+          "checkParents": true,
+          "parent": {
+            "checkParents": true,
+            "classNames": [ "boundaries" ]
+          },
+          "handleParent": {
+            "classNames": [ "dialogContainer" ],
+            "checkParents": true,
+            "handleChild": {
+              "classNames": [ "title" ],
+              "actionData": {
+                "strategies": [ "content" ],
+                "text": "string_10126",
+                "defaultValue": "string_10127",
+                "compositionOrder": 1
+              }
+            },
+            "actionData": { }
+          },
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10005",
+            "defaultValue": "string_10009",
+            "compositionOrder": 0
+          }
+        },
+        {
+          "classNames": [ "win-itembox" ],
+          "checkParents": true,
+          "handleParent": {
+            "checkParents": true,
+            "roles": [ "listbox" ],
+            "actionData": {
+              "strategies": [ "aria-label" ],
+              "text": "string_10124",
+              "defaultValue": "string_10125",
+              "compositionOrder": 0
+            }
+          },
+          "actionData": {
+            "text": "string_10067"
+          }
+        },
+        {
+          "classNames": [ "win-itembox" ],
+          "checkParents": true,
+          "parent": {
+            "checkParents": true,
+            "classNames": [ "browseGrid" ]
+          },
+          "actionData": {
+            "text": "string_10067"
+          }
+        }
+      ]
+    },
+    {
+      "eventName": "checked",
+      "custom": {
+        "startEvents": [ "mousedown", "pointerdown" ],
+        "endEvents": [ "mouseup", "pointerup" ],
+        "runAction": false,
+        "elementEvents": {
+          "acceptEvents": [ "change" ]
+        }
+      },
+      "rules": [
+        {
+          "ids": [ "taskRecorderHost" ],
+          "checkParents": true,
+          "ignore": true
+        },
+        {
+          "roles": [ "checkbox" ],
+          "checkParents": true,
+          "actionData": {
+            "strategies": [ "label", "aria-label" ],
+            "text": "string_10066",
+            "defaultValue": "string_10010"
+          }
+        }
+      ]
+    },
+    {
+      "eventName": "click",
+      "rules": [
+        {
+          "classNames": [ "win-itembox" ],
+          "checkParents": true,
+          "ignore": true
+        },
+        {
+          "ids": [ "taskRecorderHost" ],
+          "checkParents": true,
+          "ignore": true
+        },
+        {
+          "ids": [ "helpViewHost" ],
+          "checkParents": true,
+          "ignore": true
+        },
+        {
+          "ids": [ "NumberPad" ],
+          "checkParents": true,
+          "ignore": true
+        },
+        {
+          "classNames": [ "numPadControl" ],
+          "checkParents": true,
+          "ignore": true
+        },
+        {
+          "classNames": [ "searchButton" ],
+          "actionData": {
+            "text": "string_10000"
+          }
+        },
+        {
+          "classNames": [ "iconNavSearch" ],
+          "actionData": {
+            "text": "string_10087"
+          }
+        },
+        {
+          "classNames": [ "iconNavCategory" ],
+          "actionData": {
+            "text": "string_10088"
+          }
+        },
+        {
+          "classNames": [ "iconNavFilter" ],
+          "ignore": true
+        },
+        {
+          "classNames": [ "iconListView" ],
+          "ignore": true
+        },
+        {
+          "classNames": [ "imageDirection" ],
+          "checkParents": true,
+          "ignore": true
+        },
+        {
+          "classNames": [ "iconNavBack" ],
+          "actionData": {
+            "text": "string_10064"
+          }
+        },
+        {
+          "classNames": [ "iconNavHome" ],
+          "actionData": {
+            "text": "string_10001"
+          }
+        },
+        {
+          "classNames": [ "iconNavCatalog" ],
+          "actionData": {
+            "text": "string_10062"
+          }
+        },
+        {
+          "classNames": [ "iconNavMiniCart" ],
+          "actionData": {
+            "text": "string_10063"
+          }
+        },
+        {
+          "dataAxBubble": "nav_count",
+          "actionData": {
+            "text": "string_10128"
+          }
+        },
+        {
+          "classNames": [ "win-itembox" ],
+          "checkParents": true,
+          "parent": {
+            "checkParents": true,
+            "ids": [ "paymentOptionsButtons", "paymentDialogPaymentButtonGrid" ]
+          },
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10005",
+            "defaultValue": "string_10009"
+          }
+        },
+        {
+          "classNames": [ "win-itembox" ],
+          "checkParents": true,
+          "parent": {
+            "checkParents": true,
+            "classNames": [ "boundaries" ]
+          },
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10005",
+            "defaultValue": "string_10009"
+          }
+        },
+        {
+          "classNames": [ "win-itembox" ],
+          "checkParents": true,
+          "parent": {
+            "checkParents": true,
+            "classNames": [ "groupedItemsPage" ]
+          },
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10005",
+            "defaultValue": "string_10009"
+          }
+        },
+        {
+          "classNames": [ "win-itembox" ],
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10067"
+          }
+        },
+        {
+          "roles": [ "option" ],
+          "checkParents": true,
+          "parent": {
+            "checkParents": true,
+            "classNames": [ "cashDrawerInputDialog" ]
+          },
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10002",
+            "defaultValue": "string_10008"
+          }
+        },
+        {
+          "roles": [ "menuitem" ],
+          "checkParents": true,
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10005",
+            "defaultValue": "string_10009"
+          }
+        },
+        {
+          "tagName": "a",
+          "parent": {
+            "checkParents": true,
+            "ids": [ "TotalsPanel" ]
+          },
+          "actionData": {
+            "text": "string_10004"
+          }
+        },
+        {
+          "dataAction": 921,
+          "checkParents": true,
+          "parent": {
+            "checkParents": true,
+            "ids": [ "WelcomeScreenButtonGrid-0" ]
+          },
+          "actionData": {
+            "text": "string_10123"
+          }
+        },
+        {
+          "dataAction": 622,
+          "checkParents": true,
+          "parent": {
+            "checkParents": true,
+            "ids": [ "WelcomeScreenButtonGrid-1" ]
+          },
+          "actionData": {
+            "text": "string_10122"
+          }
+        },
+        {
+          "dataAction": 200,
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10115"
+          }
+        },
+        {
+          "dataAction": 201,
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10116"
+          }
+        },
+        {
+          "dataAction": 202,
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10117"
+          }
+        },
+        {
+          "dataAction": 203,
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10118"
+          }
+        },
+        {
+          "dataAction": 303,
+          "checkParents": true,
+          "actionData": {
+            "strategies": [ "actionProperty" ],
+            "text": "string_10005",
+            "defaultValue": "string_10113"
+          }
+        },
+        {
+          "dataAction": 622,
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10115"
+          }
+        },
+        {
+          "dataAction": 921,
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10116"
+          }
+        },
+        {
+          "dataAction": 1056,
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10111"
+          }
+        },
+        {
+          "dataAction": 1057,
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10112"
+          }
+        },
+        {
+          "tagName": "button",
+          "checkParents": true,
+          "handleParent": {
+            "classNames": [ "dialogContainer" ],
+            "checkParents": true,
+            "handleChild": {
+              "classNames": [ "title" ],
+              "actionData": {
+                "strategies": [ "content" ],
+                "text": "string_10126",
+                "defaultValue": "string_10127",
+                "compositionOrder": 1
+              }
+            },
+            "actionData": { }
+          },
+          "actionData": {
+            "strategies": [ "content", "title", "aria-label" ],
+            "text": "string_10005",
+            "defaultValue": "string_10009",
+            "compositionOrder": 0
+          }
+        },
+        {
+          "tagName": "a",
+          "checkParents": true,
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10005",
+            "defaultValue": "string_10009"
+          }
+        },
+        {
+          "classNames": [ "buttonContainer" ],
+          "checkParents": true,
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10110",
+            "defaultValue": "string_10009"
+          }
+        },
+        {
+          "tagName": "h2",
+          "parent": {
+            "checkParents": true,
+            "ids": [ "TransactionGrid" ],
+            "classNames": [ "gridHeader" ]
+          },
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10002",
+            "defaultValue": "string_10010"
+          }
+        },
+        {
+          "tagName": "h4",
+          "parent": {
+            "checkParents": true,
+            "ids": [ "CustomerPanel" ],
+            "roles": [ "button" ]
+          },
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10005",
+            "defaultValue": "string_10009"
+          }
+        },
+        {
+          "ids": [ "ButtonGrid5Control" ],
+          "checkParents": true,
+          "actionData": {
+            "text": "string_10068"
+          }
+        },
+        {
+          "tagName": "h2",
+          "ids": [ "linesTabText", "paymentsTabText" ],
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10002",
+            "defaultValue": "string_10010"
+          }
+        }
+      ]
+    },
+    {
+      "eventName": "change",
+      "rules": [
+        {
+          "ids": [ "taskRecorderHost" ],
+          "checkParents": true,
+          "ignore": true
+        },
+        {
+          "ids": [ "searchText" ],
+          "actionData": {
+            "strategies": [ "value" ],
+            "text": "string_10007",
+            "defaultValue": "string_10010"
+          }
+        },
+        {
+          "classNames": [ "numPadTextbox" ],
+          "actionData": {
+            "strategies": [ "value" ],
+            "text": "string_10100",
+            "defaultValue": "string_10101"
+          }
+        },
+        {
+          "tagName": "input",
+          "types": [ "text", "tel", "email", "number", "password" ],
+          "actionData": {
+            "strategies": [ "label", "title" ],
+            "text": "string_10006",
+            "defaultValue": "string_10010"
+          }
+        },
+        {
+          "tagName": "input",
+          "types": [ "checkbox", "radio" ],
+          "actionData": {
+            "strategies": [ "label", "title", "aria-label", "value" ],
+            "text": "string_10002",
+            "defaultValue": "string_10010"
+          }
+        },
+        {
+          "tagName": "textarea",
+          "actionData": {
+            "strategies": [ "label", "title" ],
+            "text": "string_10006",
+            "defaultValue": "string_10010"
+          }
+        },
+        {
+          "tagName": "select",
+          "actionData": {
+            "strategies": [ "label", "aria-label" ],
+            "text": "string_10065",
+            "defaultValue": "string_10010"
+          }
+        }
+      ]
+    },
+    {
+      "eventName": "keydown",
+      "rules": [
+        {
+          "classNames": [ "win-itembox" ],
+          "keyCode": 13,
+          "checkParents": true,
+          "handleParent": {
+            "checkParents": true,
+            "roles": [ "listbox" ],
+            "keyCode": 13,
+            "actionData": {
+              "strategies": [ "aria-label" ],
+              "text": "string_10124",
+              "defaultValue": "string_10125",
+              "compositionOrder": 0
+            }
+          },
+          "actionData": {
+            "text": "string_10067"
+          }
+        },
+        {
+          "classNames": [ "win-itemcontainer" ],
+          "keyCode": 13,
+          "checkParents": true,
+          "parent": {
+            "keyCode": 13,
+            "checkParents": true,
+            "classNames": [ "boundaries" ]
+          },
+          "handleParent": {
+            "classNames": [ "dialogContainer" ],
+            "keyCode": 13,
+            "checkParents": true,
+            "handleChild": {
+              "classNames": [ "title" ],
+              "keyCode": 13,
+              "actionData": {
+                "strategies": [ "content" ],
+                "text": "string_10126",
+                "defaultValue": "string_10127",
+                "compositionOrder": 1
+              }
+            },
+            "actionData": { }
+          },
+          "actionData": {
+            "strategies": [ "content" ],
+            "text": "string_10005",
+            "defaultValue": "string_10009",
+            "compositionOrder": 0
+          }
+        },
+        {
+          "roles": [ "checkbox" ],
+          "keyCode": 32,
+          "checkParents": true,
+          "actionData": {
+            "strategies": [ "label", "aria-label" ],
+            "text": "string_10066",
+            "defaultValue": "string_10010"
+          }
+        }
+      ]
+    },
+    {
+      "eventName": "keypress",
+      "rules": [
+        {
+          "tagName": "any",
+          "keyCode": 8,
+          "actionData": {
+            "text": "string_10064"
+          }
+        },
+        {
+          "tagName": "input",
+          "ids": [ "operatorTextBox", "passwordBox" ],
+          "keyCode": 13,
+          "actionData": {
+            "text": "string_10086",
+            "deferred": true
+          }
+        },
+        {
+          "tagName": "input",
+          "classNames": [ "numPadTextbox" ],
+          "keyCode": 13,
+          "actionData": {
+            "strategies": [ "value" ],
+            "text": "string_10100",
+            "defaultValue": "string_10101"
+          }
+        },
+        {
+          "classNames": [ "win-item" ],
+          "checkParents": true,
+          "keyCode": 32,
+          "parent": {
+            "checkParents": true,
+            "classNames": [ "standardGrid", "browseGrid" ]
+          },
+          "actionData": {
+            "strategies": [ "label" ],
+            "text": "string_10067"
+          }
+        }
+      ]
+    },
+    {
+      "eventName": "contextmenu",
+      "rules": [
+        {
+          "classNames": [ "win-itembox" ],
+          "checkParents": true,
+          "parent": {
+            "checkParents": true,
+            "classNames": [ "standardGrid" ]
+          },
+          "actionData": {
+            "text": "string_10067"
+          }
+        }
+      ]
+    },
+    {
+      "eventName": "mousedown",
+      "rules": [
+        {
+          "ids": [ "numPadEnter" ],
+          "actionData": {
+            "text": "string_10050"
+          }
+        }
+      ]
+    }
+  ]
+    }

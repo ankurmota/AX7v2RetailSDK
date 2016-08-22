@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>PriceCheckView</title>
+    <link href="PriceCheckView.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- The content that will be loaded and displayed. -->
+    <div class="fragment priceCheckView">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row">
+
+            <div class="no-shrink col">
+                <div class="row width59">
+
+                    <div class="col width32">
+                        <div class="marginBottom1">
+                            <h2 data-bind="resx: { textContent: 'string_3510' }">Product</h2>
+                        </div>
+
+                        <!-- Product image -->
+                        <div class="col" data-bind="visible: productVisible">
+                            <img class="width32 height32" src="#"
+                                 data-bind="attr: { src: Commerce.Formatters.ImageUrlFormatter(priceCheckViewModel.productImage(), Commerce.DefaultImages.ProductLarge),
+                                    alt: priceCheckViewModel.productName, title: priceCheckViewModel.productName }, setImageOnError: Commerce.DefaultImages.ProductLarge"/>
+                        </div>
+                    </div>
+
+                    <div class="gutter4x4"></div>
+
+                    <!-- Product information -->
+                    <div class="col width23" data-bind="visible: productVisible">
+
+                        <div class="gutter4x4"></div>
+                        <h3 class="wrapText" data-bind="text: priceCheckViewModel.productName">Product name</h3>
+
+                        <div class="gutter4x4"></div>
+                        <h4 class="wrapText secondaryFontColor" data-bind="text: priceCheckViewModel.productId">Product identifier</h4>
+
+                        <div data-bind="visible: variantsVisible">
+                            <div class="gutter4x4"></div>
+                            <h4 class="wrapText" data-bind="text: priceCheckViewModel.variantDimensionValues"></h4>
+                        </div>
+
+                        <div class="gutter4x4"></div>
+                        <h1 class="wrapText" data-bind="formatPrice: priceCheckViewModel.productPrice">Product price</h1>
+
+                    </div>
+
+                </div>
+                <!--ko ifnot: productVisible-->
+                <div class="center">
+                    <h4 data-bind="resx: { textContent: 'string_2619' }">Scan or search for a product to get started</h4>
+                </div>
+                <!--/ko-->
+            </div>
+
+            <div class="gutter4x4"></div>
+
+            <div>
+                <div class="row">
+
+                    <div class="col grow minWidth22">
+
+                        <!-- Store section -->
+                        <div>
+                            <div class="col marginBottom1">
+                                <h2 data-bind="resx: { textContent: 'string_3511' }">Store</h2>
+                            </div>
+
+                            <div class="col width22 height8 highContrastBorderThin listViewThemeColor padLeft1 padTop2">
+                                <a href="#" class="h3" data-bind="text: priceCheckViewModel.store().OrgUnitName, click: navigateToStoreDetails"></a>
+                                <h4 data-bind="text: priceCheckViewModel.store().OrgUnitNumber"></h4>
+                            </div>
+
+                        </div>
+
+                        <div class="gutter4x4"></div>
+
+                        <!-- Customer section -->
+                        <div>
+                            <div class="col marginBottom1">
+                                <h2 data-bind="resx: { textContent: 'string_3512' }">Customer</h2>
+                            </div>
+
+                            <!-- Section when customer is added to price check -->
+                            <div id="CustomerPanel" class="col highContrastBorderThin listViewThemeColor width22 height8 padLeft1 padTop2 " data-bind="visible: customerVisible, with: priceCheckViewModel.customer">
+                                <div class="right0 top0 overLayZIndex">
+                                    <button class="iconCancel noBorder" data-bind="resx: { ariaLabel: 'string_4401' }, click: $root.removeCustomer.bind($root)"></button>    <!-- Remove customer -->
+                                </div>
+                                <a href="#" class="h3 ellipsis" data-bind="text: Name, click: $root.navigateToCustomerDetails.bind($root)"></a>
+                                <h4 data-bind="text: AccountNumber"></h4>
+                            </div>
+                            
+                            <!-- Section when no customer is added to price check -->
+                            <div class="listViewThemeColor width22 height8 highContrastBorderThin centerY" data-bind="visible: !customerVisible(),
+                                buttonBlock: {  buttonClass: 'iconAdd',
+                                                labelTextResx: 'string_3522', // Add customer
+                                                click: searchCustomers }">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="gutter4x4"></div>
+
+                    <!-- Numpad -->
+                    <div class="col">
+
+                        <div class="marginBottom1">
+                            <h2 data-bind="resx: { textContent: 'string_3513' }">Search products</h2>
+                        </div>
+
+                        <input id="priceCheckProductSearch" class="numPadTextbox" type="text"
+                               data-bind="resx: { ariaLabel: 'string_3513' }" />  <!-- Search products -->
+                        <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                             data-win-options="{uri: 'Controls/numberPad/NumPad.html'}"
+                             data-bind="alphanumericNumpad: {
+                                textBoxId: 'priceCheckProductSearch',
+                                onEnter: searchProductNumpad,
+                                value: searchText,
+                                disableDecimalSeparator: true
+                             }">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl"
+         data-win-options="{ sticky : true }">
+
+        <!-- Search store is not visible as we don't support store parameters as part of price check. -->
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'navigateToSearchProducts',
+                    extraClass: 'winappbar-iconSearchProducts',
+                }"
+                data-bind="winControl: { click: navigateToSearchProducts, visible: false }, resx: { label: 'string_2609' }" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'searchForCustomers',
+                    extraClass: 'winappbar-iconSearchCustomers',
+                }"
+                data-bind="winControl: { click: searchCustomers }, resx: { label: 'string_3551' }" />
+
+        <hr data-win-control="WinJS.UI.AppBarCommand" data-win-options="{type:'separator'}" />
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'addProductToCart',
+                    extraClass: 'winappbar-iconAdd',
+                }"
+                data-bind="winControl: { disabled: addProductToCartDisabled, click: addProductToCart }, resx: { label: 'string_3552' }" />
+    </div>
+</body>
+</html>

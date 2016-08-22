@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SignatureCaptureDialog</title>
+</head>
+<body>
+    <div data-bind="customControlInternal: 'SignatureDeviceDialog'">
+        <div data-bind="dialog:
+            {
+                title: Commerce.ViewModelAdapter.getResourceString('string_6908'), // Waiting for customer input...
+                message: Commerce.ViewModelAdapter.getResourceString('string_6907'), // Ask the customer to sign on the device.
+                visible: visible,
+                buttonClick: signatureDeviceDialogButtonClickHandler,
+                buttons: [
+                { label: Commerce.ViewModelAdapter.getResourceString('string_6903'), operationId: Commerce.Controls.Dialog.OperationIds.NO_BUTTON_CLICK, flowLeft: true, visible: allowSkip, isPrimary: false },  // Skip
+                { label: Commerce.ViewModelAdapter.getResourceString('string_6909'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, visible: allowGetSignature, isPrimary: true }, // Get Signature.
+                { label: Commerce.ViewModelAdapter.getResourceString('string_6905'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, isPrimary: false } // Sign on screen.
+                ]
+            }">
+        </div>
+    </div>
+</body>
+</html>

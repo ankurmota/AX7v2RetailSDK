@@ -1,0 +1,14 @@
+.pushPin {
+    background: #4499FF; /* matching with the bing maps pushpin background color style */
+    border-radius: 0.8em;
+    color: #FFFFFF; /* matching with the bing maps pushpin font color style */
+    display: inline-block;
+    line-height: 1.6em;
+    text-align: center;
+    width: 1.6em;
+    cursor: pointer;
+}
+
+.alignRight {
+    justify-content: flex-end; /*to right aligned the distance div*/
+}

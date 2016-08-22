@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{14B5FEA7-6AD4-46B2-96EC-87C021910C0F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.Runtime.Services</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.Runtime.Services</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Address\AddressService.cs" />
+    <Compile Include="Barcode\BarcodeService.cs" />
+    <Compile Include="Cart\CartService.cs" />
+    <Compile Include="Channel\ChannelService.cs" />
+    <Compile Include="Charge\ChargeService.cs" />
+    <Compile Include="Currency\CurrencyService.cs" />
+    <Compile Include="Customer\CustomerService.cs" />
+    <Compile Include="Customer\OrderComparer.cs" />
+    <Compile Include="Employee\EmployeeService.cs" />
+    <Compile Include="Formatting\FormattingService.cs" />
+    <Compile Include="HealthCheck\HealthCheckService.cs" />
+    <Compile Include="Layout\ButtonGridFilter.cs" />
+    <Compile Include="Layout\LayoutService.cs" />
+    <Compile Include="Logging\LoggingService.cs" />
+    <Compile Include="Loyalty\LoyaltyService.cs" />
+    <Compile Include="Loyalty\LoyaltyServiceHelper.cs" />
+    <Compile Include="Notifications\ExceptionNotificationHandler.cs" />
+    <Compile Include="Notifications\HaltNotificationHandler.cs" />
+    <Compile Include="Payment\CardPaymentService.cs" />
+    <Compile Include="Payment\CardTypeHelper.cs" />
+    <Compile Include="Payment\CashPaymentService.cs" />
+    <Compile Include="Payment\CheckPaymentService.cs" />
+    <Compile Include="Payment\CreditMemoService.cs" />
+    <Compile Include="Payment\CurrencyPaymentService.cs" />
+    <Compile Include="Payment\CustomerPaymentService.cs" />
+    <Compile Include="Payment\GiftCardService.cs" />
+    <Compile Include="Payment\LoyaltyCardService.cs" />
+    <Compile Include="Payment\PaymentManagerService.cs" />
+    <Compile Include="Pricing\Discount.cs" />
+    <Compile Include="Pricing\Price.cs" />
+    <Compile Include="Pricing\PricingDataServiceManager.cs" />
+    <Compile Include="Pricing\PricingService.cs" />
+    <Compile Include="ProductAvailability\ProductAvailabilityService.cs" />
+    <Compile Include="Product\GetProductsHelper.cs" />
+    <Compile Include="Product\ProductRefinement.cs" />
+    <Compile Include="Product\ProductService.cs" />
+    <Compile Include="Product\ProductsService.cs" />
+    <Compile Include="Product\SearchProductsService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReasonCode\ReasonCodesCalculator.cs" />
+    <Compile Include="ReasonCode\ReasonCodeService.cs" />
+    <Compile Include="Receipt\IndiaReceiptServiceHelper.cs" />
+    <Compile Include="Receipt\ReceiptHelper.cs" />
+    <Compile Include="Receipt\ReceiptService.cs" />
+    <Compile Include="Reports\BusinessIntelligenceService.cs" />
+    <Compile Include="Rounding\Rounding.cs" />
+    <Compile Include="Rounding\RoundingService.cs" />
+    <Compile Include="SalesOrder\AxContainerHelper.cs" />
+    <Compile Include="SalesOrder\OrderNumberMaskFiller.cs" />
+    <Compile Include="SalesOrder\ReceiptMaskFiller.cs" />
+    <Compile Include="SalesOrder\SalesOrderService.cs" />
+    <Compile Include="SalesOrder\SalesOrderStatus.cs" />
+    <Compile Include="SasKeyHelper.cs" />
+    <Compile Include="Security\BarcodeExtendedAuthenticationService.cs" />
+    <Compile Include="Security\CommerceAuthorization.cs" />
+    <Compile Include="Security\DeviceManagementService.cs" />
+    <Compile Include="Security\MagneticCardExtendedAuthenticationService.cs" />
+    <Compile Include="Security\SecurityVerificationType.cs" />
+    <Compile Include="Security\StaffAuthorizationService.cs" />
+    <Compile Include="Security\StaffRealTimeSecurityValidationHelper.cs" />
+    <Compile Include="Security\UniqueSecretExtendedAuthenticationService.cs" />
+    <Compile Include="Security\UserAuthenticationService.cs" />
+    <Compile Include="ServicesHelper.cs" />
+    <Compile Include="Shipping\CarrierAdapters\FedEx\FedExService.cs" />
+    <Compile Include="Shipping\CarrierAdapters\UPS\UpsService.cs" />
+    <Compile Include="Shipping\CountryRegionMapper.cs" />
+    <Compile Include="Shipping\ShippingService.cs" />
+    <Compile Include="StockCount\StockCountService.cs" />
+    <Compile Include="StockCount\StockCountServiceHelper.cs" />
+    <Compile Include="Storage\StorageResolverService.cs" />
+    <Compile Include="StoreOperation\StoreOperationService.cs" />
+    <Compile Include="StoreOperation\StoreOperationServiceHelper.cs" />
+    <Compile Include="Tax\DestinationFilterHandler.cs" />
+    <Compile Include="Tax\LineTaxResult.cs" />
+    <Compile Include="Tax\SalesTaxGroupPicker.cs" />
+    <Compile Include="Tax\SalesTaxOverrideHelper.cs" />
+    <Compile Include="Tax\TaxBase.cs" />
+    <Compile Include="Tax\TaxCalculationMode.cs" />
+    <Compile Include="Tax\TaxCode.cs" />
+    <Compile Include="Tax\TaxCodeAmountRounder.cs" />
+    <Compile Include="Tax\TaxCodeIndia.cs" />
+    <Compile Include="Tax\TaxCodeProvider.cs" />
+    <Compile Include="Tax\TaxCodeProviderIndia.cs" />
+    <Compile Include="Tax\TaxContext.cs" />
+    <Compile Include="Tax\TaxDateAndGroups.cs" />
+    <Compile Include="Tax\TaxExtensions.cs" />
+    <Compile Include="Tax\TaxHelpers.cs" />
+    <Compile Include="Tax\TaxInterval.cs" />
+    <Compile Include="Tax\TaxLimitBase.cs" />
+    <Compile Include="Tax\TaxService.cs" />
+    <Compile Include="Totaling\CalculationModesHelper.cs" />
+    <Compile Include="Totaling\SalesTransactionTotaler.cs" />
+    <Compile Include="Totaling\TotalingService.cs" />
+    <Compile Include="TransactionLog\TransactionLogService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- FedEx -->
+    <None Include="Shipping\CarrierAdapters\FedEx\ProxyClasses\AddressValidationServiceDefinitions.wsdl" />
+    <None Include="Shipping\CarrierAdapters\FedEx\ProxyClasses\RateServiceDefinitions.wsdl" />
+    <None Include="Shipping\CarrierAdapters\FedEx\ProxyClasses\TrackServiceDefinitions.wsdl" />
+    <!-- UPS -->
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\RateWebReference\common.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\RateWebReference\Error1.1.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\RateWebReference\RateResponse.datasource" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\RateWebReference\RateWebServiceSchema.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\RateWebReference\RateWS.wsdl" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\RateWebReference\Reference.map" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\RateWebReference\UPSSecurity.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\TrackWebReference\common.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\TrackWebReference\Error1.1.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\TrackWebReference\Reference.map" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\TrackWebReference\Track.wsdl" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\TrackWebReference\TrackResponse.datasource" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\TrackWebReference\TrackWebServiceSchema.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\TrackWebReference\UPSSecurity.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\XAVWebReference\common.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\XAVWebReference\Error1.1.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\XAVWebReference\Reference.map" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\XAVWebReference\UPSSecurity.xsd" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\XAVWebReference\XAV.wsdl" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\XAVWebReference\XAVResponse.datasource" />
+    <None Include="Shipping\CarrierAdapters\UPS\Web References\XAVWebReference\XAVWebServiceSchema.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Data.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Localization.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.RealtimeServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Services.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Notification.Contracts.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Notification.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Notification.Proxy.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Notification.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.PaymentSDK.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.PaymentSDK.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Resources.Strings.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Resources.Strings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.SDKManager.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.SDKManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.SDKManager.Portable.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.SDKManager.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Security.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.dll">
+      <HintPath>..\..\References\Microsoft.Practices.Prism\4.1.0.0\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity.dll">
+      <HintPath>..\..\References\Microsoft.Practices.Prism.Interactivity\4.1.0.0\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Portable.dll">
+      <HintPath>..\..\References\Newtonsoft.Json.Portable\6.0.0.0\Newtonsoft.Json.Portable.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PricingEngine\Runtime.PricingEngine.csproj">
+      <Project>{759D0ADC-01A4-40E3-96F5-763265C6C9FD}</Project>
+      <Name>Runtime.PricingEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

@@ -1,0 +1,7 @@
+# Browsers that CSS should support
+#
+# Please see syntax here:
+# https://github.com/ai/browserslist#queries
+
+> 5%
+Safari >= 8

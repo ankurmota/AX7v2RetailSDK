@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SingleSelectRefinerControl template</title>
+</head>
+<body>
+
+    <script type="text/html" id="singleSelectRefinerControlTemplate">
+        <h4 data-bind="text: values.KeyName"></h4>
+        <select data-bind="options: values.Values, optionsText: optionString,  value: selectedOptions,  optionsCaption: optionsCaption"></select>
+        <div class="row marginTop2" data-bind="visible: isCustomRangeVisible">
+            <div >
+                <input type="text" data-bind="value:customMinValue" />
+            </div>
+            <div class="textCenter width2 padTop1">
+                <h4>-</h4> <!--Hyphen inbetween two input fields-->
+            </div>
+            <div>
+                <input type="text" data-bind="value:customMaxValue" />
+            </div>
+        </div>
+    </script>
+</body>
+</html>

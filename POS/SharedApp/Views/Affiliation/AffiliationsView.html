@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AffiliationsView</title>
+    <link href="AffiliationsView.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="fragment affiliationsView">
+        <!-- Progress ring -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{ uri: 'Views/Controls/CommonHeader.html' }"></div>
+
+        <!-- Page Content -->
+        <section role="main" class="col grow">
+            <div class="marginBottom1 row">
+                <h2 class="affiliationsListView subTitle affiliationPageSubHeader" data-bind="resx: { textContent: 'string_5200' }">Affiliations</h2>
+            </div>
+
+            <div class="standardGrid" data-bind="listView: {
+                    itemDataSource: viewModel.affiliations,
+                    selectionMode: 'multi',
+                    tapBehavior: 'toggleSelect',
+                    selectionchanged: { eventHandlerCallBack: currentTargetSelectionChanged, appBarId: '#commandAppBar' },
+                    loadingstatechanged: currentTargetLoadingStateChanged,
+                    columns: [
+                        { titleResx: 'string_5202', cssClass: 'ratio5', field: 'Name' }, // Name
+                        { titleResx: 'string_5203', cssClass: 'ratio5', field: 'Description' } // Description
+                    ]
+                }">
+            </div>
+        </section>
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl" data-win-options="{ sticky : true }">
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'addAffiliationsAppBar',
+                    extraClass: 'winappbar-iconApply',
+                    section:'global'
+                }"
+                data-bind="winControl: { click: addAffiliationsToCart }, resx: { label: 'string_75' }, disable: _isApplyButtonDisabled "></button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+/* Control buttons */
+.listInputDialog input[type=button]:hover {
+    background-color: #00B0F0;
+    color: #FFF;
+}
+
+.listInputDialog input[type=button]:active {
+    background-color: #00B0F0;
+    color: #000;
+}
+
+.listInputDialog input[type=button]:disabled {
+    background-color: #00B0F0;
+    visibility: visible;
+}
+
+.listInputDialog .dialogBoxButton {
+    background-color: #00B0F0;
+    color: #FFF;
+    font-size: 12pt;
+    height: 32px;
+    margin: 0px;
+    text-align: center;
+    width: 90px;
+}
+
+.listInputDialog .modalWindowBackground {
+    background-color: #000000;
+    height: 100%;
+    opacity: 0.6;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+.listInputDialog .dialogtSubtext {
+    color: #808080;
+    display: block;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.listInputDialog .hidden {
+    visibility: hidden;
+}

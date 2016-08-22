@@ -1,0 +1,13 @@
+{
+    "_comment":  "If you made changes to this file, please update pos.appcache so update is fetched by the browser.",
+    "AADLoginUrl": "https://login.windows.net",
+    "LocatorServiceUrl": "",
+    "AADClientId": "d5527362-3bc8-4e63-b5b3-606dc14747e9",
+    "AADRetailServerResourceId": "https://commerce.dynamics.com",
+    "IsAppInsightsLoggingEnabled": "true",
+    "AppInsightsInstrumentationKey": "F04EFAF8-196B-4FE8-A77B-4651E83FA501",
+    "AppInsightsApplicationName": "Cloud POS",
+    "EnvironmentId": "Dev-Environment",
+    "CommerceAuthenticationAudience": "Cloud POS",
+    "RetailServerUrl": ""
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Extended LogOn View</title>
+</head>
+<body>
+
+    <div class="extendedLogOnView fragment" data-bind="with: viewModel">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: busy }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}" data-bind="with: $parent"></div>
+
+        <section role="main" class="col grow" data-bind="resx: { ariaLabel: 'string_4454' }">
+            <div class="col grow" data-bind="listView: {
+                    selectionMode: 'single',
+                    tapBehavior: 'toggleSelect',
+                    itemDataSource: foundEmployees,
+                    selectionchanged: { eventHandlerCallBack: $parent.employeeSelectionChanged.bind($parent), appBarId: '#commandAppBar' },
+                    columns: [
+                        { titleResx: 'string_11002', cssClass: 'ratio3', field: 'StaffId' },
+                        { titleResx: 'string_11003', field: 'Name' }
+                    ]
+                }"></div>
+        </section>
+
+        <!-- Bottom app bar -->
+        <div id="commandAppBar" data-win-control="Commerce.AppBarControl"  data-win-options="{ sticky : true }">
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'unassign', extraClass: 'winappbar-iconUndo'}"
+                    data-bind="click: unassignStart, resx: { label: 'string_11004' }, enable: isEmployeeSelected"></button>
+            <button data-win-control="WinJS.UI.AppBarCommand"
+                    data-win-options="{id:'assign', extraClass: 'winappbar-iconKey'}"
+                    data-bind="click: assignStart, resx: { label: 'string_11005' }, enable: isEmployeeSelected"></button>
+        </div>
+
+        <!-- Dialogs -->
+        <!-- Assign -->
+        <div data-bind="dialog: {
+                title: Commerce.ViewModelAdapter.getResourceString('string_11006'),
+                subTitle: Commerce.ViewModelAdapter.getResourceString('string_11007'),
+                message: selectedEmployeeText,
+                visible: assignInProgress,
+                buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_75'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, isPrimary: true, disable: extendedLogonTokenUnavailable },
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, isPrimary: false }
+                ],
+                buttonClick: $parent.assignDialogButtonClick.bind($parent)
+                }">
+        </div>
+        <!-- Unassign -->
+        <div data-bind="dialog: {
+                title: Commerce.ViewModelAdapter.getResourceString('string_11008'),
+                subTitle: Commerce.ViewModelAdapter.getResourceString('string_11009'),
+                message: selectedEmployeeText,
+                visible: unassignInProgress,
+                buttons: [
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_77'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, isPrimary: true },
+                    { label: Commerce.ViewModelAdapter.getResourceString('string_78'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, isPrimary: false }
+                ],
+                buttonClick: $parent.unAssignDialogButtonClick.bind($parent)
+                }">
+        </div>
+    </div>
+</body>
+</html>

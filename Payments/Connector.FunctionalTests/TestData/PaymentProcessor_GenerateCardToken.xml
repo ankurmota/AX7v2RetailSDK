@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+
+  <PaymentProcessor_GenerateCardToken_Success>
+    <TestDescriptor>Visa</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_Success>
+  <PaymentProcessor_GenerateCardToken_Success>
+    <TestDescriptor>Master Card</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>MasterCard</CardType>
+    <CardNumber>5555555555554444</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_Success>
+  <PaymentProcessor_GenerateCardToken_Success>
+    <TestDescriptor>Amex</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Amex</CardType>
+    <CardNumber>378282246310005</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_Success>
+  <PaymentProcessor_GenerateCardToken_Success>
+    <TestDescriptor>Discover</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Discover</CardType>
+    <CardNumber>6011111111111117</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_Success>
+  <PaymentProcessor_GenerateCardToken_Success>
+    <TestDescriptor>Visa</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_Success>
+  <PaymentProcessor_GenerateCardToken_Success>
+    <TestDescriptor>Master Card</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>MasterCard</CardType>
+    <CardNumber>5555555555554444</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_Success>
+  <PaymentProcessor_GenerateCardToken_Success>
+    <TestDescriptor>Amex</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Amex</CardType>
+    <CardNumber>378282246310005</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_Success>
+  <PaymentProcessor_GenerateCardToken_Success>
+    <TestDescriptor>Discover</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Discover</CardType>
+    <CardNumber>6011111111111117</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_Success>
+
+  <PaymentProcessor_GenerateCardToken_NullRequest>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GenerateCardToken_NullRequest>
+  <PaymentProcessor_GenerateCardToken_NullRequest>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+  </PaymentProcessor_GenerateCardToken_NullRequest>
+
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Invalid merchant account</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable_InvalidProperties.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Missing card type</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Invalid card type</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>WrongCardType</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Missing card number</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Invalid card number</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4123451234512345</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Missing expiration month</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Missing expiration year</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Card expired</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2015</ExpirationYear>
+    <ExpirationMonth>1</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Debit card</TestDescriptor>
+    <ConnectorType>Portable</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorPortable.xml</MerchantAccountXmlPath>
+    <CardType>Debit</CardType>
+    <CardNumber>5149612222222229</CardNumber>
+    <Track2>;5149612222222229=16041011234567440?</Track2>
+    <EncryptedPin>C031837D85BD2369</EncryptedPin>
+    <AdditionalSecurityData>8765432100002000093</AdditionalSecurityData>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Invalid merchant account</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop_InvalidProperties.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Missing card type</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Invalid card type</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>WrongCardType</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Missing card number</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Invalid card number</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4123451234512345</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Missing expiration month</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2025</ExpirationYear>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Missing expiration year</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Card expired</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Visa</CardType>
+    <CardNumber>4111111111111111</CardNumber>
+    <ExpirationYear>2015</ExpirationYear>
+    <ExpirationMonth>1</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+  <PaymentProcessor_GenerateCardToken_InvalidInput>
+    <TestDescriptor>Debit card</TestDescriptor>
+    <ConnectorType>Desktop</ConnectorType>
+    <ConnectorName>TestConnector</ConnectorName>
+    <MerchantAccountXmlPath>MerchantAccount_TestConnectorDesktop.xml</MerchantAccountXmlPath>
+    <CardType>Debit</CardType>
+    <CardNumber>5149612222222229</CardNumber>
+    <Track2>;5149612222222229=16041011234567440?</Track2>
+    <EncryptedPin>C031837D85BD2369</EncryptedPin>
+    <AdditionalSecurityData>8765432100002000093</AdditionalSecurityData>
+    <ExpirationYear>2025</ExpirationYear>
+    <ExpirationMonth>12</ExpirationMonth>
+    <Name>John Doe</Name>
+    <Phone>1234567890</Phone>
+    <StreetAddress>One Microsoft Way</StreetAddress>
+    <StreetAddress2>Street 2</StreetAddress2>
+    <City>Redmond</City>
+    <State>WA</State>
+    <PostalCode>98052</PostalCode>
+    <Country>US</Country>
+  </PaymentProcessor_GenerateCardToken_InvalidInput>
+
+</TestData>

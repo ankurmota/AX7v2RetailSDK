@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <ISVCustomizationSettingsHasBeenImported>true</ISVCustomizationSettingsHasBeenImported>
+
+    <!-- This section is for global settings and code signing. Any built file will inherit these values if applicable. Package manifest files  will
+    also use these values during package generation. -->
+    <AssemblyNamePrefix>Contoso</AssemblyNamePrefix>
+    <CustomAssemblyVersion Condition="'$(CustomAssemblyVersion)' == ''">1.0.0.0</CustomAssemblyVersion>
+    <CustomVersion Condition="'$(CustomVersion)' == ''">1.0.0.1</CustomVersion>
+    <CustomName Condition="'$(CustomName)' == ''">Contoso Retail Customization</CustomName> 
+    <CustomDescription Condition="'$(CustomDescription)' == ''">Contoso Retail Customization</CustomDescription>
+    <CustomPublisher Condition="'$(CustomPublisher)' == ''">Contoso Ltd.</CustomPublisher>
+    <CustomCopyright Condition="'$(CustomCopyright)' == ''">Copyright © 2016</CustomCopyright>
+
+    <SignAssembly Condition="'$(SignAssembly)' == ''">false</SignAssembly>
+    <DelaySign Condition="'$(DelaySign)' == ''">false</DelaySign>
+    <AssemblyOriginatorKeyFile Condition="'$(AssemblyOriginatorKeyFile)' == '' and '$(SignAssembly)' == 'true'">$(MSBuildThisFileDirectory)\strongnamekey.snk</AssemblyOriginatorKeyFile>
+
+    <!--
+        The name of the cert must match the name of the publisher of the package which is the same as the CustomPublisher above. 
+        http://blogs.msdn.com/b/wsdevsol/archive/2014/02/12/create-a-windows-store-appx-package-and-sign-it.aspx
+        https://msdn.microsoft.com/en-us/library/windows/desktop/jj835832(v=vs.85).aspx
+
+        The sample cert was generated like this:
+        MakeCert /n "CN=Contoso Ltd." /r /h 0 /eku "1.3.6.1.5.5.7.3.3,1.3.6.1.4.1.311.10.3.13" /e ""12/31/2020"" /sv appxsignkey.pvk appxsignkey.cer
+        empty password as just for testing
+        Pvk2Pfx.exe /pvk appxsignkey.pvk /pi "" /spc appxsignkey.cer /pfx appxsignkey.pfx
+    -->
+    <ModernPOSPackageCertificateKeyFile Condition="'$(ModernPOSPackageCertificateKeyFile)' == ''">$(MSBuildThisFileDirectory)\ModernPOSAppxSigningCert-Contoso.pfx</ModernPOSPackageCertificateKeyFile>
+
+    <RetailServerLibraryPathForProxyGeneration Condition="'$(RetailServerLibraryPathForProxyGeneration)' == ''">$(SdkReferencesPath)\Microsoft.Dynamics.Retail.RetailServerLibrary.dll</RetailServerLibraryPathForProxyGeneration>
+  </PropertyGroup>
+
+  <!-- This section is for additional files related to a customization. -->
+  <ItemGroup>
+    <!-- This is where any additional CRT dlls should be specified -->
+    <!--ISV_CommerceRuntime_CustomizableFile Include="$(SdkReferencesPath)\MyCrtExtension.dll" /-->
+
+    
+    <!-- This is where any additional RetailServer dlls should be specified -->
+    <!--ISV_RetailServer_CustomizableFile Include="$(SdkReferencesPath)\MyRetailServerExtension.dll" /-->
+
+    
+    <!-- This is where any additional hardware station files should be specified -->
+    <!--ISV_HardwareStation_CustomizableFile Include="$(SdkReferencesPath)\MyHardwareStationExtension.dll" /-->
+
+    
+    <!-- This is where any additional db upgrade scripts should be specified -->
+    <!-- ISV_CustomDatabaseFile_Upgrade_Custom Include="$(SdkRootPath)\Database\Upgrade\Custom\SqlUpdatev1.sql" /-->
+  </ItemGroup>
+  
+  <!-- This section is for development only features -->
+  <PropertyGroup>
+    <RetailServerDropBinariesOnBuild Condition="'$(RetailServerDropBinariesOnBuild)' == ''">false</RetailServerDropBinariesOnBuild>
+    <RetailServerInstallationLocalBinariesPath Condition="'$(RetailServerInstallationLocalBinariesPath)' == ''"></RetailServerInstallationLocalBinariesPath>
+
+    <HardwareStationDropBinariesOnBuild Condition="'$(HardwareStationDropBinariesOnBuild)' == ''">false</HardwareStationDropBinariesOnBuild>
+    <HardwareStationInstallationLocalBinariesPath Condition="'$(HardwareStationInstallationLocalBinariesPath)' == ''"></HardwareStationInstallationLocalBinariesPath>
+  </PropertyGroup>
+ </Project>

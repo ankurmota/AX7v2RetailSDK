@@ -1,0 +1,11 @@
+.CommonDialog section[role=main] {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+.alwaysOnTop{
+    z-index:9998;
+}
+
+.commerceDialog .content .additionalInfo {
+    font-weight: bold;
+}

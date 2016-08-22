@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>CashbackDialog</title>
+    </head>
+<body>
+    <div data-bind="customControlInternal: 'CashbackDialog'">
+        <div class="cashbackDialog">
+            <div data-bind="
+                dialog: {
+                    title:  Commerce.ViewModelAdapter.getResourceString('string_7000'), // Cash back
+                    visible: visible,
+                    showProgressIndicator: indeterminateWaitVisible,
+                    buttonClick: cashbackButtonClick,
+                    closeOnEscButton: true,
+                    buttons: [
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_7003'), operationId: Commerce.Controls.Dialog.OperationIds.NO_BUTTON_CLICK, flowLeft: true, isPrimary: false }, // No cash back
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_75'), disable: _OKButtonDisabled, operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, cssClass: 'okButton', isPrimary: true },
+                        { label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }]
+                }">
+                <div class="dialogSplitColumn">
+                    <label data-bind="resx: {textContent: 'string_7001'}" for="cashbackAmountText">Cash back amount</label>
+                    <input type="number"
+                           id="cashbackAmountText"
+                           step="any"
+                           data-bind="numeric: true, value: _cashbackAmountText,
+                                      valueUpdate: 'afterkeydown',
+                                      textInput: {select: selectCashbackInput},
+                                      event: {keyup: amountChanged}" />
+                </div>
+                <div class="marginTop2" data-bind="visible: showCashbackDenominations">
+                    <label data-bind="resx: {textContent: 'string_7002'}" for="cashbackDenominations">Denominations</label>
+                    <div id="cashbackDenominations" class="height15 scrollX" data-bind="tileList: { itemDataSource: denominations, iteminvoked: denominationInvokedHandler, bottomLeft: { field: 'amountText' } }">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

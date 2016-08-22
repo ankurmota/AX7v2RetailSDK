@@ -1,0 +1,365 @@
+.msax-Checkout { /* background-image: '<%=WebResource("someImage.jpg")%>;' */
+}
+
+    .msax-Checkout .msax-ButtonSection {
+        text-align: center;
+        margin-top: 20px;
+        clear: both;
+    }
+
+    .msax-Checkout table {
+        color: #272727;
+        border-spacing: 0;
+        border-collapse: collapse;
+        border: 0;
+        width: 100%;
+    }
+
+        .msax-Checkout .msax-ItemsGrid {
+            word-wrap: break-word;
+        }
+
+        .msax-Checkout .msax-ProductImage .msax-NoImageContainer,
+        .msax-ItemLevelPreferenceWrapper .msax-ProductDetails  .msax-NoImageContainer {
+            width: 50px;
+            height: 50px;
+            display: block;
+            background-image: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.product_sm_cart_placeholder.png")%>');
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+        }
+
+            .msax-Checkout .msax-ItemsGrid .msax-ProductDetails button.msax-Delete16 {
+                margin-top: 10px;
+            }
+
+        .msax-Checkout .msax-ItemsGrid .msax-Price {
+            text-align: right;
+        }
+
+        .msax-Checkout .msax-ItemsGrid .msax-Quantity {
+            text-align: center;
+        }
+
+            .msax-Checkout .msax-ItemsGrid .msax-Quantity input {
+                width: 40px;
+                text-align: center;
+                margin: 0 10px;
+            }
+
+            .msax-Checkout .msax-ItemsGrid .msax-Quantity button {
+                vertical-align: middle;
+            }
+
+        .msax-Checkout .msax-ItemsGrid .msax-Total {
+            text-align: right;
+        }
+
+            .msax-Checkout .msax-ItemsGrid .msax-Total .msax-LineDiscount {
+                color: #999999;
+            }
+
+        .msax-Checkout .msax-ItemsGrid tr.msax-KitComponents > *:first-child, .msax-Checkout .msax-ItemsGrid tr.msax-NoOfComponentsInKit > *:first-child {
+            padding-left: 60px;
+        }
+
+        .msax-Checkout .msax-ItemsGrid tr.msax-KitComponents > *:last-child {
+            padding-right: 10px; /* overriding the inherited padding-right */
+        }
+
+    .msax-Checkout .msax-PromotionCodeWrapper .msax-PromotionCodes *, .msax-ApplyPromotionCodeBlock *, .msax-PromotionCodesEmpty * {
+        padding: 10px;
+        margin-bottom: 0px;
+    }
+
+    .msax-Checkout .msax-PromotionCodeWrapper .msax-PromotionCodes tr > td > *:first-child {
+        padding-left: 50px;
+    }
+
+    .msax-Checkout .msax-PromotionCodeWrapper .msax-ApplyPromotionCodeBlock {
+        padding-top: 10px;
+    }
+
+        .msax-Checkout .msax-PromotionCodeWrapper .msax-ApplyPromotionCodeBlock > *:first-child {
+            margin-left: 20px;
+        }
+
+    .msax-Checkout .msax-PromotionCodeWrapper .msax-PromotionCodesEmpty * {
+        padding-left: 20px;
+    }
+
+    .msax-Checkout .msax-PromotionCodeWrapper .msax-PromotionCodes .msax-Remove {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Delete_16_on.png")%>') no-repeat center;
+    }
+
+        .msax-Checkout .msax-Review .msax-ItemsGrid .msax-ProductDetails {
+        }
+
+        .msax-Checkout .msax-Review .msax-ItemsGrid .msax-ShippingMethod {
+            text-align: left;
+        }
+
+    .msax-Checkout .msax-ShoppingCartSummary {
+    }
+
+        .msax-Checkout .msax-ShoppingCartSummary div {
+            text-align: right;
+        }
+
+        .msax-Checkout .msax-ShoppingCartSummary > div > div {
+            
+        }
+
+        .msax-Checkout .msax-ShoppingCartSummary > div > div > div:first-child {
+            padding-bottom: 15px;
+        }
+
+        .msax-Checkout .msax-ShoppingCartSummary > div > div > div:last-child {
+            width: 140px;
+        }
+        
+        .msax-Checkout .msax-ShoppingCartSummary .msax-GrandTotal div {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-EmailAddress,
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-StoreAddress, 
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-ShippingAddress,
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-ShippingMethod {
+    word-wrap: break-word;
+}
+
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-EmailAddress h5,
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-StoreAddress h5, 
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-ShippingAddress h5, 
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-BillingAddress h5,
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-Payment h5,
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-RewardCard h5 {
+    background: none;
+    color: black;
+}
+
+    .msax-Checkout .msax-Review .msax-OrderSummary .msax-Payment .msax-CreditCardPayment h5,
+    .msax-Checkout .msax-Review .msax-OrderSummary .msax-Payment .msax-GiftCardPayment h5,
+    .msax-Checkout .msax-Review .msax-OrderSummary .msax-Payment .msax-LoyaltyCardPayment h5,
+    .msax-Checkout .msax-Review .msax-OrderSummary .msax-BillingAddress h5 {
+        padding: 0;
+        margin: 0;
+    }
+
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-EmailAddress > *,
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-StoreAddress > *,
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-ShippingAddress > *, 
+.msax-Checkout .msax-Review .msax-OrderSummary .msax-Payment > * {
+    padding-left: 10px
+}
+
+.msax-Checkout .msax-OrderSummary,
+.msax-Checkout .msax-ShoppingCartSummary {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.msax-Checkout .msax-DeliveryPreferences .msax-DeliveryPreferencesOrderLevel, .msax-DeliveryPreferencesItemLevel {
+    background-color: #EDEEEE;
+    padding: 10px;
+}
+
+.msax-Checkout .msax-DeliveryPreferences .msax-ItemLevelPreferenceWrapper .msax-ChangeYourDeliveryPreference {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.msax-PickUpInStoreItemLevel .msax-Map {
+    border: 1px solid #808080;
+    position: relative;
+    height: 460px;
+    width: 460px;
+    margin-top: 20px;
+}
+
+.msax-Checkout .msax-DeliveryPreferences .msax-PickUpInStoreOrderLevel .msax-Map {
+    border: 1px solid #808080;
+    margin-top: 20px;
+}
+
+    .msax-PickUpInStoreItemLevel .msax-Location {
+        width: 391px;
+    }
+
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-ResultsContainer {
+        height: 460px;
+        overflow: auto;
+    }
+
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-AvailableStore {
+        display: block;
+        float: right;
+        margin-bottom: 5px;
+        padding: 8px;
+        width: 390px;
+    }
+
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-AvailableStoresHeader {
+         padding-left: 80px;
+    }
+
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-StoreHeader { 
+        padding-left: 80px;
+        text-transform: uppercase;
+    }
+
+    .msax-Checkout .msax-DeliveryPreferences .msax-PickUpInStoreOrderLevel .msax-AvailableStores .msax-DistanceHeader,
+    .msax-Checkout .msax-DeliveryPreferences .msax-PickUpInStoreOrderLevel .msax-AvailableStores .msax-StoreHeader {
+        text-transform: uppercase;
+    }
+
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-DistanceHeader {
+        float: right;
+        margin-right: 45px;
+        text-transform: uppercase;
+    }
+
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-AvailableStore .msax-Distance {
+        float: right;
+        margin-right: 30px;
+    }
+
+    .msax-Checkout .msax-DeliveryPreferences .msax-PickUpInStoreOrderLevel .msax-AvailableStores .msax-ItemAvailability .msax-ItemNotAvailable,
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-ItemAvailability .msax-ItemNotAvailable {
+        color: #FF0000;
+    }
+    
+    .msax-Checkout .msax-DeliveryPreferences .msax-PickUpInStoreOrderLevel .msax-AvailableStores .msax-Number,
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-Number {
+        background: none repeat scroll 0 0 #FF6A00;
+        border-radius: 0.8em;
+        color: #FFFFFF;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 1.6em;
+        margin-right: 5px;
+        text-align: center;
+        width: 1.6em;
+    }
+
+    .msax-Checkout .msax-DeliveryPreferences .msax-PickUpInStoreOrderLevel .msax-AvailableStores .msax-Selected,
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-Selected {
+        background-color: #65A5F1;
+    }
+
+    .msax-Checkout .msax-DeliveryPreferences .msax-PickUpInStoreOrderLevel .msax-AvailableStores .msax-Selected *,
+    .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-Selected * {
+        color: #FFFFFF;
+    }    
+
+    .msax-PickUpInStoreItemLevel .msax-FindStore button {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_search.png")%>')  repeat scroll 0 0 transparent;
+        border: 0 none;
+        cursor: pointer;
+        height: 28px;
+        min-width: 60px;
+        width: 60px;
+        float: right;
+    }
+
+    .msax-Checkout .msax-DeliveryPreferences .msax-PickUpInStoreOrderLevel .msax-FindStore button {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.btn_search.png")%>')  repeat scroll 0 0 transparent;
+        border: 0 none;
+        cursor: pointer;
+        height: 28px;
+        min-width: 60px;
+    }
+
+    .msax-Control .msax-PickUpInStoreItemLevel .msax-Map, .msax-Control .msax-PickUpInStoreItemLevel .msax-AvailableStores .msax-ResultsContainer {
+        height: 300px;
+    }
+
+     .msax-Checkout .msax-DeliveryPreferences .msax-EmailOrderLevel .msax-EmailDeliveryInfoImage,
+     .msax-EmailItemLevel .msax-EmailDeliveryInfoImage {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.electronic_delivery_info.png")%>') no-repeat;
+        min-height: 300px;
+        max-width: 100%;
+        background-size: auto;
+     }
+
+     .msax-Checkout .msax-DeliveryPreferences .msax-ShipItemsOrderLevel .msax-TruckImage, 
+     .msax-ShipItemsItemLevel .msax-TruckImage {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.i_shipping_truck.png")%>') no-repeat;
+        height: 100px;
+        margin-left: 30px;
+     }
+
+.msax-Checkout .msax-PaymentInformation .msax-OrderTotal {
+    white-space: nowrap;
+}
+
+.msax-Checkout .msax-ProgressBar .msax-PaymentProgress, 
+.msax-Checkout .msax-ProgressBar .msax-DeliveryProgress, 
+.msax-Checkout .msax-ProgressBar .msax-ReviewProgress {
+    line-height: 30px;
+    color: #FFFFFF;
+    float: left;
+    text-align: center;
+}
+
+    .msax-Checkout .msax-ProgressBar .msax-PaymentProgress {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_left.png")%>') no-repeat scroll left center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_right.png")%>') no-repeat scroll right center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_bg.png")%>') repeat-x scroll center center;
+    }
+
+    .msax-Checkout .msax-ProgressBar .msax-DeliveryProgress {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_right.png")%>') no-repeat scroll right center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_bg.png")%>') repeat-x scroll center center;
+    }
+
+    .msax-Checkout .msax-ProgressBar .msax-ReviewProgress {
+        background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_left.png")%>') no-repeat scroll left center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_right.png")%>') no-repeat scroll right center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_bg.png")%>') repeat-x scroll center center;
+    }
+
+.msax-Checkout .msax-ProgressBar .msax-ProgressBarEnd {
+    height: 30px;
+    color: #FFFFFF;
+    float: left;
+    width: 40px;
+    background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_end.png")%>') no-repeat scroll 0 0;
+}
+
+.msax-Checkout .msax-ProgressBar .msax-DeliveryProgress.msax-Active {
+    background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_right_on.png")%>') no-repeat scroll right center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_bg_on.png")%>') repeat-x scroll center center;
+}
+
+.msax-Checkout .msax-ProgressBar .msax-ReviewProgress.msax-Active, .msax-Checkout .msax-ProgressBar .msax-PaymentProgress.msax-Active {
+    background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_left_on.png")%>') no-repeat scroll left center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_right_on.png")%>') no-repeat scroll right center, url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_step_bg_on.png")%>') repeat-x scroll center center;
+}
+
+.msax-Checkout .msax-ProgressBar .msax-ProgressBarEnd.msax-Active {
+    background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Checkout.Images.progress_end_on.png")%>') no-repeat scroll 0 0;
+}
+
+.msax-Checkout .msax-PaymentInformation .msax-PaymentTotals .msax-OrderTotal, .msax-Checkout .msax-PaymentInformation .msax-PaymentTotals .msax-PaymentTotal {
+    font-size: 14px;
+}
+
+.msax-Checkout .msax-PaymentInformation .msax-PaymentTotals .msax-OrderTotal {
+    color: #0066cc;
+}
+
+.msax-Control .msax-AddDiscountCodeDialog .msax-Row, .msax-Control .msax-EditRewardCard .msax-Row {
+    line-height: 48px;
+}
+
+    .msax-Control .msax-AddDiscountCodeDialog .msax-Row .msax-Title, .msax-Control .msax-EditRewardCard .msax-Row .msax-Title {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+.msax-Control .msax-EditRewardCard .msax-RewardCardTextBox, .msax-Control .msax-AddDiscountCodeDialog .msax-DiscountCodeTextBox {
+    width: 300px;
+}
+
+.msax-Review .row {
+    margin-right: 0px;
+    margin-left: 0px;
+}

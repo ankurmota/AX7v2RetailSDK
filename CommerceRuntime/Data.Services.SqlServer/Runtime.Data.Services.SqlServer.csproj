@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props') And '$(MicrosoftCommonPropsHasBeenImported)' != 'true'" />
+  <Import Project="..\..\BuildTools\Microsoft.Dynamics.RetailSdk.Build.settings" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F107B461-9DD1-4CF3-9C42-DA874EBAD038}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Contoso.Commerce.Runtime.DataServices.SqlServer</RootNamespace>
+    <AssemblyName>$(AssemblyNamePrefix).Commerce.Runtime.DataServices.SqlServer</AssemblyName>
+    <ShippingSourceCode>true</ShippingSourceCode>
+    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Data.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataManagers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.DataServices.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Entities.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Commerce.Runtime.Framework.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Commerce.Runtime.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Dynamics.Retail.Diagnostics.dll">
+      <HintPath>..\..\References\Microsoft.Dynamics.Retail.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Composition.AttributedModel.dll">
+      <HintPath>..\..\References\System.Composition.AttributedModel\1.0.27.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention.dll">
+      <HintPath>..\..\References\System.Composition.Convention\1.0.27.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting.dll">
+      <HintPath>..\..\References\System.Composition.Hosting\1.0.27.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime.dll">
+      <HintPath>..\..\References\System.Composition.Runtime\1.0.27.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts.dll">
+      <HintPath>..\..\References\System.Composition.TypedParts\1.0.27.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Security.Principal" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddressSqlServerDataService.cs" />
+    <Compile Include="AffiliationSqlServerDataService.cs" />
+    <Compile Include="AuditLogSqlServerDataService.cs" />
+    <Compile Include="BusinessIntelligenceSqlServerDataService.cs" />
+    <Compile Include="ChannelSqlServerDataService.cs" />
+    <Compile Include="CommerceIdentityProviderSqlServerDataService.cs" />
+    <Compile Include="CurrencySqlServerDataService.cs" />
+    <Compile Include="Customer\CustomerSqlServerDatabaseAccessor.cs" />
+    <Compile Include="Customer\CustomerSqlServerDataService.cs" />
+    <Compile Include="DeviceManagementSqlServerDataService.cs" />
+    <Compile Include="DropAndDeclareSqlServerDataService.cs" />
+    <Compile Include="EmployeeSqlServerDataService.cs" />
+    <Compile Include="FreeTextSearchFormatter.cs" />
+    <Compile Include="HardwareStationSqlServerDataService.cs" />
+    <Compile Include="IncomeExpenseAccountsSqlServerDataService.cs" />
+    <Compile Include="InventorySqlServerDataService.cs" />
+    <Compile Include="KitTransactionSqlServerDataService.cs" />
+    <Compile Include="LoyaltySqlServerDataService.cs" />
+    <Compile Include="NonSalesTransactionSqlServerDataService.cs" />
+    <Compile Include="NumberSequenceSqlServerDataService.cs" />
+    <Compile Include="OfflineSyncStats\GetOfflinePendingTransactionCountProcedure.cs" />
+    <Compile Include="OfflineSyncStats\GetOfflineSyncStatsLinesProcedure.cs" />
+    <Compile Include="OfflineSyncStats\OfflineSyncStatsSqlServerDataService.cs" />
+    <Compile Include="PricingSqlServerDataService.cs" />
+    <Compile Include="ProductAvailabilitySqlServerDataService.cs" />
+    <Compile Include="Product\ItemSqlServerDataService.cs" />
+    <Compile Include="Product\ProductSearchSqlServerDataService.cs" />
+    <Compile Include="Product\ProductSqlServerDataService.cs" />
+    <Compile Include="Product\ProductsSqlServerDataService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReasonCodes\ReasonCodeSqlServerDataService.cs" />
+    <Compile Include="SalesTransaction\GetDiscountLinesProcedure.cs" />
+    <Compile Include="SalesTransaction\GetLoyaltyRewardPointLinesProcedure.cs" />
+    <Compile Include="SalesTransaction\GetSalesLinesProcedure.cs" />
+    <Compile Include="SalesTransaction\SalesTransactionSqlServerDataService.cs" />
+    <Compile Include="ServerOfflineTransactionSqlServerDataService.cs" />
+    <Compile Include="Shifts\GetShiftDataProcedure.cs" />
+    <Compile Include="Shifts\ShiftSqlServerDataService.cs" />
+    <Compile Include="ShippingSqlServerDataService.cs" />
+    <Compile Include="SqlServerDatabaseContext.cs" />
+    <Compile Include="StockCountSqlServerDataService.cs" />
+    <Compile Include="StoreLocatorSqlServerDataService.cs" />
+    <Compile Include="Tax\IndiaTaxSqlServerDataService.cs" />
+    <Compile Include="Tax\TaxSqlServerDataService.cs" />
+    <Compile Include="TransactionLogSqlServerDataService.cs" />
+    <Compile Include="UnitOfMeasure\UnitOfMeasureSqlServerDataService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data.Access.SqlServer\Runtime.Data.Access.SqlServer.csproj">
+      <Project>{4005C8E9-E444-410B-A57F-0548B7BF3192}</Project>
+      <Name>Runtime.Data.Access.SqlServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="'$(WindowsAppContainer)'!='true'" />
+  <Import Project="$(SdkRootPath)\BuildTools\Microsoft.Dynamics.RetailSdk.Build.targets" />
+</Project>

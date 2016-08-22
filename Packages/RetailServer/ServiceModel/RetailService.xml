@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ServiceModel Name="RetailServer" i:type="WebService" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Certificates>
+    <Certificate Name="RetailServiceSslCertificate" />
+    <Certificate Name="RetailClientCertificate" />
+    <Certificate Name="DataEncryptionCertificate" />
+  </Certificates>
+  <Dependencies>
+    <Dependency Name="Web-Server" Type="WindowsFeature"/>
+    <Dependency Name="Application-Server" Type="WindowsFeature" />
+    <Dependency Name="FileAndStorage-Services" Type="WindowsFeature"/>
+    <Dependency Name="NET-Framework-Features" Type="WindowsFeature"/>
+    <Dependency Name="NET-Framework-45-Features" Type="WindowsFeature"/>
+    <Dependency Name="MSMQ" Type="WindowsFeature"/>
+    <Dependency Name="WAS" Type="WindowsFeature"/>
+    <Dependency Name="Windows-Identity-Foundation" Type="WindowsFeature"/>
+    <Dependency Name="Server-Media-Foundation" Type="WindowsFeature"/>
+  </Dependencies>
+  <Endpoints>
+    <InputEndpoint Name="Https"  Certificate="RetailServiceSslCertificate" ApplicationProtocol="https" Type="External" DnsRecordSet="RetailServer">
+      <LoadBalancer  Type="External" ProbePort="443" ProbeProtocol="tcp"/>
+      <EndpointRegistrations>
+        <EndpointRegistration Name="RetailService" Url="/Commerce" SupportedVersions="1,2">
+          <TestEndpointRegistration Name="ExternalPing"  Url="/healthcheck?Password=f77f9e54-966a-4603-a5da-0cc926d6aa7b&amp;TestName=ExternalPing&amp;ResultFormat=xml" IsAvailability="true" />
+        </EndpointRegistration>
+        <EndpointRegistration Name="RetailServiceBase" Url="/">
+        </EndpointRegistration>
+      </EndpointRegistrations>
+      <ValidationEndpoint Name="ValidationEndpoint" Url="/healthcheck?Password=f77f9e54-966a-4603-a5da-0cc926d6aa7b&amp;TestName=ExternalPing&amp;ResultFormat=xml"/>
+      <ApplicationProtocols>
+        <ApplicationProtocol Name="https" LocalPort="443" Certificate="RetailServiceSslCertificate" />
+      </ApplicationProtocols>
+    </InputEndpoint>
+  </Endpoints>
+  <DeploymentTasks>
+    <PreTask Name="InstallRetailServer" Command="Scripts\RetailServerDSCConfiguration.ps1" Type="PowerShellScript" ParallelOnInstance="true">
+      <Parameter Name="serviceModelXml" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PreTask>
+    <PostTask Name="UpdateRetailServerDeployment" Command="Scripts\UpdateRetailServerDeploymentWithConfigWrapper.ps1" Type="PowerShellScript" ParallelOnInstance="true">
+      <Parameter Name="config" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+    <PostTask Name="RunRetailPostDeploymentService" Command="Scripts\CallRetailPostDeploymentConfigurationServiceWrapper.ps1" Type="PowerShellScript"  ContinueOnError="true" ParallelOnInstance="true">
+      <Parameter Name="serviceModelXml" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+    <PostTask Name="SetConfigInstallationInfo" Command="Scripts\SetConfigInstallationInfo.ps1" Type="PowerShellScript" ContinueOnError="true" ParallelOnInstance="true">
+      <Parameter Name="config" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+    <PostTask Name="Call-RetailServerServicing" Command="Scripts\Call-RetailServerServicing.ps1" Type="PowerShellScript" ContinueOnError="true">
+      <Parameter Name="config" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+    <PostTask Name="RunRetailServerDVT" Command="Scripts\RunRetailServerDVT.ps1" Type="PowerShellScript" ContinueOnError="true" ParallelOnInstance="true">
+      <Parameter Name="serviceModelXml" Value="[DeployBinding]"/>
+      <Parameter Name="config" Value="[DeployBinding]"/>
+      <Parameter Name="log" Value="[DeployBinding]"/>
+    </PostTask>
+  </DeploymentTasks>
+  <Databases>
+    <Database Name="AxRetailChannel">
+      <DeploymentTasks>
+        <PreTask Name="PopulateRetailChannelDatabaseSchema" Command="Data\ApplyRetailDBScriptInSQLSURetailSchema.ps1" Type="PowerShellScript" RunOnFirstInstanceOnly="true">
+          <Parameter Name="config" Value="[DeployBinding]"/>
+          <Parameter Name="log" Value="[DeployBinding]"/>
+        </PreTask>
+      </DeploymentTasks>
+    </Database>
+    <Database Name="AxDb"/>
+  </Databases>
+  <WorkingFolders>
+    <WorkingFolder Name="WebRoot" />
+  </WorkingFolders>
+  <Configuration>
+    <Setting Name="AosSoapUrl" Value="[Topology/Configuration/Setting[@Name='AosSoapUrl']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="serviceUri" Value="[Topology/Configuration/Setting[@Name='HostHeaders']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="retailCloudPOSUrl" Value="[Topology/Configuration/Setting[@Name='RetailCloudPOSUrl']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="retailStorefrontUrl" Value="[Topology/Configuration/Setting[@Name='RetailStorefrontUrl']/@Value]" CopyToServiceConfig="false"/>
+
+    <!-- Retail DB Connection Settings -->
+    <Setting Name="dbServer" Value="[ServiceModel/Databases/Database[@Name='AxRetailChannel']/@ServerName]" CopyToServiceConfig="false"/>
+    <Setting Name="dbName" Value="[ServiceModel/Databases/Database[@Name='AxRetailChannel']/@DatabaseName]" CopyToServiceConfig="false"/>
+    <Setting Name="dbUser" Value="[ServiceModel/Databases/Database[@Name='AxRetailChannel']/Credentials/Credential[@User='axretailruntimeuser']/@User]" CopyToServiceConfig="false"/>
+    <Setting Name="dbPassword" Value="[ServiceModel/Databases/Database[@Name='AxRetailChannel']/Credentials/Credential[@User='axretailruntimeuser']/@Password]" CopyToServiceConfig="false"/>
+
+    <!-- Data Sync db User -->
+    <Setting Name="dataSyncDbUser" Value="[ServiceModel/Databases/Database[@Name='AxRetailChannel']/Credentials/Credential[@User='axretaildatasyncuser']/@User]" CopyToServiceConfig="false"/>
+    <Setting Name="dataSyncDbUserPassword" Value="[ServiceModel/Databases/Database[@Name='AxRetailChannel']/Credentials/Credential[@User='axretaildatasyncuser']/@Password]" CopyToServiceConfig="false"/>
+
+    <!-- AX DB Connection Settings -->
+    <Setting Name="AxDbName" Value="[ServiceModel/Databases/Database[@Name='AxDb']/@DatabaseName]" CopyToServiceConfig="false"/>
+    <Setting Name="AxDbServer" Value="[ServiceModel/Databases/Database[@Name='AxDb']/@ServerName]" CopyToServiceConfig="false"/>
+    <Setting Name="AxDbDeploySqlUser" Value="[ServiceModel/Databases/Database[@Name='AxDb']/Credentials/Credential[@User='axdeployuser']/@User]" CopyToServiceConfig="false"/>
+    <Setting Name="AxDbDeploySqlPwd"  Value="[ServiceModel/Databases/Database[@Name='AxDb']/Credentials/Credential[@User='axdeployuser']/@Password]" CopyToServiceConfig="false"/>
+
+    <Setting Name="LogPath" Value="Temp" CopyToServiceConfig="false"/>
+    <Setting Name="ExpectedDVTServiceName" Value="[Topology/Configuration/Setting[@Name='ServiceName']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="ExpectedDVTAppPoolState" Value="Started" CopyToServiceConfig="false"/>
+    <Setting Name="ExpectedDVTAppPoolName" Value="[Topology/Configuration/Setting[@Name='ServiceName']/@Value]" CopyToServiceConfig="false"/>
+
+    <!-- AADTokenIssuerPrefix: 
+        sample value: 
+        for PPE:https://sts.windows.net/{0}/, 
+        for PROD: https://sts.windows.net/{0}/ 
+    -->
+    <Setting Name="AADTokenIssuerPrefix" Value="[Environment/Configuration/Setting[@Name='WIFConfiguration.AADIssuerNameFormat']/@Value]" CopyToServiceConfig="false"/>
+
+    <!-- AdminPrincipalName: 
+        sample value: tusr1@TAEOfficial.ccsctp.net
+    -->
+    <Setting Name="AdminPrincipalName" Value="[Topology/Configuration/Setting[@Name='AxAdminAlias']/@Value]" CopyToServiceConfig="false"/>
+
+    <Setting Name="RetailServerPackageMetadata" Value="[Topology/Configuration/Setting[@Name='RetailServerPackageMetadata']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="RetailRTSAuthenticationCertificateThumbprint" Value="[ServiceModel/Certificates/Certificate[@Name='RetailClientCertificate']/@Thumbprint]" CopyToServiceConfig="false"/>
+    <Setting Name="DisableDBServerCertificateValidation" Value="[Topology/Configuration/Setting[@Name='DisableDBServerCertificateValidation']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="AllowAnonymousContextRetailServerRequests" Value="[Topology/Configuration/Setting[@Name='AllowAnonymousContextRetailServerRequests']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="ClientAppInsightsInstrumentationKey" Value="[Environment/Configuration/Setting[@Name='Instrumentation.Retail.Client.Mpos.AppInsightsKey']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="HardwareStationAppInsightsInstrumentationKey" Value="[Environment/Configuration/Setting[@Name='Instrumentation.Retail.Client.HardwareStation.AppInsightsKey']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="EnvironmentId" Value="[Topology/Configuration/Setting[@Name='EnvironmentId']/@Value]" CopyToServiceConfig="false"/> 
+    <Setting Name="RetailCryptographyThumbprint" Value="[ServiceModel/Certificates/Certificate[@Name='DataEncryptionCertificate']/@Thumbprint]" CopyToServiceConfig="false"/>	
+    <Setting Name="WebSiteName" Value="[Topology/Configuration/Setting[@Name='ServiceName']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="AosWebsiteName" Value="[Topology/Configuration/Setting[@Name='AOSWebsiteName']/@Value]" CopyToServiceConfig="false"/>
+    <Setting Name="WebRoot" Value="[ServiceModel/WorkingFolders/WorkingFolder[@Name='WebRoot']/@Directory]" CopyToServiceConfig="false"/>
+    <Setting Name="ConfigurePrerequisites" Value="False" CopyToServiceConfig="false"/>
+    <Setting Name="WebsiteSslCertificateThumbprint" Value="[ServiceModel/Certificates/Certificate[@Name='RetailServiceSslCertificate']/@Thumbprint]" CopyToServiceConfig="false"/>
+  </Configuration>
+</ServiceModel>

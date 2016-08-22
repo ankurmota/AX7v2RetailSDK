@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Order History</title>
+</head>
+
+<body>
+    <!--CONTENT_START-->
+    <div id="OrderHistoryControl" class="msax-OrderHistory msax-MarginTop30" data-model="Contoso.Retail.Ecommerce.Sdk.Controls.OrderHistory">
+        <div class="msax-Loading msax-DisplayNone">
+            <div id="LoadingSpinner" class="msax-Spinner msax-MarginTop50"></div>
+            <div id="LoadingText" class="msax-LoadingText msax-MarginTop20"></div>
+        </div>
+
+        <div id="ErrorPanel" class="msax-ErrorPanel msax-DisplayNone" data-bind="foreach: errorMessages">
+            <div data-bind="text: $data"></div>
+        </div>
+
+        <div id="OrderHistory" class="msax-OrderHistory msax-MarginTop30" data-bind="template: 'OrderHistoryContent'"></div>
+
+        <script id="OrderHistoryContent" type="text/html">
+            <div data-bind="visible: !isOrderHistoryEmpty()">
+                <div id="OrderHistoryWrapper" class="msax-OrderHistoryWrapper msax-ClearBoth">
+                    <table id="OrderHistoryGrid" class="msax-OrderHistoryTable msax-WidthRatio100">
+                        <thead>
+                            <tr>
+                                <th class="msax-UpperCase msax-WidthRatio30 msax-HeaderOrderDate" data-bind="resx: {textContent: 'String_224' }"></th> <!-- Order date -->
+                                <th class="msax-UpperCase msax-WidthRatio40 msax-HeaderOrderNumber" data-bind="resx: {textContent: 'String_225' }"></th> <!-- Order number -->
+                                <th class="msax-UpperCase msax-WidthRatio30 msax-HeaderOrderStatus" data-bind="resx: {textContent: 'String_226' }"></th> <!-- Order status -->
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: salesOrders">
+                            <tr class="msax-BorderTop1">
+                                <td>
+                                    <!-- ko if: CreatedDateTime != null -->
+                                    <a class="msax-OrderDate" data-bind="text: $root.formatCreatedDate(CreatedDateTime)" />
+                                    <!-- /ko -->
+                                </td>
+                                <td>
+                                    <a class="msax-OrderNumber" data-bind="attr: { href: $root.getOrderDetailUrl($data) }, text: $root.getOrderNumber($data)" />
+                                </td>
+                                <td>
+                                    <a class="msax-OrderStatus" data-bind="text: $root.getSalesStatusString(StatusValue)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </script>
+        <div class="msax-NoOrdersMessage msax-MarginLeft10 msax-ClearBoth" data-bind="visible: isOrderHistoryEmpty()">
+            <span data-bind="resx: {textContent: 'String_231' }"></span> <!-- There are no orders to display. -->
+        </div>
+        <nav class="msax-Paging" data-bind="visible: showPaging() && !isOrderHistoryEmpty()">
+            <ul class="pagination">
+                <li class="msax-PrevPage disabled" data-bind="click: $root.prevPageClick.bind($root)">
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a class="msax-CurrentPage">1</a></li>
+                <li class="msax-NextPage" data-bind="click: $root.nextPageClick.bind($root)">
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!--CONTENT_END-->
+</body>
+</html>

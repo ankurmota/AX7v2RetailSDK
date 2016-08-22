@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Issue Loyalty Card</title>
+        <link href="IssueLoyaltyCardView.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="fragment issueLoyaltyCardView">
+            <!-- Progress ring -->
+            <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+            <!-- Page header -->
+            <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+            <!-- Content -->
+            <section role="main" data-bind="resx: { ariaLabel: 'string_4454' }" class="row">    <!-- Main content -->
+
+                <!-- Card area -->
+                <div class="col no-shrink">
+                    <!-- Title -->
+                    <h2 data-bind="resx: {textContent: 'string_4701'}">Card number</h2>
+                    <!-- Num pad -->
+                    <input id="cardNumberInput"
+                           class="numPadTextbox"
+                           type="text"
+                           data-bind="hasfocus: true,
+                                  validator: {
+                                      data: issueLoyaltyCardViewModel.loyaltyCard,
+                                      field: 'CardNumber',
+                                      validatorType: 'LoyaltyCardValidator'
+                                  }" />
+                    <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                         data-win-options="{ uri: 'Controls/numberPad/NumPad.html' }"
+                         data-bind="alphanumericNumpad: {
+                            textBoxId: 'cardNumberInput',
+                            onEnter: issueLoyaltyCard,
+                            value: issueLoyaltyCardViewModel.loyaltyCard.CardNumber
+                         }">
+                    </div>
+                </div>
+
+                <!-- Buffer between the Card Area and Account Details Area -->
+                <div class="gutter4x4"></div>
+
+                <!-- Account details area -->
+                <div class="col no-shrink maxWidth32">
+                    <!-- Title -->
+                    <h2 data-bind="resx: { textContent: 'string_1150' }">Account details</h2>
+
+                    <!-- Customer Panel (Small - Name and Account) -->
+                    <div id="CustomerPanel" class="col listViewThemeColor width22 height8 padLeft1 padTop2 positionRelative" data-bind="visible: showAccountDetails">
+                        <div class="right0 top0 overLayZIndex">
+                            <button class="iconCancel noBorder" data-bind="resx: { ariaLabel: 'string_4401' }, click: removeCustomer"></button>    <!-- Remove customer -->
+                        </div>
+                        <a href="#" class="h3" data-bind="text: customerName, click: navigateToCustomerDetails"></a>
+                        <h4 data-bind="text: customerAccountNumber"></h4>
+                    </div>
+
+                    <!-- Add or search customer -->
+                    <div data-bind="visible: !showAccountDetails()">
+                        <div data-bind="buttonBlock: {  buttonClass: 'iconAdd'
+                                                      , labelTextResx: 'string_1152' // Create new customer
+                                                      , click: createNewCustomer
+                                                     }">
+                        </div>
+                        <div data-bind="buttonBlock: {  buttonClass: 'iconSearch'
+                                                      , labelTextResx: 'string_1153' // Search customers
+                                                      , click: searchCustomers
+                                                     }">
+                        </div>
+                    </div>
+
+                    <!-- Change customer -->
+                    <div data-bind="visible: showAccountDetails">
+                        <div data-bind="buttonBlock: {  buttonClass: 'iconChange'
+                                                      , labelTextResx: 'string_1151' // Change customer account
+                                                      , click: changeCustomerAccount
+                                                     }">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottom app bar -->
+            <div id="commandAppBar" data-win-control="Commerce.AppBarControl">
+                <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{id:'issueLoyaltyCardAppBar', label:'Activate', extraClass: 'winappbar-iconActivateLoyaltyCard'}"
+                        data-bind="click: activateLoyaltyCard, enable: enableLoyaltyCardAction, resx: { label: 'string_4705' }"></button>
+                <button data-win-control="WinJS.UI.AppBarCommand"
+                        data-win-options="{id:'issueLoyaltyCardAppBar', label:'Issue', extraClass: 'winappbar-iconIssueLoyaltyCard'}"
+                        data-bind="click: issueLoyaltyCard, enable: enableIssueLoyaltyCardAction, resx: { label: 'string_4706' }"></button>
+            </div>
+        </div>
+    </body>
+</html>

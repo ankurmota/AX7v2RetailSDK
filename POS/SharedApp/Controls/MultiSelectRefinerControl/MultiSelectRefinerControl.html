@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MultiSelectRefinerControl template</title>
+    <link href="MultiSelectRefinerControl.css" rel="stylesheet" />
+</head>
+<body>
+    <script type="text/html" id="multiSelectRefinerControlTemplate">
+        <div>
+            <h4 data-bind="text: refiner.KeyName"></h4>
+        </div>
+        <div class="topAnchor"></div>
+        <div class="row">
+            <div class="minHeight3 multiselectOptionBackground padLeft03 padTop03 padRight03" data-bind="foreach: values, click: addButton">
+                <button type="button" class="baseFont multiselectOptionButton refinerMultiSelectBorderColor" data-bind="click: $parent.onSelectedButtonClick">
+                    <h4 class="nowrap margin0 ellipsis" data-bind="text: LeftValueBoundString"></h4>
+                </button>
+            </div>
+            <div class="padLeft1 centerY refinerAddButton">
+                <button type="button" class="iconAdd navBarButtonColor" data-bind="click: addButton, resx: { ariaLabel: 'string_4107' }"></button> <!-- Add filter -->
+            </div>
+        </div>
+
+        <div class="refinerFlyout maxHeight30 pad0 margin0 baseFont" data-bind="template: { name: 'multiSelectRefinerValueSelectTemplate', data: { values: refiner.Values, checkedOptions: checkedOptions, okButton: okButtonHandler, cancelButton: cancelButtonHandler, isEmpty: !refiner.Values || refiner.Values.length === 0 }}">
+        </div>
+        <div class="bottomAnchor"></div>
+    </script>
+    <script type="text/html" id="multiSelectRefinerValueSelectTemplate">
+        <div class="pad1 scrollY">
+            <div class="maxHeight21" data-bind="foreach: values, visible: !isEmpty">
+                <div class="row padBottom05 centerY">
+                    <div class="width3 centerY">
+                        <input type="checkbox" data-bind="value: $data.LeftValueBoundString, checked: $parent.checkedOptions" />
+                    </div>
+                    <div class="padLeft05 padTop1 centerY">
+                        <h4 class="ellipsis" data-bind="text: LeftValueBoundString"></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row grow height21 center" data-bind="visible: isEmpty">
+                <h4 class="secondaryFontColor" data-bind="resx: { textContent: 'string_4164' }"></h4> <!-- No options available -->
+            </div>
+        </div>
+        <div class="row refinerButtonContainer center">
+            <div class="marginRight2 col grow">
+                <button type="button" class="primaryButton" data-bind="click: okButton, resx: { textContent: 'string_5365' }, enable: !isEmpty"></button> <!--OK-->
+            </div>
+            <div class="col grow">
+                <button class="secondaryButton" data-bind="click: cancelButton, resx: { textContent: 'string_1955' }"></button> <!--Cancel-->
+            </div>
+        </div>
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pick up View</title>
+    <link href="PickUpView.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="fragment pickupView">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: _indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="col grow" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+
+            <div class="standardGrid" data-bind="listView: {
+                    itemDataSource: _cartLines,
+                    selectionchanged: { eventHandlerCallBack: onSelectionChanged, appBarId: '#commandAppBar' },
+                    loadingstatechanged: loadingStateChanged,
+                    selectionMode: 'multi',
+                    tapBehavior: 'toggleSelect',
+                    emptyListViewTemplate: 'emptyPickupListViewMessage',
+                    columns: [
+                        { titleResx: 'string_4531', cssClass: 'ratio1', field: 'ItemId' },
+                        { titleResx: 'string_4532', cssClass: 'ratio2', field: '$data', converter: 'Commerce.Core.Converter.ProductNameFormatter' },
+                        { titleResx: 'string_4533', cssClass: 'ratio1 textRight', field: 'Price', converter: 'Commerce.Core.Converter.PriceFormatter' },
+                        { titleResx: 'string_4534', cssClass: 'ratio1 textRight', field: 'Quantity' },
+                        { titleResx: 'string_4570', cssClass: 'ratio1 textRight', field: 'QuantityInvoiced' },
+                        { titleResx: 'string_4535', cssClass: 'ratio2 textRight', field: 'ExtendedPrice', converter: 'Commerce.Core.Converter.PriceFormatter' },
+                        { titleResx: 'string_4536', cssClass: 'ratio2 textRight', field: 'TotalAmount', converter: 'Commerce.Core.Converter.PriceFormatter' },
+                    ]
+                }">
+
+            </div>
+            <script type="text/html" id="emptyPickupListViewMessage">
+                <div class="textCenter">
+                    <h3 data-bind="resx: { textContent: 'string_1032' }">We didn’t find anything to display here.</h3>
+                </div>
+            </script>
+        </section>
+        
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl" 
+        data-win-options="{ sticky : true }">
+             
+         <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{id:'selectAll', label:'Select all', extraClass: 'winappbar-iconSelectAll', section: 'selection'}"
+            data-bind="winControl: { click: selectAllClick }, resx: { label: 'string_4537' }" >
+         </button>
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'clear', label:'Clear', extraClass: 'winappbar-iconClear', section: 'selection'}"
+                data-bind="winControl: { click: clearSelectionClick, disabled: isNoLineSelected }, resx: {label: 'string_1248'}"></button>
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{id:'pickUp', label:'Pick up', extraClass: 'winappbar-iconPickupInStore'}"
+                data-bind="winControl: { click: pickUpClick, disabled: isNoLineSelected }, resx: { label: 'string_4538' }"></button>
+       
+    </div>
+</body>
+</html>

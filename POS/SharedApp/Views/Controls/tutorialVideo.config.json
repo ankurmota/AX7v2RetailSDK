@@ -1,0 +1,35 @@
+{
+    "_comment":  "If you made changes to this file, please update pos.appcache so update is fetched by the browser.",
+    "video": [
+        {
+            "url": "string_7628",
+            "duration": 5,
+            "description": "string_7638",
+            "name": "string_7633"
+        },
+        {
+            "url": "string_7629",
+            "duration": 7,
+            "description": "string_7639",
+            "name": "string_7634"
+        },
+        {
+            "url": "string_7630",
+            "duration": 5,
+            "description": "string_7640",
+            "name": "string_7635"
+        },
+        {
+            "url": "string_7631",
+            "duration": 10,
+            "description": "string_7641",
+            "name": "string_7636"
+        },
+        {
+            "url": "string_7632",
+            "duration": 10,
+            "description": "string_7642",
+            "name": "string_7637"
+        }
+    ]
+}

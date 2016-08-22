@@ -1,0 +1,7 @@
+.customerAddressesView #customerPrimaryAddressList {
+    height: auto;
+}
+
+    .customerAddressesView #customerPrimaryAddressList .win-viewport.win-vertical {
+        background-color: inherit !important;
+    }

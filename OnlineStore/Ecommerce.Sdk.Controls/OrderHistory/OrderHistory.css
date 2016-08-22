@@ -1,0 +1,71 @@
+.msax-OrderHistoryTable {
+    border-spacing: 0;
+    margin-left: 10px;
+}
+
+    .msax-OrderHistoryTable th, 
+    .msax-OrderHistoryTable td {
+        padding: 10px 10px;
+    }
+
+    .msax-OrderHistoryTable thead tr {
+        background-color: #F3F4F4;
+        color: #5D5D5E;
+        text-transform: uppercase;
+    }
+
+    .msax-OrderHistoryTable > thead > tr > th {
+        background-color: #F3F4F4;
+        text-transform: uppercase;
+        vertical-align: middle;
+        font-size: 11px;
+        padding: 10px;
+        text-align: left;
+        color: #5d5d5e;
+        font-weight: normal;
+    }
+
+.msax-OrderHistory {
+    margin: 0 0 20px;
+}
+
+.msax-OrderHistory > p  {
+    clear: both;
+    line-height: 20px;
+    color: #6A6C6E;
+}
+
+.msax-OrderHistoryLink {
+    background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Arrow_Right_16_on.png")%>') no-repeat 0 0;
+    border: 0 none transparent;
+    color: #0066CC;
+    float: right;
+    height: 16px;
+    padding: 0 0 0 20px;
+}
+    .msax-OrderHistoryLink:hover {
+        text-decoration: underline;
+        background-color: transparent;
+    }
+
+.msax-PrevPage > *,
+.msax-NextPage > * {
+    border-radius: 0px !important;
+}
+
+.msax-CurrentPage:hover,
+.msax-CurrentPage > * :hover {
+    text-decoration: none !important;
+    background-color: white !important;
+    cursor: default !important;
+    color: white;
+}
+
+nav {
+    margin-left: 10px;
+}
+
+.pagination > .disabled > a:hover {
+    cursor: default !important;
+    text-decoration: none !important;
+}

@@ -1,0 +1,220 @@
+@using Contoso.Retail.Ecommerce.Web.Storefront.Models;
+@using Contoso.Retail.Ecommerce.Sdk.Core;
+@using Contoso.Commerce.RetailProxy;
+
+@model ProductGalleryModel
+
+@{
+    ViewBag.Title = "Product gallery - Contoso ";
+
+    // get unique list of brands and categories
+    Dictionary<string, bool> brands = new System.Collections.Generic.Dictionary<string, bool>();
+    Dictionary<string, bool> categories = new System.Collections.Generic.Dictionary<string, bool>();
+
+    foreach (Product p in Model.ProductList)
+    {
+        // list of all brands
+        foreach (ProductProperty prop in p.ProductProperties.First().TranslatedProperties)
+        {
+            if (prop.KeyName == "Brand" && !string.IsNullOrWhiteSpace(prop.ValueString))
+            {
+                brands[prop.ValueString] = true;
+            }
+        }
+
+
+        // list of all subcategories
+        categories[Model.CategoryIdToNameMapping[p.CategoryIds.First()]] = true;
+    }
+
+}
+
+@section other {
+    <!-- Load CSS for Product Gallery Page specifically-->
+    <link href="~/Content/CSS/productGallery.css" rel="stylesheet" />
+}
+
+<!-- Right hand side reserved for filters and all that fun stuff-->
+<div class="col-md-3 col-sm-4 col-xs-0">
+    <h3>Filters</h3>
+    <form>
+        <input type="hidden" name="categoryId" value="@Model.CategoryId" />
+
+        <label class="filter-label">Category</label><br />
+        @{ List<string> listOfCategoriesToShow = (Model.Filters["categories"] == null) ? new List<string>() { Model.CategoryIdToNameMapping[Model.CategoryId] } : Model.Filters["categories"].ToList(); }
+        @foreach (string key in categories.Keys)
+        {
+            if (listOfCategoriesToShow.Contains(key))
+            {
+                // check selected categories including the default one that renders the page
+                <input checked type="checkbox" name="filterCategories" value="@key"> @key <br />
+            }
+            else
+            {
+                <input type="checkbox" name="filterCategories" value="@key"> @key <br />
+            }
+
+        }
+
+        @{ var listOfBrandsToShow = Model.Filters["brand"] == null ? new List<string>() : Model.Filters["brand"].ToList(); }
+        @if (brands.Any())
+        {
+            <label class="filter-label">Brand</label><br />
+        }
+
+        @foreach (string key in brands.Keys)
+        {
+            if (listOfBrandsToShow.Contains(key))
+            {
+                // check selected categories including the default one that renders the page
+                <input checked type="checkbox" name="filterBrands" value="@key"> @key <br />
+            }
+            else
+            {
+                <input type="checkbox" name="filterBrands" value="@key"> @key <br />
+            }
+        }
+
+        <label class="filter-label">Price</label>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input type="text" class="form-control" id="minPrice" name="minPrice" placeholder="@ResourceHelper.GetLocalString("MinPrice")" value="@Request["minPrice"]">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input type="text" class="form-control" id="maxPrice" name="maxPrice" placeholder="@ResourceHelper.GetLocalString("MaxPrice")" value="@Request["maxPrice"]">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+
+<div class="col-md-9 col-sm-8 col-xs-12">
+
+    <!-- Product Navigation Breadcrumb -->
+    <ol class="breadcrumb">
+        @for (var i = Model.BreadcrumbNavLinks.Count - 1; i >= 0; i--)
+        {
+            if (i == Model.BreadcrumbNavLinks.Count - 1)
+            {
+                // last element, make it active
+                <li class="active">@Html.Raw(Model.BreadcrumbNavLinks[i])</li>
+            }
+            else
+            {
+                <li>@Html.Raw(Model.BreadcrumbNavLinks[i])</li>
+            }
+        }
+    </ol>
+
+    <!-- Go through each product -->
+    @foreach (Product p in Model.ProductList)
+    {
+        bool canAddProduct = true;
+
+        if (listOfBrandsToShow.Count > 0 && !listOfBrandsToShow.Contains(p.ProductProperties.First().TranslatedProperties.First().ValueString))
+        {
+            canAddProduct = false;
+        }
+
+        if (listOfCategoriesToShow.Count > 1 && !listOfCategoriesToShow.Contains(Model.CategoryIdToNameMapping[p.CategoryIds.First()]))
+        {
+            canAddProduct = false;
+        }
+
+        if (p.AdjustedPrice < (string.IsNullOrWhiteSpace(Request["minPrice"]) ? 0 : int.Parse(Request["minPrice"])))
+        {
+            canAddProduct = false;
+        }
+
+        if (p.AdjustedPrice > (string.IsNullOrWhiteSpace(Request["maxPrice"]) ? 999999 : int.Parse(Request["maxPrice"])))
+        {
+            canAddProduct = false;
+        }
+
+
+        if (!string.IsNullOrEmpty(p.ProductName) && canAddProduct)
+        {
+            <div class="product-gallery-product-wrapper">
+
+                <div class="product-gallery-img-wrapper">
+                    @{
+                        RichMediaLocationsRichMediaLocation img = p.Image.Items.First<RichMediaLocationsRichMediaLocation>();
+
+                        string imgLoc = img.Url;
+                    }
+                    <a href="../ProductDetails?productId=@p.RecordId">
+                        <img src="@imgLoc" class="product-gallery-img" />
+                    </a>
+
+                    <div class="product-gallery-view-more">
+                        <!-- Button to add directly to cart -->
+                        @*Get default product variant to quick add to cart*@
+                        @{ var defaultVariantId = (p.CompositionInformation == null) ? p.RecordId : p.CompositionInformation.VariantInformation.Variants.First().DistinctProductVariantId; }
+                        @if (p.Price != 0)
+                        {
+                            <div class="product-gallery-image-action-right quick-add" data-defaultvariantid="@defaultVariantId">
+                                QUICK ADD
+                            </div>
+                        }
+                    </div>
+
+                </div>
+                <div class="product-gallery-product-description-wrapper">
+                    <a href="../ProductDetails?productId=@p.RecordId" class="product-gallery-product-name">
+                        @p.ProductName
+                    </a>
+                    @if (p.BasePrice != p.AdjustedPrice)
+                    {
+                        <!-- Product is on sale -->
+                        <div class="product-gallery-product-adjusted-price adjusted-price">@p.ExtensionProperties.GetPropertyValue("FormattedAdjustedPrice", ExtensionPropertyTypes.String)</div>
+                        <div class="product-gallery-product-base-price base-price">@p.ExtensionProperties.GetPropertyValue("FormattedBasePrice", ExtensionPropertyTypes.String)</div>
+                    }
+                    else
+                    {
+                        <!-- Product isn't on sale, just show base price -->
+                        <div class="product-gallery-product-base-price base-price not-on-sale">@p.ExtensionProperties.GetPropertyValue("FormattedBasePrice", ExtensionPropertyTypes.String)</div>
+                    }
+                </div>
+
+            </div>
+                                }
+                            }
+</div>
+
+
+
+@section pageSpecificJs {
+    <script src="~/Content/JS/ProductGallery.js"></script>
+
+    <script>
+        $(".quick-add").click(function () {
+            var cartLine = { "ProductId": $(this).attr("data-defaultVariantId"), "Quantity": 1 };
+            var data = {
+                "isCheckoutSession": false,
+                "cartLines": [cartLine]
+            };
+
+            var self = this;
+            $.ajax({
+                type: "POST",
+                url: "/Cart/AddItems",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    addItemCallback(data);
+                    self.textContent = "ADDED";
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+

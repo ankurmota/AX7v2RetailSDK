@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CashDrawerInputDialog</title>
+
+    <link href="CashDrawerInputDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'CashDrawerInputDialog'">
+        <div>
+            <div data-bind="dialog:
+                {
+                    title: Commerce.ViewModelAdapter.getResourceString('string_4005'),
+                    subTitle: Commerce.ViewModelAdapter.getResourceString('string_4006'),
+                    visible: visible,
+                    closeOnEscButton:true,
+                    buttonClick: buttonClickHandler,
+                    buttons: [{ label: Commerce.ViewModelAdapter.getResourceString('string_76'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton', isPrimary: false}],
+                }" class="cashDrawerInputDialog modalWindowContentSection">
+                <div class="height15 scrollX" data-bind="tileList: { itemDataSource: _cashDrawers, iteminvoked: selectedCashDrawerHandler, bottomLeft: { field: 'DeviceName' }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

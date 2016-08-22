@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        NOTE: mPOS and cloudPOS have separate Pos.html. Make sure you update both accordingly to your changes.
+    -->
+    <meta charset="utf-8" />
+    <title>Dynamics Retail POS</title>
+
+    <!-- 
+        NOTE: -axretail-stylesheet-async is supported by Commerce.CSSHelpers.
+        It adds these two features for better UI experience: 
+        - 1. Non blocking async load of css files.
+        - 2. CSSHelpers know when a stylesheet is loaded by browser.
+
+        (!) Please use it for any new css file so the splash screen rendering won't be blocked. 
+    -->
+    <link rel="-axretail-stylesheet-async" href="Stylesheets/Vendor/jQueryUI/1.11.2/jquery-ui.min.css" />
+    <link rel="-axretail-stylesheet-async" href="Stylesheets/Main.min.css" />
+    <link rel="-axretail-stylesheet-async" href="Controls/dialog/dialog.min.css" />
+    <link rel="-axretail-stylesheet-async" href="Controls/buttonGrid/buttonGrid.css" />
+    <link rel="-axretail-stylesheet-async" href="Controls/tabControl/tabControl.css" />
+
+    <script src="Libraries/winjs/js/WinJS.min.js" defer="defer"></script>
+    <script src="Libraries/globalize/0.1.0/globalize.min.js" defer="defer"></script>
+    <script src="Libraries/globalize/0.1.0/globalize.cultures.min.js" defer="defer"></script>
+    <script src="Libraries/jquery.min.js" defer="defer"></script>
+    <script src="Libraries/jQueryUI/1.11.2/jquery-ui.min.js" defer="defer"></script>
+    <script src="Libraries/knockout-2.2.1.js" defer="defer"></script>
+    <script src="Libraries/datajs-1.1.0.min.js" defer="defer"></script>
+    <script src="Libraries/highcharts.src.js" defer="defer"></script>
+    <script src="Libraries/moment/moment-with-locales.min.js" defer="defer"></script>
+    <script src="Libraries/moment-timezone/moment-timezone-with-data.min.js" defer="defer"></script>
+    <script src="Diagnostics.TypeScriptCore.js" defer="defer"></script>
+    <script src="RetailLogger.js" defer="defer"></script>
+    <script src="Commerce.Core.js" defer="defer"></script>
+    <script src="Commerce.ViewModels.js" defer="defer"></script>
+
+    <!--
+    // BEGIN SDKSAMPLE_STOREHOURS (do not remove this)
+    <script src="Custom.Extension.js" defer="defer"></script>
+    // END SDKSAMPLE_STOREHOURS (do not remove this)
+    -->
+
+    <!--
+    // BEGIN SDKSAMPLE_CROSSLOYALTY (do not remove this)
+    <script src="Custom.Extension.js" defer="defer"></script>
+    // END SDKSAMPLE_CROSSLOYALTY (do not remove this)
+    -->
+
+    <script src="Pos.js" defer="defer"></script>
+
+    <style title="TillLayoutStyles"></style>
+</head>
+<body class="bodyBackgroundImage">
+    <div data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Pos.Shared.html'}"></div>
+    <div id="contenthost" data-win-control="Commerce.ViewNavigator" data-win-options="{home: 'LoginView'}"></div>
+    <div id="taskRecorderHost" data-win-control="Commerce.Taskrecorder.TaskRecorderViewManager"></div>
+    <div id="helpViewHost" data-win-control="Commerce.Taskrecorder.TaskRecorderViewManager"></div>
+</body>
+</html>

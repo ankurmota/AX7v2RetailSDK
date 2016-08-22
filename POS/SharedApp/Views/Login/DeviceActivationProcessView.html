@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DeviceActivationProcessView</title>
+</head>
+
+<body>
+    <div id="deviceActivationProcessPanel" class="fragment dynamicsBackground center">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <div id="deviceActivationProcessSection" role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">
+
+            <!-- Main content -->
+            <div class="center">
+                <div class="width50 margin4 panelBackgroundColor highContrastBorderThin">
+
+                    <!-- Logo -->
+                    <div class="center">
+                        <img src="#" data-bind="attr: { src: 'Assets/WideLogo.scale-100.png' }" />
+                    </div>
+
+                    <div class="padLeft4 padRight4 padBottom4">
+
+                        <!-- Title -->
+                        <div class="padBottom4">
+                            <div class="headerFont wrapTextWithoutHyphen" data-bind="text: appTitle">Activate Retail Modern POS</div>
+                        </div>
+
+                        <!-- When device is still activating -->
+                        <div data-bind="visible: controllerState() === Commerce.Model.Entities.DeviceActivationControllerState.Processing">
+                            <div class="padBottom4">
+                                <h4 data-bind="text: progressMessage"></h4>
+                            </div>
+
+                            <!--Progress bar to indicate navigation to login page-->
+                            <div>
+                                <progress class="win-large" data-bind="attr: {value: progressBarValue }" style="color: #ffffff"></progress>
+                            </div>
+                        </div>
+
+                        <!-- When device is activated successfully -->
+                        <div data-bind="visible: controllerState() === Commerce.Model.Entities.DeviceActivationControllerState.Succeeded">
+                            <div>
+                                <h4 data-bind="text: deviceActivatedMessage">Device activated successfully!</h4>
+                            </div>
+
+                            <div class="padTop4 textRight">
+                                <button id="launchButton" class="primaryButton dynamicsBackground"
+                                        data-bind="text: getStartedMessage, click: launch">
+                                    Get started
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- When any errors occur during device activation -->
+                        <div data-bind="visible: controllerState() == Commerce.Model.Entities.DeviceActivationControllerState.Error">
+                            <div id="activationErrorControl" class="activationErrorControl" 
+                                 data-bind="userControl: {
+                                    uri: 'Views/Controls/ActivationErrorControl.html',
+                                    options: { 
+                                        errorHeaderMessage: errorHeaderMessage,
+                                        clientErrorMessage: clientErrorMessage,
+                                        errorMessage: errorMessage,
+                                        errorDetails: errorDetails,
+                                        footerMessage: footerMessage,
+                                        continueLabel: continueLabel,
+                                        headerDeviceId: headerDeviceId,
+                                        headerRegisterNumber: headerRegisterNumber,
+                                        previousFunction: navigateToActivationPage.bind($root),
+                                        retryFunction: activateDevice.bind($root)  
+                                    } 
+                                 }">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

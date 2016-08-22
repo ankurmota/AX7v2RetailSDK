@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Search Orders View</title>
+     <!-- WinJS references -->
+    <link href="SearchOrdersView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="fragment searchOrdersView">
+
+        <!-- Indeterminate wait -->
+        <div tabindex="-1" data-bind="loader: { visible: _indeterminateWaitVisible }"></div>
+
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="col grow" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+
+            <div class="col grow" data-bind="listView: {
+                    itemDataSource: _orders,
+                    selectionchanged: { eventHandlerCallBack: onSelectionChanged, appBarId: '#commandAppBar' },
+                    loadingstatechanged: loadingStateChanged,
+                    selectionMode: 'single',
+                    tapBehavior: 'toggleSelect',
+                    emptyListViewTemplate: 'emptyOrdersGridMessage',
+                    columns: [
+                        { titleResx: 'string_4514', cssClass: 'ratio1 ratio2Under1080', field: 'salesOrder.SalesId' },
+                        { titleResx: 'string_4501', cssClass: 'ratio1 hideInPortrait hideUnder1080', field: 'customerOrderTypeString' },
+                        { titleResx: 'string_4502', cssClass: 'ratio1 ratio2Under1080', field: 'orderStatusString' },
+                        { titleResx: 'string_4571', cssClass: 'ratio1 hideInPortrait hideUnder1080', field: 'documentStatusString' },
+                        { titleResx: 'string_4503', cssClass: 'ratio1 ratio2Under1080', field: 'salesOrder.CreatedDateTime', converter: 'Commerce.Core.Converter.DateWithoutTime' },
+                        { titleResx: 'string_4504', field: 'salesOrder.Name' },
+                        { titleResx: 'string_4506', cssClass: 'ratio2 hideInPortrait hideUnder1080', field: 'salesOrder.ReceiptEmail' },
+                        { titleResx: 'string_4507', cssClass: 'ratio1 ratio2Under1080 textRight', field: 'salesOrder.TotalAmount', converter: 'Commerce.Core.Converter.PriceFormatter' },
+                    ]
+                }">
+
+            </div>
+            <script type="text/html" id="emptyOrdersGridMessage">
+                <div class="textCenter">
+                    <h3 data-bind="resx: { textContent: 'string_1032' }"></h3><!-- We didn’t find anything to display here. -->
+                </div>
+            </script>
+        </section>
+
+    </div>
+
+    <!-- Picking and Packing menu -->
+    <div id="pickingFlyout" data-win-control="WinJS.UI.Menu" data-bind="menu: { anchor: '#pickingAppBar', placement: 'top', alignment: 'left', toggleShowHide: _toggleShowHidePickingMenu }">
+
+        <button data-win-control="WinJS.UI.MenuCommand"
+                data-win-options="{
+                    id:'printPackingSlip',
+                    label: 'Print packing slip'
+                }"
+                data-bind="resx: { label: 'string_4508' }, click: printPackingSlip, winControl: { disabled: _printPackingSlipDisabled }"></button>
+
+        <button data-win-control="WinJS.UI.MenuCommand"
+                data-win-options="{
+                    id:'createPackingSlip',
+                    label: 'string_4509'
+                }"
+                data-bind="resx: { label: 'string_4509' }, click: createPackingSlip, winControl: { disabled: _createPackingSlipDisabled }"></button>
+
+        <button data-win-control="WinJS.UI.MenuCommand"
+                data-win-options="{
+                    id:'createPickingList',
+                    label: 'string_4510'
+                }"
+                data-bind="resx: { label: 'string_4510' }, click: createPickingList, winControl: { disabled: _createPickingListDisabled }"></button>
+        
+        <button data-win-control="WinJS.UI.MenuCommand"
+                data-win-options="{
+                    id:'pickUp',
+                    label: 'string_2515'
+                }"
+                data-bind="resx: { label: 'string_2515' }, click: pickUp, winControl: { disabled: _pickUpDisabled }"></button>
+    </div>
+
+    <!-- Bottom app bar -->
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl" 
+        data-win-options="{ sticky : true }">
+            
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                id:'pickingAppBar',
+                extraClass:'winappbar-pickingAndPacking'
+            }"
+                data-bind="winControl: { click: pickingAndPacking, disabled: _pickingAndPackingDisabled } , resx: { label: 'string_4582' }"></button>
+
+        <hr data-win-control="WinJS.UI.AppBarCommand" data-win-options="{type:'separator'}" />
+
+         <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{
+                id:'cancelOrder',
+                extraClass: 'winappbar-iconCancel'
+            }"
+            data-bind="winControl: { click: cancelOrder, disabled: _cancelOrderDisabled }, resx: { label: 'string_4511' }" >
+         </button>
+
+         <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{
+                id:'returnOrder',
+                extraClass: 'winappbar-iconReturn'
+            }"
+            data-bind="winControl: { click: returnOrder, disabled: _salesOrderReturnDisabled }, resx: { label: 'string_4512' }" >
+         </button>
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+            data-win-options="{
+                id:'editOrder',
+                extraClass: 'winappbar-iconEdit'
+            }"
+            data-bind="winControl: { click: editOrder, disabled: _editOrderDisabled }, resx: { label: 'string_4513' }" >
+        </button>       
+    </div>
+</body>
+</html>

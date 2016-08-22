@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ActivationErrorControl</title>
+</head>
+<body>
+    <div id="activationErrorControlTemplate" data-bind="customControlInternal: 'ActivationErrorControl'">
+        <div class="row padBottom4">
+            <div class="iconErrorBig iconBig shrink"></div>
+            <div class="marginTop1 marginLeft1">
+                <h4 data-bind="text: errorHeaderMessage"></h4>
+            </div>
+        </div>
+
+        <div data-bind="visible: headerMessageVisible">
+            <div class="padBottom2">
+                <h4 data-bind="text: headerDeviceId"></h4>
+            </div>
+            <div class="padBottom2">
+                <h4 data-bind="text: headerRegisterNumber"></h4>
+            </div>
+        </div>
+
+        <div class="padTop1 padLeft1 padRight3 padBottom3 errorDetailsActivation selectable maxHeight13 highContrastBorderThin">
+            <h4 data-bind="visible: !Commerce.StringExtensions.isNullOrWhitespace(clientErrorMessage())">
+                <strong><span data-bind="text: clientErrorMessage"></span></strong> - <span data-bind="text: errorMessage"></span>
+            </h4>
+            <h4 data-bind="visible: Commerce.StringExtensions.isNullOrWhitespace(clientErrorMessage())">
+                <span data-bind="text: errorMessage"></span>
+            </h4>
+            <ul data-bind="foreach: errorDetails">
+                <li><h4 data-bind="text: $data"></h4></li>
+            </ul>
+            <div class="marginTop2">
+                <h4 data-bind="resx: { textContent: 'string_7404' }">Application session ID</h4>
+                <h4 data-bind="text: appSessionId"></h4>
+            </div>
+        </div>
+
+        <div class="padTop4">
+            <h4 data-bind="text: footerMessage"></h4>
+        </div>
+
+        <div class="padTop4 row">
+            <div class="col grow"></div>
+            <div data-bind="visible: previousButtonVisible">
+                <button id="previousActivationButton" class="primaryButton dynamicsBackground"
+                        data-bind="text: previousLabel, click: previousFunction">
+                    Previous
+                </button>
+            </div>
+            <div class="marginLeft2">
+                <button id="retryActivationButton" class="primaryButton dynamicsBackground marginLeft2"
+                        data-bind="text: continueLabel, click: retryFunction">
+                    Retry
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

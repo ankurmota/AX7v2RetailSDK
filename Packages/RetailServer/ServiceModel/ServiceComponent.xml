@@ -1,0 +1,196 @@
+<DeploymentTopology catalogName="AX" productName="AX7">
+  <DeploymentComponents>
+    <DeploymentComponent identifier="RetailServer" dnsRecordSetId="RetailServer" topologyType="Demo">
+      <Customizations>
+        <Customization fieldName="Skip remaining scripts on failure" valueType="String" selectedValue="true" />
+      </Customizations>
+      <ScriptReference identifier="UnifiedSetup">
+        <Parameters>
+          <Parameter name="EnvironmentId" type="XPath">
+            <Value>
+              <Value>[TopologyInstance/EnvironmentId]</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="AxAdminAlias" type="Customization">
+            <Value>
+              <Value>User Alias</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="HostHeaders" type="Customization">
+            <Value>
+              <Value>Retail Endpoint</Value>
+            </Value>
+          </Parameter>
+		  <Parameter name="RetailCloudPOSUrl" type="Customization" continueOnSourceMissing="true">
+            <Value>
+              <Value>RetailCloudPos.Https</Value>
+            </Value>
+          </Parameter>
+		  <Parameter name="RetailStorefrontUrl" type="Customization"  continueOnSourceMissing="true">
+            <Value>
+              <Value>RetailStorefront.Https</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="ServiceName">
+            <Value>
+              <Value>RetailServer</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildLocation">
+            <Value>
+              <Value>Services\RetailServer\</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildId" type="Customization">
+            <Value>
+              <Value>ProductVersion</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="RetailServerPackageMetadata" type="Customization">
+            <Value>
+              <Value>RetailServerPackages</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="DisableDBServerCertificateValidation">
+            <Value>
+              <Value>True</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="AllowAnonymousContextRetailServerRequests">
+            <Value>
+              <Value>True</Value>
+            </Value>
+          </Parameter>
+        </Parameters>
+      </ScriptReference>
+    </DeploymentComponent>
+
+    <DeploymentComponent identifier="RetailServer" topologyType="DevTest" dnsRecordSetId="RetailServer">
+        <ScriptReference identifier="UnifiedSetup">
+          <Parameters>
+            <Parameter name="EnvironmentId" type="XPath">
+              <Value>
+                <Value>[TopologyInstance/EnvironmentId]</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="AxAdminAlias" type="Customization">
+              <Value>
+                <Value>User Alias</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="HostHeaders" type="Customization">
+              <Value>
+                <Value>Retail Endpoint</Value>
+              </Value>
+            </Parameter>
+			<Parameter name="RetailCloudPOSUrl" type="Customization" continueOnSourceMissing="true">
+              <Value>
+                <Value>WebPos</Value>
+              </Value>
+			</Parameter>
+			<Parameter name="RetailStorefrontUrl" type="Customization"  continueOnSourceMissing="true">
+              <Value>
+                <Value>RetailStorefront.Https</Value>
+              </Value>
+			</Parameter>
+            <Parameter name="ServiceName">
+              <Value>
+                <Value>RetailServer</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="BuildLocation">
+              <Value>
+                <Value>Services\RetailServer\</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="BuildId" type="Customization">
+              <Value>
+                <Value>ProductVersion</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="RetailServerPackageMetadata" type="Customization">
+              <Value>
+                <Value>RetailServerPackages</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="DisableDBServerCertificateValidation">
+              <Value>
+                <Value>True</Value>
+              </Value>
+            </Parameter>
+            <Parameter name="AllowAnonymousContextRetailServerRequests">
+              <Value>
+                <Value>True</Value>
+              </Value>
+            </Parameter>
+          </Parameters>
+        </ScriptReference>
+      </DeploymentComponent>
+	  
+    <DeploymentComponent identifier="RetailServer" dnsRecordSetId="RetailServer" topologyType="Production" >
+      <Customizations>
+        <Customization fieldName="Skip remaining scripts on failure" valueType="String" selectedValue="true" />
+      </Customizations>
+      <ScriptReference identifier="UnifiedSetup">
+        <Parameters>
+          <Parameter name="EnvironmentId" type="XPath">
+            <Value>
+              <Value>[TopologyInstance/EnvironmentId]</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="AxAdminAlias" type="Customization">
+            <Value>
+              <Value>User Alias</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="HostHeaders" type="Customization">
+            <Value>
+              <Value>Retail Endpoint</Value>
+            </Value>
+          </Parameter>
+		  <Parameter name="RetailCloudPOSUrl" type="Customization" continueOnSourceMissing="true">
+            <Value>
+              <Value>WebPos</Value>
+            </Value>
+          </Parameter>
+		  <Parameter name="RetailStorefrontUrl" type="Customization"  continueOnSourceMissing="true">
+            <Value>
+              <Value>RetailStorefront.Https</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="ServiceName">
+            <Value>
+              <Value>RetailServer</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildLocation">
+            <Value>
+              <Value>Services\RetailServer\</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="BuildId" type="Customization">
+            <Value>
+              <Value>ProductVersion</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="RetailServerPackageMetadata" type="Customization">
+            <Value>
+              <Value>RetailServerPackages</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="DisableDBServerCertificateValidation">
+            <Value>
+              <Value>False</Value>
+            </Value>
+          </Parameter>
+          <Parameter name="AllowAnonymousContextRetailServerRequests">
+            <Value>
+              <Value>False</Value>
+            </Value>
+          </Parameter>
+        </Parameters>
+      </ScriptReference>
+    </DeploymentComponent>
+	
+  </DeploymentComponents>
+</DeploymentTopology>

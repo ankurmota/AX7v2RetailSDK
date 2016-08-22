@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SliderRefinerControl template</title>
+    <link href="SliderRefinerControl.css" rel="stylesheet" />
+</head>
+<body>
+
+    <script type="text/html" id="sliderRefinerControlTemplate">
+        <div class="padBottom1 row shrink">
+            <div class="shrink"><h4 data-bind="text: refiner.KeyName"></h4></div>
+            <div class="shrink"><h4 data-bind="html: currentRange"></h4></div>
+        </div>
+        <div class="height2">
+            <div class="slider" data-bind="slider: rangeValues, sliderOptions: options, onSlide: slide" title=""></div>
+        </div>
+        <div class="row">
+            <div class="ratio5">
+                <h4 class="textLeft" data-bind="text: formattedMin"></h4>
+            </div>
+            <div class="ratio5">
+                <h4 class="textRight" data-bind="text: formattedMax"></h4>
+            </div>
+        </div>
+    </script>
+</body>
+</html>

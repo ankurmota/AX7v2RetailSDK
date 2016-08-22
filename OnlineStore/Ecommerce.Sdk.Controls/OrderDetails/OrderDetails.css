@@ -1,0 +1,107 @@
+.msax-OrderDetails table {
+    color: #272727;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 0;
+    width: 100%;
+}
+
+   .msax-ShoppingCartWrapper .msax-ProductImage .msax-NoImageContainer  {
+        width: 50px;
+        height: 50px;
+        display: block;
+        background-image: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.product_sm_cart_placeholder.png")%>');
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+
+    .msax-OrderDetails .msax-ItemsGrid {
+        word-wrap: break-word;
+    }
+
+    .msax-OrderDetails .msax-ItemsGrid .msax-Price {
+        text-align: right;
+    }
+
+    .msax-OrderDetails .msax-ItemsGrid .msax-Quantity {
+        text-align: center;
+    }
+
+    .msax-OrderDetails .msax-ItemsGrid .msax-Total {
+        text-align: right;
+    }
+
+        .msax-OrderDetails .msax-ItemsGrid .msax-Total .msax-LineDiscount {
+            color: #999999;
+        }
+
+    .msax-OrderDetails .msax-ItemsGrid tr.msax-KitComponents > *:first-child, .msax-OrderDetails .msax-ItemsGrid tr.msax-NoOfComponentsInKit > *:first-child {
+        padding-left: 60px;
+    }
+
+    .msax-OrderDetails .msax-ItemsGrid tr.msax-KitComponents > *:last-child {
+        padding-right: 10px; /* overriding the inherited padding-right */
+    }
+
+.msax-OrderHistoryLink {
+    background: url('/<%=WebResource("Contoso.Retail.Ecommerce.Sdk.Controls.Common.Images.i_Arrow_Left_16_on.png")%>') no-repeat 0 0;
+    border: 0 none transparent;
+    color: #0066CC;
+    height: 16px;
+    padding: 0 0 0 20px;
+}
+    msax-OrderDetails .msax-OrderHistoryLink:hover {
+        text-decoration: underline;
+        background-color: transparent;
+    }
+
+.msax-OrderDetail {
+    margin: 0px 10px 30px 10px;
+}
+
+.msax-OrderDetails .msax-Review .msax-ItemsGrid .msax-ShippingMethod {
+    text-align: left;
+}
+
+.msax-OrderDetails .msax-ShoppingCartSummary div {
+    text-align: right;
+}
+
+.msax-OrderDetails .msax-ShoppingCartSummary > div > div > div:first-child {
+    padding-bottom: 15px;
+}
+
+.msax-OrderDetails .msax-ShoppingCartSummary > div > div > div:last-child {
+    width: 140px;
+}
+        
+.msax-OrderDetails .msax-ShoppingCartSummary .msax-GrandTotal div {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.msax-OrderDetails .msax-RewardCard h5,
+.msax-OrderDetails .msax-ShippingAddress h5 {
+    background: none;
+    color: black;
+}
+
+.msax-OrderDetails .msax-OrderSummary .msax-EmailAddress > *,
+.msax-OrderDetails .msax-OrderSummary .msax-StoreAddress > *,
+.msax-OrderDetails .msax-OrderSummary .msax-ShippingAddress > *, 
+.msax-OrderDetails .msax-OrderSummary .msax-Payment > * {
+    padding-left: 10px
+}
+
+.msax-OrderDetails .msax-OrderSummary,
+.msax-OrderDetails .msax-ShoppingCartSummary {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.msax-OrderDetails .row {
+    margin-right: 0px;
+    margin-left: 0px;
+}

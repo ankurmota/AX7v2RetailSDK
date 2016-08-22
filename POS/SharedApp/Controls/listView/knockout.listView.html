@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout ListView handler templates</title>
+</head>
+<body>
+    <script type="text/html" id="listViewHeaderTemplate">
+        <div data-bind="attr: { 'class': cssClass}">
+            <h6 data-bind="text: title, attr: {title: title}"></h6>
+        </div>
+    </script>
+
+    <!-- Binding template for the CartPage transaction grid header row. -->
+    <script type="text/html" id="cartTransactionGridHeaderTemplate">
+        <div class="tillLayout-ProductNameField">
+            <h6 data-bind="resx: { textContent: 'string_110' }"></h6>
+        </div>
+        <div class="tillLayout-QuantityField textRight">
+            <h6 data-bind="resx: { textContent: 'string_111' }"></h6>
+        </div>
+        <div class="tillLayout-BarcodeIdField">
+            <h6 data-bind="resx: { textContent: 'string_4431' }"></h6>
+        </div>
+        <div class="tillLayout-BlockedField">
+            <h6 data-bind="resx: { textContent: 'string_4432' }"></h6>
+        </div>
+        <div class="tillLayout-SizeField">
+            <h6 data-bind="resx: { textContent: 'string_4433' }"></h6>
+        </div>
+        <div class="tillLayout-ColorField">
+            <h6 data-bind="resx: { textContent: 'string_4434' }"></h6>
+        </div>
+        <div class="tillLayout-StyleField">
+            <h6 data-bind="resx: { textContent: 'string_4435' }"></h6>
+        </div>
+        <div class="tillLayout-ConfigurationField">
+            <h6 data-bind="resx: { textContent: 'string_4436' }"></h6>
+        </div>
+        <div class="tillLayout-InfocodeProductField">
+            <h6 data-bind="resx: { textContent: 'string_4437' }"></h6>
+        </div>
+        <div class="tillLayout-LinkedProductField">
+            <h6 data-bind="resx: { textContent: 'string_4438' }"></h6>
+        </div>
+        <div class="tillLayout-OriginalPriceField textRight">
+            <h6 data-bind="resx: { textContent: 'string_4439' }"></h6>
+        </div>
+        <div class="tillLayout-TaxAmountField textRight">
+            <h6 data-bind="resx: { textContent: 'string_4440' }"></h6>
+        </div>
+        <div class="tillLayout-TaxCodeField">
+            <h6 data-bind="resx: { textContent: 'string_4441' }"></h6>
+        </div>
+        <div class="tillLayout-TaxPercentageField textRight">
+            <h6 data-bind="resx: { textContent: 'string_4442' }"></h6>
+        </div>
+        <div class="tillLayout-TotalWithTaxField textRight">
+            <h6 data-bind="resx: { textContent: 'string_4443' }"></h6>
+        </div>
+        <div class="tillLayout-TotalWithoutTaxField textRight">
+            <h6 data-bind="resx: { textContent: 'string_4444' }"></h6>
+        </div>
+        <div class="tillLayout-UnitOfMeasureField">
+            <h6 data-bind="resx: { textContent: 'string_4445' }"></h6>
+        </div>
+        <div class="tillLayout-ItemIdField">
+            <h6 data-bind="resx: { textContent: 'string_4446' }"></h6>
+        </div>
+    </script>
+
+    <!-- Binding template for the CartPage delivery grid header row. -->
+    <script type="text/html" id="cartDeliveryGridHeaderTemplate">
+        <div class="tillLayout-ProductNameField">
+            <h6 data-bind="resx: { textContent: 'string_110' }"></h6>
+        </div>
+        <div class="tillLayout-DeliveryMethodField">
+            <h6 data-bind="resx: { textContent: 'string_190' }"></h6>
+        </div>
+        <div class="tillLayout-DeliveryStatusField textRight">
+            <h6 data-bind="resx: { textContent: 'string_191' }"></h6>
+        </div>
+    </script>
+
+    <!-- Binding template that dynamically generates the row content based on the value in the column provided. -->
+    <script type="text/html" id="enhancedGridDynamicRowTemplate">
+        <div data-bind="attr: { 'class': listViewColumn.cssClass }">
+            <!-- primary text -->
+            <h5 data-bind="textConverter: { data: dataRow, field: listViewColumn.field, converter: listViewColumn.converter, defaultValue: listViewColumn.defaultValue, type: listViewColumn.type }"></h5>
+
+            <div class="extendedInfo secondaryFontColor shrink" data-bind="foreach: { data: listViewColumn.lines, as: 'extendedLine' }">
+                <h4 data-bind="textConverter: { data: dataRow, field: extendedLine.field, converter: extendedLine.converter, defaultValue: extendedLine.defaultValue, type: extendedLine.type }, attr: { 'class': extendedLine.cssClass }"></h4>
+            </div>
+        </div>
+    </script>
+
+    <!-- Binding template for CartPage transaction grid row. -->
+    <script type="text/html" id="cartTransactionGridRowTemplate">
+        <div class="tillLayout-ProductNameField">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Core.Converter.ProductNameFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-QuantityField textRight">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Core.Converter.CartLineQuantityFormat', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-BarcodeIdField">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'Barcode', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-BlockedField">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'IsBlocked', converter: 'Commerce.Core.Converter.BooleanFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-SizeField">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Core.Converter.SizeNameFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-ColorField">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Core.Converter.ColorNameFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-StyleField">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Core.Converter.StyleNameFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-ConfigurationField">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Core.Converter.ConfigurationNameFormatter' , defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-InfocodeProductField">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'InfocodeItem', converter: 'Commerce.Core.Converter.BooleanFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-LinkedProductField">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'IsLinkedItem', converter: 'Commerce.Core.Converter.BooleanFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-OriginalPriceField textRight">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'OriginalPrice', defaultValue: '0', converter: 'Commerce.Core.Converter.PriceFormatter', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-TaxAmountField textRight">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'TaxAmount', converter: 'Commerce.Core.Converter.PriceFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-TaxCodeField">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'ItemTaxGroupId', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-TaxPercentageField textRight">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'TaxRatePercent', converter: 'Commerce.Core.Converter.DecimalFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-TotalWithTaxField textRight">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'TotalAmount', converter: 'Commerce.Core.Converter.PriceFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-TotalWithoutTaxField textRight">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'NetAmountWithoutTax', converter: 'Commerce.Core.Converter.PriceFormatter', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-UnitOfMeasureField">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.CartLineUnitOfMeasureFormat', defaultValue: '', type: 'text' }"></h5>
+        </div>
+        <div class="tillLayout-ItemIdField">
+            <h5 data-bind="textConverter: { data: dataRow, field: 'ItemId', defaultValue: '', type: 'text' }"></h5>
+        </div>
+    </script>
+
+    <!-- Binding template for CartPage delivery grid row. -->
+    <script type="text/html" id="cartDeliveryGridRowTemplate">
+        <div class="tillLayout-ProductNameField">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Core.Converter.ProductNameFormatter', defaultValue: '', type: 'text' }"></h5>
+
+            <div class="extendedInfo secondaryFontColor shrink">
+                <h4 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.VariantNameFormatter', type: 'text' }"></h4>
+            </div>
+        </div>
+        <div class="tillLayout-DeliveryMethodField">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.DeliveryDescriptionFormatter', defaultValue: '', type: 'text' }"></h5>
+
+            <div class="extendedInfo secondaryFontColor shrink">
+                <h4 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.ShippingAddressNameFormatter', type: 'text' }"></h4>
+                <h4 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.CartLineAddressFormatterWithHtmlEscape', type: 'html' }"></h4>
+            </div>
+        </div>
+        <div class="tillLayout-DeliveryStatusField textRight">
+            <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.RequestedDeliveryDateFormatterWithHtmlEscape', defaultValue: '', type: 'html' }"></h5>
+        </div>
+    </script>
+
+    <!-- Simple list used by default except when we need to have expandable row, linethrough or additional info rows  -->
+    <script type="text/html" id="listViewStandardGridTemplate">
+        <div class="standardGridItemTemplate">
+            <div class="itemContainer listViewLine" data-bind="foreach: columns">
+                <div data-bind="attr: { 'class': cssClass }">
+                    <h4 data-bind="attr: { 'data-win-bind': 'textContent:' + field + ' ' + converter}"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="standardGrid listViewHandler">
+            <div class="listViewHeader" data-bind="template: { name: 'listViewHeaderTemplate', foreach: columns }">
+            </div>
+            <div class="tableContent listViewPlaceholder win-selectionstylefilled">
+            </div>
+            <div class="center listViewEmptyContentPlaceholder"></div>
+        </div>
+    </script>
+
+    <!-- Enhanced grid provide the ability to add expandable linethrough and rows with extended information for each column. Also colspan row for custom content. -->
+    <script type="text/html" id="listViewEnhancedGridTemplate">
+        <!-- Header div will load the the appropriate header template based on the row type of the list view.  If the row type is 'None' the header will be generated based on the information in the columns. -->
+        <div class="listViewHeader"
+             data-bind="template: Commerce.StringExtensions.isNullOrWhitespace(headerRowTemplate) ? { name: 'listViewHeaderTemplate', foreach: columns } : { name: headerRowTemplate },
+             css: { expandable:  expandable } ">
+        </div>
+        <div class="tableContent dataRows" data-bind="foreach: { data: itemDataSource, as: 'dataRow', afterRender: dataRowsAfterRender }">
+            <div class="itemContainer win-selectionstylefilled shrink">
+                <div class="listViewLine" data-bind="css: { expandable: $parent.expandable, strikethrough: ($parent.strikethroughRowConverter || $parent.strikethroughRow) ? ($parent.strikethroughRow ? dataRow[$parent.strikethroughRow] : $parent.strikethroughRowConverter($data)) : false }">
+                    <button class="expandButton top1 left1 iconExpandSmall win-interactive"
+                            data-bind="style:
+                                    { visibility:
+                                        ((($parent.expandableRowConverter || $parent.expandableRow) ?
+                                        ($parent.expandableRow ? dataRow[$parent.expandableRow] : $parent.expandableRowConverter($data))
+                                        : true) === true) ? '' : 'hidden' }"></button>
+                    <!-- Row div will load the the appropriate row template based on the list view's row template type. -->
+                    <div class="row" data-bind="template: Commerce.StringExtensions.isNullOrWhitespace($parent.rowTemplate) ? { name: 'enhancedGridDynamicRowTemplate', foreach: $parent.columns, as: 'listViewColumn' } : { name: $parent.rowTemplate }">
+                    </div>
+                </div>
+
+                <!-- expanded information secondary text -->
+                <div class="colspanRow secondaryFontColor"
+                     data-bind="visible: $parent.rowExpanded,
+                        css: {
+                            expandable:  $parent.expandable,
+                            strikethrough: ($parent.strikethroughRowConverter || $parent.strikethroughRow) ?
+                                ($parent.strikethroughRow ? dataRow[$parent.strikethroughRow] : $parent.strikethroughRowConverter($data)) : false
+                        }">
+                </div>
+            </div>
+        </div>
+        <div class="center listViewEmptyContentPlaceholder"></div>
+    </script>
+
+    <!-- Empty list view template -->
+    <script type="text/html" id="emptyListViewTemplate">
+        <div class="textCenter">
+            <h3 data-bind="resx: { textContent: 'string_1032' }"></h3><!-- We didn't find anything to display here. -->
+        </div>
+    </script>
+
+</body>
+</html>

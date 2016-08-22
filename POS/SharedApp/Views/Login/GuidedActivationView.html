@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>GuidedActivationView</title>
+</head>
+
+<body>
+    <form autocomplete="off">
+        <div id="guidedActivationPanel" class="fragment dynamicsBackground center">
+
+            <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+            <div id="guidedActivationSection" role="main" class="row" data-bind="resx: { ariaLabel: 'string_4454' }">
+                <!-- Main content -->
+                <div class="center">
+                    <div class="width50 margin4 panelBackgroundColor highContrastBorderThin">
+                        <div class="center">
+                            <img src="#" data-bind="attr: { src: 'Assets/WideLogo.scale-100.png' }" />
+                        </div>
+
+                        <div class="padLeft4 padRight4 padBottom4">
+
+                            <div class="padBottom4">
+                                <div class="headerFont wrapTextWithoutHyphen" data-bind="text: appTitle">Activate Retail Modern POS</div>
+                            </div>
+
+                            <!-- Activation textfields -->
+                            <div class="shrink" data-bind="visible: !showErrorControl()">
+                                <!-- Authenticating a user -->
+                                <div data-bind="visible: showUserAuthenticating">
+                                    <h4 data-bind="resx: { textContent: 'string_1476' }">Authenticating a user...</h4>
+
+                                    <div class="padTop2 height7" data-bind="loader: { visible: true, type: Commerce.Controls.LoaderType.Nested }"></div>
+                                </div>
+
+                                <!-- Service URL -->
+                                <div data-bind="visible: showServerUrl" class="padBottom2">
+                                    <label data-bind="resx: { textContent: 'string_1420' }" for="serviceURLBox">Server URL</label>
+
+                                    <div class="row nothemeInputButton" data-bind="visible: !showStartButton()">
+                                        <input id="serviceURLBox" class="nothemeInputButton noBorder" autofocus="autofocus" type="url"
+                                               data-bind="value: viewModel.serviceUrl, valueUpdate:'afterkeydown', enterKeyPress: nextHandler" />
+                                        <button class="iconCheckMark nothemeInputButton noBorder margin0"
+                                                data-bind="click: pingHealthCheck, disable: disableHealthCheckButton, resx: { ariaLabel: 'string_8089' }"></button>
+                                    </div>
+
+                                    <h4 class="wrapTextWithoutHyphen" data-bind="text: viewModel.serviceUrl, visible: showStartButton()"></h4>
+                                </div>
+
+                                <!-- Health check status -->
+                                <div data-bind="visible: showHealthCheckStatus">
+
+                                    <!-- Database connection -->
+                                    <div data-bind="buttonBlock: {
+                                         labelValue: rtsStatusStr,
+                                         buttonClass: rtsIconStatus,
+                                         loading: isCheckInProgress,
+                                         blockType: Commerce.ButtonBlock.ButtonBlockType.Text }"></div>
+
+                                    <!-- Real-time service connection -->
+                                    <div data-bind="buttonBlock: {
+                                         labelValue: databaseStatusStr,
+                                         buttonClass: databaseIconStatus,
+                                         loading: isCheckInProgress,
+                                         blockType: Commerce.ButtonBlock.ButtonBlockType.Text }"></div>
+                                </div>
+
+                                <!-- Retrieving stores -->
+                                <div data-bind="visible: showRetrievingStores">
+                                    <h4 data-bind="resx: { textContent: 'string_1452' }">Retrieving stores for this URL...</h4>
+
+                                    <div class="padTop2 height7" data-bind="loader: { visible: true, type: Commerce.Controls.LoaderType.Nested }"></div>
+                                </div>
+
+                                <!-- Select/selected store -->
+                                <div data-bind="visible: showStores" class="padBottom2">
+                                    <label data-bind="resx: { textContent: 'string_1453' }, visible: !showSelectedStore()" for="storeSelector">Store name</label>
+
+                                    <select id="storeSelector" data-bind="
+                                        optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1454'),
+                                        options: storeOptions,
+                                        optionsText: 'OrgUnitName',
+                                        value: selectedStore,
+                                        visible: !showSelectedStore()">
+                                    </select>
+
+                                    <label data-bind="resx: { textContent: 'string_1456' }, visible: showSelectedStore" for="selectedStore">Selected store</label>
+                                    <h4 id="selectedStore" class="wrapTextWithoutHyphen" data-bind="text: getSelectedStoreDisplayName(), visible: showSelectedStore"></h4>
+                                </div>
+
+                                <!-- Retrieving registers and devices -->
+                                <div data-bind="visible: showRetrievingRegistersAndDevices">
+                                    <h4 data-bind="resx: { textContent: 'string_1455' }">Retrieving registers and devices for this store...</h4>
+
+                                    <div class="padTop2 height7" data-bind="loader: { visible: true, type: Commerce.Controls.LoaderType.Nested }"></div>
+                                </div>
+
+                                <!-- Select register and device -->
+                                <div data-bind="visible: showRegistersAndDevices" class="padBottom2">
+                                    <label data-bind="resx: { textContent: 'string_1457' }" for="registerAndDeviceSelector">Register and device</label>
+
+                                    <select id="registerAndDeviceSelector" data-bind="
+                                        optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1458'),
+                                        options: registerAndDeviceOptions,
+                                        optionsText: function (item) {
+                                            if (!Commerce.StringExtensions.isNullOrWhitespace(item.DeviceNumber)) {
+                                                return Commerce.StringExtensions.format(Commerce.ViewModelAdapter.getResourceString('string_1474'),
+                                                    item.TerminalId, 
+                                                    item.DeviceNumber, 
+                                                    Commerce.ViewControllers.GuidedActivationViewController.getActivationStatusStrings(item.ActivationStatusValue));
+                                            }
+                                            return Commerce.StringExtensions.format(Commerce.ViewModelAdapter.getResourceString('string_1473'),
+                                                   item.TerminalId, 
+                                                   Commerce.ViewControllers.GuidedActivationViewController.getActivationStatusStrings(item.ActivationStatusValue));
+                                        },
+                                        value: selectedRegisterAndDevice"></select>
+
+                                </div>
+
+                                <!-- Select device -->
+                                 <div data-bind="visible: showDeviceSelector" class="padBottom2">
+                                    <label data-bind="resx: { textContent: 'string_1459' }" for="deviceSelector">Device</label>
+
+                                    <select id="deviceSelector" data-bind="
+                                        optionsCaption: Commerce.ViewModelAdapter.getResourceString('string_1460'),
+                                        options: deviceOptions,
+                                        optionsText: function (item) {
+                                            return Commerce.StringExtensions.format(Commerce.ViewModelAdapter.getResourceString('string_1473'),
+                                                   item.DeviceNumber, 
+                                                   Commerce.ViewControllers.GuidedActivationViewController.getActivationStatusStrings(item.ActivationStatusValue));
+                                        },
+                                        value: selectedDevice"></select>
+
+                                    <a href="#" class="h4 padTop2" data-bind="click: addNewDeviceHandler, resx: { textContent: 'string_1461' }">Or, add a device</a>
+                                </div>
+
+                                <!-- Create device -->
+                                <div data-bind="visible: showDeviceCreator" class="padBottom2">
+                                    <label data-bind="resx: { textContent: 'string_1462' }" for="newDeviceInput">New device ID</label>
+
+                                    <input id="newDeviceInput" type="text"
+                                           data-bind="value: newDeviceId,
+                                                valueUpdate: 'afterkeydown',
+                                                enterKeyPress: activateDeviceHandler,
+                                                disable: isAutoDeviceIdChecked"
+                                           />
+
+                                    <div class="padTop2 row">
+                                        <input id="autoCreateDevice" type="checkbox" data-bind="checked: isAutoDeviceIdChecked" />
+                                        <h4 for="autoCreateDevice" class="margin0" data-bind="resx: { textContent: 'string_1464' }">Automatically create a new device ID for me.</h4>
+                                    </div>
+                                </div> 
+
+                                <div class="padTop2 row">
+                                    <div class="centerY padTop1">
+                                        <a id="navigateToManualActivationLink" href="#" class="h4" data-bind="click: navigateToManualActivation, resx: { textContent: 'string_1450' }, visible: !showStartButton()">Manually enter register and device ID</a>
+                                    </div>
+                                    <button id="startOverButton" class="primaryButton dynamicsBackground"
+                                            data-bind="resx: { textContent: 'string_1449' },
+                                                        visible: showStartButton,
+                                                        click: startOverHandler">
+                                        Start over
+                                    </button>
+                                    <div class="padLeft1">
+                                        <button id="nextButton" class="primaryButton dynamicsBackground"
+                                                data-bind="resx: { textContent: 'string_1448' },
+                                                        click: nextHandler,
+                                                        disable: disableNextButton,
+                                                        visible: showNextButton">
+                                            Next
+                                        </button>
+                                        <button id="activateButton" class="primaryButton dynamicsBackground"
+                                                data-bind="resx: { textContent: 'string_1405' },
+                                                        visible: showRegistersAndDevices,
+                                                        click: activateDeviceHandler,
+                                                        disable: disableActivateButton">
+                                            Activate
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- When any errors occur during device activation -->
+                            <div data-bind="visible: showErrorControl">
+                                <div id="activationErrorControl" class="activationErrorControl"
+                                     data-bind="userControl: {
+                                        uri: 'Views/Controls/ActivationErrorControl.html',
+                                        options: {
+                                            errorHeaderMessage: errorHeaderMessage,
+                                            clientErrorMessage: clientErrorMessage,
+                                            errorMessage: errorMessage,
+                                            errorDetails: errorDetails,
+                                            footerMessage: footerMessage,
+                                            previousLabel: previousLabel,
+                                            continueLabel: continueLabel,
+                                            previousFunction: startOverHandler.bind($root),
+                                            retryFunction: nextHandler.bind($root)
+                                        }
+                                     }">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

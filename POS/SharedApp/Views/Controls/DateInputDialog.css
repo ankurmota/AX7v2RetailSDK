@@ -1,0 +1,55 @@
+/* Control buttons */
+.dateInputDialog input[type=button]:hover {
+    background-color: #00B0F0;
+    color: #FFF;
+}
+
+.dateInputDialog input[type=button]:active {
+    background-color: #00B0F0;
+    color: #000;
+}
+
+.dateInputDialog input[type=button]:disabled {
+    background-color: #00B0F0;
+    visibility: visible;
+}
+
+.dateInputDialog .dialogBoxButton {
+    background-color: #00B0F0;
+    color: #FFF;
+    font-size: 12pt;
+    height: 32px;
+    margin: 0px;
+    text-align: center;
+    width: 90px;
+}
+
+.dateInputDialog .modalWindowBackground {
+    background-color: #000000;
+    height: 100%;
+    opacity: 0.6;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+.dateInputDialog .dialogtSubtext {
+    color: #808080;
+    display: block;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.dateInputDialog .hidden {
+    visibility: hidden;
+}
+
+.dateInputDialog .win-datepicker-year {
+    border: 1px solid #000;
+}
+.dateInputDialog .win-datepicker-month {
+    border: 1px solid #000;
+}
+.dateInputDialog .win-datepicker-date {
+    border: 1px solid #000;
+}

@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Checkout</title>
+</head>
+
+<body>
+    <!--CONTENT_START-->
+    <div id="CheckoutControl" class="msax-Checkout container" data-model="Contoso.Retail.Ecommerce.Sdk.Controls.Checkout">
+        <div class="msax-Loading msax-DisplayNone">
+            <div id="LoadingSpinner" class="msax-Spinner msax-MarginTop50"></div>
+            <div id="LoadingText" class="msax-LoadingText msax-MarginTop20"></div>
+        </div>
+
+        <div id="ErrorPanel" class="msax-ErrorPanel msax-DisplayNone" data-bind="foreach: errorMessages">
+            <div data-bind="text: $data"></div>
+        </div>
+
+        <div class="msax-ProgressBar msax-MarginLeft0 msax-MarginRight0 row">
+            <span id="DeliveryProgressBar" class="msax-DeliveryProgress col-sm-3 hidden-xs" data-bind="resx: {textContent: 'String_16' }"></span> <!-- Delivery information -->
+            <span id="BillingProgressBar" class="msax-PaymentProgress col-sm-3 hidden-xs" data-bind="resx: {textContent: 'String_30' }"></span> <!-- Billing information -->
+            <span id="ReviewProgressBar" class="msax-ReviewProgress col-sm-3 hidden-xs" data-bind="resx: {textContent: 'String_45' }"></span> <!-- Review and confirm -->
+            <span id="ProgressBarEnd" class="msax-ProgressBarEnd col-sm-3 hidden-xs"></span>
+        </div>
+
+        <div id="DeliveryPreferences" class="msax-DeliveryPreferences msax-DisplayNone">
+            <div data-bind="visible: isShoppingCartEnabled">
+
+                <div>
+                    <h2 data-bind="resx: {textContent: 'String_16' }"></h2> <!-- Delivery information -->
+                    <!-- Delivery preferences drop down -->
+                    <div class="msax-DeliveryPreferencesOrderLevel">
+                        <span class="msax-DeliveryPreferencesOrderLevel" data-bind="resx: {textContent: 'String_17' }"></span>
+                        <select id="DeliveryPreferencesOrderLevelOptions" class="msax-DropDown msax-DeliveryPreferencesOrderLevelOptions" data-bind="options: allowedHeaderLevelDeliveryPreferences, value: selectedOrderDeliveryPreference, optionsText: 'Text', optionsValue: 'Value'"></select>
+                    </div>
+
+                    <!-- Ship items order level -->
+                    <div id="ShipItemsOrderLevel" class="msax-DeliveryPreferenceOption msax-ShipItemsOrderLevel msax-DisplayNone">
+                        <div class="row">
+                            <div class="msax-AddressForm msax-PaddingRight25 col-sm-6" data-bind="with: cart">
+                                <h4 data-bind="resx: {textContent: 'String_18' }"></h4> <!-- Shipping address -->
+
+                                <div class="msax-SelectFromExistingShippingAddress" data-bind="if: $root.storedCustomerAddresses">
+                                    <select id="ShippingAddressDropDown" class="msax-ShippingAddressDropDown" data-bind="value: $root.orderLevelSelectedAddress, optionsValue:'Value', optionsText: 'Text', options: $root.storedCustomerAddresses, optionsCaption: $root.getResx('String_161')"></select>
+                                </div>
+
+                                <div class="msax-Address" data-bind="with: $root.tempShippingAddress">
+                                    <div class="msax-FieldPanel msax-AddressName msax-PaddingRight20">
+                                        <label for="OrderAddressName" data-bind="resx: {textContent: 'String_19' }"></label> <!-- Shipping name -->
+                                        <input type="text" id="OrderAddressName" class="msax-NameTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'Name', validate: $root.resetOrderAvailableDeliveryMethods.bind($root) }" />
+                                    </div>
+                                    <div class="msax-FieldPanel msax-AddressCountry">
+                                        <label for="OrderAddressCountry" data-bind="resx: {textContent: 'String_20' }"></label> <!-- Country/region -->
+                                        <select id="OrderAddressCountry" class="msax-Country" data-bind="validator: { validatorType: 'AddressValidator', field: 'ThreeLetterISORegionName', validate: $root.resetOrderAvailableDeliveryMethods.bind($root) }, optionsValue:'CountryCode', optionsText: 'CountryName', options: $root.countries, optionsCaption: $root.getResx('String_189')"></select> <!-- Select country/region -->
+                                    </div>
+                                    <div class="msax-FieldPanel msax-AddressStreet">
+                                        <label for="OrderAddressStreet" data-bind="resx: {textContent: 'String_22' }"></label> <!-- Street -->
+                                        <input type="text" id="OrderAddressStreet" class="msax-StreetTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'Street', validate: $root.resetOrderAvailableDeliveryMethods.bind($root) }" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="msax-FieldPanel msax-AddressCity msax-PaddingRight20 col-sm-4">
+                                            <label for="OrderAddressCity" data-bind="resx: {textContent: 'String_23' }"></label> <!-- City -->
+                                            <input type="text" id="OrderAddressCity" class="msax-CityTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'City', validate: $root.resetOrderAvailableDeliveryMethods.bind($root) }" />
+                                        </div>
+                                        <div class="msax-FieldPanel msax-AddressState msax-PaddingRight20 col-sm-4">
+                                            <label for="OrderAddressState" data-bind="resx: {textContent: 'String_24' }"></label> <!-- State/province -->
+                                            <!-- ko if: $root.states() != null && $root.states().length > 0 -->
+                                            <select id="OrderAddressState" class="msax-State" data-bind="validator: { validatorType: 'AddressValidator', field: 'State', validate: $root.resetOrderAvailableDeliveryMethods.bind($root) }, optionsValue:'StateId', optionsText: 'StateName', options: $root.states, optionsCaption: $root.getResx('String_190')"></select> <!-- Select state/province -->
+                                            <!-- /ko -->
+                                            <!-- ko if: $root.states() == null || $root.states().length <= 0 -->
+                                            <input type="text" id="OrderAddressState" class="msax-StateTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'State', validate: $root.resetOrderAvailableDeliveryMethods.bind($root) }" />
+                                            <!-- /ko -->
+                                        </div>
+                                        <div class="msax-FieldPanel msax-AddressZipCode col-sm-4">
+                                            <label for="OrderAddressZipCode" data-bind="resx: {textContent: 'String_25' }"></label>
+                                            <input type="text" id="OrderAddressZipCode" class="msax-ZipCodeTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'ZipCode', validate: $root.resetOrderAvailableDeliveryMethods.bind($root) }" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="msax-DeliveryMethods msax-PaddingLeft25 col-sm-6">
+                                <h4 data-bind="resx: {textContent: 'String_26' }"></h4>
+                                <div class="msax-DeliveryMethodsBox msax-PaddingBottom15">
+                                    <button id="DeliveryMethodsButton" type="button" class="msax-DeliveryMethodsButton" data-bind="submitIfValid: { submit: getOrderDeliveryOptions, containerSelector: '.msax-ShipItemsOrderLevel .msax-AddressForm' }, resx: {textContent: 'String_27' }"></button>
+                                </div>
+                                <div class="msax-ShipItemsOrderLevelDeliveryMethodsInfo" data-bind="ifnot: availableDeliveryOptions">
+                                    <div class="msax-TruckImage"></div>
+                                    <div class="msax-SecondaryColor" data-bind="resx: {textContent: 'String_120' }"></div> <!-- Enter the shipping address and then click Get shipping options to view the shipping options that are available for your area -->
+                                </div>
+                                <div id="ShipItemsOrderLevelDeliveryMethods" class="msax-ShipItemsOrderLevelDeliveryMethods" data-bind="foreach: availableDeliveryOptions">
+                                    <div class="msax-FieldPanel">
+                                        <input type="radio" name="msax-OrderLevelDeliveryMethodsOptions" data-bind="checked: $root.latestHeaderLevelDeliverySpecification().DeliveryModeId, attr: { id: Code }, validator: { validatorType: 'SelectedOrderDeliveryOptionValidator', validatorField: 'DeliveryModeId', field: 'Code' }" />
+                                        <label data-bind="attr: { for: Code }, text: Description"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pick up in store order level-->
+                    <div id="PickUpInStoreOrderLevel" class="msax-DeliveryPreferenceOption msax-PickUpInStoreOrderLevel msax-DisplayNone">
+                        <div class="row">
+                            <div class="msax-SearchStore col-sm-6">
+                                <h4 class="msax-MarginTop10 msax-MarginBottom10" data-bind="resx: {textContent: 'String_102' }"></h4> <!-- Find a store -->
+                                <span data-bind="resx: {textContent: 'String_22' }"></span>: <!-- Address -->                                
+                                <div class="msax-FindStore msax-PaddingTop10 input-group">
+                                    <input id="FindStoresText" type="text" maxlength="255" class="msax-Location form-control" data-bind="event: {keypress: $root.findLocationKeyPress }" />
+                                    <button id="FindStoresButton" class="msax-FindStore input-group-btn" data-bind="click: $root.getNearbyStoresWithAvailability.bind($root)"></button>
+                                </div>
+                                <div id="OrderLevelMap" class="embed-responsive embed-responsive-4by3">
+                                    <div class="msax-Map embed-responsive-item"></div>
+                                </div>
+                            </div>
+                            <div id="AvailableStores" class="msax-AvailableStores col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="msax-AvailableStoresHeader" data-bind="resx: {textContent: 'String_104' }"></h4> <!-- Available stores -->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="msax-StoreHeader col-xs-6" data-bind="resx: {textContent: 'String_105' }"></div> <!-- Store -->
+                                    <div class="msax-DistanceHeader col-xs-6" data-bind="resx: {textContent: 'String_106' }"></div> <!-- Distance -->
+                                </div>
+                                <div id="ResultsContainer" class="msax-ResultsContainer row">
+                                    <!-- ko foreach: $root.displayLocations -->
+                                    <div class="row msax-AvailableStore" style="cursor:pointer;" data-bind="click: $root.selectStore.bind($root, $data), attr: {channelId: ChannelId}">
+                                        <div>
+                                            <div class="msax-Store msax-PaddingTop10 msax-PaddingRight10 col-xs-6">
+                                                <span class="msax-Number" data-bind="text: LocationCount"></span>
+                                                <span data-bind="text: OrgUnitName"></span>
+                                                <div class="msax-Address msax-SecondaryColor msax-PaddingLeft25">
+                                                    <div data-bind="text: Street"></div>
+                                                    <span data-bind="text: City"></span>
+                                                    <span data-bind="text: State"></span>
+                                                    <span data-bind="text: Zip"></span>
+                                                </div>
+                                            </div>
+                                            <div class="msax-Distance msax-PaddingTop10 col-xs-6">
+                                                <span data-bind="text: $root.formatDistance.call($root, $data.Distance)"></span>
+                                                <span data-bind="resx: {textContent: 'String_103' }"></span> <!-- miles -->
+                                            </div>
+                                        </div>
+                                        <div class="msax-ItemAvailability msax-PaddingTop10 msax-PaddingLeft40 col-xs-12" data-bind="if: $root.hasInventoryCheck">
+                                            <span class="msax-ItemNotAvailable" data-bind="ifnot: $root.areAllReqProductsAvailableInOrgUnit.call($root, $data.OrgUnitNumber), resx: {textContent: 'String_111' }"></span> <!-- Products are not available in this store -->
+                                            <span data-bind="if: $root.areAllReqProductsAvailableInOrgUnit.call($root, $data.OrgUnitNumber), resx: {textContent: 'String_112' }"></span> <!-- Product availability: -->
+                                            <!-- ko foreach: $root.getAvailabilitesforOrgUnitNumber.call($root, $data.OrgUnitNumber) -->
+                                            <div class="msax-SecondaryColor msax-PaddingBottom1">
+                                                <span data-bind="text: $root.getProductName.call($root, $data.ItemId, $data.VariantInventoryDimensionId)"></span>
+                                                <span data-bind="text: $root.formatProductAvailabilityString.call($root, $data.AvailableQuantity)"></span>
+                                            </div>
+                                            <!-- /ko -->
+                                        </div>
+                                    </div>
+                                    <!-- /ko -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email order level -->
+                    <div id="EmailOrderLevel" class="msax-DeliveryPreferenceOption msax-EmailOrderLevel msax-DisplayNone">
+                        <div class="row">
+                            <div class="msax-AddressForm col-sm-6" data-bind="with: cart">
+                                <h4 data-bind="resx: {textContent: 'String_58' }"></h4> <!-- Email -->
+                                <div class="msax-FieldPanel msax-SendEmailToMe" data-bind="visible: $root.isAuthenticated">
+                                    <input id="SendEmailToMe" class="msax-MarginRight10" type="checkbox" data-bind="checked: $root.sendEmailToMe" />
+                                    <label for="SendEmailToMe" data-bind="resx: {textContent: 'String_116' }"></label> <!-- Send to me -->
+                                </div>
+                                <div class="msax-FieldPanel msax-Email" data-bind="with: $root.latestHeaderLevelDeliverySpecification">
+                                    <label for="EmailTextBox" class="msax-EmailLabel" data-bind="resx: {textContent: 'String_32' }"></label> <!-- Email address -->
+                                    <input id="EmailTextBox" type="text" class="msax-EmailTextBox col-xs-12 msax-FloatNone" maxlength="80" data-bind="validator: { validatorType: 'AddressValidator', validatorField: 'Email', field: 'ElectronicDeliveryEmailAddress' }" />
+                                </div>
+                                <div class="form-group msax-PaddingTop20">
+                                    <label for="EmailContentTextBox" class="msax-EmailContentLabel" data-bind="resx: {textContent: 'String_117' }"></label> <!-- Optinal note -->
+                                    <textarea id="EmailContentTextBox" class="msax-EmailContentTextBox form-control" rows="10" cols="50" maxlength="80" data-bind="value: $root.latestHeaderLevelDeliverySpecification().ElectronicDeliveryEmailContent"></textarea>
+                                </div>
+                            </div>
+                            <div class="msax-EmailDeliveryInformation col-sm-6">
+                                <h4 data-bind="resx: {textContent: 'String_16' }"></h4> <!-- Delivery information -->
+                                <div class="msax-EmailDeliveryInfoImage"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item level delivery preference -->
+                    <div id="ItemLevelPreference" class="msax-DeliveryPreferenceOption msax-ItemLevelPreference msax-DisplayNone msax-PaddingTop20">
+                        <div class="msax-ItemLevelPreferenceWrapper" data-bind="with: cart">
+                            <div id="ItemLevelDeliveryItemsGrid" class="msax-ItemsGrid row">
+                                <div class="msax-ProductDetails col-sm-6 hidden-xs" data-bind="resx: {textContent: 'String_2' }"></div> <!-- Product details -->
+                                <div class="msax-DeliveryMethods col-sm-6 hidden-xs" data-bind="resx: {textContent: 'String_121' }"></div> <!-- Delivery method -->
+                            </div>
+                            <div data-bind="foreach: CartLines">
+                                <div class="msax-ProductDetails row">
+                                    <div class="msax-ProductDetails col-sm-6">
+                                        <div class="msax-Row">
+                                            <a class="msax-ProductImage50px msax-MarginRight10" data-bind="attr: { href: ProductUrl }">
+                                                <div class="msax-ImageWrapper" data-bind="html: ImageMarkup50px"></div>
+                                            </a>
+                                            <div class="msax-PaddingLeft20">
+                                                <div class="msax-ProductNameWrapper">
+                                                    <a class="msax-ProductName" data-bind="attr: { href: ProductUrl }, text: ProductName"></a>
+                                                    <div class="msax-ProductDimensions msax-PaddingBottom5 msax-PaddingTop5" data-bind="text: ProductDimension"></div>
+                                                </div>
+                                                <div class="msax-ProductNumber msax-SecondaryColor" data-bind="text: ItemId"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="msax-DeliveryMethods col-sm-6" data-bind="with: $root.getDeliverySpecificationForCartLine.call($root, $data)">
+                                        <button class="msax-ChangeYourDeliveryPreference msax-Edit19 msax-VerticalMiddle" data-bind="ifnot: DeliveryModeId, click: $root.showLineLevelDeliveryPreferenceSelection.bind($root, $parent)"></button>
+                                        <a class="msax-ChangeYourDeliveryPreference msax-VerticalMiddle" data-bind="ifnot: DeliveryModeId, resx: {textContent: 'String_122'}, click: $root.showLineLevelDeliveryPreferenceSelection.bind($root, $parent)"></a> <!-- Change your delivery preference -->
+                                        <div class="" data-bind="if: DeliveryModeId">
+                                            <div data-bind="text: $root.getDeliveryModeText.call($root, DeliveryModeId)"></div>
+                                            <div class="msax-ShippingAddress msax-PaddingRight20" data-bind="with: DeliveryAddress">
+                                                <div>
+                                                    <span class="msax-Name msax-SecondaryColor" data-bind="text: Name"></span>
+                                                </div>
+                                                <div>
+                                                    <span class="msax-StreetNumber msax-SecondaryColor" data-bind="text: StreetNumber"></span>
+                                                    <span class="msax-Street msax-SecondaryColor" data-bind="text: Street"></span>
+                                                </div>
+                                                <div>
+                                                    <span class="msax-City msax-SecondaryColor" data-bind="text: City"></span>
+                                                    <span class="msax-State msax-SecondaryColor" data-bind="text: State"></span>
+                                                    <span class="msax-ZipCode msax-SecondaryColor" data-bind="text: ZipCode"></span>
+                                                    <span class="msax-Country msax-SecondaryColor" data-bind="text: ThreeLetterISORegionName"></span>
+                                                </div>
+                                            </div>
+                                            <div class="msax-EmailAddress msax-PaddingRight20" data-bind="with: ElectronicDeliveryEmailAddress">
+                                                <div>
+                                                    <span class="msax-Name msax-SecondaryColor" data-bind="text: $data"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ItemLevelPreferenceSelection" class="msax-ItemLevelPreferenceSelection" data-bind="with: currentCartLine">
+
+                            <!-- dialog content -->
+                            <div>
+
+                                <!-- Error panel -->
+                                <div id="ItemLevelDeliveryErrorPanel" class="msax-ErrorPanel msax-DisplayNone" data-bind="foreach: $root.errorMessages">
+                                    <div data-bind="text: $data"></div>
+                                </div>
+
+                                <!-- Product details -->
+                                <div class="msax-ProductDetails msax-PaddingBottom15 msax-Table">
+                                    <div class="msax-Row">
+                                        <a id="ItemLevelDeliveryProductLink" class="msax-ProductImage50px msax-MarginRight10 msax-FloatLeft" data-bind="attr: { href: ProductUrl }">
+                                            <div class="msax-ImageWrapper" data-bind="html: ImageMarkup50px"></div>
+                                        </a>
+                                        <div class="msax-FloatLeft msax-PaddingLeft20 msax-WidthRatio75">
+                                            <div class="msax-ProductNameWrapper">
+                                                <a id="ItemLevelDeliveryProductName" class="msax-ProductName" data-bind="attr: { href: ProductUrl }, text: ProductName"></a>
+                                                <div id="ItemLevelDeliveryProductDimensions" class="msax-ProductDimensions msax-PaddingBottom5 msax-PaddingTop5" data-bind="text: ProductDimension"></div>
+                                            </div>
+                                            <div id="ItemLevelDeliveryProductNumber" class="msax-ProductNumber msax-SecondaryColor" data-bind="text: ItemId"></div>
+                                        </div>
+                                        <button id="CloseItemLevelDelivery" type="submit" class="msax-Close48 msax-FloatRight" data-bind="click: $root.closeItemDeliveryPreferenceSelection.bind($root)"></button>
+                                    </div>
+                                </div>
+
+                                <h2 data-bind="resx: {textContent: 'String_16' }"></h2> <!-- Delivery information -->
+                                <!-- Delivery preferences drop down -->
+                                <div class="msax-DeliveryPreferencesItemLevel">
+                                    <span class="msax-DeliveryPreferencesItemLevel" data-bind="resx: {textContent: 'String_17' }"></span>
+                                    <select id="DeliveryPreferencesItemLevelOptions" class="msax-DropDown msax-DeliveryPreferencesItemLevelOptions" data-bind="options: $root.getApplicableDeliveryPreferencesForCartLine.call($root, $data), value: $root.currentLineLevelSelectedDeliveryPreference, optionsText: 'Text', optionsValue: 'Value'"></select>
+                                </div>
+
+                                <!-- Ship items item level -->
+                                <div id="ShipItemsItemLevel" class="msax-DeliveryPreferenceOption msax-ShipItemsItemLevel msax-DisplayNone" data-bind="with: $root.currentLineDeliverySpecification">
+                                    <div class="msax-Row">
+                                        <div class="msax-AddressForm msax-PaddingRight25">
+                                            <h4 data-bind="resx: {textContent: 'String_18' }"></h4> <!-- Shipping address -->
+
+                                            <div class="msax-SelectFromExistingShippingAddress" data-bind="if: $root.storedCustomerAddresses">
+                                                <select id="ItemLevelShippingAddressDropDown" class="msax-ShippingAddressDropDown" data-bind="value: $root.lineLevelSelectedAddress, optionsValue:'Value', optionsText: 'Text', options: $root.storedCustomerAddresses, optionsCaption: $root.getResx('String_161')"></select>
+                                            </div>
+
+                                            <div class="msax-Address" data-bind="with: $root.tempShippingAddress">
+                                                <div class="msax-FieldPanel msax-AddressName msax-PaddingRight20">
+                                                    <label for="ItemAddressName" data-bind="resx: {textContent: 'String_19' }"></label> <!-- Shipping name -->
+                                                    <input type="text" id="ItemAddressName" maxlength="60" class="msax-NameTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'Name', validate: $root.resetItemAvailableDeliveryMethods.bind($root) }" />
+                                                </div>
+                                                <div class="msax-FieldPanel msax-AddressCountry">
+                                                    <label for="ItemAddressCountry" data-bind="resx: {textContent: 'String_20' }"></label> <!-- Country/region -->
+                                                    <select id="ItemAddressCountry" class="msax-Country" data-bind="validator: { validatorType: 'AddressValidator', field: 'Country', validate: $root.resetItemAvailableDeliveryMethods.bind($root) }, optionsValue:'CountryCode', optionsText: 'CountryName', options: $root.countries, optionsCaption: $root.getResx('String_189')"></select> <!-- Select country/region -->
+                                                </div>
+                                                <div class="msax-FieldPanel msax-AddressStreet">
+                                                    <label for="ItemAddressStreet" data-bind="resx: {textContent: 'String_22' }"></label>
+                                                    <input type="text" id="ItemAddressStreet" maxlength="250" class="msax-StreetTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'Street', validate: $root.resetItemAvailableDeliveryMethods.bind($root) }" />
+                                                </div>
+                                                <div class="msax-Row">
+                                                    <div class="msax-FieldPanel msax-AddressCity msax-PaddingRight20">
+                                                        <label for="ItemAddressCity" data-bind="resx: {textContent: 'String_23' }"></label>
+                                                        <input type="text" id="ItemAddressCity" maxlength="60" class="msax-CityTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'City', validate: $root.resetItemAvailableDeliveryMethods.bind($root) }" />
+                                                    </div>
+                                                    <div class="msax-FieldPanel msax-AddressState msax-WidthRatio30 msax-PaddingRight20">
+                                                        <label for="ItemAddressState" data-bind="resx: {textContent: 'String_24' }"></label> <!-- State/province -->
+                                                        <!-- ko if: $root.states() != null && $root.states().length > 0 -->
+                                                        <select id="ItemAddressState" class="msax-State" data-bind="validator: { validatorType: 'AddressValidator', field: 'State', validate: $root.resetItemAvailableDeliveryMethods.bind($root) }, optionsValue:'StateId', optionsText: 'StateName', options: $root.states, optionsCaption: $root.getResx('String_190')"></select> <!-- Select state/province -->
+                                                        <!-- /ko -->
+                                                        <!-- ko if: $root.states() == null || $root.states().length <= 0 -->
+                                                        <input type="text" id="ItemAddressState" class="msax-StateTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'State', validate: $root.resetItemAvailableDeliveryMethods.bind($root) }" />
+                                                        <!-- /ko -->
+                                                    </div>
+                                                    <div class="msax-FieldPanel msax-AddressZipCode msax-WidthRatio20">
+                                                        <label for="ItemAddressZipCode" data-bind="resx: {textContent: 'String_25' }"></label>
+                                                        <input type="text" id="ItemAddressZipCode" maxlength="10" class="msax-ZipCodeTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'ZipCode', validate: $root.resetItemAvailableDeliveryMethods.bind($root) }" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="msax-DeliveryMethods msax-PaddingLeft25">
+                                            <h4 data-bind="resx: {textContent: 'String_26' }"></h4>
+                                            <div class="msax-DeliveryMethodsBox msax-PaddingBottom15">
+                                                <button id="ItemLevelDeliveryMethodsButton" type="button" class="msax-DeliveryMethodsButton" data-bind="submitIfValid: { submit: $root.getItemDeliveryOptions.bind($root), containerSelector: '.msax-ShipItemsItemLevel .msax-AddressForm' }, resx: {textContent: 'String_27' }"></button>
+                                            </div>
+                                            <div class="msax-ShipItemsItemLevelDeliveryMethodsInfo" data-bind="ifnot: $root.availableDeliveryOptions">
+                                                <div class="msax-TruckImage"></div>
+                                                <div class="msax-SecondaryColor" data-bind="resx: {textContent: 'String_120' }"></div> <!-- Enter the shipping address and then click get shipping options to view the shipping options that are available for your area -->
+                                            </div>
+                                            <div id="ShipItemsItemLevelDeliveryMethods" class="msax-ShipItemsItemLevelDeliveryMethods" data-bind="foreach: $root.availableDeliveryOptions">
+                                                <div class="msax-FieldPanel">
+                                                    <input type="radio" name="msax-ItemLevelDeliveryMethodsOptions" data-bind="checked: $root.checkIfCurrentLineLevelDeliveryMode.call($parent, Code), click: $root.lineLevelDeliveryOptionClick.bind($root, Code), attr: { id: Code }, validator: { validatorType: 'SelectedOrderDeliveryOptionValidator', validatorField: '$parent.DeliverySpecification.DeliveryModeId', field: 'Code' }" />
+                                                    <label data-bind="attr: { for: Code }, text: Description"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pick up in store item level-->
+                                <div id="PickUpInStoreItemLevel" class="msax-DeliveryPreferenceOption msax-PickUpInStoreItemLevel msax-DisplayNone">
+                                    <div class="msax-Row">
+                                        <div class="msax-SearchStore msax-PaddingLeft20">
+                                            <h4 class="msax-MarginTop10 msax-MarginBottom10" data-bind="resx: {textContent: 'String_102' }"></h4> <!-- Find a store -->
+                                            <span data-bind="resx: {textContent: 'String_22' }"></span>: <!-- Address -->
+                                            <div class="msax-FindStore msax-PaddingTop10">
+                                                <input id="ItemLevelFindStoreText" type="text" maxlength="255" class="msax-Location" data-bind="event: {keypress: $root.findLocationKeyPress.bind($root) }" />
+                                                <button id="ItemLevelFindStoreButton" class="msax-FindStore" data-bind="click: $root.getNearbyStoresWithAvailability.bind($root)"></button>
+                                            </div>
+                                            <div id="ItemLevelMap" class="msax-Map"></div>
+                                        </div>
+                                        <div id="ItemLevelAvailableStores" class="msax-AvailableStores msax-PaddingLeft30">
+                                            <h4 class="msax-AvailableStoresHeader" data-bind="resx: {textContent: 'String_104' }"></h4> <!-- Available stores -->
+                                            <div class="msax-MarginTop50">
+                                                <span class="msax-StoreHeader" data-bind="resx: {textContent: 'String_105' }"></span> <!-- Store -->
+                                                <span class="msax-DistanceHeader" data-bind="resx: {textContent: 'String_106' }"></span> <!-- Distance -->
+                                                <div id="ItemLevelResultsContainer" class="msax-ResultsContainer">
+                                                    <!-- ko foreach: $root.displayLocations -->
+                                                    <div class="msax-AvailableStore" style="cursor:pointer;" data-bind="click: $root.selectStore.bind($root, $data), attr: {channelId: ChannelId}">
+                                                        <div class="msax-Store msax-PaddingTop10 msax-PaddingRight10">
+                                                            <span class="msax-Number" data-bind="text: LocationCount"></span>
+                                                            <span data-bind="text: OrgUnitName"></span>
+                                                            <div class="msax-Distance">
+                                                                <span data-bind="text: $root.formatDistance.call($root, $data.Distance)"></span>
+                                                                <span data-bind="resx: {textContent: 'String_103' }"></span> <!-- miles -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="msax-Address msax-PaddingLeft25 msax-SecondaryColor">
+                                                            <div data-bind="text: Street"></div>
+                                                            <span data-bind="text: City"></span>
+                                                            <span data-bind="text: State"></span>
+                                                            <span data-bind="text: Zip"></span>
+                                                        </div>
+                                                        <div class="msax-ItemAvailability msax-PaddingTop10 msax-PaddingLeft25" data-bind="if: $root.hasInventoryCheck">
+                                                            <span class="msax-ItemNotAvailable" data-bind="ifnot: $root.areAllReqProductsAvailableInOrgUnit.call($root, $data.OrgUnitNumber), resx: {textContent: 'String_111' }"></span> <!-- Products are not available in this store -->
+                                                            <span data-bind="if: $root.areAllReqProductsAvailableInOrgUnit.call($root, $data.OrgUnitNumber), resx: {textContent: 'String_112' }"></span> <!-- Product availability: -->
+                                                            <!-- ko foreach: $root.getAvailabilitesforOrgUnitNumber.call($root, $data.OrgUnitNumber) -->
+                                                            <div class="msax-SecondaryColor msax-PaddingBottom1">
+                                                                <span data-bind="text: $root.getProductName.call($root, $data.ItemId, $data.VariantInventoryDimensionId)"></span>
+                                                                <span data-bind="text: $root.formatProductAvailabilityString.call($root, $data.AvailableQuantity)"></span>
+                                                            </div>
+                                                            <!-- /ko -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- /ko -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Email item level -->
+                                <div id="EmailItemLevel" class="msax-DeliveryPreferenceOption msax-EmailItemLevel msax-DisplayNone msax-WidthRatio100" data-bind="with: $root.currentLineDeliverySpecification().DeliverySpecification">
+
+                                    <div class="msax-Table">
+                                        <div class="msax-Row">
+                                            <div class="msax-AddressForm msax-PaddingRight25 msax-PaddingLeft20">
+                                                <h4 data-bind="resx: {textContent: 'String_58' }"></h4> <!-- Email -->
+                                                <div class="msax-FieldPanel msax-SendEmailToMe" data-bind="visible: $root.isAuthenticated">
+                                                    <input id="SendEmailToMe" class="msax-MarginRight10" type="checkbox" data-bind="checked: $root.sendEmailToMe" />
+                                                    <label for="SendEmailToMe" data-bind="resx: {textContent: 'String_116' }"></label> <!-- Send to me -->
+                                                </div>
+                                                <div class="msax-FieldPanel msax-Email">
+                                                    <label for="EmailTextBox" class="msax-EmailLabel" data-bind="resx: {textContent: 'String_32' }"></label> <!-- Email address -->
+                                                    <input id="EmailTextBox" type="text" class="msax-EmailTextBox col-xs-12 msax-FloatNone" maxlength="80" data-bind="validator: { validatorType: 'AddressValidator', validatorField: 'Email', field: 'ElectronicDeliveryEmailAddress' }" />
+                                                </div>
+                                                <div class="msax-FieldPanel msax-EmailContent msax-PaddingTop20">
+                                                    <label for="EmailContentTextBox" class="msax-EmailContentLabel" data-bind="resx: {textContent: 'String_117' }"></label> <!-- Optinal note -->
+                                                    <textarea id="EmailContentTextBox" class="msax-EmailContentTextBox" rows="10" cols="50" maxlength="80" data-bind="value: ElectronicDeliveryEmailContent"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="msax-EmailDeliveryInformation msax-PaddingLeft30">
+                                                <h4 data-bind="resx: {textContent: 'String_16' }"></h4> <!-- Delivery information -->
+                                                <div class="msax-EmailDeliveryInfoImage"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Done cancel buttons -->
+                                <div class="msax-ButtonSection">
+                                    <button id="SetItemDeliveryPreferenceSelection" class="msax-Done msax-MarginRight20" data-bind="submitIfValid: { submit: $root.setItemDeliveryPreferenceSelection.bind($root), containerSelector: $root.itemDeliveryPreferenceToValidate, validate: $root.validateItemDeliveryInformation.bind($root) }, resx: {textContent: 'String_124' }"></button> <!-- Done -->
+                                    <button id="CancelItemDeliveryPreferenceSelection" class="msax-Cancel msax-Grey" data-bind="click: $root.closeItemDeliveryPreferenceSelection.bind($root), resx: {textContent: 'String_123' }"></button> <!-- Cancel -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Delivery preference next button -->
+                <div class="msax-ButtonSection msax-PaddingBottom20">
+                    <button type="button" id="DeliveryPreferencesNextClick" data-bind="submitIfValid: { submit: deliveryPreferencesNextClick, containerSelector: deliveryPreferenceToValidate, validate: validateDeliveryInformation }">
+                        <span data-bind="resx: {textContent: 'String_14' }"></span> <!-- Next step -->
+                    </button>
+                </div>
+
+            </div>
+            <div class="msax-MarginTop20" data-bind="visible: !isShoppingCartEnabled()">
+                <span data-bind="resx: {textContent: 'String_15' }"></span>
+            </div>
+        </div>
+
+        <div id="PaymentInformation" class="msax-PaymentInformation msax-DisplayNone">
+            <div>
+                <h2 data-bind="resx: {textContent: 'String_30' }"></h2> <!-- Billing information -->
+                <!-- Contact information -->
+                <div class="msax-ContactInformation msax-WidthRatio50 msax-PaddingRight10" data-bind="with: paymentCard">
+                    <h4 data-bind="resx: {textContent: 'String_31' }"></h4> <!-- Contact information -->
+                    <div class="msax-PaddingLeft20" data-bind="with: $root.paymentCardAddress">
+                        <div class="msax-FieldPanel msax-Email">
+                            <label for="EmailTextBox" class="msax-EmailLabel" data-bind="resx: {textContent: 'String_32' }"></label>
+                            <input id="EmailTextBox" type="text" class="msax-EmailTextBox col-xs-12 msax-FloatNone" data-bind="validator: { validatorType: 'AddressValidator', field: 'Email' }" />
+                        </div>
+                        <div class="msax-FieldPanel msax-ConfirmEmail">
+                            <label for="ConfirmEmailTextBox" class="msax-ConfirmEmailLabel" data-bind="resx: {textContent: 'String_33' }"></label>
+                            <input id="ConfirmEmailTextBox" type="text" class="msax-ConfirmEmailTextBox col-xs-12 msax-FloatNone" data-bind="validator: { validatorType: 'AddressValidator', validatorField: 'Email', field: 'confirmEmailValue', data: $root, validate: $root.validateConfirmEmailTextBox.bind($root) }" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment methods -->
+                <div class="msax-PaymentForm">
+                    <h4 data-bind="resx: {textContent: 'String_34' }"></h4> <!-- Payment method -->
+                    <!-- Promotion code -->
+                    <div id="PayPromotionCode" class="msax-PayPromotionCode">
+                        <div class="msax-PayPromotionCodeSelect">
+                            <h5 data-bind="resx: {textContent: 'String_181' }"></h5> <!-- Discount code -->
+                        </div>
+                        <div class="msax-PromotionCodeDetails msax-Row">
+                            <div class="msax-PromotionCode msax-WidthRatio50 msax-PaddingRight10 msax-PaddingLeft20">
+                                <div id="PromotionCodeWrapper" class="msax-PromotionCodeWrapper" data-bind="with: cart">
+                                    <table>
+                                        <tbody class="msax-PromotionCodes" data-bind="if: $root.isPromotionCodesEnabled">
+                                            <!-- ko foreach: DiscountCodes -->
+                                            <tr>
+                                                <td class="msax-Row">
+                                                    <button class="msax-Delete16 msax-Remove" data-bind="click: $root.removePromotionCode.bind($root)"></button>
+                                                    <span class="msax-PromotionCodeText" data-bind="text: $data"></span>
+                                                </td>
+                                            </tr>
+                                            <!-- /ko -->
+                                        </tbody>
+                                    </table>
+                                    <!-- ko if: $root.isPromotionCodesEnabled -->
+                                    <div class="msax-MarginBottom20"></div>
+                                    <!-- /ko -->
+                                    <button id="AddDiscountCodeDialogLink" class="msax-AddPromotionCode msax-Plus16 msax-WithText" data-bind="click: $root.showDiscountCodeDialog.bind($root), resx: {textContent: 'String_182' }"></button> <!-- Add coupon code -->
+                                </div>
+                            </div>
+
+                            <div id="AddDiscountCodeDialog" class="msax-AddDiscountCodeDialog" data-bind="with: cart">
+
+                                <!-- dialog content -->
+                                <div class="msax-Table msax-WidthRatio100">
+                                    <div class="msax-PaddingTop30">
+                                        <label for="DiscountCodeTextBox" class="msax-PaddingRight20" data-bind="resx: {textContent: 'String_183' }"></label> <!-- Enter a coupon code -->
+                                        <input id="DiscountCodeTextBox" type="text" class="msax-DiscountCodeTextBox msax-WidthRatio50" data-bind="validator: { validatorType: 'DiscountCardTypeValidator', field: 'CardNumber' }" />
+                                    </div>
+
+                                    <!-- Done cancel buttons -->
+                                    <div class="msax-ButtonSection">
+                                        <button id="ApplyPromotionCode" class="msax-Done msax-MarginRight20" data-bind="submitIfValid: { submit: $root.applyPromotionCode.bind($root), containerSelector: '.msax-AddDiscountCodeDialog' }, resx: {textContent: 'String_124' }"></button> <!-- Done -->
+                                        <button id="CloseDiscountCodeDialog" class="msax-Cancel msax-Grey" data-bind="click: $root.closeDiscountCodeDialog.bind($root), resx: {textContent: 'String_123' }"></button> <!-- Cancel -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Credit card -->
+                    <div class="msax-PayCreditCard">
+                        <div class="msax-PayCreditCardSelect">
+                            <h5 data-bind="resx: {textContent: 'String_48' }"></h5> <!-- Credit card -->
+                            <button id="PayCreditCard" class="msax-PayCreditCardLink msax-Plus16 msax-WithText msax-MarginLeft20" data-bind="click: showPaymentPanel, resx: {textContent: 'String_127' }"></button> <!-- Add credit card -->
+                        </div>
+
+                        <div class="msax-CreditCardDetails">
+                            <!-- Displaying the credit card details section only if there is no payment accept page available -->
+                            <div class="row" data-bind="ifnot: $root.isCardPaymentAcceptPage">
+                                <div class="msax-CreditCard msax-PaddingRight10 msax-PaddingLeft20 col-sm-6" data-bind="with: paymentCard">
+                                    <h4 class="msax-MarginTop0" data-bind="resx: {textContent: 'String_137' }"></h4> <!-- Card details -->
+                                    <div class="msax-FieldPanel msax-PaymentNameOnCard">
+                                        <label class="msax-PaymentNameOnCardLabel" for="PaymentMethodNameOnCard" data-bind="resx: {textContent: 'String_29' }"></label>
+                                        <input id="PaymentMethodNameOnCard" type="text" class="msax-PaymentNameOnCardTextBox" data-bind="validator: { validatorType: 'PaymentCardTypeValidator', field: 'NameOnCard' }" />
+                                    </div>
+                                    <div class="msax-FieldPanel msax-PaymentCardType">
+                                        <label class="msax-PaymentCardTypeLabel" for="PaymentMethodCardType" data-bind="resx: {textContent: 'String_36' }"></label>
+                                        <select id="PaymentMethodCardType" class="msax-PaymentCardTypeDropDown" data-bind="options: $root.paymentCardTypes, validator: { validatorType: 'PaymentCardTypeValidator', field: 'CardTypes' }"></select>
+                                    </div>
+                                    <div class="msax-FieldPanel msax-PaymentCardNumber">
+                                        <label class="msax-PaymentCardNumberLabel" for="PaymentMethodCardNumber" data-bind="resx: {textContent: 'String_35' }"></label>
+                                        <input id="PaymentMethodCardNumber" type="text" class="msax-PaymentCardNumberTextBox" data-bind="validator: { validatorType: 'PaymentCardTypeValidator', field: 'CardNumber' }" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="msax-FieldPanel msax-PaymentExpirationMonth msax-WidthRatio50 msax-PaddingRight10 col-sm-6">
+                                            <label class="msax-PaymentExpirationMonthLabel" for="PaymentMethodExpireMonth" data-bind="resx: {textContent: 'String_37' }"></label>
+                                            <select id="PaymentMethodExpireMonth" class="msax-PaymentExpirationMonthDropDown" data-bind="options: $root.expirationMonths, optionsText: 'value', optionsValue: 'key', value: ExpirationMonth"></select>
+                                        </div>
+                                        <div class="msax-FieldPanel msax-PaymentExpirationYear msax-WidthRatio50 msax-PaddingLeft10 col-sm-6">
+                                            <label class="msax-PaymentExpirationYearLabel" for="PaymentMethodExpireYear" data-bind="resx: {textContent: 'String_38' }"></label>
+                                            <select id="PaymentMethodExpireYear" class="msax-DropDown msax-PaymentExpirationYearDropDown" data-bind="options: $root.expirationYear, value: ExpirationYear"></select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="msax-FieldPanel msax-PaymentCcid msax-WidthRatio50 msax-PaddingRight10 col-sm-6">
+                                            <label class="msax-PaymentCcidLabel" for="PaymentMethodCCID" data-bind="resx: {textContent: 'String_39' }"></label>
+                                            <input id="PaymentMethodCCID" type="text" maxlength="4" class="msax-PaymentCcidTextBox" data-bind="validator: { validatorType: 'PaymentCardTypeValidator', field: 'CCID' }" />
+                                            <a class="msax-Anchor msax-PaymentCcidWhatsThis" href="#" data-bind="resx: {textContent: 'String_40' }"></a>
+                                        </div>
+                                        <div class="msax-FieldPanel msax-PaymentAmount msax-WidthRatio50 msax-PaddingLeft10 col-sm-6">
+                                            <label class="msax-PaymentAmountLabel" for="CreditCardAmount" data-bind="resx: {textContent: 'String_41' }"></label>
+                                            <input type="text" id="CreditCardAmount" class="msax-PaymentAmountTextBox" disabled="disabled" readonly="readonly" data-bind="value: $root.formattedCreditCardAmount " />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="msax-AddressForm msax-PaddingLeft10 msax-PaddingRight20 col-sm-6">
+                                    <div class="row">
+                                        <h4 class="msax-MarginTop0 msax-PaddingBottom10" data-bind="resx: {textContent: 'String_42' }"></h4> <!-- Billing address -->
+                                        <div class="msax-FieldPanel msax-useShippingAddressForBilling msax-FloatRight" data-bind="if: $root.useShippingAddressForBilling">
+                                            <input id="useShippingAddressForBillingCheckBox" type="checkbox" class="msax-useShippingAddressForBillingCheckBox" data-bind="checked: $root.isBillingAddressSameAsShippingAddress" />
+                                            <label class="msax-useShippingAddressForBillinglabel" for="useShippingAddressForBillingCheckBox" data-bind="resx: {textContent: 'String_43' }"></label>
+                                        </div>
+                                    </div>
+                                    <div class="msax-PaddingTop9" data-bind="with: $root.paymentCardAddress">
+                                        <div class="msax-FieldPanel msax-AddressName">
+                                            <label for="PaymentAddressName" data-bind="resx: {textContent: 'String_29' }"></label>
+                                            <input type="text" id="PaymentAddressName" maxlength="60" class="msax-NameTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'Name' }" />
+                                        </div>
+                                        <div class="msax-FieldPanel msax-AddressCountry">
+                                            <label for="PaymentAddressCountry" data-bind="resx: {textContent: 'String_20' }"></label> <!-- Country/region -->
+                                            <select id="PaymentAddressCountry" class="msax-Country" data-bind="validator: { validatorType: 'AddressValidator', field: 'ThreeLetterISORegionName', validate: $root.paymentCountryUpdate.bind($root) }, optionsValue:'CountryCode', optionsText: 'CountryName', options: $root.countries, optionsCaption: $root.getResx('String_189')"></select> <!-- Select country/region -->
+                                        </div>
+                                        <div class="msax-FieldPanel msax-AddressStreet">
+                                            <label for="PaymentAddressStreet" data-bind="resx: {textContent: 'String_22' }"></label>
+                                            <input type="text" id="PaymentAddressStreet" class="msax-StreetTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'Street' }" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="msax-FieldPanel msax-AddressCity msax-WidthRatio45 msax-PaddingRight20 col-sm-4">
+                                                <label for="PaymentAddressCity" data-bind="resx: {textContent: 'String_23' }"></label>
+                                                <input type="text" id="PaymentAddressCity" class="msax-CityTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'City' }" />
+                                            </div>
+                                            <div class="msax-FieldPanel msax-AddressState msax-WidthRatio30 msax-PaddingRight10 col-sm-4">
+                                                <label for="PaymentAddressState" data-bind="resx: {textContent: 'String_24' }"></label> <!-- State/province -->
+                                                <!-- ko if: $root.states() != null && $root.states().length > 0 -->
+                                                <select id="PaymentAddressState" class="msax-State" data-bind="validator: { validatorType: 'AddressValidator', field: 'State' }, optionsValue:'StateId', optionsText: 'StateName', options: $root.states, optionsCaption: $root.getResx('String_190')"></select> <!-- Select state/province -->
+                                                <!-- /ko -->
+                                                <!-- ko if: $root.states() == null || $root.states().length <= 0 -->
+                                                <input type="text" id="PaymentAddressState" class="msax-StateTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'State' }" />
+                                                <!-- /ko -->
+                                            </div>
+                                            <div class="msax-FieldPanel msax-AddressZipCode msax-WidthRatio25 msax-PaddingLeft10 col-sm-4">
+                                                <label for="PaymentAddressZipCode" data-bind="resx: {textContent: 'String_25' }"></label>
+                                                <input type="text" id="PaymentAddressZipCode" class="msax-ZipCodeTextBox" data-bind="validator: { validatorType: 'AddressValidator', field: 'ZipCode' }" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Displaying the payment accept page, if available -->
+                            <div class="msax-PaddingLeft20 msax-PaddingRight20" data-bind="if: $root.isCardPaymentAcceptPage">
+                                <div class="msax-MarginBottom20">
+                                    <div class="msax-Info msax-FloatLeft"></div>
+                                    <div>
+                                        <b><span class="msax-MarginLeft5 msax-DisplayInline" data-bind="resx: { textContent: 'String_222' }"></span></b> <!-- IMPORTANT NOTICE: -->&nbsp;
+                                        <div class="msax-Justify msax-DisplayInline" data-bind="resx: { textContent: 'String_223' }"></div> <!-- "This form is provided by your designated third-party payment provider.  By clicking “Next” you acknowledge your information will be transmitted directly to your payment provider, and will be handled in accordance with the terms and conditions and privacy statement that you agreed to with your payment provider.  Microsoft does not collect, store, or transmit any of your payment card information, or provide rights for third-party products or services." -->
+                                    </div>
+                                </div>
+
+                                <iframe id="cardPaymentAcceptFrame" class="msax-WidthRatio100" style="border:0px" sandbox="allow-scripts allow-forms allow-same-origin" data-bind="attr: { src: $root.cardPaymentAcceptPageUrl }"></iframe>
+
+                                <div class="msax-FieldPanel msax-PaymentAmount msax-WidthRatio23">
+                                    <label class="msax-PaymentAmountLabel" for="CreditCardAmount" data-bind="resx: {textContent: 'String_41' }"></label> <!-- Payment amount -->
+                                    <input type="text" id="CreditCardAmount" class="msax-PaymentAmountTextBox" disabled="disabled" readonly="readonly" data-bind="value: $root.formattedCreditCardAmount " />
+                                </div>
+                            </div>
+
+                            <button id="HideCreditCardPanel" class="msax-Delete16 msax-WithText msax-MarginTop10 msax-MarginLeft20" data-bind="click: $root.hidePaymentPanel.bind($root), resx: {textContent: 'String_6' }"></button> <!-- Remove -->
+                        </div>
+                    </div>
+
+                    <!-- Gift card -->
+                    <div class="msax-PayGiftCard">
+                        <div class="msax-PayGiftCardSelect">
+                            <h5 data-bind="resx: {textContent: 'String_128' }"></h5> <!-- Gift card -->
+                            <button id="PayGiftCard" class="msax-PayGiftCardLink msax-Plus16 msax-WithText msax-MarginLeft20" data-bind="click: showPaymentPanel, resx: {textContent: 'String_129' }"></button> <!-- Add gift card -->
+                        </div>
+                        <div class="msax-GiftCardDetails msax-Table">
+                            <div class="msax-Row">
+                                <div class="msax-GiftCard msax-WidthRatio50 msax-PaddingRight10 msax-PaddingLeft20">
+                                    <h4 class="msax-MarginTop0" data-bind="resx: {textContent: 'String_137' }"></h4> <!-- Card details -->
+                                    <div class="msax-FieldPanel msax-GiftCardNumber">
+                                        <label class="msax-GiftCardNumberLabel" for="GiftCardNumber" data-bind="resx: {textContent: 'String_35' }"></label> <!-- Card number -->
+                                        <div class="msax-Row">
+                                            <input type="text" id="GiftCardNumber" class="msax-GiftCardNumberTextBox msax-MarginRight20" data-bind="validator: { validatorType: 'GiftCardTypeValidator', validatorField: 'CardNumber', field: 'giftCardNumber' }" />
+                                            <button id="GetGiftCardBalance" class="msax-GetGiftcardBalance msax-Update24 msax-WithText" data-bind="click: getGiftCardBalance, resx: {textContent: 'String_142' }"></button> <!-- Get gift card balance -->
+                                        </div>
+                                    </div>
+                                    <div class="msax-FieldPanel msax-PaymentAmount">
+                                        <label class="msax-Label msax-PaymentAmountLabel" for="GiftCardAmount" data-bind="resx: {textContent: 'String_41' }"></label> <!-- Payment amount -->
+                                        <div class="msax-Row">
+                                            <input type="text" id="GiftCardAmount" class="msax-MarginRight20" data-bind="validator: { validatorType: 'GiftCardTypeValidator', validatorField:'PaymentAmount', validate: updatePaymentTotal, field: 'formattedGiftCardAmount' }" />
+                                            <button id="ApplyGiftCardAmount" class="msax-ApplyGiftCardAmountButton msax-Arrow24 msax-WithText" data-bind="click: applyFullGiftCardAmount, resx: {textContent: 'String_143' }"></button> <!-- Apply full amount -->
+                                        </div>
+                                    </div>
+                                    <button id="HideGiftCardPaymentPanel" class="msax-Delete16 msax-WithText msax-MarginTop10" data-bind="click: $root.hidePaymentPanel.bind($root), resx: {textContent: 'String_6' }"></button> <!-- Remove -->
+                                </div>
+
+                                <div class="msax-GiftCardBalance msax-WidthRatio50 msax-PaddingLeft10 msax-FieldPanel msax-PaddingRight20 msax-PaddingTop40">
+                                    <div class="msax-GiftCardValidationMessage" data-bind="ifnot: isGiftCardInfoAvailable, resx: {textContent: 'String_135' }"></div> <!-- Gift card does not exist-->
+                                    <div class="msax-GiftCardBalance" data-bind="if: isGiftCardInfoAvailable">
+                                        <label for="GiftCardBalance" class="msax-GiftCardBalanceLabel" data-bind="resx: {textContent: 'String_136' }"></label> <!-- Gift card balance -->
+                                        <div id="GiftCardBalance" class="msax-GiftCardBalance" data-bind="text: $root.giftCardBalance"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loyalty card -->
+                    <div class="msax-PayLoyaltyCard">
+                        <div class="msax-PayLoyaltyCardSelect">
+                            <h5 data-bind="resx: {textContent: 'String_130' }"></h5> <!-- Loyalty card -->
+                            <button id="PayLoyaltyCard" class="msax-PayLoyaltyCardLink msax-Plus16 msax-WithText msax-MarginLeft20" data-bind="click: showPaymentPanel, resx: {textContent: 'String_131' }"></button> <!-- Add loyalty card -->
+                        </div>
+
+                        <div class="msax-LoyaltyCardDetails msax-LoyaltyCard msax-WidthRatio50 msax-PaddingLeft20">
+                            <h4 class="msax-MarginTop0" data-bind="resx: {textContent: 'String_137' }"></h4> <!-- Card details -->
+                            <label class="msax-LoyaltyCardNumberLabel" for="" data-bind="resx: {textContent: 'String_35' }"></label> <!-- Card number -->
+                            <div id="LoyaltyIdsList" class="msax-FieldPanel msax-WidthRatio25">
+                                <div class="msax-CheckBoxWithCardNumber msax-Row" data-bind="foreach: loyaltyCards">
+                                    <input type="radio" name="LoyaltyIdSelection" data-bind="value: $data, checked: $root.loyaltyCardNumber" />
+                                    <div class="msax-VerticalAlignMiddle" data-bind="text: $data"></div>
+                                </div>
+                            </div>
+                            <div id="LoyaltyCustomCard" class="msax-WidthRatio25 msax-Row">
+                                <input type="radio" id="CustomLoyaltyRadio" class="msax-FloatLeft" name="LoyaltyIdSelection" data-bind="click: updateCustomLoyaltyValidation" />
+                                <input type="text" id="CustomLoyaltyCardNumber" data-bind="validator: { validatorType: 'LoyaltyCardTypeValidator', validatorField:'CardNumber' }" />
+                            </div>
+                            <div class="msax-FieldPanel msax-PaymentAmount msax-WidthRatio25 msax-Row">
+                                <label class="msax-Label msax-PaymentAmountLabel" for="LoyaltyCardAmount" data-bind="resx: {textContent: 'String_41' }"></label> <!-- Payment amount -->
+                                <input type="text" id="LoyaltyCardAmount" data-bind="validator: { validatorType: 'LoyaltyCardTypeValidator', validatorField:'PaymentAmount', validate: updatePaymentTotal, field: 'formattedLoyaltyCardAmount' }" />
+                            </div>
+                            <button id="HideLoyaltyPaymentPanel" class="msax-Delete16 msax-WithText msax-MarginTop10" data-bind="click: $root.hidePaymentPanel.bind($root), resx: {textContent: 'String_6' }"></button> <!-- Remove -->
+                        </div>
+                    </div>
+
+                    <!-- Order total -->
+                    <div class="msax-FieldPanel msax-PaymentTotals">
+                        <h5 class="msax-PaymentInformationLabel" data-bind="resx: {textContent: 'String_132' }"></h5> <!-- Payment information -->
+                        <div class="msax-Row">
+                            <div class="msax-PaymentTotal msax-Row">
+                                <h4 class="msax-PaymentTotalLabel msax-PaddingLeft20 msax-MarginTop0" data-bind="resx: {textContent: 'String_133' }"></h4> <!-- Payment total -->
+                                <h4 id="PaymentSectionPaymentTotal" class="msax-PaymentTotal msax-PaddingLeft10 msax-MarginTop0" data-bind="text: $root.formattedPaymentTotal"></h4>
+                            </div>
+                            <div class="msax-OrderTotal msax-Row" data-bind="with: cart">
+                                <h4 class="msax-OrderTotalLabel msax-MarginTop0" data-bind="resx: {textContent: 'String_134' }"></h4> <!-- Order total -->
+                                <h4 id="PaymentSectionOrderTotal" class="msax-OrderTotal msax-PaddingLeft10 msax-MarginTop0 msax-PaddingRight20" data-bind="text: $root.formatCurrencyString.call($root, $data.TotalAmount)"></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="msax-ButtonSection msax-PaddingBottom20">
+                <button id="PaymentInformationPreviousClick" class="msax-Previous msax-MarginRight20" data-bind="click: paymentInformationPreviousClick">
+                    <span data-bind="resx: {textContent: 'String_28' }"></span> <!-- Previous step -->
+                </button>
+                <button id="UpdatePayments" class="msax-Next" data-bind="submitIfValid: { submit: updatePayments, containerSelector: '.msax-PaymentInformation' }">
+                    <span data-bind="resx: {textContent: 'String_14' }"></span> <!-- Next step -->
+                </button>
+            </div>
+        </div>
+        
+        <div id="Review" class="msax-Review msax-DisplayNone">
+            <div data-bind="visible: isShoppingCartEnabled">
+                <div class="msax-OrderReview">
+                    <h2 class="msax-CheckoutShipping-ShippingInformation-Title" data-bind="resx: {textContent: 'String_45' }"></h2> <!-- Review and confirm -->
+                    <div class="msax-ShoppingCartWrapper table-responsive" data-bind="with: cart">
+                        <!-- ko if: $data.PromotionLines && $data.PromotionLines.length -->
+                        <div class="row">
+                            <div id="CartPromotionBanner" class="msax-PromotionBanner msax-PaddingTop5 msax-PaddingBottom5 col-sm-12" data-bind="foreach: PromotionLines">
+                                <span class="msax-CartPromotionBanner msax-PaddingLeft20" data-bind="text: $data"></span>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                        <div id="ReviewItemsGrid" class="msax-ItemsGrid">
+                            <div class="row msax-GridHeader hidden-xs">
+                                <div class="col-sm-4 hidden-xs" data-bind="resx: {textContent: 'String_2' }"></div> <!-- Product details -->
+                                <div class="col-sm-2 hidden-xs" data-bind="resx: {textContent: 'String_178'}"></div> <!-- Delivery method -->
+                                <div class="col-sm-2 hidden-xs" data-bind="resx: {textContent: 'String_3' }"></div> <!-- Each -->
+                                <div class="col-sm-2 hidden-xs" data-bind="resx: {textContent: 'String_4' }"></div> <!-- Quantity -->
+                                <div class="col-sm-2 hidden-xs" data-bind="resx: {textContent: 'String_5' }"></div> <!-- Line total -->
+                            </div>
+                            <div data-bind="foreach: CartLines">
+                                <div class="row" style="padding-top:10px;">
+                                    <div class="col-sm-4">
+                                        <div class="msax-Row msax-FullView msax-View480">
+                                            <a class="msax-ProductImage msax-MarginRight10" data-bind="attr: { href: ProductUrl }">
+                                                <div class="msax-ImageWrapper50px" data-bind="html: ImageMarkup50px"></div>
+                                                <div class="msax-ImageWrapper180px" data-bind="html: ImageMarkup180px"></div>
+                                            </a>
+                                            <div class="msax-PaddingLeft20">
+                                                <div class="msax-ProductNameWrapper">
+                                                    <a class="msax-ProductName" data-bind="attr: { href: ProductUrl }, text: ProductName"></a>
+                                                    <div class="msax-ProductDimensions msax-PaddingBottom5 msax-PaddingTop5" data-bind="text: ProductDimension"></div>
+                                                    <div class="msax-ProductNumber msax-SecondaryColor" data-bind="text: ItemId"></div>
+                                                </div>
+                                                <div class="msax-View480">
+                                                    <div class="msax-ItemPrice msax-MarginTop20" data-bind="text: $root.formatCurrencyString.call($root, $data.Price)"></div>
+                                                    <div class="msax-DiscountNames msax-MarginTop10 msax-SecondaryColor" data-bind="if: OfferNames">
+                                                        <div data-bind="text: OfferNames"></div>
+                                                    </div>
+                                                    <div class="msax-MarginTop20">
+                                                        <button class="msax-Minus16" data-bind="click: $root.quantityMinusClick.bind($root)"></button>
+                                                        <input type="number" class="msax-QuantityTextBox" data-bind="event: {change: $root.quantityTextBoxChanged.bind($root) }, validator: { validatorType: 'ShoppingCartItemValidator', field: 'Quantity' }" />
+                                                        <button class="msax-Plus16" data-bind="click: $root.quantityPlusClick.bind($root)"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="msax-View480">
+                                            <div class="msax-FloatLeft">
+                                                <button class="msax-Delete16 msax-WithText" data-bind="click: $root.removeFromCartClick.bind($root), resx: {textContent: 'String_6' }"></button> <!-- Remove -->
+                                            </div>
+                                            <div class="msax-FloatRight">
+                                                <div>
+                                                    <span data-bind="resx: {textContent: 'String_239' }"></span> <!-- Delivery method: -->
+                                                    <!-- ko if: $root.isOrderLevelDeliverySet -->
+                                                    <span data-bind="text: $root.getDeliveryModeText.call($root, $parent.DeliveryMode)"></span>
+                                                    <!-- /ko -->
+                                                    <!-- ko ifnot: $root.isOrderLevelDeliverySet -->
+                                                    <span data-bind="text: $root.getDeliveryModeText.call($root, DeliveryMode)"></span>
+                                                    <div class="msax-ShippingAddress msax-PaddingRight20" data-bind="with: ShippingAddress">
+                                                        <div>
+                                                            <span class="msax-Name msax-SecondaryColor" data-bind="text: Name"></span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="msax-StreetNumber msax-SecondaryColor" data-bind="text: StreetNumber"></span>
+                                                            <span class="msax-Street msax-SecondaryColor" data-bind="text: Street"></span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="msax-City msax-SecondaryColor" data-bind="text: City"></span>
+                                                            <span class="msax-State msax-SecondaryColor" data-bind="text: State"></span>
+                                                            <span class="msax-ZipCode msax-SecondaryColor" data-bind="text: ZipCode"></span>
+                                                            <span class="msax-Country msax-SecondaryColor" data-bind="text: ThreeLetterISORegionName"></span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /ko -->
+                                                    <div class="msax-EmailAddress msax-PaddingRight20" data-bind="if: $data.ElectronicDeliveryEmail">
+                                                        <div>
+                                                            <span class="msax-Name msax-SecondaryColor" data-bind="text: ElectronicDeliveryEmail"></span>
+                                                        </div>
+                                                    </div>
+                                                    <span data-bind="resx: {textContent: 'String_238' }"></span> <!-- Line total: -->
+                                                    <span class="msax-LineTotal" data-bind="text: $root.formatCurrencyString.call($root, $data.NetAmountWithoutTax)"></span>
+                                                </div>
+                                                <div class="msax-LineDiscount msax-SecondaryColor" data-bind="if: DiscountAmount != 0">
+                                                    <span data-bind="resx: {textContent: 'String_7' }"></span>&nbsp;<span data-bind="text: $root.formatCurrencyString.call($root, $data.DiscountAmount)"></span> <!-- Savings -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="msax-View320">
+                                            <a class="msax-ProductImage" data-bind="attr: { href: ProductUrl }">
+                                                <div class="msax-ImageWrapper50px" data-bind="html: ImageMarkup50px"></div>
+                                                <div class="msax-ImageWrapper180px" data-bind="html: ImageMarkup180px"></div>
+                                            </a>
+                                            <div class="msax-Row msax-PaddingLeft20">
+                                                <div class="msax-ProductNameWrapper">
+                                                    <a class="msax-ProductName" data-bind="attr: { href: ProductUrl }, text: ProductName"></a>
+                                                    <div class="msax-ProductDimensions msax-PaddingBottom5 msax-PaddingTop5" data-bind="text: ProductDimension"></div>
+                                                    <div class="msax-ProductNumber msax-SecondaryColor" data-bind="text: ItemId"></div>
+                                                </div>
+                                            </div>
+                                            <div class="msax-MarginTop10">
+                                                <div class="msax-ItemPrice msax-MarginTop10" data-bind="text: $root.formatCurrencyString.call($root, $data.Price)"></div>
+                                                <div class="msax-DiscountNames msax-MarginTop10 msax-SecondaryColor" data-bind="if: OfferNames">
+                                                    <div data-bind="text: OfferNames"></div>
+                                                </div>
+                                                <div class="msax-FloatLeft msax-MarginTop10">
+                                                    <button class="msax-Minus16" data-bind="click: $root.quantityMinusClick.bind($root)"></button>
+                                                    <input type="number" class="msax-QuantityTextBox" data-bind="event: {change: $root.quantityTextBoxChanged.bind($root) }, validator: { validatorType: 'ShoppingCartItemValidator', field: 'Quantity' }" />
+                                                    <button class="msax-Plus16" data-bind="click: $root.quantityPlusClick.bind($root)"></button>
+                                                </div>
+                                                <div class="msax-FloatRight msax-MarginTop10">
+                                                    <div>
+                                                        <span data-bind="resx: {textContent: 'String_239' }"></span> <!-- Delivery method: -->
+                                                        <!-- ko if: $root.isOrderLevelDeliverySet -->
+                                                        <span data-bind="text: $root.getDeliveryModeText.call($root, $parent.DeliveryMode)"></span>
+                                                        <!-- /ko -->
+                                                        <!-- ko ifnot: $root.isOrderLevelDeliverySet -->
+                                                        <span data-bind="text: $root.getDeliveryModeText.call($root, DeliveryMode)"></span>
+                                                        <div class="msax-ShippingAddress msax-PaddingRight20" data-bind="with: ShippingAddress">
+                                                            <div>
+                                                                <span class="msax-Name msax-SecondaryColor" data-bind="text: Name"></span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="msax-StreetNumber msax-SecondaryColor" data-bind="text: StreetNumber"></span>
+                                                                <span class="msax-Street msax-SecondaryColor" data-bind="text: Street"></span>
+                                                            </div>
+                                                            <div>
+                                                                <span class="msax-City msax-SecondaryColor" data-bind="text: City"></span>
+                                                                <span class="msax-State msax-SecondaryColor" data-bind="text: State"></span>
+                                                                <span class="msax-ZipCode msax-SecondaryColor" data-bind="text: ZipCode"></span>
+                                                                <span class="msax-Country msax-SecondaryColor" data-bind="text: ThreeLetterISORegionName"></span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /ko -->
+                                                        <div class="msax-EmailAddress msax-PaddingRight20" data-bind="if: $data.ElectronicDeliveryEmail">
+                                                            <div>
+                                                                <span class="msax-Name msax-SecondaryColor" data-bind="text: ElectronicDeliveryEmail"></span>
+                                                            </div>
+                                                        </div>
+                                                        <span data-bind="resx: {textContent: 'String_238' }"></span> <!-- Line total: -->
+                                                        <span class="msax-LineTotal" data-bind="text: $root.formatCurrencyString.call($root, $data.NetAmountWithoutTax)"></span>
+                                                    </div>
+                                                    <div class="msax-LineDiscount msax-SecondaryColor" data-bind="if: DiscountAmount != 0">
+                                                        <span data-bind="resx: {textContent: 'String_7' }"></span>&nbsp;<span data-bind="text: $root.formatCurrencyString.call($root, $data.DiscountAmount)"></span> <!-- Savings -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msax-ClearBoth">
+                                                <button class="msax-Delete16 msax-WithText msax-MarginTop10" data-bind="click: $root.removeFromCartClick.bind($root), resx: {textContent: 'String_6' }"></button> <!-- Remove -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 msax-FullView">
+                                        <!-- ko if: $root.isOrderLevelDeliverySet -->
+                                        <div data-bind="text: $root.getDeliveryModeText.call($root, $parent.DeliveryMode)"></div>
+                                        <!-- /ko -->
+                                        <!-- ko ifnot: $root.isOrderLevelDeliverySet -->
+                                        <div data-bind="text: $root.getDeliveryModeText.call($root, DeliveryMode)"></div>
+                                        <div class="msax-ShippingAddress msax-PaddingRight20" data-bind="with: ShippingAddress">
+                                            <div>
+                                                <span class="msax-Name msax-SecondaryColor" data-bind="text: Name"></span>
+                                            </div>
+                                            <div>
+                                                <span class="msax-StreetNumber msax-SecondaryColor" data-bind="text: StreetNumber"></span>
+                                                <span class="msax-Street msax-SecondaryColor" data-bind="text: Street"></span>
+                                            </div>
+                                            <div>
+                                                <span class="msax-City msax-SecondaryColor" data-bind="text: City"></span>
+                                                <span class="msax-State msax-SecondaryColor" data-bind="text: State"></span>
+                                                <span class="msax-ZipCode msax-SecondaryColor" data-bind="text: ZipCode"></span>
+                                                <span class="msax-Country msax-SecondaryColor" data-bind="text: ThreeLetterISORegionName"></span>
+                                            </div>
+                                        </div>
+                                        <!-- /ko -->
+                                        <div class="msax-EmailAddress msax-PaddingRight20" data-bind="if: $data.ElectronicDeliveryEmail">
+                                            <div>
+                                                <span class="msax-Name msax-SecondaryColor" data-bind="text: ElectronicDeliveryEmail"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 msax-FullView">
+                                        <div class="msax-ItemPrice" data-bind="text: $root.formatCurrencyString.call($root, $data.Price)"></div>
+                                        <div class="msax-DiscountNames msax-SecondaryColor" data-bind="if: OfferNames">
+                                            <div data-bind="text: OfferNames"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 msax-FullView">
+                                        <button class="msax-Minus16" data-bind="click: $root.quantityMinusClick.bind($root)"></button>
+                                        <input type="number" maxlength="3" class="msax-QuantityTextBox" data-bind="event: {change: $root.quantityTextBoxChanged.bind($root) }, validator: { validatorType: 'ShoppingCartItemValidator', field: 'Quantity' }" />
+                                        <button class="msax-Plus16" data-bind="click: $root.quantityPlusClick.bind($root)"></button>
+                                    </div>
+                                    <div class="col-sm-2 msax-FullView">
+                                        <div class="msax-LineTotal" data-bind="text: $root.formatCurrencyString.call($root, $data.NetAmountWithoutTax)"></div>
+                                        <div class="msax-LineDiscount msax-SecondaryColor" data-bind="if: DiscountAmount != 0">
+                                            <span data-bind="resx: {textContent: 'String_7' }"></span>&nbsp;<span data-bind="text: $root.formatCurrencyString.call($root, $data.DiscountAmount)"></span> <!-- Savings -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row msax-MarginBottom20">
+                                    <div class="col-sm-12 msax-FullView">
+                                        <button class="msax-Delete16 msax-WithText" data-bind="click: $root.removeFromCartClick.bind($root), resx: {textContent: 'String_6' }"></button> <!-- Remove -->
+                                    </div>
+                                </div>
+                                <!-- ko if: ProductType === $root.kitVariantProductType() -->
+                                <div class="msax-NoOfComponentsInKit row" data-bind="if: ProductType == $root.kitVariantProductType()">
+                                    <div class="col-sm-12">
+                                        <span class="msax-KitComponentsCount" data-bind="text: KitComponentCount"></span>
+                                    </div>
+                                </div>
+                                <!-- /ko -->
+                                <!-- ko foreach: KitComponents -->
+                                <div class="msax-KitComponents row">
+                                    <div class="msax-ProductDetails msax-PaddingLeft60 col-sm-6">
+                                        <div class="msax-Row">
+                                            <a class="msax-ProductImage50px msax-MarginRight10" data-bind="attr: { href: ProductUrl }">
+                                                <div class="msax-ImageWrapper" data-bind="html: ImageMarkup50px"></div>
+                                            </a>
+                                            <div class="msax-PaddingLeft20">
+                                                <div class="msax-ProductNameWrapper">
+                                                    <a class="msax-ProductName" data-bind="attr: { href: ProductUrl }, text: ProductName"></a>
+                                                    <div class="msax-ProductDimensions msax-PaddingBottom5 msax-PaddingTop5" data-bind="text: ProductDimension"></div>
+                                                </div>
+                                                <div class="msax-ProductNumber msax-SecondaryColor" data-bind="text: ItemId"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <span class="msax-ItemPrice" data-bind="text: KitComponentPrice"></span>
+                                    </div>
+                                    <div class="msax-Quantity col-sm-3">
+                                        <span class="msax-Quantity" data-bind="text: Quantity"></span>
+                                    </div>
+                                </div>
+                                <!-- /ko -->
+
+                                <!-- ko if: $data.hasOwnProperty("PromotionLines") && $data.PromotionLines.length -->
+                                <div class="row">
+                                    <div colspan="5" class="msax-PromotionBanner msax-PaddingTop5 msax-PaddingBottom5 col-sm-12" data-bind="foreach: PromotionLines">
+                                        <span class="msax-ItemPromotionBanner msax-PaddingLeft20" data-bind="text: $data"></span>
+                                    </div>
+                                </div>
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="OrderSummary" class="msax-OrderSummary col-sm-6">
+                            <h5 data-bind="resx: {textContent: 'String_46' }"></h5> <!-- Order information -->
+                            <div id="ReviewRewardCard" class="msax-RewardCard">
+                                <div class="msax-RewardCard msax-PaddingRight20 msax-PaddingLeft20" data-bind="with: cart">
+                                    <div class="msax-Row">
+                                        <h5 data-bind="resx: {textContent: 'String_130' }"></h5> <!-- Loyalty card -->
+                                        <a id="ShowEditRewardCardDialog" class="msax-Edit msax-PaddingTop10 msax-PaddingLeft10" href="#" data-bind="click: $root.showEditRewardCardDialog.bind($root), resx: {textContent: 'String_47' }"></a> <!-- Edit -->
+                                    </div>
+                                    <div class="msax-SecondaryColor msax-PaddingLeft10" data-bind="if: LoyaltyCardId">
+                                        <span class="msax-RewardCardNumber" data-bind="text: LoyaltyCardId"></span>
+                                    </div>
+                                    <div class="msax-SecondaryColor msax-PaddingLeft10" data-bind="ifnot: LoyaltyCardId">
+                                        <span data-bind="resx: {textContent: 'String_162' }"></span> <!-- You have not added loyalty card number to your order -->
+                                    </div>
+                                </div>
+
+                                <div id="EditRewardCard" class="msax-EditRewardCard" data-bind="with: cart">
+
+                                    <!-- dialog content -->
+                                    <div class="msax-Table msax-WidthRatio100">
+                                        <span class="msax-SecondaryColor" data-bind="resx: {textContent: 'String_163' }"></span> <!-- Enter a reward card for the current order. You can include only one reward card per order -->
+                                        <div class="msax-PaddingTop30">
+                                            <label class="msax-PaddingRight20" for="RewardCardTextBox" data-bind="resx: {textContent: 'String_187' }"></label> <!-- Reward card -->
+                                            <input id="RewardCardTextBox" type="text" class="msax-RewardCardTextBox" data-bind="validator: { validatorType: 'LoyaltyCardTypeValidator', validatorField: 'CardNumber' }" />
+                                        </div>
+
+                                        <!-- Done cancel buttons -->
+                                        <div class="msax-ButtonSection">
+                                            <button id="UpdateLoyaltyCardId" class="msax-Done msax-MarginRight20" data-bind="submitIfValid: { submit: $root.updateLoyaltyCardId.bind($root), containerSelector: '.msax-EditRewardCard' }, resx: {textContent: 'String_124' }"></button> <!-- Done -->
+                                            <button id="CloseEditRewardCardDialog" class="msax-Cancel msax-Grey" data-bind="click: $root.closeEditRewardCardDialog.bind($root), resx: {textContent: 'String_123' }"></button> <!-- Cancel -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="ReviewShippingInfo" class="msax-Shipping" data-bind="with: cart">
+                                <!-- The following check is required because shipping address will not be undefined when using email delivery, it will be a valid address class object with null values. This check is to avoid displaying the div when email delivery is used. -->
+                                <!-- ko if: !$root.isEmailDeliverySet() && $root.isOrderLevelDeliverySet -->
+                                    <div data-bind="with: ShippingAddress">
+                                        <div class="msax-ShippingAddress msax-PaddingLeft20 msax-PaddingTop20">
+                                            <div class="msax-Row">
+                                                <h5 data-bind="text: $root.getOrderLevelDeliveryAddressHeaderText.call($root)"></h5>
+                                                <a id="EditShipping" class="msax-EditShipping msax-PaddingTop10 msax-PaddingLeft10" href="#" data-bind="click: $root.paymentInformationPreviousClick.bind($root), resx: {textContent: 'String_47' }"></a> <!-- Edit -->
+                                            </div>
+                                            <div>
+                                                <span class="msax-Name msax-SecondaryColor" data-bind="text: Name"></span>
+                                            </div>
+                                            <div>
+                                                <span class="msax-StreetNumber msax-SecondaryColor" data-bind="text: StreetNumber"></span>
+                                                <span class="msax-Street msax-SecondaryColor" data-bind="text: Street"></span>
+                                            </div>
+                                            <div>
+                                                <span class="msax-City msax-SecondaryColor" data-bind="text: City"></span>
+                                                <span class="msax-State msax-SecondaryColor" data-bind="text: State"></span>
+                                                <span class="msax-ZipCode msax-SecondaryColor" data-bind="text: ZipCode"></span>
+                                                <span class="msax-Country msax-SecondaryColor" data-bind="text: ThreeLetterISORegionName"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- /ko -->
+                            </div>
+                            <div class="msax-Row">
+                                <div class="msax-Payment msax-PaddingRight20 msax-PaddingLeft20 msax-PaddingTop20">
+                                    <div class="msax-Row">
+                                        <h5 data-bind="resx: {textContent: 'String_34' }"></h5> <!-- Payment method -->
+                                        <a id="EditPayment" class="msax-EditPayment msax-PaddingTop10 msax-PaddingLeft10" href="#" data-bind="click: $root.reviewPreviousClick.bind($root), resx: {textContent: 'String_47' }"></a>
+                                    </div>
+                                    <div>
+                                        <!-- ko if: payCreditCard -->
+                                        <div class="msax-Row">
+                                            <!-- ko ifnot: isCardPaymentAcceptPage -->
+                                            <div class="msax-CreditCardPayment msax-SecondaryColor msax-PaddingRight50" data-bind="with: paymentCard">
+                                                <h5 data-bind="resx: {textContent: 'String_48' }"></h5> <!-- Credit card -->
+                                                <div data-bind="text: NameOnCard"></div>
+                                                <div class="msax-CardNumber" data-bind="text: $root.maskedCreditCard"></div>
+                                                <div>
+                                                    <span class="msax-ExpirationMonth" data-bind="text: ExpirationMonth"></span>
+                                                    <span class="msax-ExpirationYear" data-bind="text: ExpirationYear"></span>
+                                                </div>
+                                                <div class="msax-CardAmount" data-bind="text: $root.formattedCreditCardAmount"></div>
+                                            </div>
+                                            <!-- /ko -->
+                                            <!-- ko if: isCardPaymentAcceptPage -->
+                                            <div class="msax-CreditCardPayment msax-SecondaryColor msax-PaddingRight50">
+                                                <h5 data-bind="resx: {textContent: 'String_48' }"></h5> <!-- Credit card -->
+                                                <div class="msax-CardAmount" data-bind="text: $root.formattedCreditCardAmount"></div>
+                                            </div>
+                                            <!-- /ko -->
+
+                                            <div id="ReviewBilling" class="msax-Billing">
+                                                <div class="msax-BillingAddress" data-bind="with: $root.paymentCardAddress">
+                                                    <div class="msax-Row">
+                                                        <h5 data-bind="resx: {textContent: 'String_42' }"></h5> <!-- Billing address -->
+                                                    </div>
+                                                    <div>
+                                                        <span class="msax-StreetNumber msax-SecondaryColor" data-bind="text: StreetNumber"></span>
+                                                        <span class="msax-Street msax-SecondaryColor" data-bind="text: Street"></span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="msax-City msax-SecondaryColor" data-bind="text: City"></span>
+                                                        <span class="msax-State msax-SecondaryColor" data-bind="text: State"></span>
+                                                        <span class="msax-ZipCode msax-SecondaryColor" data-bind="text: ZipCode"></span>
+                                                        <span class="msax-Country msax-SecondaryColor" data-bind="text: ThreeLetterISORegionName"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- ko if: payGiftCard -->
+                                        <div class="msax-GiftCardPayment msax-SecondaryColor msax-PaddingTop20">
+                                            <h5 data-bind="resx: {textContent: 'String_128' }"></h5> <!-- Gift card -->
+                                            <div class="msax-CardNumber" data-bind="text: $root.giftCardNumber"></div>
+                                            <div class="msax-CardAmount" data-bind="text: $root.formattedGiftCardAmount"></div>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- ko if: payLoyaltyCard -->
+                                        <div class="msax-LoyaltyCardPayment msax-SecondaryColor msax-PaddingTop20">
+                                            <h5 data-bind="resx: {textContent: 'String_130' }"></h5> <!-- Loyalty card -->
+                                            <div class="msax-CardNumber" data-bind="text: $root.loyaltyCardNumber"></div>
+                                            <div class="msax-CardAmount" data-bind="text: $root.formattedLoyaltyCardAmount"></div>
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="ShoppingCartSummary" class="msax-ShoppingCartSummary col-sm-4 col-sm-offset-2" data-bind="with: cart">
+                            <h5 data-bind="resx: {textContent: 'String_9' }"></h5> <!-- Order Summary -->
+                            <div>
+                                <div class="msax-SubTotal msax-Row">
+                                    <div class="msax-FooterLabel msax-SecondaryColor" data-bind="resx: {textContent: 'String_10' }"></div> <!-- Subtotal: -->
+                                    <div class="msax-FooterValue" data-bind="text: $root.formatCurrencyString.call($root, $data.SubtotalAmountWithoutTax)"></div>
+                                </div>
+                                <div class="msax-ChargeAmount msax-Row">
+                                    <div class="msax-FooterLabel msax-SecondaryColor" data-bind="resx: {textContent: 'String_11' }"></div> <!-- Shipping and handling: -->
+                                    <div class="msax-FooterValue" data-bind="text: $root.formatCurrencyString.call($root, $data.ChargeAmount)"></div>
+                                </div>
+                                <div class="msax-TaxAmount msax-Row">
+                                    <div class="msax-FooterLabel msax-SecondaryColor" data-bind="resx: {textContent: 'String_51' }"></div>
+                                    <div class="msax-FooterValue" data-bind="text: $root.formatCurrencyString.call($root, $data.TaxAmount)"></div>
+                                </div>
+                                <div class="msax-GrandTotal msax-Row">
+                                    <div class="msax-FooterLabel" data-bind="resx: {textContent: 'String_12' }"></div> <!-- Order total: -->
+                                    <div class="msax-FooterValue" data-bind="text: $root.formatCurrencyString.call($root, $data.TotalAmount)"></div>
+                                </div>
+                                <div class="msax-DiscountTotal msax-Row">
+                                    <div class="msax-FooterLabel msax-SecondaryColor" data-bind="resx: {textContent: 'String_13' }"></div> <!-- Total savings: -->
+                                    <div class="msax-FooterValue" data-bind="text: $root.formatCurrencyString.call($root, $data.DiscountAmount)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="msax-ButtonSection msax-PaddingBottom20">
+                    <button id="ReviewPreviousClick" class="msax-Previous msax-MarginRight20" data-bind="click: reviewPreviousClick">
+                        <span data-bind="resx: {textContent: 'String_28' }"></span> <!-- Previous step -->
+                    </button>
+                    <button id="SubmitOrder" class="msax-SubmitOrder" type="button" data-bind="click: submitOrder">
+                        <span data-bind="resx: {textContent: 'String_52' }"></span> <!-- Submit order -->
+                    </button>
+                </div>
+            </div>
+            <div data-bind="visible: !isShoppingCartEnabled()">
+                <span data-bind="resx: {textContent: 'String_15' }"></span> <!-- There are no items in your shopping cart. Please add items to the cart. -->
+            </div>
+        </div>
+
+        <div class="msax-Confirmation msax-DisplayNone">
+            <h2 data-bind="resx: {textContent: 'String_53' }"></h2><br /><br />
+            <h4 data-bind="resx: {textContent: 'String_46' }"></h4><br />
+            <span data-bind="resx: {textContent: 'String_54' }"></span>
+            <span class="msax-orderNumber" data-bind="text: orderNumber"></span>
+        </div>
+
+    </div>
+    <!--CONTENT_END-->
+</body>
+</html>

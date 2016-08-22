@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>StockCountDetailsView</title>
+    <link href="StockCountDetailsView.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="fragment stockCountDetailsView">
+
+        <!-- Indeterminate wait -->
+        <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+        
+        <!-- Page header -->
+        <div id="common-header" data-win-control="WinJS.UI.HtmlControl" data-win-options="{uri: 'Views/Controls/CommonHeader.html'}"></div>
+
+        <section role="main" class="row grow" data-bind="resx: { ariaLabel: 'string_4454' }">    <!-- Main content -->
+
+            <!-- View for Stock Count Grid view -->
+            <div class="col grow no-select">
+                <div class="marginBottom1 no-shrink">
+                    <h2 data-bind="resx: { textContent: 'string_3370' }"></h2>
+                </div>
+                <div class="standardGrid countingGrid">
+                    <!-- Column Headers of Products Grid -->
+                    <div class="listViewHeader">
+                        <div class="ratio3">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_3350' }">PRODUCT NUMBER</h6>
+                        </div>
+                        <div class="ratio2">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_3351' }">DESCRIPTION</h6>
+                        </div>
+                        <div class="ratio2 textRight">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_3352' }">COUNTED</h6>
+                        </div>
+                        <div class="ratio3 textRight">
+                            <h6 data-bind="resx: { textWithTooltip: 'string_3353' }">QUANTITY</h6>
+                        </div>
+                    </div>
+
+                    <div id="stockCountDetailsView" class="overflowHidden"
+                         data-win-control="WinJS.UI.ListView"
+                         data-win-options="{
+                                selectionMode: 'single',
+                                tapBehavior: 'toggleSelect',
+                                itemTemplate: select('#stockCountDetailsListTemplate'),
+                                layout: {type: WinJS.UI.ListLayout}
+                            }"
+                         data-bind="winControl: {
+                                itemDataSource: stockCountViewModel.productLines,
+                                selectionchanged: { eventHandlerCallBack: productSelectionChanged, appBarId: '#commandAppBar' },
+                                templateSwitch: [{ buttonId: '#showStockCountDetailsList', templateId: '#stockCountDetailsListTemplate', layoutType: { type: WinJS.UI.ListLayout }, displayElementId: '#stockCountDetailsResultHeader' },
+                                ],
+                            },
+                            visible: hasProducts,
+                            resx: { ariaLabel: 'string_3387' }"> <!-- List of stock count details -->
+                    </div>
+                    <div class="col grow tableContent center" data-bind="visible: !hasProducts()">
+                        <div class="textCenter">
+                            <h3 data-bind="resx: { textContent: 'string_1032' }"></h3> <!-- We didn’t find anything to display here. -->
+                        </div>
+                    </div>
+                    <!-- Total count results footer -->
+                    <div class="listViewFooter height5">
+                        <div class="ratio4">
+                            <h4 data-bind="text: totalProductsString"></h4>
+                            <h4 class="secondaryFontColor" data-bind="resx: { textContent: 'string_3360' }"></h4>
+                        </div>
+                        <div class="ratio3 textRight">
+                            <h4 data-bind="text: totalCountedString"></h4>
+                            <h4 class="secondaryFontColor" data-bind="resx: { textContent: 'string_3361' }"></h4>
+                        </div>
+                        <div class="ratio3 textRight">
+                            <h4 data-bind="text: totalQuantityString"></h4>
+                            <h4 class="secondaryFontColor" data-bind="resx: { textContent: 'string_3362' }"></h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="gutter4x4"></div>
+
+            <!-- View for Numpad -->
+            <div class="col no-shrink">
+                <div class="marginBottom1 no-shrink">
+                    <h2 data-bind="visible: enterProductVisible, resx: { textContent: 'string_3371' }"></h2> <!-- Enter Product -->
+                    <h2 data-bind="visible: enterQuantityVisible, resx: { textContent: 'string_3372' }"></h2> <!-- Enter Quantity -->
+                    <h2 data-bind="visible: addQuantityVisible, resx: { textContent: 'string_3373' }"></h2> <!-- Enter Quantity -->
+                </div>
+                <div data-bind="visible: enterProductVisible">
+                    <input id="productInput" class="numPadTextbox" type="text" 
+                           data-bind="resx: { ariaLabel: 'string_3371' }" />  <!-- Enter product -->
+                    <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                         data-win-options="{ uri: 'Controls/numberPad/NumPad.html' }"
+                         data-bind="alphanumericNumpad: {
+                            textBoxId: 'productInput',
+                            value: searchText,
+                            onEnter: enterProductOrQuantityNumpad,
+                            disableDecimalSeparator: true
+                         }">
+                    </div>
+                </div>
+                <div data-bind="visible: (enterQuantityVisible() || addQuantityVisible())">
+                    <input id="quantityInput" class="numPadTextbox" type="text" data-bind="resx: { ariaLabel: 'string_3373' }" />  <!-- Enter quantity -->
+                    <div class="numPad" data-win-control="WinJS.UI.HtmlControl"
+                         data-win-options="{ uri: 'Controls/numberPad/NumPad.html' }"
+                         data-bind="numpad: {
+                            textBoxId: 'quantityInput',
+                            value: searchText,
+                            onEnter: enterProductOrQuantityNumpad
+                         }">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="commandAppBar" data-win-control="Commerce.AppBarControl" 
+         data-win-options="{ sticky : true }">
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'searchForProduct',
+                    extraClass: 'winappbar-iconSearchProducts',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: searchForProduct, disabled: enterQuantityVisible }, resx: { label: 'string_3321' }" /> <!-- Search products -->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'removeProductLine',
+                    extraClass: 'winappbar-iconDelete',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: deleteProductLine, disabled: isProductNotSelected }, resx: { label: 'string_3320' }" /> <!-- Remove line -->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'refreshProductLines',
+                    extraClass: 'winappbar-iconRefresh',
+                    section:'selection',
+                }"
+                data-bind="winControl: { click: refreshProductLines, disabled: disableRefreshProductsInJournal }, resx: { label: 'string_3325' }" /> <!-- Refresh -->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'commitJournal',
+                    extraClass: 'winappbar-iconCommitJournal',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: commitJournal, disabled: isCommitDisabled }, resx: { label: 'string_3323' }" /> <!-- Commit -->
+
+        <button data-win-control="WinJS.UI.AppBarCommand"
+                data-win-options="{
+                    id:'saveJournal',
+                    extraClass: 'winappbar-iconSave',
+                    section:'global',
+                }"
+                data-bind="winControl: { click: saveJournal, disabled: enterQuantityVisible }, resx: { label: 'string_3324' }" /> <!-- Save -->
+    </div>
+</body>
+</html>

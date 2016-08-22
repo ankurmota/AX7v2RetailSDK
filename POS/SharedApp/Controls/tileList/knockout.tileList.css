@@ -1,0 +1,86 @@
+.tileList {
+    /* 
+        Magic number makes height of the control to flex properly. 
+        Height still resizes. Without it wrap does not work. 
+        Most likly IE bug. 500 is important. 
+    */
+    height: 500px;
+}
+
+.tileList .textStart {
+    text-align: start;
+}
+
+.tileList .boundaries {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.tileList .win-itemcontainer .win-itembox {
+    background-color: transparent
+}
+
+.tileList .itemContainer {
+    color: #fff;
+}
+
+.tileList .itemContainer,
+.tileList .win-focusedoutline {
+    outline: none !important; /* overrides default winjs styles */
+}
+
+.tileList .itemContainer:focus {
+    border-width: 0.2em;
+    border-style: dotted; 
+}
+
+.tileList .itemContainer .win-focused {
+    margin: -0.2em; /* Reverts the padding done by the border */
+}
+
+.tileList .itemContainer.disabled,
+.tileList .itemContainer.disabled.accentBackground:hover {
+    background-color: #CCCCCC;
+    color: #A6A6A6
+}
+
+/* required fix for dialogs. Dialogs should consume only light theme styles. */
+.commerceDialog .tileList .itemContainer:focus {
+    border-color: #000000
+}
+
+/* removing border for pressed state of a tile. */
+.commerceDialog .tileList .itemContainer:focus:active,
+.tileList .itemContainer:focus:active {
+    border-color: transparent;
+}
+
+/* HighContrast settings used only for IE/Metro UI */
+@media (-ms-high-contrast) {
+    .tileList .itemContainer.accentBackground:hover,
+    .tileList .itemContainer.accentBackground:active {
+        background-color: Highlight;
+        color: HighlightText;
+        border-color: ButtonText;
+    }
+
+    .tileList .itemContainer.accentBackground:active {
+        background-color: Highlight;
+        color: HighlightText;
+    }
+
+    .tileList .itemContainer.disabled,
+    .tileList .itemContainer.disabled.accentBackground:hover {
+        border-color: GrayText;
+        color: GrayText;
+        background-color: transparent;
+    }
+
+    .tileList .itemContainer.accentBackground:focus,
+    .commerceDialog .tileList .itemContainer.accentBackground:focus {
+        background-color: Highlight;
+        color: HighlightText;
+        border-color: HighlightText;
+    }
+}

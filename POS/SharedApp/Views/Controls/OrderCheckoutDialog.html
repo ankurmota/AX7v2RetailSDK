@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Order Post-checkout Dialog</title>
+    <link href="OrderCheckoutDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="orderCheckoutDialog" data-bind="customControlInternal: 'OrderCheckoutDialog'">
+        <div data-bind="
+                dialog: {
+                    title:  controlHeader,
+                    visible: visible,
+                    buttonClick: dialogCloseHandler,
+                    closeOnEscButton:true,
+                    buttons: [{ label: Commerce.ViewModelAdapter.getResourceString('string_1819'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, cssClass: 'okButton' }]}
+            ">
+            <div>
+                <div class="row">
+                    <div class="ratio5">
+                        <label for="orderDetailsTransactionId" data-bind="resx: { textContent: 'string_1872' }">Transaction</label>
+                        <h3 id="orderDetailsTransactionId" data-bind="text: salesOrder().ReceiptId"></h3>
+                    </div>
+                    <div class="ratio5">
+                        <label for="orderDetailsDate" data-bind="resx: { textContent: 'string_1873' }">Date</label>
+                        <h3 id="orderDetailsDate" data-bind="shortDate: salesOrder().CreatedDateTime"></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="ratio5">
+                        <label for="orderDetailsTerminalId" data-bind="resx: { textContent: 'string_1874' }">Terminal</label>
+                        <h3 id="orderDetailsTerminalId" data-bind="text: salesOrder().TerminalId"></h3>
+                    </div>
+                    <div>
+                        <label for="orderDetailsPlaceTime" data-bind="resx: { textContent: 'string_1875' }">Time</label>
+                        <h3 id="orderDetailsPlaceTime" data-bind="shortTime: salesOrder().CreatedDateTime"></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="ratio5">
+                        <label for="orderDetailsSalesPerson" data-bind="resx: { textContent: 'string_1876' }">Sales person</label>
+                        <h3 id="orderDetailsSalesPerson" data-bind="text: salesPersonName"></h3>
+                    </div>
+                    <div>
+                        <label for="orderDetailsLinesCount" data-bind="resx: { textContent: 'string_1877' }">Line items</label>
+                        <h3 id="orderDetailsLinesCount" data-bind="text: salesLinesCount"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

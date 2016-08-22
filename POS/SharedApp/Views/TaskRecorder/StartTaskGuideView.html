@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="no-shrink row grow">
+        <div class="grow">
+            <h4 class="title"
+                data-bind="resx: { textContent: 'string_10080' }">
+                HELP > TASK GUIDES
+            </h4>
+        </div>
+    </div>
+    <!-- Progress ring -->
+    <div data-bind="loader: { visible: indeterminateWaitVisible }"></div>
+    <div class="taskRecorderStartTaskGuide">
+        <!-- ko if: isRecordingReady -->
+        <div class="col grow padTop2">
+            <div class="row height5 width32 centerY">
+                <h2 class="ellipsis" data-bind="text: recording().name"> </h2>
+            </div>
+            <div class="row padTop1">
+                <label data-bind="resx: { textContent: 'string_10081' }"> Description </label>
+            </div>
+            <div class="row height4 width32">
+                <h4 class="ellipsis" data-bind="text: recording().description"> </h4>
+            </div>
+            <div class="row padTop1">
+                <h2 data-bind="resx: { textContent: 'string_10082' }"> Steps </h2>
+            </div>
+            <div class="row height30 scrollY">
+                <div class="col" data-bind="foreach: recording().nodes">
+                    <div class="row height4 centerY">
+                        <div class="col width4">
+                            <h4 data-bind="text: displayNumber"> </h4>
+                        </div>
+                        <div class="col width28">
+                            <h4 class="ellipsis" data-bind="text: description"> </h4>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row height4 padTop7">
+                <div class="col grow" data-bind="buttonBlock: {
+                        buttonClass: 'iconSaveWordDocument',
+                        click: saveWordDocument,
+                        labelTextResx: 'string_10051',       // Export as Word document
+                        ariaLabelResx: 'string_10051',       // Export as Word document
+                    }">
+                </div>
+            </div>
+            <div class="buttonsContainer row">
+                <div class="buttonContainer col width32 no-shrink">
+                    <button tabindex="0" class="primaryButton" type="button" data-bind="resx: { ariaLabel: 'string_10083' }">Start task guide</button>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: !isRecordingReady -->
+        <!-- /ko -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MessageDialog</title>
+
+    <link href="MessageDialog.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-bind="customControlInternal: 'MessageDialog'">
+
+        <div data-bind="dialog:
+                {
+                    title: title,
+                    subTitle: subTitle,
+                    visible: visible,
+                    buttonClick: buttonClickHandler,
+                    showProgressIndicator: indeterminateWaitVisible,
+                    buttons: buttons,
+                }" class="modalWindowContentSection alwaysOnTop">
+
+            <!-- dialog content -->
+            <div class="content">
+                <h4 class="wrapText" data-bind="text: content"></h4>
+                <div class ="padTop1" data-bind="visible: additionalInfo">
+				    <!-- Additional information: -->
+                    <h4 class="wrapText additionalInfo" data-bind="resx: { textContent: 'string_29049' }"></h4>
+                    <h4 class="wrapText" data-bind="text: additionalInfo"></h4>
+                </div>
+            </div>
+            <div class="padTop1 row" data-bind="visible: messageCheckboxVisible">
+                <input id="messageCheckbox" type="checkbox" data-bind="checked: messageCheckboxChecked" />
+                <div class="padTop05">
+                    <label for="messageCheckbox" data-bind="text: messageCheckboxLabel">Do not tell me again</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

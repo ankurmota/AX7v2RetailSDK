@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div class="no-shrink row grow">
+        <div class="grow">
+            <h4 class="title"
+                data-bind="resx: { textContent: 'string_10055' }">
+                TASK RECORDER
+            </h4>
+        </div>
+    </div>
+    <div class="col grow padTop1">
+        <div class="row">
+            <h2 data-bind="resx: { textContent: 'string_10018' }"> New task </h2>
+        </div>
+        <div class="padTop2">
+            <label class="row" for="taskNameId" data-bind="resx: { textContent: 'string_10019' }"> Name </label>
+            <input id="taskNameId" class="row" type="text" data-bind="value: taskName" />
+        </div>
+        <div class="padTop2">
+            <label class="row" for="taskCommentId" data-bind="resx: { textContent: 'string_10020' }"> Comment </label>
+            <textarea class="row" rows="5" id="taskCommentId" data-bind="value: taskComment"> </textarea>
+        </div>
+        <div class="buttonsContainer row">
+            <div class="buttonContainer col no-shrink">
+                <button class="primaryButton" type="button" data-bind="resx: { textContent: 'string_10016' }, click: startTask, disable: isStartTaskDisabled">Start</button>
+            </div>
+            <div class="col width2"></div>
+            <div class="buttonContainer col no-shrink">
+                <button class="secondaryButton" type="button" data-bind="resx: { textContent: 'string_10017' }, click: cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
