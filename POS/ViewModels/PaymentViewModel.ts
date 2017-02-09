@@ -53,6 +53,8 @@ module Commerce.ViewModels {
         public fullAmount: Observable<number>;
         public paymentAmountText: Observable<string>;
         public paymentAmountTextAsCurrency: Observable<string>;
+        public originalAmount: Observable<number>;//TODO:AM
+        public originalAmountTextAsCurrency: Observable<string>; //TODO:AM
         public isSignatureRequired: Computed<boolean>;
         public signatureData: Observable<string>;
         public countries: Model.Entities.CountryRegionInfo[] = Commerce.ApplicationContext.Instance.Countries;
@@ -123,6 +125,8 @@ module Commerce.ViewModels {
             this.fullAmount = ko.observable(fullAmount ? fullAmount : 0);
             this.paymentAmountText = ko.observable("");
             this.paymentAmountTextAsCurrency = ko.observable("");
+            this.originalAmount = ko.observable(0);//TODO:AM
+            this.originalAmountTextAsCurrency = ko.observable("");//TODO:AM
             this.setPaymentAmountText(this.fullAmount());
             this.cardSource = ko.observable(Model.Entities.CardSource.Unknown);
 
@@ -342,7 +346,7 @@ module Commerce.ViewModels {
                         return this.setCurrencyInfoForAmountForStoreCurrencyAsync(this.fullAmount()).done(() => {
                             this.setCurrency(this.currency(), true);
                         });
-                        break;
+                        //break;
                     }
                 case Operations.RetailOperation.PayCurrency:
                     {
@@ -396,6 +400,13 @@ module Commerce.ViewModels {
             var decimalPrecision: number = NumberExtensions.getDecimalPrecision(this.currency());
             this.paymentAmountText(NumberExtensions.formatNumber(paymentAmount, decimalPrecision));
             this.paymentAmountTextAsCurrency(NumberExtensions.formatCurrency(paymentAmount, this.currency()));
+        }
+
+        //TODO://AM Stage Capital
+        public setOriginalAmountText(paymentAmount: number): void {
+            var decimalPrecision: number = NumberExtensions.getDecimalPrecision(this.currency());
+            this.paymentAmountText(NumberExtensions.formatNumber(paymentAmount, decimalPrecision));
+            this.originalAmountTextAsCurrency(NumberExtensions.formatCurrency(paymentAmount, this.currency()));
         }
 
         /**
@@ -876,6 +887,11 @@ module Commerce.ViewModels {
             } else {
                 this.setPaymentAmountText(this.fullAmount());
             }
+        }
+
+        //TODO:AM Stage Capital
+        public resetOriginalAmount(): void {
+            this.setOriginalAmountText(this.originalAmount());
         }
 
         /**

@@ -479,6 +479,25 @@ module Commerce {
             return null;
         }
 
+        static CartLineCustomField(cartLine: Proxy.Entities.CartLine): string { /*TODO:AM*/
+            if (!ObjectExtensions.isNullOrUndefined(cartLine)) {
+                var customTotal = cartLine.Price * cartLine.Quantity;
+                return NumberExtensions.formatCurrency(customTotal);
+            }
+            return "0";
+        }
+
+        static CartLineCustomDiscount(cartLine: Proxy.Entities.CartLine): string { /*TODO:AM DEMO4*/
+            if (!ObjectExtensions.isNullOrUndefined(cartLine)) {
+                if (cartLine.Quantity > 0 && cartLine.ItemId == "0003") {
+                    var customDiscount = 52.62;
+                    return NumberExtensions.formatCurrency(customDiscount);
+                }
+                
+            }
+            return "0";
+        }
+
         /**
          * Returns formatted variant name.
          *

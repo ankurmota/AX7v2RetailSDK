@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -164,29 +164,29 @@
                 </div>
 
                 <!-- Custom controls -->
-                <div data-bind="with: cartViewModel.cart()">
-                    <div data-bind="foreach: { data: $root.cartViewModel.customControls, as: 'control' } ">
-                        <div class="layoutControl" data-bind="style: {
+            <div data-bind="with: cartViewModel.cart()">
+                <div data-bind="foreach: { data: $root.cartViewModel.customControls, as: 'control' } ">
+                    <div class="layoutControl" data-bind="style: {
                             top: control.Top + 'px',
                             left: control.Left + 'px',
                             width: control.Width + 'px',
                             height: control.Height + 'px',
                             display: 'block'
                         }">
-                            <div data-bind="if: Commerce.ViewModelAdapterWinJS.isControlDefined(control.RelativeUri)">
-                                <div data-bind="userControl: {
+                        <div data-bind="if: Commerce.ViewModelAdapterWinJS.isControlDefined(control.RelativeUri)">
+                            <div data-bind="userControl: {
                                     uri: control.RelativeUri,
                                     options: { data: $root.cartViewModel.cart() },
                                 }"></div>
-                            </div>
-                            <div data-bind="ifnot: Commerce.ViewModelAdapterWinJS.isControlDefined(control.RelativeUri)">
-                                <h4 data-bind="text: Commerce.StringExtensions.format(Commerce.ViewModelAdapter.getResourceString('string_4370'), control.RelativeUri)"></h4>
-                            </div>
+                        </div>
+                        <div data-bind="ifnot: Commerce.ViewModelAdapterWinJS.isControlDefined(control.RelativeUri)">
+                            <h4 data-bind="text: Commerce.StringExtensions.format(Commerce.ViewModelAdapter.getResourceString('string_4370'), control.RelativeUri)"></h4>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Customer details pane -->
+            <!-- Customer details pane -->
                 <div id="CustomerPanel" class="panel layoutControl customerBox">
                     <div role="button" aria-labelledby="addCustomerButton" class="center primaryPanelBackgroundColor highContrastBorderThin" data-bind="visible: !customerDetailsVisible(), click: onAddCustomerClick">
                         <div class="textCenter">

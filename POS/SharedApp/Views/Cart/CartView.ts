@@ -493,7 +493,11 @@ module Commerce.ViewControllers {
             // Peripheral events are either handled by current controller of redirected to the child control on request. (e.g. Gift card dialog)
             this._activeControllerForPeripheralEvents = this;
 
+            
+
             this.handleVoidAsyncResult(this.cartViewModel.setCartAsync(Session.instance.cart));
+            //DEMO4 //TODO:AM
+      //      this.cartViewModel.applyZeroDiscountsToPickupLinesForLayaway();
 
             // Notify listeners if the card is reloaded
             if (Session.instance.cartReloadedNotificationPending) {
@@ -1092,7 +1096,21 @@ module Commerce.ViewControllers {
         }
 
         private transactionComment() {
-            this.handleAsyncResult(this.cartViewModel.addTransactionComment());
+            //TODO:AM Ankur M
+            this.cartViewModel.voidProducts(this.cartViewModel.selectedCartLines());
+            //this.handleVoidAsyncResult(this.cartViewModel.voidProducts(this.cartViewModel.selectedCartLines()), false);
+            this.addOrSearchProductsAndCustomers("0002");
+            this.addOrSearchProductsAndCustomers("0002");
+            this.addOrSearchProductsAndCustomers("0003");
+            this.addOrSearchProductsAndCustomers("0004");
+            this.addOrSearchProductsAndCustomers("0005");
+            this.addOrSearchProductsAndCustomers("0006");
+            this.addOrSearchProductsAndCustomers("0021");
+            this.addOrSearchProductsAndCustomers("0147");
+            this.addOrSearchProductsAndCustomers("0147");
+            
+
+            //this.handleAsyncResult(this.cartViewModel.addTransactionComment());//TODO: Uncomment this line
         }
 
         /**
@@ -1192,6 +1210,10 @@ module Commerce.ViewControllers {
 
         private onAddCustomerClick(sender: any, eventArgs: Event) {
             this.searchCustomers();
+        }
+
+        private onDisassembleKIT() {
+            
         }
 
         private itemSelectionHander(items: Proxy.Entities.CartLine[]) {
@@ -1607,7 +1629,7 @@ module Commerce.ViewControllers {
                                 break;
                             default:
                                 return VoidAsyncResult.createRejected([new Proxy.Entities.Error(ErrorTypeEnum.PERIPHERAL_PAYMENT_UNKNOWN_ERROR)]);
-                                break;
+                                //break;
                         }
 
                         // Add the tender line from make payment to the cart

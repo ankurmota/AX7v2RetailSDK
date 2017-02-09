@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -113,11 +113,25 @@
                         <a class="accent" data-bind="click: setFullAmountDue, enterKeyPress: setFullAmountDue">
                             <h1 data-bind="text: paymentViewModel.paymentAmountTextAsCurrency" tabindex="0"></h1>
                         </a>
+
                         <!--/ko -->
                         <!--ko if: paymentViewModel.isCreditMemoPayment-->
                         <h1 data-bind="text: paymentViewModel.paymentAmountTextAsCurrency" tabindex="0"></h1>
                         <!--/ko-->
                     </div>
+                    <!--TODO:AM-->
+                    <div>
+                        <br/>
+                    </div>
+                    <div>
+                        <h2>Original Amount</h2>
+                    </div>
+                    <div class="padTop1">
+                        <a class="accent" data-bind="click: setOriginalAmountDue, enterKeyPress: setOriginalAmountDue">
+                            <h1 data-bind="text: paymentViewModel.originalAmountTextAsCurrency" tabindex="0"></h1>
+                        </a>
+                    </div>
+                    <!--AM END-->
                 </div>
 
                 <!-- Foreign currencies area -->

@@ -155,6 +155,8 @@ module Commerce.Model.Managers.RetailServer {
             return query.updateCartLines(cartLines).execute<Entities.Cart>()
                 .done((updatedCart: Entities.Cart) => {
                     Commerce.Session.instance.cart = updatedCart;
+                }).fail((errors) => {
+                    NotificationHandler.displayClientErrors(errors, "string_4374"); // Calculate total
                 });
         }
 

@@ -12,6 +12,7 @@
 ///<reference path='../ViewControllerBase.ts'/>
 
 module Commerce.ViewControllers {
+    import CartLine = Commerce.Proxy.Entities.CartLine;
     "use strict";
 
     /**
@@ -255,6 +256,12 @@ module Commerce.ViewControllers {
                         }
                     });
             }
+
+            //TODO:AM
+            var currentCart1 = this.cartViewModel.cart();
+            var originalAmount1 = NumberExtensions.roundToNDigits(currentCart1.DiscountAmount + currentCart1.TotalAmount, 2);
+            this.paymentViewModel.originalAmount(originalAmount1);
+            this.paymentViewModel.originalAmountTextAsCurrency(NumberExtensions.formatCurrency(originalAmount1,"USD"));
         }
 
         /**
@@ -603,6 +610,53 @@ module Commerce.ViewControllers {
                 this.paymentCancel();
                 return;
             }
+
+
+            //TODO:AM Add control to block payment if cust balance is less than payment amount
+            //if (this._options.tenderType.OperationId === 202) {
+            //    var currentCart1 = this.cartViewModel.cart();
+            //    var custBalance = this._customerCardViewModel.customer().Balance * -1;
+
+            //    var tempCartLines: Commerce.Proxy.Entities.CartLine[] = new Array(currentCart1.CartLines.length);
+
+            //    var testCnt: number = 0;
+            //    //Find if this is the last transaction on the order
+            //    for (let cLine of currentCart1.CartLines) {
+            //        if (cLine.SalesStatusValue !== 4) {
+            //            tempCartLines.push(cLine);
+            //            if (cLine.Quantity > 0)
+            //                testCnt++;
+            //        }
+            //    }
+
+            //    if (tempCartLines.length !== testCnt) {
+
+            //        //if (paymentAmount !== custBalance) {
+            //            var originalAmount1 = currentCart1.DiscountAmount + currentCart1.TotalAmount;
+            //            if (originalAmount1 > (custBalance)) {
+            //                Commerce.NotificationHandler
+            //                    .displayClientErrors([
+            //                        new Commerce.Model.Entities.Error("Not enough balance to tender the payment")
+            //                    ]);
+            //                this.paymentCancel();
+            //                return;
+            //            }
+
+            //            //TODO:AM Add control to block payment if cust balance is less than payment amount
+
+            //            if (originalAmount1 > paymentAmount) {
+            //                Commerce.NotificationHandler
+            //                    .displayClientErrors([
+            //                        new Commerce.Model.Entities
+            //                        .Error("Amount should be greater than or equal to the unit price of the item")
+            //                    ]);
+            //                this.paymentCancel();
+            //                return;
+            //            }
+            //        //}
+            //    }
+            //}
+            //AM End
 
             if (this.paymentViewModel.isCardPayment && this.isCardPaymentAcceptPage()) {
                 // If using card payment accept page, submit payment to the page.
@@ -1516,6 +1570,11 @@ module Commerce.ViewControllers {
          */
         private setFullAmountDue(): void {
             this.paymentViewModel.resetPaymentAmount();
+        }
+
+        //TODO:AM Stage Capital
+        private setOriginalAmountDue(): void {
+            this.paymentViewModel.resetOriginalAmount();
         }
 
         /**

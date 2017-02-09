@@ -279,7 +279,7 @@ module Commerce.ViewModels {
                             break;
                         case Proxy.Entities.BarcodeMaskType.None:
                             return this.searchProductsAndCustomers(searchText, processTextResult);
-                            break;
+                            //break;
                         default:
                             RetailLogger.viewModelUnsupportedBarcodeMaskType(Proxy.Entities.BarcodeMaskType[barcodeMaskType]);
                             var barcodeTypeNotSupportedError: Proxy.Entities.Error = new Proxy.Entities.Error(ErrorTypeEnum.BARCODE_TYPE_NOT_SUPPORTED);
@@ -1871,7 +1871,7 @@ module Commerce.ViewModels {
             cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
                 cartLine.Quantity = Math.min(cartLine.Quantity, cartLine.QuantityOrdered - cartLine.QuantityInvoiced);
             });
-
+            
             var nonSelectedCartLines: Proxy.Entities.CartLine[] =
                 ArrayExtensions.difference<Proxy.Entities.CartLine>(
                     this.cart().CartLines,
@@ -1885,6 +1885,19 @@ module Commerce.ViewModels {
                 return VoidAsyncResult.createRejected([error]);
             }
 
+            ////DEMO4 //TODO:AM
+            ////Apply discounts only for Last line(s)
+            //if (!this.isLastLine(cartLines)) {
+            //    cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
+            //        let discountAmount: number = cartLine.DiscountAmount;
+            //        cartLine.LineManualDiscountAmount = (discountAmount - 0.01) * -1;
+            //        //cartLine.DiscountAmount = -1 * discountAmount;
+            //        cartLine.LineDiscount = (discountAmount - 0.01) * -1;
+            //    });
+            //} else {
+            //    this.applyDiscountsToLastLine(cartLines);
+            //}
+
             var options: Operations.IUpdateCustomerOrderOperationOptions = {
                 operationType: Proxy.Entities.CustomerOrderOperations.PickUpFromStore,
                 parameters: { PickUpInStoreParameter: { CartLines: this.cart().CartLines } }
@@ -1895,6 +1908,98 @@ module Commerce.ViewModels {
 
             return result.done((result: ICancelableResult) => { this.cart(Session.instance.cart); });
         }
+
+        //DEMO 4 //TODO:AM
+
+        public applyDiscountsToLastLine(cartLines: Proxy.Entities.CartLine[]) {
+            let totalDiscountsToApply: number = 0;
+
+            //Find All non selected lines
+            let nonSelectedCartlines: Proxy.Entities.CartLine[] =
+                ArrayExtensions.difference<Proxy.Entities.CartLine>(
+                    this.cart().CartLines,
+                    cartLines,
+                    (left: Proxy.Entities.CartLine, right: Proxy.Entities.CartLine) => left.LineId == right.LineId);
+
+            
+            cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
+                totalDiscountsToApply += cartLine.DiscountAmount;
+            });
+
+            nonSelectedCartlines.forEach((cartLine: Proxy.Entities.CartLine) => {
+                totalDiscountsToApply += cartLine.DiscountAmount;
+            });
+
+            //Apply discount to the last line
+            let lastCartLine: Proxy.Entities.CartLine = cartLines[0];
+            lastCartLine.LineManualDiscountAmount = totalDiscountsToApply;
+        }
+
+        //Find if a last item(s) is to be picked up
+        public isLastLine(cartLines: Proxy.Entities.CartLine[]): boolean {
+            let returnValue: boolean = false;
+            let counter: number = 0;
+
+            let nonSelectedCartlines: Proxy.Entities.CartLine[] =
+                ArrayExtensions.difference<Proxy.Entities.CartLine>(
+                    this.cart().CartLines,
+                    cartLines,
+                    (left: Proxy.Entities.CartLine, right: Proxy.Entities.CartLine) => left.LineId == right.LineId);
+
+            //If all other lines are invoiced, then it is the last line(s) Pickup
+            nonSelectedCartlines.forEach((cartLine: Proxy.Entities.CartLine) => {
+                if (cartLine.QuantityInvoiced > 0)
+                    counter++;
+            });
+
+            if (nonSelectedCartlines.length === counter)
+                returnValue = true;
+
+            return returnValue;
+        }
+
+        // APPLY ZERO DISCOUNTS TO PICKUP LINES FOR LAYAWAY
+        public applyZeroDiscountsToPickupLinesForLayaway() : IVoidAsyncResult { 
+            // Remove line discount for pickup
+            var newcart: Proxy.Entities.Cart = Session.instance.cart;
+            if (newcart.DeliveryMode === ApplicationContext.Instance.channelConfiguration.PickupDeliveryModeCode) {
+
+                //get cart lines for pickup
+                var cartLinesToUpdate: Proxy.Entities.CartLine[] = [];
+                newcart.CartLines.forEach((cartLine1: Proxy.Entities.CartLine) => {
+                    if (cartLine1.Quantity > 0) {
+                        cartLine1.LineManualDiscountAmount = 0;
+                        cartLinesToUpdate.push(cartLine1);
+                    }
+                });
+
+                return new AsyncQueue().enqueue((): IVoidAsyncResult => {
+                   
+                    return this.cartManager.updateCartLinesOnCartAsync(cartLinesToUpdate);
+               
+
+                    //return VoidAsyncResult.createResolved();
+                }).run();
+
+                //apply zero discounts on line
+                //var options1: Operations.ILineDiscountOperationOptions = {
+                //    cartLineDiscounts: cartLinesToUpdate.map((cartLine, index) => {
+                //        return { cartLine: cartLine, discountValue: 0 };
+                //    })
+                //};
+
+                
+                //var result1: IAsyncResult<ICancelableResult> = this.operationsManager.runOperation(
+                //    Operations.RetailOperation.LineDiscountAmount, options1);
+
+                //result1.done((result1: Operations.IOperationResult) => {
+                //    if (!result1.canceled) {
+                //        this.cart(Session.instance.cart);
+                //    }
+                //});
+            }
+        }
+        //DEMO4 END
 
         /**
          * Validates properties given before executing customer order related operations.
