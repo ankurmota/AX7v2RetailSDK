@@ -826,7 +826,7 @@ namespace Contoso
                 // Lock prices on all lines
                 foreach (SalesLine salesLine in transaction.SalesLines)
                 {
-                    salesLine.IsPriceLocked = true;
+                    salesLine.IsPriceLocked = true; //DEMO4 //TODO: Uncomment this for real implementation
                 }
     
                 transaction.TerminalId = context.GetTerminal().TerminalId;

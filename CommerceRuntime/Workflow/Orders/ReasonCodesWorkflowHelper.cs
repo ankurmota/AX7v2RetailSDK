@@ -300,8 +300,8 @@ namespace Contoso
                 ThrowIf.Null(serviceRequest.SalesTransaction, "serviceRequest.SalesTransaction");
                 
                 // Reason codes are only calculated for retail stores and carts that are not customer orders.
-                if ((requestContext.GetChannelConfiguration().ChannelType == RetailChannelType.RetailStore) &&
-                    (serviceRequest.SalesTransaction.CartType != CartType.CustomerOrder))
+                if ((requestContext.GetChannelConfiguration().ChannelType == RetailChannelType.RetailStore)) //DEMO4 //TODO: Uncomment this for real implementation
+                  // && (serviceRequest.SalesTransaction.CartType != CartType.CustomerOrder)) &&
                 {
                     var serviceResponse = requestContext.Execute<CalculateRequiredReasonCodesServiceResponse>(serviceRequest);
                     ReasonCodesWorkflowHelper.ThrowIfRequiredReasonCodesMissing(serviceResponse);

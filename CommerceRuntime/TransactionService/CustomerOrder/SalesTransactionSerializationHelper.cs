@@ -174,6 +174,10 @@ namespace Contoso
                 {
                     if (!salesLine.IsVoided && !(salesTransaction.CustomerOrderMode == CustomerOrderMode.Return && salesLine.Quantity == 0))
                     {
+                        //DEMO4 //TODO: AM //For a pick up order, Filter lines with quantity equal to zero
+                        if (salesTransaction.CustomerOrderMode == CustomerOrderMode.Pickup && salesLine.TotalAmount == 0)
+                            continue;
+
                         // use property from header, override with line property if available
                         string deliveryMode = string.IsNullOrWhiteSpace(salesLine.DeliveryMode) ? parameters.DeliveryMode : salesLine.DeliveryMode;
     

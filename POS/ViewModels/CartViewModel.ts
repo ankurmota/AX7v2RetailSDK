@@ -1886,6 +1886,12 @@ module Commerce.ViewModels {
             }
 
             ////DEMO4 //TODO:AM
+            if (this.isLastLine(cartLines)) {
+                cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
+                    let discountAmount: number = cartLine.DiscountAmount;
+                    cartLine.LineManualDiscountAmount = 670.98; //TODO: AM: Calculate from cart lines
+                });
+            }
             ////Apply discounts only for Last line(s)
             //if (!this.isLastLine(cartLines)) {
             //    cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {

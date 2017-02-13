@@ -35,7 +35,7 @@ namespace Contoso
                 this.discountParameters = discountParameters;
                 this.priceContext = priceContext;
             }
-    
+
             /// <summary>
             /// Calculates manual line discount sent from cashier.
             /// Should be called only after other discounts are calculated.
@@ -47,43 +47,72 @@ namespace Contoso
                 {
                     throw new ArgumentNullException("transaction");
                 }
-    
-                // Consider calculable lines only. Ignore voided or return-by-receipt lines.
-                foreach (var salesLine in transaction.PriceCalculableSalesLines)
+
+                //DEMO4  //TODO:AM
+                if (transaction.CartType == CartType.CustomerOrder)
                 {
-                    Discount.ClearManualDiscountLinesOfType(salesLine, ManualDiscountType.LineDiscountAmount);
-                    Discount.ClearManualDiscountLinesOfType(salesLine, ManualDiscountType.LineDiscountPercent);
-    
-                    DiscountLine lineDiscountItem = null;
-    
-                    if (salesLine.LineManualDiscountPercentage != 0)
+                    foreach (var salesLine in transaction.ActiveSalesLines)
                     {
-                        // Add a new line discount
-                        lineDiscountItem = new DiscountLine
+                        DiscountLine lineDiscountItem = null;
+                        if (salesLine.LineManualDiscountAmount != 0)
                         {
-                            DiscountLineType = DiscountLineType.ManualDiscount,
-                            ManualDiscountType = ManualDiscountType.LineDiscountPercent,
-                            Percentage = salesLine.LineManualDiscountPercentage,
-                        };
-    
-                        this.AddLineDiscount(transaction, salesLine, lineDiscountItem);
+                            // Add a new line discount
+                            lineDiscountItem = new DiscountLine
+                            {
+                                DiscountLineType = DiscountLineType.ManualDiscount,
+                                ManualDiscountType = ManualDiscountType.LineDiscountAmount,
+                                Amount =
+                                    salesLine.Quantity != decimal.Zero
+                                        ? salesLine.LineManualDiscountAmount / salesLine.Quantity
+                                        : decimal.Zero,
+                            };
+
+                            this.AddLineDiscount(transaction, salesLine, lineDiscountItem);
+                        }
                     }
-    
-                    if (salesLine.LineManualDiscountAmount != 0)
+                }
+                else
+                {
+                    // Consider calculable lines only. Ignore voided or return-by-receipt lines.
+                    foreach (var salesLine in transaction.PriceCalculableSalesLines)
                     {
-                        // Add a new line discount
-                        lineDiscountItem = new DiscountLine
+                        Discount.ClearManualDiscountLinesOfType(salesLine, ManualDiscountType.LineDiscountAmount);
+                        Discount.ClearManualDiscountLinesOfType(salesLine, ManualDiscountType.LineDiscountPercent);
+
+                        DiscountLine lineDiscountItem = null;
+
+                        if (salesLine.LineManualDiscountPercentage != 0)
                         {
-                            DiscountLineType = DiscountLineType.ManualDiscount,
-                            ManualDiscountType = ManualDiscountType.LineDiscountAmount,
-                            Amount = salesLine.Quantity != decimal.Zero ? salesLine.LineManualDiscountAmount / salesLine.Quantity : decimal.Zero,
-                        };
-    
-                        this.AddLineDiscount(transaction, salesLine, lineDiscountItem);
+                            // Add a new line discount
+                            lineDiscountItem = new DiscountLine
+                            {
+                                DiscountLineType = DiscountLineType.ManualDiscount,
+                                ManualDiscountType = ManualDiscountType.LineDiscountPercent,
+                                Percentage = salesLine.LineManualDiscountPercentage,
+                            };
+
+                            this.AddLineDiscount(transaction, salesLine, lineDiscountItem);
+                        }
+
+                        if (salesLine.LineManualDiscountAmount != 0)
+                        {
+                            // Add a new line discount
+                            lineDiscountItem = new DiscountLine
+                            {
+                                DiscountLineType = DiscountLineType.ManualDiscount,
+                                ManualDiscountType = ManualDiscountType.LineDiscountAmount,
+                                Amount =
+                                    salesLine.Quantity != decimal.Zero
+                                        ? salesLine.LineManualDiscountAmount/salesLine.Quantity
+                                        : decimal.Zero,
+                            };
+
+                            this.AddLineDiscount(transaction, salesLine, lineDiscountItem);
+                        }
                     }
                 }
             }
-    
+
             /// <summary>
             /// The calculation of a customer line discount.
             /// </summary>

@@ -203,6 +203,8 @@ namespace Contoso
 
                 try
                 {
+                    //DEMO4 //TODO:AM TEST
+                   // transaction.ChargeLines = new Collection<ChargeLine> {new ChargeLine {CalculatedAmount = 10,NetAmount = 10, Id = 1, TransactionId = transaction.Id, ChargeCode = "FREIGHT" } };
                     context.Execute<NullResponse>(new SaveCartDataRequest(new[] { transaction }));
                 }
                 catch (StorageException e)
@@ -1824,7 +1826,9 @@ namespace Contoso
                     ReasonCodeSourceType reasonCodeSourceType = ReasonCodeSourceType.None;
 
                     SimpleProduct product;
-                    long productId = cartLine.LineData != null ? cartLine.LineData.ProductId : salesLineByLineId[cartLine.LineId].ProductId;
+                    long productId = cartLine.LineData != null
+                        ? cartLine.LineData.ProductId
+                        : salesLineByLineId[cartLine.LineId].ProductId;
                     bool isProductFound = productByRecordId.TryGetValue(productId, out product);
 
                     foreach (ReasonCodeLine reasonCodeLine in cartLine.ReasonCodeLines)
@@ -1833,7 +1837,8 @@ namespace Contoso
                         reasonCodeLine.LineType = ReasonCodeLineType.Sales;
                     }
 
-                    if (!cartChangesContainLinkedProducts && AggregateSalesLines(context, transaction.ActiveSalesLines, cartLine, product))
+                    if (!cartChangesContainLinkedProducts &&
+                        AggregateSalesLines(context, transaction.ActiveSalesLines, cartLine, product))
                     {
                         // If item is aggregated simply increase quantity and skip additional lookups.
                         continue;
@@ -1852,15 +1857,23 @@ namespace Contoso
                             {
                                 if (!isProductFound)
                                 {
-                                    string message = string.Format("The specified product identifier ({0}) could not be found.", cartLine.LineData.ProductId);
-                                    throw new DataValidationException(DataValidationErrors.Microsoft_Dynamics_Commerce_Runtime_ObjectNotFound, message);
+                                    string message =
+                                        string.Format("The specified product identifier ({0}) could not be found.",
+                                            cartLine.LineData.ProductId);
+                                    throw new DataValidationException(
+                                        DataValidationErrors.Microsoft_Dynamics_Commerce_Runtime_ObjectNotFound, message);
                                 }
 
                                 if (product.IsRemote && cartType != CartType.CustomerOrder)
                                 {
-                                    string message = string.Format("Failed to add product '{0}' to cart. Remote products are only supported in customer order mode.", cartLine.LineData.ProductId);
+                                    string message =
+                                        string.Format(
+                                            "Failed to add product '{0}' to cart. Remote products are only supported in customer order mode.",
+                                            cartLine.LineData.ProductId);
                                     throw new DataValidationException(
-                                        DataValidationErrors.Microsoft_Dynamics_Commerce_Runtime_RemoteProductsNotSupportedWithCurrentTransactionType, message);
+                                        DataValidationErrors
+                                            .Microsoft_Dynamics_Commerce_Runtime_RemoteProductsNotSupportedWithCurrentTransactionType,
+                                        message);
                                 }
 
                                 salesLine.ProductSource = product.IsRemote ? ProductSource.Remote : ProductSource.Local;
@@ -1915,7 +1928,8 @@ namespace Contoso
                             // Removing the reference to the linked product from the parent product sales line if the linked product is removed from cart.
                             if (!string.IsNullOrWhiteSpace(salesLine.LinkedParentLineId))
                             {
-                                salesLineByLineId[salesLine.LinkedParentLineId].LineIdsLinkedProductMap.Remove(salesLine.LineId);
+                                salesLineByLineId[salesLine.LinkedParentLineId].LineIdsLinkedProductMap.Remove(
+                                    salesLine.LineId);
                             }
 
                             salesLineByLineId.Remove(cartLine.LineId);
@@ -1938,8 +1952,10 @@ namespace Contoso
                                         else
                                         {
                                             throw new DataValidationException(
-                                                DataValidationErrors.Microsoft_Dynamics_Commerce_Runtime_ObjectNotFound, 
-                                                string.Format("Sales line of the linked product with id : {0} was not found.", lineId));
+                                                DataValidationErrors.Microsoft_Dynamics_Commerce_Runtime_ObjectNotFound,
+                                                string.Format(
+                                                    "Sales line of the linked product with id : {0} was not found.",
+                                                    lineId));
                                         }
                                     }
                                 }
@@ -1956,8 +1972,10 @@ namespace Contoso
                                         else
                                         {
                                             throw new DataValidationException(
-                                                DataValidationErrors.Microsoft_Dynamics_Commerce_Runtime_ObjectNotFound, 
-                                                string.Format("Sales line of the linked product with id : {0} was not found.", lineId));
+                                                DataValidationErrors.Microsoft_Dynamics_Commerce_Runtime_ObjectNotFound,
+                                                string.Format(
+                                                    "Sales line of the linked product with id : {0} was not found.",
+                                                    lineId));
                                         }
                                     }
                                 }
@@ -1997,7 +2015,8 @@ namespace Contoso
                                 foreach (string lineId in salesLine.LineIdsLinkedProductMap.Keys)
                                 {
                                     decimal linkedProductQty = salesLine.LineIdsLinkedProductMap[lineId].Quantity;
-                                    salesLineByLineId[lineId].Quantity = salesLine.Quantity * (linkedProductQty <= 0 ? 1 : linkedProductQty);
+                                    salesLineByLineId[lineId].Quantity = salesLine.Quantity*
+                                                                         (linkedProductQty <= 0 ? 1 : linkedProductQty);
                                 }
                             }
                         }
@@ -2008,17 +2027,30 @@ namespace Contoso
                         salesLine, cartLine, transaction.Id);
 
                     // Calculate the required reason code on the sales line.
-                    if (transaction.CartType != CartType.CustomerOrder)
+                    //if (transaction.CartType != CartType.CustomerOrder) DEMO4 //TODO:AM : Uncomment this line for real implementation
+                    //{
+                    // calculate required reason codes for discounts
+                    if ((salesLine.LineManualDiscountAmount != 0 || salesLine.LineManualDiscountPercentage != 0)
+                        && !salesLine.IsReturnByReceipt)
                     {
-                        // calculate required reason codes for discounts
-                        if ((salesLine.LineManualDiscountAmount != 0 || salesLine.LineManualDiscountPercentage != 0)
-                            && !salesLine.IsReturnByReceipt)
+                        //demo4
+                        if (transaction.CartType == CartType.CustomerOrder && salesLine.ReasonCodeLines.Count == 0)
                         {
-                            ReasonCodesWorkflowHelper.CalculateRequiredReasonCodesOnSalesLine(context, transaction, salesLine, ReasonCodeSourceType.ItemDiscount);
+                            salesLine.ReasonCodeLines.Add(new ReasonCodeLine
+                            {
+                                ParentLineId = salesLine.LineId,
+                                ReasonCodeId = "DISCOUNT",
+                                SubReasonCodeId = "4",
+                                TransactionId = transaction.Id
+                            });
                         }
-
-                        ReasonCodesWorkflowHelper.CalculateRequiredReasonCodesOnSalesLine(context, transaction, salesLine, reasonCodeSourceType);
+                        ReasonCodesWorkflowHelper.CalculateRequiredReasonCodesOnSalesLine(context, transaction,
+                            salesLine, ReasonCodeSourceType.ItemDiscount);
                     }
+
+                    ReasonCodesWorkflowHelper.CalculateRequiredReasonCodesOnSalesLine(context, transaction, salesLine,
+                        reasonCodeSourceType);
+                    //} DEMO4 //TODO:AM : Uncomment this line for real implementation
                 }
 
                 decimal lineNumber = 1;

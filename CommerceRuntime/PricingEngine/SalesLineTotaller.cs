@@ -73,10 +73,10 @@ namespace Contoso
                 if ((salesLine.Blocked == false) && (salesLine.DateToActivateItem <= transactionBeginDateTime))
                 {
                     salesLine.GrossAmount = salesRoundingRule(salesLine.Price * salesLine.Quantity);
-    
-                    if (!salesLine.IsPriceLocked || salesLine.QuantityOrdered != salesLine.Quantity)
-                    {
-                        salesLine.LineDiscount = 0;
+
+                    //if (!salesLine.IsPriceLocked || salesLine.QuantityOrdered != salesLine.Quantity)//DEMO4 //TODO: Uncomment this for real implementation
+                    //{
+                    salesLine.LineDiscount = 0;
                         salesLine.LinePercentageDiscount = 0;
                         salesLine.PeriodicDiscount = 0;
                         salesLine.PeriodicPercentageDiscount = 0;
@@ -96,12 +96,12 @@ namespace Contoso
                         }
     
                         AllocateDiscountAmountToDiscountLines(salesLine, lineDiscountCalculationType, salesRoundingRule);
-                    }
-                    else
-                    {
-                        FixDiscountAmountsOnSalesLine(salesLine, salesRoundingRule);
-                    }
-    
+                    //}
+                    //else//DEMO4 //TODO: Uncomment this for real implementation
+                    //{
+                    //    FixDiscountAmountsOnSalesLine(salesLine, salesRoundingRule);
+                    //}
+
                     discountAmount = salesLine.PeriodicDiscount + salesLine.LineDiscount + salesLine.TotalDiscount + salesLine.LoyaltyDiscountAmount;
     
                     salesLine.NetAmountWithAllInclusiveTax = salesLine.GrossAmount - discountAmount;
