@@ -97,6 +97,10 @@ module Commerce.ViewModels {
         public customControls: ObservableArray<Proxy.Entities.CustomControl>;
 
         private _processTextWorkerQueue: AsyncWorkerQueue;
+        //POShackF
+        public SC_OrderStatusHeader: Computed<string>;
+        public SC_KitPriceHeader: Computed<string>;
+        //POShackF END
 
         constructor() {
             super();
@@ -127,6 +131,10 @@ module Commerce.ViewModels {
             this.incomeExpenseAccountLines = ko.observableArray(this.cart().IncomeExpenseLines);
 
             this.tenderLines = ko.observableArray<Proxy.Entities.CartTenderLineTenderType>([]);
+            //POSHackF
+            this.SC_OrderStatusHeader = ko.computed(this.SC_OrderStatusHeaderComputed, this);
+            this.SC_KitPriceHeader = ko.computed(this.SC_KitPriceHeaderComputed, this);
+            //POSHackF End
             this.tenderLinesTotalCount = ko.computed(this.computedTenderLinesTotalCount, this);
             this.tenderTypes = ko.observableArray(<Proxy.Entities.TenderType[]>[]);
             this._isTenderTypesLoaded = false;
@@ -1702,6 +1710,25 @@ module Commerce.ViewModels {
             return count;
         }
 
+        //POSHackF
+        private SC_OrderStatusHeaderComputed(): string {
+            var cart: Proxy.Entities.Cart = this.cart();
+            if (!cart || !cart.Comment || cart.Comment.length < 1) {
+                return "";
+            }
+            var cartProperties = Commerce.CartHelper.SC_getCartProperties(cart.Comment);
+            return cartProperties[7];
+        }
+        private SC_KitPriceHeaderComputed(): string {
+            var cart: Proxy.Entities.Cart = this.cart();
+            if (!cart || !cart.Comment || cart.Comment.length < 1) {
+                return "";
+            }
+            var cartProperties = Commerce.CartHelper.SC_getCartProperties(cart.Comment);
+            return cartProperties[8];
+        }
+        //POSHackF END
+
         /**
          * Computes the tender lines total count.
          *
@@ -1887,23 +1914,13 @@ module Commerce.ViewModels {
 
             ////DEMO4 //TODO:AM
             if (this.isLastLine(cartLines)) {
-                cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
-                    let discountAmount: number = cartLine.DiscountAmount;
-                    cartLine.LineManualDiscountAmount = 670.98; //TODO: AM: Calculate from cart lines
-                });
+                //cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
+                //    let discountAmount: number = cartLine.DiscountAmount;
+                //    cartLine.LineManualDiscountAmount = 670.98; //TODO: AM: Calculate from cart lines
+                //});
+                this.applyDiscountsToLastLine(cartLines);
             }
-            ////Apply discounts only for Last line(s)
-            //if (!this.isLastLine(cartLines)) {
-            //    cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
-            //        let discountAmount: number = cartLine.DiscountAmount;
-            //        cartLine.LineManualDiscountAmount = (discountAmount - 0.01) * -1;
-            //        //cartLine.DiscountAmount = -1 * discountAmount;
-            //        cartLine.LineDiscount = (discountAmount - 0.01) * -1;
-            //    });
-            //} else {
-            //    this.applyDiscountsToLastLine(cartLines);
-            //}
-
+            
             var options: Operations.IUpdateCustomerOrderOperationOptions = {
                 operationType: Proxy.Entities.CustomerOrderOperations.PickUpFromStore,
                 parameters: { PickUpInStoreParameter: { CartLines: this.cart().CartLines } }
@@ -1918,27 +1935,35 @@ module Commerce.ViewModels {
         //DEMO 4 //TODO:AM
 
         public applyDiscountsToLastLine(cartLines: Proxy.Entities.CartLine[]) {
-            let totalDiscountsToApply: number = 0;
+            //let totalDiscountsToApply: number = 0;
 
-            //Find All non selected lines
-            let nonSelectedCartlines: Proxy.Entities.CartLine[] =
-                ArrayExtensions.difference<Proxy.Entities.CartLine>(
-                    this.cart().CartLines,
-                    cartLines,
-                    (left: Proxy.Entities.CartLine, right: Proxy.Entities.CartLine) => left.LineId == right.LineId);
+            ////Find All non selected lines
+            //let nonSelectedCartlines: Proxy.Entities.CartLine[] =
+            //    ArrayExtensions.difference<Proxy.Entities.CartLine>(
+            //        this.cart().CartLines,
+            //        cartLines,
+            //        (left: Proxy.Entities.CartLine, right: Proxy.Entities.CartLine) => left.LineId == right.LineId);
 
             
-            cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
-                totalDiscountsToApply += cartLine.DiscountAmount;
-            });
+            //cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
+            //    let lineComment: string = cartLine.Comment;
+            //    if (!StringExtensions.isNullOrWhitespace(lineComment)) {
+            //        let cartLineProperties = Commerce.CartHelper.SC_getCartLineProperties(lineComment);
+            //        let priceStr: string = cartLineProperties[3];
+            //        let priceNumber: number = NumberExtensions.parseNumber(priceStr);
+            //        if (!NumberExtensions.isNullOrZero(priceNumber))
+            //            totalDiscountsToApply += priceNumber;
+            //    }
+            
+            //});
 
-            nonSelectedCartlines.forEach((cartLine: Proxy.Entities.CartLine) => {
-                totalDiscountsToApply += cartLine.DiscountAmount;
-            });
+            //nonSelectedCartlines.forEach((cartLine: Proxy.Entities.CartLine) => {
+            //    totalDiscountsToApply += cartLine.DiscountAmount;
+            //});
 
             //Apply discount to the last line
             let lastCartLine: Proxy.Entities.CartLine = cartLines[0];
-            lastCartLine.LineManualDiscountAmount = totalDiscountsToApply;
+            lastCartLine.LineManualDiscountAmount = 268; //TODO: Change this based on the price //totalDiscountsToApply;
         }
 
         //Find if a last item(s) is to be picked up

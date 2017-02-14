@@ -119,6 +119,26 @@ module Commerce.ViewControllers {
         private _paymentOptionsDialogVisible: Observable<boolean>;
         private _paymentOptionsDialogDataSource: ObservableArray<any>;
 
+        //POShackF
+        private SC_OrderInfoInputDialogTitle: Observable<string>;
+        private SC_OrderInfoInputDialogVisible: Observable<boolean>;
+        private SC_ZipCode: Observable<string>;
+        public SC_AdSourceList: ObservableArray<string>;
+        public SC_AdSourceSelectedOption: Observable<string>;
+        public SC_PrimarySalesPerson: Observable<string>;
+        public SC_SecondarySalesPerson: Observable<string>;
+        public SC_TaxStatus: ObservableArray<string>;
+        public SC_TaxStatusSelectedOption: Observable<string>;
+        public SC_OrderStatus: ObservableArray<string>;
+        public SC_OrderStatusSelectedOption: Observable<string>;
+        public SC_DelieveryDateVisible: Observable<boolean>;
+        public SC_PickupDateVisiable: Observable<boolean>;
+        public SC_ChangeOrderStatusTitle: Observable<string>;
+        public SC_ChangeOrderSatusHeaderDialogVisible: Observable<boolean>;
+        public SC_ChangeOrderStatusLinesDialogVisible: Observable<boolean>;
+        private SC_ChangeOrderStatusOperationId: number;
+        //POShackF END
+
         // Controls whether remaining amount authorization should be shown to the user.
         // This variable is static because we need to keep state between navigation.
         // Method handleNavigationFromPaymentView controls its state.
@@ -238,6 +258,25 @@ module Commerce.ViewControllers {
             this._paymentDialogMessage = ko.computed(() => this.getPaymentDialogOptions().message);
             this._paymentDialogPaymentMethods = ko.observableArray<Model.Entities.TenderType>(null);
             this._paymentOptionsDialogVisible = ko.observable(false);
+
+            //POShackF 
+            this.SC_OrderInfoInputDialogTitle = ko.observable("Enter order information");
+            this.SC_OrderInfoInputDialogVisible = ko.observable(false);
+            this.SC_ZipCode = ko.observable(StringExtensions.EMPTY);
+            this.SC_AdSourceList = ko.observableArray(<string[]>[]);
+            this.SC_AdSourceSelectedOption = ko.observable(StringExtensions.EMPTY);
+            this.SC_PrimarySalesPerson = ko.observable(StringExtensions.EMPTY);
+            this.SC_SecondarySalesPerson = ko.observable(StringExtensions.EMPTY);
+            this.SC_TaxStatus = ko.observableArray(<string[]>[]);;
+            this.SC_TaxStatusSelectedOption = ko.observable(StringExtensions.EMPTY);
+            this.SC_OrderStatus = ko.observableArray(<string[]>[]);;
+            this.SC_OrderStatusSelectedOption = ko.observable(StringExtensions.EMPTY);
+            this.SC_DelieveryDateVisible = ko.observable(false);
+            this.SC_PickupDateVisiable = ko.observable(false);
+            this.SC_ChangeOrderStatusTitle = ko.observable("Change order status");
+            this.SC_ChangeOrderSatusHeaderDialogVisible = ko.observable(false);
+            this.SC_ChangeOrderStatusLinesDialogVisible = ko.observable(false);
+            //POShackF END
 
             // Parse keyboard input
             this._keyPressHandler = (e) => { this.handleKeyPress(e); };
@@ -516,6 +555,12 @@ module Commerce.ViewControllers {
                 }
             });
 
+            //POSHackF
+            this.SC_initCustomControls();
+            this.SC_PopulateKitPrice();
+            this.SC_showOrderInfoInputDialog();
+            //POSHackF END
+
             VoidAsyncResult.join([barcodeScannerResult, stripeReaderResult]).done(() => {
                 // Parse keyboard input
                 document.addEventListener("keypress", this._keyPressHandler);
@@ -688,6 +733,263 @@ module Commerce.ViewControllers {
 
             return true;
         }
+
+        //POSHackF 
+        private SC_PopulateKitPrice() {
+            var cart = Session.instance.cart;
+            if (!cart || !cart.CartLines || cart.CartLines.length < 6 || cart.CartTypeValue != 1) {
+                return;
+            }
+            var cartProperties = Commerce.CartHelper.SC_getCartProperties(cart.Comment);
+            cartProperties[8] = "1,300.00"; //Kit price - header
+            cart.Comment = Commerce.CartHelper.SC_CartPropertiesToComment(cartProperties);
+            for (var i = 0; i < cart.CartLines.length; i++) {
+                var cartLineProperties = Commerce.CartHelper.SC_getCartLineProperties(cart.CartLines[i].Comment);
+                if (cartLineProperties[2] == "false" || cartLineProperties[3].length > 0) {
+                    continue;
+                }
+                var price: string = "";
+                switch (cart.CartLines[i].ItemId) {
+                    case "0003":
+                        price = "80.69";
+                        break;
+                    case "0005":
+                        price = "44.83";
+                        break;
+                    case "0006":
+                        price = "67.24";
+                        break;
+                    case "0009":
+                        price = "76.21";
+                        break;
+                    case "0021":
+                        price = "134.48";
+                        break;
+                    case "0004":
+                        price = "896.55";
+                        break;
+                    default:
+                        continue;
+                }
+                cartLineProperties[2] = "true";
+                cartLineProperties[3] = price;
+                cart.CartLines[i].Comment = Commerce.CartHelper.SC_CartLinePropertiesToComment(cartLineProperties);
+            }
+            var asyncResult: IVoidAsyncResult = new AsyncQueue().enqueue(() => {
+                return this.cartViewModel.cartManager.createOrUpdateCartAsync(cart);
+            }).enqueue((): IVoidAsyncResult => {
+                return this.cartViewModel.cartManager.updateCartLinesOnCartAsync(cart.CartLines);
+            }).run();
+            this.SC_refreshCartView();
+        }
+        private SC_initCustomControls() {
+            var AdSourceOptions = new Array<string>();
+            AdSourceOptions.push("Internet");
+            AdSourceOptions.push("Commercial");
+            AdSourceOptions.push("Radio");
+            AdSourceOptions.push("Walk-In");
+            this.SC_AdSourceList(AdSourceOptions);
+
+            var TaxStatusOptions = new Array<string>();
+            TaxStatusOptions.push("Taxable");
+            TaxStatusOptions.push("Exempt");
+            this.SC_TaxStatus(TaxStatusOptions);
+
+            var OrderStatusOptions = new Array<string>();
+            OrderStatusOptions.push("Pickup");
+            OrderStatusOptions.push("Delivery");
+            OrderStatusOptions.push("Reserve");
+            OrderStatusOptions.push("CWI (backorder, truck on way");
+            OrderStatusOptions.push("Layaway");
+            this.SC_OrderStatus(OrderStatusOptions);
+        }
+        private SC_showOrderInfoInputDialog(): void {
+
+            var cart: Model.Entities.Cart = Session.instance.cart;
+            if (!cart || cart.CartLines.length < 1 || cart.CartTypeValue != 1) {
+                return;
+            }
+            /**
+            //var indexOfProperty = cart.ExtensionProperties.indexOf("SC_IsOrderInfoCollected");
+            cart.ExtensionProperties[0] = new Proxy.Entities.CommercePropertyClass();
+            cart.ExtensionProperties[0].Key = "SC_IsOrderInfoCollected";
+            cart.ExtensionProperties[0].Value = "true";
+            var indexOfProperty = cart.ExtensionProperties.indexOf("SC_IsOrderInfoCollected");
+            var a = new Proxy.Entities.AttributeValueBaseClass();
+            */
+            /**
+            var attributeValue = new Proxy.Entities.AttributeValueBaseClass();
+            attributeValue.Name = "SG_Attr";
+            var property = new Proxy.Entities.CommercePropertyClass();
+            property.Key = "SC_IsOrderInfoCollected";
+            property.Value = "true";
+            attributeValue.ExtensionProperties = new Array<Proxy.Entities.CommercePropertyClass>();
+            attributeValue.ExtensionProperties.push(property);
+            cart.AttributeValues = new Array<Proxy.Entities.AttributeValueBaseClass>();
+            cart.AttributeValues.push(attributeValue);
+            */
+
+            /**
+            if (Session.instance.cart.Id) {
+                //this.cartViewModel.cartManager.saveCartAsync(Session.instance.cart.Id, cart);
+            }
+            else {
+                //this.cartViewModel.cartManager.createOrUpdateCartAsync(cart);
+            }
+            */
+            var cartProperty = Commerce.CartHelper.SC_getCartProperties(cart.Comment);
+            if (cartProperty[1] != "true") {
+                //this.cartViewModel.SC_IsOrderInfoCollected = true;
+
+
+                this.indeterminateWaitVisible(true);
+                this.SC_OrderInfoInputDialogVisible(true);
+
+
+            }
+            else {
+                this.indeterminateWaitVisible(false);
+                this.SC_OrderInfoInputDialogVisible(false);
+
+            }
+            //var cart: Model.Entities.Cart = this.cartViewModel.cart();
+            /**
+            if (!cart.SC_IsOrderInfoCollected) {
+                this.SC_OrderInfoInputDialogVisible(true);
+                cart.SC_IsOrderInfoCollected = true;
+            }
+            */
+            //cart = this.cartViewModel.cart();
+            //this.SC_OrderInfoInputDialogVisible(true);
+        }
+        private SC_refreshCartView() {
+            var updatedCart = Session.instance.cart;
+            this.cartViewModel.cart(updatedCart);
+            this.cartViewModel.originalCartLines(updatedCart.CartLines);
+        }
+        public SC_OrderInfoInputDialogButtonClick() {
+            var cart: Model.Entities.Cart = Session.instance.cart;
+            if (cart) {
+                var cartProperty = new Array<string>();
+                cartProperty = Commerce.CartHelper.SC_getCartProperties(cart.Comment);
+                cartProperty[1] = "true";
+                cartProperty[2] = this.SC_AdSourceSelectedOption();
+                cartProperty[3] = this.SC_ZipCode();
+                cartProperty[4] = this.SC_PrimarySalesPerson();
+                cartProperty[5] = this.SC_SecondarySalesPerson();
+                cartProperty[6] = this.SC_TaxStatusSelectedOption();
+                cartProperty[7] = this.SC_OrderStatusSelectedOption();
+                cart.Comment = Commerce.CartHelper.SC_CartPropertiesToComment(cartProperty);
+                //this.cartViewModel.cartManager.createOrUpdateCartAsync(cart);
+                this.SC_updateCartLinesOrderStatusByHeader(cart, this.SC_OrderStatusSelectedOption());
+                var cartLines: Proxy.Entities.CartLine[] = cart.CartLines;
+                var asyncResult: IVoidAsyncResult = new AsyncQueue().enqueue(() => {
+                    return this.cartViewModel.cartManager.createOrUpdateCartAsync(cart);
+                }).enqueue((): IVoidAsyncResult => {
+                    return this.cartViewModel.cartManager.updateCartLinesOnCartAsync(cartLines);
+                }).run();
+                //this.cartViewModel.cartManager.updateCartLinesOnCartAsync(cartLines);
+
+            }
+            if (this.SC_TaxStatusSelectedOption() == "Exempt") {
+                this.transactionTaxOverride("Exempt");
+            }
+            this.SC_refreshCartView();
+            this.indeterminateWaitVisible(false);
+            this.SC_OrderInfoInputDialogVisible(false);
+        }
+
+        public SC_ChangeOrderStatusHeaderButtonClick(buttonId: string) {
+            switch (buttonId) {
+                case Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK:
+                    if (this.SC_OrderStatusSelectedOption().length < 1) {
+                        break;
+                    }
+                    var cart: Model.Entities.Cart = Session.instance.cart;
+                    if (!cart) {
+                        return;
+                    }
+                    switch (this.SC_ChangeOrderStatusOperationId) {
+                        case 9001://Header
+                            var cartProperty = Commerce.CartHelper.SC_getCartProperties(cart.Comment);
+                            cartProperty[7] = this.SC_OrderStatusSelectedOption();
+                            cart.Comment = Commerce.CartHelper.SC_CartPropertiesToComment(cartProperty);
+                            this.SC_updateCartLinesOrderStatusByHeader(cart, this.SC_OrderStatusSelectedOption());
+                            var cartLines: Proxy.Entities.CartLine[] = cart.CartLines;
+                            var asyncResult: IVoidAsyncResult = new AsyncQueue().enqueue(() => {
+                                return this.cartViewModel.cartManager.createOrUpdateCartAsync(cart);
+                            }).enqueue((): IVoidAsyncResult => {
+                                return this.cartViewModel.cartManager.updateCartLinesOnCartAsync(cart.CartLines);
+                            }).run();
+                            break;
+                        case 9002://Lines
+                            var cartLinesSelected = this.SC_updateCartLinesOrderStatusBySelected(this.SC_OrderStatusSelectedOption());
+                            var asyncResult: IVoidAsyncResult = new AsyncQueue().enqueue((): IVoidAsyncResult => {
+                                return this.cartViewModel.cartManager.updateCartLinesOnCartAsync(cartLinesSelected);
+                            }).run();
+                            break;
+                        default:
+                            break;
+                    }
+                    this.SC_refreshCartView();
+                    break;
+                case Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK:
+                    break;
+                default:
+                    break;
+            }
+
+            this.indeterminateWaitVisible(false);
+            this.SC_ChangeOrderSatusHeaderDialogVisible(false);
+        }
+
+        public SC_ChangeOrderStatusOperation(operationId: number) {
+            this.SC_ChangeOrderStatusOperationId = operationId;
+            if (this.SC_ChangeOrderStatusOperationId == 9002 && !this.verifyOneItemSelected()) {
+                return;
+            }
+            this.indeterminateWaitVisible(true);
+            this.SC_ChangeOrderSatusHeaderDialogVisible(true);
+        }
+
+        private SC_updateCartLinesOrderStatusByHeader(cart: Proxy.Entities.Cart, orderStaus: string) {
+            for (var i = 0; i < cart.CartLines.length; i++) {
+                var cartLineProperties = Commerce.CartHelper.SC_getCartLineProperties(cart.CartLines[i].Comment);
+                cartLineProperties[1] = orderStaus;
+                cart.CartLines[i].Comment = Commerce.CartHelper.SC_CartLinePropertiesToComment(cartLineProperties);
+            }
+
+        }
+
+        private SC_updateCartLinesOrderStatusBySelected(orderStatus: string): Proxy.Entities.CartLine[] {
+            var cartLinesSelected = this.cartViewModel.selectedCartLines();
+            for (var i = 0; i < cartLinesSelected.length; i++) {
+                var cartLineProperties = Commerce.CartHelper.SC_getCartLineProperties(cartLinesSelected[i].Comment);
+                cartLineProperties[1] = orderStatus;
+                cartLinesSelected[i].Comment = Commerce.CartHelper.SC_CartLinePropertiesToComment(cartLineProperties);
+            }
+            return cartLinesSelected;
+        }
+
+            /**
+        private SC_loadCartLineProperties(src: string): Dictionary<string> {
+            var result;
+            if (src && src.length > 0) {
+                result = new Dictionary<string>();
+                var lines = src.split(CartViewController.SC_commentDelimiter2);
+                for (var line in lines) {
+                    if (!line) {
+                        continue;
+                    }
+                    var keyValue = line.split(CartViewController.SC_commentDelimiter3);
+                    
+                }
+
+            }
+            return result;
+        }
+            */
+        //POShackF END
 
         /**
          *  Shows the payment dialog.
@@ -1099,16 +1401,25 @@ module Commerce.ViewControllers {
             //TODO:AM Ankur M
             this.cartViewModel.voidProducts(this.cartViewModel.selectedCartLines());
             //this.handleVoidAsyncResult(this.cartViewModel.voidProducts(this.cartViewModel.selectedCartLines()), false);
-            this.addOrSearchProductsAndCustomers("0002");
-            this.addOrSearchProductsAndCustomers("0002");
+            //this.addOrSearchProductsAndCustomers("0002");
+            //this.addOrSearchProductsAndCustomers("0002");
+            //this.addOrSearchProductsAndCustomers("0003");
+            //this.addOrSearchProductsAndCustomers("0004");
+            //this.addOrSearchProductsAndCustomers("0005");
+            //this.addOrSearchProductsAndCustomers("0006");
+            //this.addOrSearchProductsAndCustomers("0021");
+            //this.addOrSearchProductsAndCustomers("0147");
+            //this.addOrSearchProductsAndCustomers("0147");
+            
             this.addOrSearchProductsAndCustomers("0003");
             this.addOrSearchProductsAndCustomers("0004");
             this.addOrSearchProductsAndCustomers("0005");
             this.addOrSearchProductsAndCustomers("0006");
             this.addOrSearchProductsAndCustomers("0021");
-            this.addOrSearchProductsAndCustomers("0147");
-            this.addOrSearchProductsAndCustomers("0147");
-            
+            this.addOrSearchProductsAndCustomers("0009");
+
+            this.SC_PopulateKitPrice();
+
 
             //this.handleAsyncResult(this.cartViewModel.addTransactionComment());//TODO: Uncomment this line
         }
@@ -2471,6 +2782,14 @@ module Commerce.ViewControllers {
                     return true;
    END SDKSAMPLE_CROSSLOYALTY (do not remove this) */
 
+                //POSHackF
+                case 9001: //Change order status  
+                    this.SC_ChangeOrderStatusOperation(operationId);
+                    return true;
+                case 9002:
+                    this.SC_ChangeOrderStatusOperation(operationId);
+                    return true;
+                //POSHackF END
                 default:
                     return Commerce.Operations.DefaultButtonGridHandler.handleOperation(operationId, actionProperty, this.indeterminateWaitVisible);
             }

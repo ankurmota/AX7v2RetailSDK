@@ -291,7 +291,16 @@ module Commerce.ViewControllers {
 
         private processVariantInfo(isQuickSale: boolean = true) {
 
-            if (this.ViewModel.product().IsKit) {
+            if (this.ViewModel.product().IsKit
+                //POSHack // David, Stephen
+                && this.ViewModel.getVariantId(this.ViewModel.product(), this.ViewModel.dimensionValue()) != 22565421965
+                && this.ViewModel.getVariantId(this.ViewModel.product(), this.ViewModel.dimensionValue()) != 22565421966
+                && this.ViewModel.getVariantId(this.ViewModel.product(), this.ViewModel.dimensionValue()) != 22565421967
+                && this.ViewModel.getVariantId(this.ViewModel.product(), this.ViewModel.dimensionValue()) != 22565421968
+                && this.ViewModel.getVariantId(this.ViewModel.product(), this.ViewModel.dimensionValue()) != 22565421971
+                && this.ViewModel.getVariantId(this.ViewModel.product(), this.ViewModel.dimensionValue()) != 22565421983
+                )
+            {
                 this.processSelectedKitVariant((kitVariantInfo) => { this.AddToCart(kitVariantInfo.kitProductVariantId, isQuickSale); }, false);
             } else {
                 var variantId: number = this.ViewModel.getVariantId(this.ViewModel.product(), this.ViewModel.dimensionValue());
@@ -333,6 +342,57 @@ module Commerce.ViewControllers {
                     quantity: this._productDetailOptions().quantity || 0
                 }]
             };
+
+            // POShack //David/Stephen
+            //if (variantId == 68719482372 && isQuickSale == false) { // Server
+            if (variantId === 68719485372 && isQuickSale === false) { //Local
+                var options: Operations.IItemSaleOperationOptions = {
+                    productSaleDetails: [
+                        {
+
+                            productId: 22565421965,
+                            quantity: 1
+                        }
+                        ,
+                        {
+
+                            productId: 22565421966,
+                            quantity: 1
+                        }
+                        ,
+                        {
+
+                            productId: 22565421967,
+                            quantity: 1
+                        },
+                        {
+
+                            productId: 22565421968,
+                            quantity: 1
+                        },
+                        {
+
+                            productId: 22565421971,
+                            quantity: 1
+                        },
+                        {
+
+                            productId: 22565421983,
+                            quantity: 1
+                        }
+                    ]
+                };
+            }
+            else {
+                //
+                var options: Operations.IItemSaleOperationOptions = {
+                    productSaleDetails: [{
+                        productId: variantId,
+                        quantity: this._productDetailOptions().quantity || 0
+                    }]
+                };
+            }
+            //POShack END
 
             var operationResult = Operations.OperationsManager.instance.runOperation(
                 Operations.RetailOperation.ItemSale, options);

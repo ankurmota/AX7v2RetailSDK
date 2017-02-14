@@ -498,6 +498,31 @@ module Commerce {
             return "0";
         }
 
+        //POSHackF 
+        static SC_CartLineOrderStatus(cartLine: Proxy.Entities.CartLine): string {
+            if (!ObjectExtensions.isNullOrUndefined(cartLine)) {
+                if (cartLine.Comment.length > 0) {
+                    var cartLineProperties = Commerce.CartHelper.SC_getCartLineProperties(cartLine.Comment);
+                    return cartLineProperties[1];
+
+                }
+            }
+            return "";
+        }
+        static SC_CartLineKitPrice(cartLine: Proxy.Entities.CartLine): string {
+            if (!ObjectExtensions.isNullOrUndefined(cartLine)) {
+                if (cartLine.Comment.length > 0) {
+                    var cartLineProperties = Commerce.CartHelper.SC_getCartLineProperties(cartLine.Comment);
+                    if (cartLineProperties[2] == "true") {
+                        return cartLineProperties[3];
+                    }
+
+                }
+            }
+            return "";
+        }
+        //POShackF END
+
         /**
          * Returns formatted variant name.
          *

@@ -33,7 +33,7 @@
             </div>
         </div>
         <!-- Payment dialog -->
-        <div data-bind="dialog:
+    <div data-bind="dialog:
             {
                 title: _paymentDialogTitle,
                 message: _paymentDialogMessage,
@@ -42,16 +42,75 @@
                 buttonClick: paymentDialogCancelButtonClick,
                 buttons: [{ label: Commerce.ViewModelAdapter.getResourceString('string_107'), isPrimary: false, operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, cssClass: 'cancelButton' }]
             }">
-            <!-- dialog content -->
-            <div id="paymentDialogPaymentButtonGrid" class="scrollX height15" data-bind="tileList: {
+        <!-- dialog content -->
+        <div id="paymentDialogPaymentButtonGrid" class="scrollX height15" data-bind="tileList: {
                         iteminvoked: paymentButtonClickHandler,
                         itemDataSource: _paymentDialogPaymentMethods,
                         bottomLeft: { field: 'Name' }
                     }">
+        </div>
+    </div>
+        
+    <!--POShackF show collecting input order information function-->
+        <div data-bind="dialog:
+         {
+            title: SC_OrderInfoInputDialogTitle,
+            visible: SC_OrderInfoInputDialogVisible,
+            closeOnEscButton: false,
+         }">
+            <div>
+                <label>Ad Source</label>
+                <select style="width:255px" data-bind="options: SC_AdSourceList,value: SC_AdSourceSelectedOption"></select>
+            </div>
+            <div>
+                <label>Zip Code</label>
+                <input id="SC_ZipCodeInput" type="text" style="width:255px" data-bind="value: SC_ZipCode, valueUpdate:'keypress', attr: { 'maxLength': '5', 'rows': '1' }" />
+            </div>
+            <div>
+                <label>Primary Sales Person</label>
+                <input id="SC_PrimarySalesPersonInput" type="text" style="width:255px" data-bind="value: SC_PrimarySalesPerson, valueUpdate:'keypress', attr: { 'maxLength': '20', 'rows': '1' }" />
+            </div>
+            <div>
+                <label>Secondary Sales Person (Optional)</label>
+                <input id="SC_SecondarySalesPersonInput" type="text" style="width:255px" data-bind="value: SC_SecondarySalesPerson, valueUpdate:'keypress', attr: { 'maxLength': '20', 'rows': '1' }" />
+            </div>
+            <div>
+                <label>Tax Status</label>
+                <select style="width:255px" data-bind="options: SC_TaxStatus,value: SC_TaxStatusSelectedOption"></select>
+            </div>
+            <div>
+                <label>Order Status</label>
+                <select style="width:255px" data-bind="options: SC_OrderStatus,value: SC_OrderStatusSelectedOption"></select>
+
+
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <div style="text-align: left;">
+                <button class="primaryButton" data-bind="click: SC_OrderInfoInputDialogButtonClick, resx: { textContent: '  OK  ' }"></button>
             </div>
         </div>
+        <div data-bind="dialog:
+             {
+                title: SC_ChangeOrderStatusTitle,
+                visible: SC_ChangeOrderSatusHeaderDialogVisible,
+                closeOnEscButton: true,
+                buttonClick: SC_ChangeOrderStatusHeaderButtonClick,
+                buttons: [
+                { label: Commerce.ViewModelAdapter.getResourceString('string_75'), operationId: Commerce.Controls.Dialog.OperationIds.OK_BUTTON_CLICK, isPrimary: true },
+                { label: Commerce.ViewModelAdapter.getResourceString('string_107'), operationId: Commerce.Controls.Dialog.OperationIds.CANCEL_BUTTON_CLICK, isPrimary: false }
+                ]
+             }">
+            <div>
+                <label>Order Status</label>
+                <select style="width:255px" data-bind="options: SC_OrderStatus,value: SC_OrderStatusSelectedOption"></select>
+            </div>
+        </div>
+    <!--POShackF end-->
 
-        <!-- Change Dialog -->
+    <!-- Change Dialog -->
         <div data-bind="
             dialog: {
                 title: Commerce.ViewModelAdapter.getResourceString('string_1816'),
@@ -395,6 +454,20 @@
                                         <div class="textRight"><h4 data-bind="formatPrice: DiscountAmount"></h4></div>
                                     </div>
                                 </div>
+                                <!--POSHackF-->
+                                <div id="SC_OrderStatusHeaderField">
+                                    <div class="row pad1 padBottom0">
+                                        <div class="secondaryFontColor"><h6>ORDER STATUS</h6></div>
+                                        <div class="textRight"><h4 data-bind="text: $root.cartViewModel.SC_OrderStatusHeader"></h4></div>
+                                    </div>
+                                </div>
+                                <div id="SC_KitPriceHeaderField">
+                                    <div class="row pad1 padBottom0">
+                                        <div class="secondaryFontColor"><h6>KIT TOTAL</h6></div>
+                                        <div class="textRight"><h4 data-bind="text: $root.cartViewModel.SC_KitPriceHeader"></h4></div>
+                                    </div>
+                                </div>
+                                <!--POSHackF end-->
                                 <!--TAX-->
                                 <div id="TaxField">
                                     <div class="row pad1 padBottom0">

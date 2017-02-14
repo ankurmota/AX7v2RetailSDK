@@ -69,6 +69,13 @@
     <div class="tillLayout-TotalWithoutTaxField textRight"> <!--TODO:AM-->
         <h6>Original Amount</h6>
     </div>
+    <!--POSHackF-->
+    <div class="tillLayout-ProductNameField">
+        <h6>Order Status</h6>
+    </div>
+    <div class="tillLayout-ProductNameField">
+        <h6>Kit Price</h6>
+    </div>
     </script>
 
     <!-- Binding template for the CartPage delivery grid header row. -->
@@ -154,6 +161,13 @@
     </div>
     <div class="tillLayout-TotalWithoutTaxField textRight"> <!--TODO:AM DEMO4-->
         <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.CartLineCustomField', defaultValue: '', type: 'text' }"></h5>
+    </div>
+    <!--POSHackF-->
+    <div class="tillLayout-ProductNameField">
+        <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.SC_CartLineOrderStatus', defaultValue: '', type: 'text' }"></h5>
+    </div>
+    <div class="tillLayout-ProductNameField">
+        <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.SC_CartLineKitPrice', defaultValue: '', type: 'text' }"></h5>
     </div>
     </script>
 

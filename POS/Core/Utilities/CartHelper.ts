@@ -174,5 +174,108 @@ module Commerce {
                 return Proxy.Entities.PeripheralPaymentType.CardPaymentController;
             }
         }
+
+        //POSHackF
+        public static SC_numberOfProperties: number = 9;
+        /**
+        0 Comment
+        1 info has been collected
+        2 Ad Source
+        3 Zip Code
+        4 Sales Person primary
+        5 Sales Person secondary (optional)
+        6 Tax status
+        7 Order status - header
+        8 Kit Price - header
+        */
+        public static SC_commentDelimiter: string = "@";
+        //public static SC_commentDelimiter2: string = "[]?|*";
+        //public static SC_commentDelimiter3: string = "[===]";
+        public static SC_cartLineNumOfProperties: number = 4;
+        /**
+        0 Comment
+        1 order status
+        2 Is kit line
+        3 Kit Price - line
+        */
+        public static SC_cartLineCommentDelimiter: string = "@";
+
+        public static SC_prepareCartProperty(comment: string): string {
+            if (!comment) {
+                comment = "";
+            }
+            var cartProperties = new Array<string>();
+            if (CartHelper.SC_ExistCartproperty(comment)) {
+                return comment;
+            }
+            cartProperties.push(comment.toString());
+            for (var i = 1; i < CartHelper.SC_numberOfProperties; i++) {
+                cartProperties.push("");
+
+            }
+            comment = cartProperties.join(CartHelper.SC_commentDelimiter);
+            return comment;
+        }
+        public static SC_getCartProperties(comment: string): string[] {
+            comment = CartHelper.SC_prepareCartProperty(comment);
+            return comment.split(CartHelper.SC_commentDelimiter);
+        }
+
+        public static SC_CartPropertiesToComment(cartProperties: string[]): string {
+            return cartProperties.join(CartHelper.SC_commentDelimiter);
+        }
+
+
+        public static SC_ExistCartproperty(comment: string): boolean {
+            if (!comment) {
+                return false;
+            }
+            var cartProperty = comment.split(CartHelper.SC_commentDelimiter);
+            if (cartProperty.length >= CartHelper.SC_numberOfProperties) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public static SC_prepareCartLineProperty(comment: string): string {
+            if (!comment) {
+                comment = "";
+            }
+            var cartLineProperties = new Array<string>();
+            if (CartHelper.SC_ExistCartLineproperty(comment)) {
+                return comment;
+            }
+            cartLineProperties.push(comment.toString());
+            for (var i = 1; i < CartHelper.SC_cartLineNumOfProperties; i++) {
+                cartLineProperties.push("");
+            }
+
+            comment = cartLineProperties.join(CartHelper.SC_cartLineCommentDelimiter);
+            return comment;
+        }
+
+        public static SC_getCartLineProperties(comment: string): string[] {
+            comment = CartHelper.SC_prepareCartLineProperty(comment);
+            return comment.split(CartHelper.SC_cartLineCommentDelimiter);
+
+        }
+
+        public static SC_CartLinePropertiesToComment(cartLineProperties: string[]): string {
+            return cartLineProperties.join(CartHelper.SC_cartLineCommentDelimiter);
+        }
+
+        public static SC_ExistCartLineproperty(comment: string): boolean {
+            if (!comment) {
+                return false;
+            }
+            var cartLineProperty = comment.split(CartHelper.SC_cartLineCommentDelimiter);
+            if (cartLineProperty.length >= CartHelper.SC_cartLineNumOfProperties) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        //POShackF END
     }
 }
