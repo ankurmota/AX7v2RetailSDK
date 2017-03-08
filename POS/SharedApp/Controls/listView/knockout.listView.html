@@ -57,25 +57,28 @@
     <div class="tillLayout-TotalWithTaxField textRight">
         <h6 data-bind="resx: { textContent: 'string_4443' }"></h6>
     </div>
-    <div class="tillLayout-TotalWithoutTaxField textRight">
+    <!--<div class="tillLayout-TotalWithoutTaxField textRight">
         <h6 data-bind="resx: { textContent: 'string_4444' }"></h6>
-    </div>
+    </div>-->
     <div class="tillLayout-UnitOfMeasureField">
         <h6 data-bind="resx: { textContent: 'string_4445' }"></h6>
     </div>
     <div class="tillLayout-ItemIdField">
         <h6 data-bind="resx: { textContent: 'string_4446' }"></h6>
     </div>
-    <div class="tillLayout-TotalWithoutTaxField textRight"> <!--TODO:AM-->
-        <h6>Original Amount</h6>
+    <!--DEMO 4-->
+    <div class="tillLayout-TotalWithoutTaxField textRight"> 
+        <h6>TOTAL(WITHOUT TAX)</h6>
     </div>
+    
     <!--POSHackF-->
-    <div class="tillLayout-ProductNameField">
-        <h6>Order Status</h6>
-    </div>
-    <div class="tillLayout-ProductNameField">
+    <div class="tillLayout-TotalWithoutTaxField textRight">
         <h6>Kit Price</h6>
     </div>
+    <div class="tillLayout-TotalWithoutTaxField textRight">
+        <h6>Order Status</h6>
+    </div>
+
     </script>
 
     <!-- Binding template for the CartPage delivery grid header row. -->
@@ -150,25 +153,29 @@
     <div class="tillLayout-TotalWithTaxField textRight">
         <h5 data-bind="textConverter: { data: dataRow, field: 'TotalAmount', converter: 'Commerce.Core.Converter.PriceFormatter', defaultValue: '', type: 'text' }"></h5>
     </div>
-    <div class="tillLayout-TotalWithoutTaxField textRight">
+    <!--<div class="tillLayout-TotalWithoutTaxField textRight">
         <h5 data-bind="textConverter: { data: dataRow, field: 'NetAmountWithoutTax', converter: 'Commerce.Core.Converter.PriceFormatter', defaultValue: '', type: 'text' }"></h5>
-    </div>
+    </div>-->
     <div class="tillLayout-UnitOfMeasureField">
         <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.CartLineUnitOfMeasureFormat', defaultValue: '', type: 'text' }"></h5>
     </div>
     <div class="tillLayout-ItemIdField">
         <h5 data-bind="textConverter: { data: dataRow, field: 'ItemId', defaultValue: '', type: 'text' }"></h5>
     </div>
-    <div class="tillLayout-TotalWithoutTaxField textRight"> <!--TODO:AM DEMO4-->
+    <!--DEMO4-->
+    <div class="tillLayout-TotalWithoutTaxField textRight"> 
         <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.CartLineCustomField', defaultValue: '', type: 'text' }"></h5>
     </div>
+    
     <!--POSHackF-->
-    <div class="tillLayout-ProductNameField">
-        <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.SC_CartLineOrderStatus', defaultValue: '', type: 'text' }"></h5>
-    </div>
-    <div class="tillLayout-ProductNameField">
+    <div class="tillLayout-TotalWithoutTaxField textRight">
         <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.SC_CartLineKitPrice', defaultValue: '', type: 'text' }"></h5>
     </div>
+
+    <div class="tillLayout-TotalWithoutTaxField textRight">
+        <h5 data-bind="textConverter: { data: dataRow, field: '$data', converter: 'Commerce.Formatters.SC_CartLineOrderStatus', defaultValue: '', type: 'text' }"></h5>
+    </div>
+
     </script>
 
     <!-- Binding template for CartPage delivery grid row. -->

@@ -165,7 +165,9 @@ module Commerce {
          * @param {CartLine[]} cartLines The collection where the cart lines are pushed into.
          * @return {AsyncQueue} The async queue.
          */
-        public static createCartLinesAsyncQueue(productSaleDetails: ProductSaleReturnDetails[], cartLines: CartLine[]): AsyncQueue {
+
+        //POSHackF - Add OPTIONAL SC_IsKit parameter
+        public static createCartLinesAsyncQueue(productSaleDetails: ProductSaleReturnDetails[], cartLines: CartLine[], SC_IsKit = false): AsyncQueue {
             var productQueue: AsyncQueue = new AsyncQueue();
 
             productQueue.enqueue((): IAsyncResult<any> => {
@@ -182,6 +184,15 @@ module Commerce {
                 return VoidAsyncResult.createResolved();
             });
 
+            //POSHackF
+            var SC_IsKitComment = "";
+            var SC_KitCartLineProperties;
+            if (SC_IsKit) {
+                SC_KitCartLineProperties = Commerce.CartHelper.SC_getCartLineProperties(SC_IsKitComment);
+                SC_KitCartLineProperties[2] = "true";
+                SC_IsKitComment = Commerce.CartHelper.SC_CartLinePropertiesToComment(SC_KitCartLineProperties);
+            }
+            //POSHackF end
             productSaleDetails.forEach((productDetail: ProductSaleReturnDetails) => {
                 var cartLine: CartLineClass = new CartLineClass();
                 cartLine.Quantity = productDetail.quantity;
@@ -197,6 +208,12 @@ module Commerce {
                 if (!ObjectExtensions.isNullOrUndefined(productDetail.barcode)) {
                     cartLine.Barcode = productDetail.barcode.BarcodeId;
                 }
+
+                //POSHackF
+                if (SC_IsKit) {
+                    cartLine.Comment = SC_IsKitComment;
+                }
+                //POSHackF end
 
                 // check whether it needs variant number or just product identifier
                 productQueue.enqueue((): IAsyncResult<any> => {

@@ -740,6 +740,17 @@ module Commerce.Model.Managers.RetailServer {
                 });
         }
 
+        //DEMO4 //TODO: AM
+        //Price ovveride for KIT
+        public getCartByCartIdForKitAsync(cartId: string): Proxy.CartsDataServiceQuery {
+            return this._commerceContext.carts(cartId);
+            //return request.execute<Entities.Cart>();
+                //.done((data: Entities.Cart) => {
+                //    Session.instance.cart = data;
+                //});
+        }
+        
+
         /**
          * Gets the card payment accept page url.
          * @param {boolean} cardPaymentEnabled Indicates whether card payment is enabled.

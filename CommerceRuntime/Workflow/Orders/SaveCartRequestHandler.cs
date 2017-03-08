@@ -66,7 +66,8 @@ namespace Contoso
                     // The reason of doing so is that the IsReturn is not currently exposed on CartLine entity.
                     if (!string.IsNullOrEmpty(line.ReturnTransactionId))
                     {
-                        line.LineData.IsReturnByReceipt = true;
+                        //DEMO4
+                        //line.LineData.IsReturnByReceipt = true;  //TODO:AM Uncomment for real implementation
                     }
                 }
 

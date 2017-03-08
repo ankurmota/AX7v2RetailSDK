@@ -150,6 +150,17 @@ module Commerce.ViewModels {
                         customerId: Session.instance.cart.CustomerId,
                         productReturnDetails: this._selectedCartLines().map((cartLineForDisplay: CartLineForDisplay): Entities.ProductReturnDetails => {
                             var cartLineForDisplayAsCartLine: Entities.CartLine = cartLineForDisplay;
+                            //DEMO4 // TODO:AM //Update cart line with kit price
+
+                            //Call cart manager to update this
+                            //DEMO4 //TODO: AM
+                            cartLineForDisplayAsCartLine.Price = 100;
+                            var query: Proxy.CartsDataServiceQuery = this.cartManager.getCartByCartIdForKitAsync(Session.instance.cart.Id);//this._commerceContext.carts(Commerce.Session.instance.cart.Id);
+                            query.overrideCartLinePrice(cartLineForDisplayAsCartLine.LineId, cartLineForDisplayAsCartLine.Price).execute<Entities.Cart>()
+                                .done((updatedCart: Entities.Cart): void => {
+                                    Commerce.Session.instance.cart = updatedCart;
+                                });
+
                             return <Entities.ProductReturnDetails>{ cartLine: cartLineForDisplayAsCartLine };
                         })
                     };

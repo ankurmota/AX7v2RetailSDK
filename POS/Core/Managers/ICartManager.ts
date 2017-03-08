@@ -326,6 +326,9 @@ module Commerce.Model.Managers {
          */
         priceOverrideAsync(cartLine: Commerce.Model.Entities.CartLine): IVoidAsyncResult;
 
+        //demo4 //todo: AM
+        getCartByCartIdForKitAsync(cartId: string): Commerce.Proxy.CartsDataServiceQuery;
+
         /**
          * Recalls a cart with all products in sales invoice (for return operation).
          * @param {string} salesId The identifier of the order to recalculate.

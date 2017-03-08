@@ -176,7 +176,7 @@ module Commerce {
         }
 
         //POSHackF
-        public static SC_numberOfProperties: number = 9;
+        public static SC_numberOfProperties: number = 10;
         /**
         0 Comment
         1 info has been collected
@@ -187,6 +187,7 @@ module Commerce {
         6 Tax status
         7 Order status - header
         8 Kit Price - header
+        9 Delivery Instruction
         */
         public static SC_commentDelimiter: string = "@";
         //public static SC_commentDelimiter2: string = "[]?|*";

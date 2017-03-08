@@ -3406,7 +3406,9 @@ So we suppress this error until the reporting for CA3053 has been updated to acc
                                 var receiptHeaderTaxInfoIndia = context.Runtime.Execute<SingleEntityDataServiceResponse<ReceiptHeaderTaxInfoIndia>>(getReceiptHeaderTaxInfoIndiaDataRequest, context).Entity;
                                 return receiptHeaderTaxInfoIndia != null ? receiptHeaderTaxInfoIndia.ExciseTaxNumber : string.Empty;
                             }
-
+                        //POSHackF
+                        case "DELIVERYINSTRUCTION":
+                            return SC_GetDeliveryInstruction(theTransaction);
                         default:
                             return string.Empty;
                     }
@@ -3414,6 +3416,42 @@ So we suppress this error until the reporting for CA3053 has been updated to acc
 
                 return string.Empty;
             }
+
+            //POSHackF
+            public static int SC_numberOfProperties = 10;
+            /**
+            0 Comment
+            1 info has been collected
+            2 Ad Source
+            3 Zip Code
+            4 Sales Person primary
+            5 Sales Person secondary (optional)
+            6 Tax status
+            7 Order status - header
+            8 Kit Price - header
+            9 Delivery Instruction
+            */
+            public static string SC_commentDelimiter = "@";
+            //public static SC_commentDelimiter2: string = "[]?|*";
+            //public static SC_commentDelimiter3: string = "[===]";
+            public static int SC_cartLineNumOfProperties = 4;
+            /**
+            0 Comment
+            1 order status
+            2 Is kit line
+            3 Kit Price - line
+            */
+            public static string SC_cartLineCommentDelimiter = "@";
+            private static string SC_GetDeliveryInstruction(SalesOrder theTransaction)
+            {
+                string[] cartProperties = theTransaction.Comment.Split(new string[] { SC_commentDelimiter }, StringSplitOptions.None);
+                if (cartProperties.Length >= SC_numberOfProperties)
+                {
+                    return cartProperties[9];
+                }
+                return "";
+            }
+            //POSHackF end
 
             private static string GetInfoFromCustomerAccountDepositLines(RequestContext context, string variable, SalesTransaction transaction)
             {

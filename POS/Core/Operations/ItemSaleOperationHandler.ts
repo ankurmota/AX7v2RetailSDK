@@ -81,6 +81,48 @@ module Commerce.Operations {
                 }
             });
 
+            //POSHackF
+            var SC_IsKit: boolean = false;
+            if (productSaleDetailsToSell.length > 0 && productSaleDetailsToSell[0].productId === 68719485372) {//DEMO 4 TODO : Change this per ENV
+                productSaleDetailsToSell = [
+                    {
+
+                        productId: 22565421965,
+                        quantity: 1
+                    }
+                    ,
+                    {
+
+                        productId: 22565421966,
+                        quantity: 1
+                    }
+                    ,
+                    {
+
+                        productId: 22565421967,
+                        quantity: 1
+                    },
+                    {
+
+                        productId: 22565421968,
+                        quantity: 1
+                    },
+                    {
+
+                        productId: 22565421971,
+                        quantity: 1
+                    },
+                    {
+
+                        productId: 22565421983,
+                        quantity: 1
+                    }
+                ];
+                SC_IsKit = true;
+
+            }
+            //POSHackF end
+
             var asyncQueue: AsyncQueue = new AsyncQueue();
 
             if (ArrayExtensions.hasElements(productSaleDetailsToReturn)) {
@@ -112,8 +154,9 @@ module Commerce.Operations {
                         });
                     }).enqueue(() => {
                         var createCartLinesCorrelationId: string = Diagnostics.TypeScriptCore.Utils.generateGuid();
-                        RetailLogger.operationItemSaleCreateCartLinesStarted(createCartLinesCorrelationId)
-                        var cartLinesQueue = ActivityHelper.createCartLinesAsyncQueue(productSaleDetailsToSell, cartLines);
+                        RetailLogger.operationItemSaleCreateCartLinesStarted(createCartLinesCorrelationId);
+                        //POSHackF - Add parameter SC_IsKit 
+                        var cartLinesQueue = ActivityHelper.createCartLinesAsyncQueue(productSaleDetailsToSell, cartLines, SC_IsKit);
                         return asyncQueue.cancelOn(cartLinesQueue.run()).done((createCartLinesResult: ICancelableResult): void => {
                             RetailLogger.operationItemSaleCreateCartLinesFinished(createCartLinesCorrelationId, true);
                         }).fail((errors: Entities.Error[]): void => {

@@ -336,54 +336,54 @@ module Commerce.ViewControllers {
         private AddToCart(variantId: number, isQuickSale: boolean = true) {
 
             this.indeterminateWaitVisible(true);
-            var options: Operations.IItemSaleOperationOptions = {
-                productSaleDetails: [{
-                    productId: variantId,
-                    quantity: this._productDetailOptions().quantity || 0
-                }]
-            };
+            //var options: Operations.IItemSaleOperationOptions = {
+            //    productSaleDetails: [{
+            //        productId: variantId,
+            //        quantity: this._productDetailOptions().quantity || 0
+            //    }]
+            //};
 
             // POShack //David/Stephen
             //if (variantId == 68719482372 && isQuickSale == false) { // Server
-            if (variantId === 68719485372 && isQuickSale === false) { //Local
-                var options: Operations.IItemSaleOperationOptions = {
-                    productSaleDetails: [
-                        {
+            //if (variantId === 68719485372 && isQuickSale === false) { //Local
+            //    var options: Operations.IItemSaleOperationOptions = {
+            //        productSaleDetails: [
+            //            {
 
-                            productId: 22565421965,
-                            quantity: 1
-                        }
-                        ,
-                        {
+            //                productId: 22565421965,
+            //                quantity: 1
+            //            }
+            //            ,
+            //            {
 
-                            productId: 22565421966,
-                            quantity: 1
-                        }
-                        ,
-                        {
+            //                productId: 22565421966,
+            //                quantity: 1
+            //            }
+            //            ,
+            //            {
 
-                            productId: 22565421967,
-                            quantity: 1
-                        },
-                        {
+            //                productId: 22565421967,
+            //                quantity: 1
+            //            },
+            //            {
 
-                            productId: 22565421968,
-                            quantity: 1
-                        },
-                        {
+            //                productId: 22565421968,
+            //                quantity: 1
+            //            },
+            //            {
 
-                            productId: 22565421971,
-                            quantity: 1
-                        },
-                        {
+            //                productId: 22565421971,
+            //                quantity: 1
+            //            },
+            //            {
 
-                            productId: 22565421983,
-                            quantity: 1
-                        }
-                    ]
-                };
-            }
-            else {
+            //                productId: 22565421983,
+            //                quantity: 1
+            //            }
+            //        ]
+            //    };
+            //}
+            //else {
                 //
                 var options: Operations.IItemSaleOperationOptions = {
                     productSaleDetails: [{
@@ -391,7 +391,7 @@ module Commerce.ViewControllers {
                         quantity: this._productDetailOptions().quantity || 0
                     }]
                 };
-            }
+            //}
             //POShack END
 
             var operationResult = Operations.OperationsManager.instance.runOperation(

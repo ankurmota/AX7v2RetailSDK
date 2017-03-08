@@ -1963,7 +1963,7 @@ module Commerce.ViewModels {
 
             //Apply discount to the last line
             let lastCartLine: Proxy.Entities.CartLine = cartLines[0];
-            lastCartLine.LineManualDiscountAmount = 268; //TODO: Change this based on the price //totalDiscountsToApply;
+            lastCartLine.LineManualDiscountAmount = 143.3;//268; //TODO: Change this based on the price //totalDiscountsToApply;
         }
 
         //Find if a last item(s) is to be picked up
@@ -1989,47 +1989,7 @@ module Commerce.ViewModels {
             return returnValue;
         }
 
-        // APPLY ZERO DISCOUNTS TO PICKUP LINES FOR LAYAWAY
-        public applyZeroDiscountsToPickupLinesForLayaway() : IVoidAsyncResult { 
-            // Remove line discount for pickup
-            var newcart: Proxy.Entities.Cart = Session.instance.cart;
-            if (newcart.DeliveryMode === ApplicationContext.Instance.channelConfiguration.PickupDeliveryModeCode) {
 
-                //get cart lines for pickup
-                var cartLinesToUpdate: Proxy.Entities.CartLine[] = [];
-                newcart.CartLines.forEach((cartLine1: Proxy.Entities.CartLine) => {
-                    if (cartLine1.Quantity > 0) {
-                        cartLine1.LineManualDiscountAmount = 0;
-                        cartLinesToUpdate.push(cartLine1);
-                    }
-                });
-
-                return new AsyncQueue().enqueue((): IVoidAsyncResult => {
-                   
-                    return this.cartManager.updateCartLinesOnCartAsync(cartLinesToUpdate);
-               
-
-                    //return VoidAsyncResult.createResolved();
-                }).run();
-
-                //apply zero discounts on line
-                //var options1: Operations.ILineDiscountOperationOptions = {
-                //    cartLineDiscounts: cartLinesToUpdate.map((cartLine, index) => {
-                //        return { cartLine: cartLine, discountValue: 0 };
-                //    })
-                //};
-
-                
-                //var result1: IAsyncResult<ICancelableResult> = this.operationsManager.runOperation(
-                //    Operations.RetailOperation.LineDiscountAmount, options1);
-
-                //result1.done((result1: Operations.IOperationResult) => {
-                //    if (!result1.canceled) {
-                //        this.cart(Session.instance.cart);
-                //    }
-                //});
-            }
-        }
         //DEMO4 END
 
         /**
