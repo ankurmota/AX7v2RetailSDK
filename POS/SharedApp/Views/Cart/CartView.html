@@ -318,9 +318,11 @@
                         <div class="lintItemPriceOverrideText secondaryFontColor row" data-bind="visible: originalCartLine.IsPriceOverridden">
                             <h4 data-bind="text: $root.getPriceOverrideText(originalCartLine)"></h4>
                         </div>
+                        <!--POSHackF Hide Comment
                         <div class="lineItemComment secondaryFontColor row" data-bind="visible: originalCartLine.Comment.length > 0">
                             <h4 data-bind="text: originalCartLine.IsGiftCardLine ? '' : originalCartLine.Comment"></h4>
                         </div>
+                        -->
                         <div class="lineItemSerialNumber secondaryFontColor row" data-bind="visible: originalCartLine.SerialNumber.length > 0">
                             <h4 data-bind="text: originalCartLine.SerialNumber"></h4>
                         </div>
@@ -340,11 +342,13 @@
                             </div>
                         </div>
                     </script>
+                    <!--POSHackF Hide Comment
                     <script type="text/html" id="ShowJournalCustomerAccountDepositLineItemColspan">
                         <div class="lineItemComment secondaryFontColor row" data-bind="visible: line.Comment.length > 0">
                             <h4 data-bind="text: line.Comment"></h4>
                         </div>
                     </script>
+                        -->
                     <!-- Line Item List -->
                     <div class="pivotContainer" data-bind="css: { selectedContainer: viewMode() == Commerce.ViewControllers.CartViewTransactionDetailViewMode.Items }">
                         <div class="listViewContainer" data-bind="

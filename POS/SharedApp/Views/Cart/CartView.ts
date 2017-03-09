@@ -1626,7 +1626,9 @@ module Commerce.ViewControllers {
             var isExpandable = isVariant ||
                 isKitVariant ||
                 cartLine.IsPriceOverridden ||
+                /**POSHackF Hide Comment
                 (cartLine.Comment && (cartLine.Comment.length > 0)) ||
+                */
                 (cartLine.SerialNumber && (cartLine.SerialNumber.length > 0)) ||
                 ArrayExtensions.hasElements(cartLine.ReasonCodeLines) ||
                 ArrayExtensions.hasElements(cartLine.DiscountLines);

@@ -148,21 +148,48 @@ module Commerce.ViewModels {
                     // return selected lines
                     var options: Operations.IReturnProductOperationOptions = {
                         customerId: Session.instance.cart.CustomerId,
-                        productReturnDetails: this._selectedCartLines().map((cartLineForDisplay: CartLineForDisplay): Entities.ProductReturnDetails => {
-                            var cartLineForDisplayAsCartLine: Entities.CartLine = cartLineForDisplay;
-                            //DEMO4 // TODO:AM //Update cart line with kit price
+                        productReturnDetails: this._selectedCartLines()
+                            .map((cartLineForDisplay: CartLineForDisplay): Entities.ProductReturnDetails => {
+                                var cartLineForDisplayAsCartLine: Entities.CartLine = cartLineForDisplay;
+                                //DEMO4 // TODO:AM //Update cart line with kit price
 
-                            //Call cart manager to update this
-                            //DEMO4 //TODO: AM
-                            cartLineForDisplayAsCartLine.Price = 100;
-                            var query: Proxy.CartsDataServiceQuery = this.cartManager.getCartByCartIdForKitAsync(Session.instance.cart.Id);//this._commerceContext.carts(Commerce.Session.instance.cart.Id);
-                            query.overrideCartLinePrice(cartLineForDisplayAsCartLine.LineId, cartLineForDisplayAsCartLine.Price).execute<Entities.Cart>()
-                                .done((updatedCart: Entities.Cart): void => {
-                                    Commerce.Session.instance.cart = updatedCart;
-                                });
-
-                            return <Entities.ProductReturnDetails>{ cartLine: cartLineForDisplayAsCartLine };
-                        })
+                                //Call cart manager to update this
+                                //DEMO4 //TODO: AM
+                                let price: number = 0;
+                                switch (cartLineForDisplayAsCartLine.ItemId) {
+                                case "0003":
+                                    price = 79.20; //TODO: Change this per ENV
+                                    break;
+                                case "0005":
+                                    price = 5.39; //TODO: Change this per ENV
+                                    break;
+                                case "0006":
+                                    price = 4.49; //TODO: Change this per ENV
+                                    break;
+                                case "0009":
+                                    price = 32.40; //TODO: Change this per ENV
+                                    break;
+                                case "0021":
+                                    price = 359.10; //TODO: Change this per ENV
+                                    break;
+                                case "0004":
+                                    price = 809.10; //TODO: Change this per ENV
+                                    break;
+                                }
+                                if (price !== 0) {
+                                    cartLineForDisplayAsCartLine.Price = price;
+                                    var query: Proxy.CartsDataServiceQuery = this.cartManager.getCartByCartIdForKitAsync(Session.instance.cart.Id);
+                                    
+                                    query.overrideCartLinePrice(cartLineForDisplayAsCartLine.LineId,
+                                            cartLineForDisplayAsCartLine.Price)
+                                        .execute<Entities.Cart>()
+                                        .done((updatedCart: Entities.Cart): void => {
+                                            Commerce.Session.instance.cart = updatedCart;
+                                        });
+                                }
+                                //DEMO 4 //AM end
+                                return <Entities.ProductReturnDetails>{ cartLine: cartLineForDisplayAsCartLine };
+                            })
                     };
 
                     var operationResult = this.operationsManager.runOperation(
