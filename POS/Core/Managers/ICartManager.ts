@@ -328,6 +328,7 @@ module Commerce.Model.Managers {
 
         //demo4 //todo: AM
         getCartByCartIdForKitAsync(cartId: string): Commerce.Proxy.CartsDataServiceQuery;
+        //demo4 end
 
         /**
          * Recalls a cart with all products in sales invoice (for return operation).

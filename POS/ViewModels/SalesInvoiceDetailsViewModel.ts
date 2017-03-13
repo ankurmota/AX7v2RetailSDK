@@ -118,16 +118,68 @@ module Commerce.ViewModels {
             });
         }
 
+        //DEMO4 NEW //AM 
+        //Create and return new async queue and update cart lines with new price for Invoiced orders
+        private priceOverrideAsyncQueue(cartLines: Entities.CartLine[], salesOrderStatus: number): AsyncQueue {
+            var asyncQueue: AsyncQueue = new AsyncQueue();
+
+            if (salesOrderStatus === 4) {
+                cartLines.forEach((cartLine: Entities.CartLine) => {
+                    let price: number = 0;
+                    switch (cartLine.ItemId) {
+                    case "0003":
+                        price = 79.20; //TODO: Change this per ENV
+                        break;
+                    case "0005":
+                        price = 5.39; //TODO: Change this per ENV
+                        break;
+                    case "0006":
+                        price = 4.49; //TODO: Change this per ENV
+                        break;
+                    case "0009":
+                        price = 32.40; //TODO: Change this per ENV
+                        break;
+                    case "0021":
+                        price = 359.10; //TODO: Change this per ENV
+                        break;
+                    case "0004":
+                        price = 809.10; //TODO: Change this per ENV
+                        break;
+                    }
+                    if (price !== 0) {
+                        cartLine.Price = price;
+                    }
+                    asyncQueue.enqueue(() => {
+                        var query: Proxy.CartsDataServiceQuery = this.cartManager
+                            .getCartByCartIdForKitAsync(Session.instance.cart.Id);
+
+                        return query.overrideCartLinePrice(cartLine.LineId,
+                                cartLine.Price)
+                            .execute<Entities.Cart>()
+                            .done((updatedCart: Entities.Cart): void => {
+                                Commerce.Session.instance.cart = updatedCart;
+                            });
+                    });
+                });
+
+
+            };
+            return asyncQueue;
+        }
+
+        //DEMO4 END
+
         /**
          * Returns the selected cart lines.
          *
          * @return {IAsyncResult<ICancelableResult>} The cancelable async result.
          */
-        public returnCartLines(): IAsyncResult<ICancelableResult> {
+        public returnCartLines(salesOrderStatus?:number): IAsyncResult<ICancelableResult> {
             // copy the cart, in order to keep the sales invoice details
             Session.instance.cart = new Entities.CartClass(this._cart());
 
-            var asyncQueue = new AsyncQueue();
+            var asyncQueue = this.priceOverrideAsyncQueue(this._selectedCartLines(),salesOrderStatus);//new AsyncQueue();//DEMO4 NEW
+            //var asyncQueue = new AsyncQueue();
             asyncQueue
                 .enqueue(() => {
                     // select lines not being returned
@@ -150,50 +202,18 @@ module Commerce.ViewModels {
                         customerId: Session.instance.cart.CustomerId,
                         productReturnDetails: this._selectedCartLines()
                             .map((cartLineForDisplay: CartLineForDisplay): Entities.ProductReturnDetails => {
-                                var cartLineForDisplayAsCartLine: Entities.CartLine = cartLineForDisplay;
-                                //DEMO4 // TODO:AM //Update cart line with kit price
+                                var cartLineForDisplayAsCartLine: Entities.CartLine =
+                                    cartLineForDisplay;
 
                                 //Call cart manager to update this
-                                //DEMO4 //TODO: AM
-                                let price: number = 0;
-                                switch (cartLineForDisplayAsCartLine.ItemId) {
-                                case "0003":
-                                    price = 79.20; //TODO: Change this per ENV
-                                    break;
-                                case "0005":
-                                    price = 5.39; //TODO: Change this per ENV
-                                    break;
-                                case "0006":
-                                    price = 4.49; //TODO: Change this per ENV
-                                    break;
-                                case "0009":
-                                    price = 32.40; //TODO: Change this per ENV
-                                    break;
-                                case "0021":
-                                    price = 359.10; //TODO: Change this per ENV
-                                    break;
-                                case "0004":
-                                    price = 809.10; //TODO: Change this per ENV
-                                    break;
-                                }
-                                if (price !== 0) {
-                                    cartLineForDisplayAsCartLine.Price = price;
-                                    var query: Proxy.CartsDataServiceQuery = this.cartManager.getCartByCartIdForKitAsync(Session.instance.cart.Id);
-                                    
-                                    query.overrideCartLinePrice(cartLineForDisplayAsCartLine.LineId,
-                                            cartLineForDisplayAsCartLine.Price)
-                                        .execute<Entities.Cart>()
-                                        .done((updatedCart: Entities.Cart): void => {
-                                            Commerce.Session.instance.cart = updatedCart;
-                                        });
-                                }
-                                //DEMO 4 //AM end
-                                return <Entities.ProductReturnDetails>{ cartLine: cartLineForDisplayAsCartLine };
+                                return <Entities.ProductReturnDetails>
+                                    { cartLine: cartLineForDisplayAsCartLine };
                             })
                     };
 
                     var operationResult = this.operationsManager.runOperation(
-                        Operations.RetailOperation.ReturnItem, options);
+                        Operations.RetailOperation.ReturnItem,
+                        options);
 
                     return asyncQueue.cancelOn(operationResult);
                 });

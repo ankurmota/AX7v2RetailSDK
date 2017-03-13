@@ -170,7 +170,8 @@ module Commerce.ViewControllers {
 
         private returnOrder(): void {
             var order: Model.Entities.SalesOrder = this._selectedOrder().salesOrder;
-            var viewOptions: ISalesInvoicesViewControllerOptions = { salesId: order.SalesId };
+            //DEMO4 NEW //Added new optional parameter
+            var viewOptions: ISalesInvoicesViewControllerOptions = { salesId: order.SalesId,salesOrderStatus:order.StatusValue };
             Commerce.ViewModelAdapter.navigate("SalesInvoicesView", viewOptions);
         }
 

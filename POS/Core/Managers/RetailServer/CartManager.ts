@@ -740,15 +740,12 @@ module Commerce.Model.Managers.RetailServer {
                 });
         }
 
-        //DEMO4 //TODO: AM
-        //Price ovveride for KIT
+        //DEMO4 new//TODO: AM
+        //Return query based on CartId
         public getCartByCartIdForKitAsync(cartId: string): Proxy.CartsDataServiceQuery {
             return this._commerceContext.carts(cartId);
-            //return request.execute<Entities.Cart>();
-                //.done((data: Entities.Cart) => {
-                //    Session.instance.cart = data;
-                //});
         }
+        //DEMO4 END
         
 
         /**

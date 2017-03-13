@@ -1963,6 +1963,7 @@ module Commerce.ViewModels {
 
             //Apply discount to the last line
             let lastCartLine: Proxy.Entities.CartLine = cartLines[0];
+            //TODO:  //add logic to add discount only If any lines are not returned yet
             lastCartLine.LineManualDiscountAmount = 143.3;//268; //TODO: Change this based on the price //totalDiscountsToApply;
         }
 

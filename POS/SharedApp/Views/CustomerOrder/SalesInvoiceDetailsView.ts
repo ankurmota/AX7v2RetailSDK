@@ -22,6 +22,7 @@ module Commerce.ViewControllers {
          * The identifier for the invoice.
          */
         invoiceId: string;
+        salesOrderStatus?: number;//DEMO4 NEW //AM: Added to pass this to SalesInvoiceDetailsView
     }
 
     export class SalesInvoiceDetailsViewController extends ViewControllerBase {
@@ -30,7 +31,7 @@ module Commerce.ViewControllers {
         private _winControl: any;
         
         private _invoiceId: string;
-
+        private _salesOrderStatus: number;//DEMO4 NEW //AM: Added to pass this to SalesInvoiceDetailsView
         private _viewModel: ViewModels.SalesInvoiceDetailsViewModel;
 
         constructor(options: ISalesInvoiceDetailsViewControllerOptions) {
@@ -45,6 +46,10 @@ module Commerce.ViewControllers {
 
             this._invoiceId = options.invoiceId;
             this._indeterminateWaitVisible = ko.observable(false);
+            //DEMO4 NEW //AM: Added to pass this to SalesInvoiceDetailsView
+            if (!NumberExtensions.isNullOrZero(options.salesOrderStatus))
+                this._salesOrderStatus = options.salesOrderStatus;
+            //DEMO4 end
 
             this._viewModel = new ViewModels.SalesInvoiceDetailsViewModel();
 
@@ -61,7 +66,7 @@ module Commerce.ViewControllers {
         }
 
         private returnSalesInvoice(): void {
-            this.handleAsyncResult(this._viewModel.returnCartLines())
+            this.handleAsyncResult(this._viewModel.returnCartLines(this._salesOrderStatus))
                 .done((result) => {
                     if (!result.canceled) {
                         ViewModelAdapter.navigate("CartView");

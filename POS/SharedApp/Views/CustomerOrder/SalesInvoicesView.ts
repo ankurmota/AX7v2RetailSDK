@@ -16,6 +16,7 @@ module Commerce.ViewControllers {
 
     export interface ISalesInvoicesViewControllerOptions {
         salesId: string;
+        salesOrderStatus? : number;//DEMO4 NEW //AM: Added to pass this to SalesInvoiceView
     }
 
     export class SalesInvoicesViewController extends ViewControllerBase {
@@ -25,6 +26,7 @@ module Commerce.ViewControllers {
         private _selectedInvoice: Observable<Model.Entities.SalesInvoice>;
         private _returnSalesInvoiceDisabled: Computed<boolean>;
         private _salesId: string;
+        private _salesOrderStatus: number;//DEMO4 NEW //AM: Added to pass this to SalesInvoiceView
 
         private _salesInvoicesViewModel: ViewModels.SalesInvoicesViewModel;
 
@@ -41,7 +43,10 @@ module Commerce.ViewControllers {
             this._returnSalesInvoiceDisabled = ko.computed(() => { return this._selectedInvoice() == null; }, this);
             this._salesInvoices = ko.observableArray<Model.Entities.SalesInvoice>([]);
             this._salesInvoicesViewModel = new ViewModels.SalesInvoicesViewModel();
-
+            //DEMO4 NEW //AM: Added to pass this to SalesInvoiceView
+            if(!NumberExtensions.isNullOrZero(options.salesOrderStatus))
+                this._salesOrderStatus = options.salesOrderStatus;
+            //DEMO4 end
             this.initializeCommonHeader();
 
             this.loadSalesInvoices();
@@ -80,8 +85,9 @@ module Commerce.ViewControllers {
             // UI will make sure this is only called when this._selectedInvoice is set
             var invoice: Model.Entities.SalesInvoice = this._selectedInvoice();
             var options: ISalesInvoiceDetailsViewControllerOptions = {
-                invoiceId: invoice.Id
-            };
+                invoiceId: invoice.Id,
+                salesOrderStatus: this._salesOrderStatus//DEMO4 NEW //Added new optional parameter
+        };
 
             ViewModelAdapter.navigate("SalesInvoiceDetailsView", options);
         }
