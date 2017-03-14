@@ -104,9 +104,8 @@
                 id:'returnOrder',
                 extraClass: 'winappbar-iconReturn'
             }"
-            data-bind="winControl: { click: returnOrder }, resx: { label: 'string_4512' }" >
+            data-bind="winControl: { click: returnOrder, disabled: _salesOrderReturnDisabled }, resx: { label: 'string_4512' }" >
          </button>
-        <!--, disabled: _salesOrderReturnDisabled--> <!--DEMO4 //TODO:AM // Removed from the above databind attr-->
         <button data-win-control="WinJS.UI.AppBarCommand"
             data-win-options="{
                 id:'editOrder',

@@ -292,7 +292,8 @@ module Commerce.ViewModels {
          * @return {IAsyncResult<Proxy.Entities.Customer[]>} The async result containing the customers that match the search.
          */
         public searchCustomers(pageSize: number, skip: number): IAsyncResult<Proxy.Entities.Customer[]> {
-            return this.customerSearchViewModel.searchCustomers(pageSize, skip);
+            var cust = this.customerSearchViewModel.searchCustomers(pageSize, skip);
+            return cust;
         }
 
         /**

@@ -219,8 +219,9 @@ module Commerce.ViewControllers {
                     || !ViewModels.SearchOrdersViewModel.isOrderAvailableForOperation(this._selectedOrder().salesOrder, Model.Entities.CustomerOrderOperations.Edit);
             });
             this._salesOrderReturnDisabled = ko.computed(() => {
-                return ObjectExtensions.isNullOrUndefined(this._selectedOrder())
-                    || !ViewModels.SearchOrdersViewModel.isOrderAvailableForOperation(this._selectedOrder().salesOrder, Model.Entities.CustomerOrderOperations.Return);
+                return ObjectExtensions.isNullOrUndefined(this._selectedOrder());
+                //DEMO4 NEW //AM:Commented this //TODO: Uncomment the line below in real implementation
+                // || !ViewModels.SearchOrdersViewModel.isOrderAvailableForOperation(this._selectedOrder().salesOrder, Model.Entities.CustomerOrderOperations.Return);
             }, this);
             this._pickingAndPackingDisabled = ko.computed(() => {
                 // this button holds: pick, pack and print packing slip, it can only be disabled, if all of these things are disabled

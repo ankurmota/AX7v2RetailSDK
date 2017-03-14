@@ -1940,39 +1940,26 @@ module Commerce.ViewModels {
             return result.done((result: ICancelableResult) => { this.cart(Session.instance.cart); });
         }
 
-        //DEMO 4 //TODO:AM
+        //DEMO4 new //TODO:AM
 
         public applyDiscountsToLastLine(cartLines: Proxy.Entities.CartLine[]) {
-            //let totalDiscountsToApply: number = 0;
+            let hasPriceChanged: boolean = false;
+            cartLines.forEach((cartLine: Entities.CartLine) => {
+                if (!hasPriceChanged && (cartLine.ItemId === "0004" || cartLine.ItemId === "0021")) {
+                    if (this.isKITLine(cartLine)) {
+                        cartLine.LineManualDiscountAmount = 143.3;//268; //TODO: Change this based on the price //totalDiscountsToApply;
+                        hasPriceChanged = true;
+                    }
+                }
+            });
 
-            ////Find All non selected lines
-            //let nonSelectedCartlines: Proxy.Entities.CartLine[] =
-            //    ArrayExtensions.difference<Proxy.Entities.CartLine>(
-            //        this.cart().CartLines,
-            //        cartLines,
-            //        (left: Proxy.Entities.CartLine, right: Proxy.Entities.CartLine) => left.LineId == right.LineId);
-
-            
-            //cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
-            //    let lineComment: string = cartLine.Comment;
-            //    if (!StringExtensions.isNullOrWhitespace(lineComment)) {
-            //        let cartLineProperties = Commerce.CartHelper.SC_getCartLineProperties(lineComment);
-            //        let priceStr: string = cartLineProperties[3];
-            //        let priceNumber: number = NumberExtensions.parseNumber(priceStr);
-            //        if (!NumberExtensions.isNullOrZero(priceNumber))
-            //            totalDiscountsToApply += priceNumber;
-            //    }
-            
-            //});
-
-            //nonSelectedCartlines.forEach((cartLine: Proxy.Entities.CartLine) => {
-            //    totalDiscountsToApply += cartLine.DiscountAmount;
-            //});
-
-            //Apply discount to the last line
-            let lastCartLine: Proxy.Entities.CartLine = cartLines[0];
-            //TODO:  //add logic to add discount only If any lines are not returned yet
-            lastCartLine.LineManualDiscountAmount = 143.3;//268; //TODO: Change this based on the price //totalDiscountsToApply;
+            if (!hasPriceChanged) {
+                //Apply discount to the last line
+                let lastCartLine: Proxy.Entities.CartLine = cartLines[0];
+                if (this.isKITLine(lastCartLine))
+                //TODO:  //add logic to add discount only If any lines are not returned yet
+                    lastCartLine.LineManualDiscountAmount = 143.3;
+            }
         }
 
         //Find if a last item(s) is to be picked up
@@ -1996,6 +1983,17 @@ module Commerce.ViewModels {
                 returnValue = true;
 
             return returnValue;
+        }
+
+        private isKITLine(cartLine: Entities.CartLine): boolean {
+            let isKitLine: boolean = false;
+            if (!StringExtensions.isNullOrWhitespace(cartLine.Comment)) {
+                var cartLineProperties = Commerce.CartHelper.SC_getCartLineProperties(cartLine.Comment);
+                if (cartLineProperties.length > 2) {
+                    isKitLine = cartLineProperties[2] === "true";
+                }
+            }
+            return isKitLine;
         }
 
 

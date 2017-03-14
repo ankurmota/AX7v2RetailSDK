@@ -313,6 +313,10 @@ namespace Contoso
             /// </summary>
             public TaxInfoCollection Taxes { get; private set; }
 
+            //DEMO4 new //AM : Added HasReturns property
+            /// <summary>
+            /// Describes if the SalesOrder has a Return against it
+            /// </summary>
             [XmlElement("HasReturns")]
             public string HasReturns { get; set; }
     
