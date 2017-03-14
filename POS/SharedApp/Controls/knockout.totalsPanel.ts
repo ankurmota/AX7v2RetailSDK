@@ -52,17 +52,17 @@ ko.bindingHandlers.totalsPanel = (function () {
 
                 var item = Commerce.ApplicationContext.Instance.tillLayoutProxy.getLayoutItem(value.view, id);
                 //POSHackF
-                if (item.LeftSelectedTotalsFields.length > 0) {
+                if (item.RightSelectedTotalsFields.length > 0) {
                     var SC_OrderstatusHeader = new Commerce.Proxy.Entities.Layout();
-                    SC_OrderstatusHeader.Type = item.LeftSelectedTotalsFields[0].Type;
+                    //SC_OrderstatusHeader.Type = item.LeftSelectedTotalsFields[0].Type;
                     SC_OrderstatusHeader.ID = "SC_OrderStatusHeaderField";
                     SC_OrderstatusHeader.Title = "ORDER STATUS";
-                    item.LeftSelectedTotalsFields.push(SC_OrderstatusHeader);
+                    item.RightSelectedTotalsFields.push(SC_OrderstatusHeader);
                     var SC_KitPriceHeader = new Commerce.Proxy.Entities.Layout();
-                    SC_KitPriceHeader.Type = item.LeftSelectedTotalsFields[0].Type;
+                    //SC_KitPriceHeader.Type = item.LeftSelectedTotalsFields[0].Type;
                     SC_KitPriceHeader.ID = "SC_KitPriceHeaderField";
                     SC_KitPriceHeader.Title = "KIT TOTAL";
-                    item.LeftSelectedTotalsFields.push(SC_KitPriceHeader);
+                    item.RightSelectedTotalsFields.push(SC_KitPriceHeader);
                 }
                 //End
                 if (!Commerce.ObjectExtensions.isNullOrUndefined(item)) {   

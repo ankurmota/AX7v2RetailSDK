@@ -299,7 +299,11 @@ namespace Contoso
                 
                 salesOrder.HasLoyaltyPayment = orderInfo.HasLoyaltyPayment;
                 salesOrder.CurrencyCode = orderInfo.CurrencyCode;
-    
+                //DEMO4 NEW //Add extension property HasReturns
+                //salesOrder.ExtensionProperties.Add(new CommerceProperty { Key = "HasReturns", Value =  orderInfo.HasReturns.ToLower() == "true" });
+                salesOrder.SetProperty("HasReturns", orderInfo.HasReturns.ToLower() == "true");
+
+
                 return salesOrder;
             }
 

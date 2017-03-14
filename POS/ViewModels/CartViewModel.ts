@@ -1912,13 +1912,21 @@ module Commerce.ViewModels {
                 return VoidAsyncResult.createRejected([error]);
             }
 
-            ////DEMO4 //TODO:AM
+            ////DEMO4 new //TODO:AM
             if (this.isLastLine(cartLines)) {
-                //cartLines.forEach((cartLine: Proxy.Entities.CartLine) => {
-                //    let discountAmount: number = cartLine.DiscountAmount;
-                //    cartLine.LineManualDiscountAmount = 670.98; //TODO: AM: Calculate from cart lines
-                //});
-                this.applyDiscountsToLastLine(cartLines);
+                 var properties = this.cart().ExtensionProperties.filter((property) => {
+                    return property.Key === "HasReturns";
+                });
+                let hasReturns: boolean = false;
+                 if (ArrayExtensions.hasElements(properties)) {
+                     let hasReturnProperty = properties[0];
+
+                     if (hasReturnProperty.Value) {
+                         hasReturns = hasReturnProperty.Value.BooleanValue;
+                     }
+                 }
+                if(!hasReturns)
+                    this.applyDiscountsToLastLine(cartLines);
             }
             
             var options: Operations.IUpdateCustomerOrderOperationOptions = {

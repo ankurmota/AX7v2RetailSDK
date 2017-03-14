@@ -312,6 +312,9 @@ namespace Contoso
             /// Gets the the collection of tax information.
             /// </summary>
             public TaxInfoCollection Taxes { get; private set; }
+
+            [XmlElement("HasReturns")]
+            public string HasReturns { get; set; }
     
             /// <summary>
             /// Deserializes the customer order information from the specified XML blob.
