@@ -120,10 +120,10 @@ module Commerce.ViewModels {
 
         //DEMO4 NEW //AM 
         //Create and return new async queue and update cart lines with new price for Invoiced orders
-        private priceOverrideAsyncQueue(cartLines: Entities.CartLine[], salesOrderStatus: number): AsyncQueue {
+        private priceOverrideAsyncQueue(cartLines: Entities.CartLine[], salesOrderStatus: number,hasDiscounts:boolean): AsyncQueue {
             var asyncQueue: AsyncQueue = new AsyncQueue();
 
-            if (salesOrderStatus === 4) {
+            if (salesOrderStatus === 4 && hasDiscounts) {
                 cartLines.forEach((cartLine: Entities.CartLine) => {
                     let price: number = 0;
                     switch (cartLine.ItemId) {
@@ -177,9 +177,23 @@ module Commerce.ViewModels {
         public returnCartLines(salesOrderStatus?:number): IAsyncResult<ICancelableResult> {
             // copy the cart, in order to keep the sales invoice details
             Session.instance.cart = new Entities.CartClass(this._cart());
+            //DEMO4 Ankur start
+            let hasDiscounts: boolean = false;
+            var properties = this._cart().ExtensionProperties.filter((property) => {
+                return property.Key === "HasReturns";
+            });
+            if (ArrayExtensions.hasElements(properties)) {
+                let hasReturnProperty = properties[0];
 
-            var asyncQueue = this.priceOverrideAsyncQueue(this._selectedCartLines(),salesOrderStatus);//new AsyncQueue();//DEMO4 NEW
+                if (hasReturnProperty.Value) {
+                    hasDiscounts = hasReturnProperty.Value.BooleanValue;
+                }
+            }
+
+            var asyncQueue = this.priceOverrideAsyncQueue(this._selectedCartLines(),salesOrderStatus,hasDiscounts);//new AsyncQueue();
             //var asyncQueue = new AsyncQueue();
+            //DEMO4 END
+            
             asyncQueue
                 .enqueue(() => {
                     // select lines not being returned

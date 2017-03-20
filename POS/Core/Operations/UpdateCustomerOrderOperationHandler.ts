@@ -134,13 +134,6 @@ module Commerce.Operations {
 
                         var product: Entities.SimpleProduct = productsDictionary.getItem(cartLine.ProductId);
                         var cartLineForPickup: Entities.CartLine = { LineId: cartLine.LineId, Quantity: cartLine.Quantity, LineManualDiscountAmount: cartLine.LineManualDiscountAmount}; //TODO:AM DEMO4
-                        //var cartLineForPickup: Entities.CartLine = { LineId: cartLine.LineId, Quantity: cartLine.Quantity, LineManualDiscountAmount: cartLine.LineManualDiscountAmount, DiscountAmount: cartLine.DiscountAmount, LineDiscount: cartLine.LineDiscount  }; //TODO:AM DEMO4
-                        //var cartLineForPickup: Entities.CartLine = { LineId: cartLine.LineId, Quantity: cartLine.Quantity, LineManualDiscountAmount: cartLine.LineManualDiscountAmount, LineDiscount: cartLine.LineDiscount }; //TODO:AM DEMO4
-                        //let chargeLines: Proxy.Entities.ChargeLine[] = [];//TODO:AM DEMO4
-                        //let chargeLine: Proxy.Entities.ChargeLineClass = new Proxy.Entities.ChargeLineClass();
-                        //chargeLine.CalculatedAmount = 10;
-                        //chargeLines.push(chargeLine);
-                        //var cartLineForPickup: Entities.CartLine = { LineId: cartLine.LineId, Quantity: cartLine.Quantity, ChargeLines: chargeLines }; //TODO:AM DEMO4
 
                         if (product.Behavior.HasSerialNumber) {
                             cartLineForPickup.SerialNumber = cartLine.SerialNumber;

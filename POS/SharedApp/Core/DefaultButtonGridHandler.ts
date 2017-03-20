@@ -36,7 +36,7 @@ module Commerce.Operations {
                     operationsManager.runOperation(operationId, blankOperationOptions)
                         .fail((errors) => { NotificationHandler.displayClientErrors(errors); });
                     return true;
-                    break;
+                   // break;
                 case RetailOperation.ItemSale:
                     var options = {
                         itemToAddOrSearch: actionProperty
@@ -255,8 +255,11 @@ module Commerce.Operations {
                 var cashDrawerNotFoundErrorMessage: string = ViewModelAdapter.getResourceString(Commerce.ErrorTypeEnum.MICROSOFT_DYNAMICS_COMMERCE_HARDWARESTATION_CASHDRAWER_ERROR);
 
                 // If the error is because the cash drawer is not found or there is no active hardware station, ask the user if they want to continue.
-                if (errorCode === Commerce.ErrorTypeEnum.PERIPHERALS_HARDWARESTATION_NOTCONFIGURED
-                    || errorCode === Commerce.ErrorTypeEnum.PERIPHERALS_HARDWARESTATION_COMMUNICATION_FAILED
+                if (/**POSHackF hide hardware station error
+                    errorCode === Commerce.ErrorTypeEnum.PERIPHERALS_HARDWARESTATION_NOTCONFIGURED
+                    ||
+                    */
+                    errorCode === Commerce.ErrorTypeEnum.PERIPHERALS_HARDWARESTATION_COMMUNICATION_FAILED
                     || errorMessage === cashDrawerNotFoundErrorMessage) {
                     errorMessage += "\r\n\r\n";
                     errorMessage += ViewModelAdapter.getResourceString("string_421"); // Do you wish to continue the operation anyway?

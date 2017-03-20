@@ -542,8 +542,6 @@ module Commerce.ViewControllers {
             
 
             this.handleVoidAsyncResult(this.cartViewModel.setCartAsync(Session.instance.cart));
-            //DEMO4 //TODO:AM
-      //      this.cartViewModel.applyZeroDiscountsToPickupLinesForLayaway();
 
             // Notify listeners if the card is reloaded
             if (Session.instance.cartReloadedNotificationPending) {
@@ -820,7 +818,7 @@ module Commerce.ViewControllers {
         private SC_showOrderInfoInputDialog(): void {
 
             var cart: Model.Entities.Cart = Session.instance.cart;
-            if (!cart || cart.CartLines.length < 1 || cart.CartTypeValue != 1) {
+            if (!cart || cart.CartLines.length < 1 || cart.CartTypeValue != 1 || cart.IsReturnByReceipt == true) {
                 return;
             }
             /**

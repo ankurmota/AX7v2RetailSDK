@@ -48,7 +48,7 @@ namespace Contoso
                     throw new ArgumentNullException("transaction");
                 }
 
-                //DEMO4  //TODO:AM
+                //Ankur DEMO4 : For Layaway order, add discount based on Discount amount
                 if (transaction.CartType == CartType.CustomerOrder)
                 {
                     foreach (var salesLine in transaction.ActiveSalesLines)

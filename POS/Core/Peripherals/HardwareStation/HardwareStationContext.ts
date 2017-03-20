@@ -363,7 +363,9 @@ module Commerce.Peripherals.HardwareStation {
                     });
                 }
             } else {
+                /**POSHackF hide hardware station error
                 asyncResult.reject([new Proxy.Entities.Error(ErrorTypeEnum.PERIPHERALS_HARDWARESTATION_NOTCONFIGURED)]);
+                */
             }
 
             return asyncResult;

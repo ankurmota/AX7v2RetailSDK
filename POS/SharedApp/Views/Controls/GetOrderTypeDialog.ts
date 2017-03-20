@@ -72,9 +72,13 @@ module Commerce.Controls {
                 default:
                     throw "Operation id not supported: " + options.operationId;
             }
-
+            /**POSHackF Streamline
             this.indeterminateWaitVisible(false);
             this.visible(true);
+            */
+            var SC_customerOrderMode: Model.Entities.CustomerOrderMode = Model.Entities.CustomerOrderMode.CustomerOrderCreateOrEdit; //1
+            this.dialogResult.resolve(DialogResult.OK, SC_customerOrderMode);
+            //End POSHackF
         }
 
         /**

@@ -1940,9 +1940,10 @@ module Commerce.ViewModels {
             return result.done((result: ICancelableResult) => { this.cart(Session.instance.cart); });
         }
 
-        //DEMO4 new //TODO:AM
+        //Ankur Demo4 start
 
-        public applyDiscountsToLastLine(cartLines: Proxy.Entities.CartLine[]) {
+        //Apply discounts to the last line for Layaway order
+        private applyDiscountsToLastLine(cartLines: Proxy.Entities.CartLine[]) {
             let hasPriceChanged: boolean = false;
             cartLines.forEach((cartLine: Entities.CartLine) => {
                 if (!hasPriceChanged && (cartLine.ItemId === "0004" || cartLine.ItemId === "0021")) {
@@ -1957,13 +1958,13 @@ module Commerce.ViewModels {
                 //Apply discount to the last line
                 let lastCartLine: Proxy.Entities.CartLine = cartLines[0];
                 if (this.isKITLine(lastCartLine))
-                //TODO:  //add logic to add discount only If any lines are not returned yet
+                    //TODO:  //add logic to add discount only If any lines are not returned yet
                     lastCartLine.LineManualDiscountAmount = 143.3;
             }
         }
 
         //Find if a last item(s) is to be picked up
-        public isLastLine(cartLines: Proxy.Entities.CartLine[]): boolean {
+        private isLastLine(cartLines: Proxy.Entities.CartLine[]): boolean {
             let returnValue: boolean = false;
             let counter: number = 0;
 
@@ -1985,6 +1986,7 @@ module Commerce.ViewModels {
             return returnValue;
         }
 
+        //Determine if the given cartLine is a KIT Line
         private isKITLine(cartLine: Entities.CartLine): boolean {
             let isKitLine: boolean = false;
             if (!StringExtensions.isNullOrWhitespace(cartLine.Comment)) {
@@ -1995,9 +1997,7 @@ module Commerce.ViewModels {
             }
             return isKitLine;
         }
-
-
-        //DEMO4 END
+        //Ankur Demo4 end
 
         /**
          * Validates properties given before executing customer order related operations.

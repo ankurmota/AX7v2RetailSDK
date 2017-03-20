@@ -220,7 +220,11 @@ namespace Contoso
                             order.TotalManualDiscountAmount = Convert.ToDecimal(header.Attribute("TotalManualDiscountAmount").Value);
                             order.TotalManualDiscountPercentage = Convert.ToDecimal(header.Attribute("TotalManualDiscountPercentage").Value);
                             order.LoyaltyCardId = header.Attribute("LoyaltyCardId").Value;
-    
+                            
+                            //Ankur DEMO4 : Add extension property HasReturns
+                            order.SetProperty("HasReturns", header.Attribute("HasReturns").Value == "true");
+                            //DEMO4 END
+
                             order.SalesLines = new Collection<SalesLine>();
     
                             // Items

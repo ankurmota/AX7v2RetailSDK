@@ -155,213 +155,184 @@ module Commerce.Operations {
 
             var asyncQueue: AsyncQueue = new AsyncQueue();
 
-            //DEMO4
-            var newcart: Proxy.Entities.Cart = Session.instance.cart;
-            //if (newcart.DeliveryMode === ApplicationContext.Instance.channelConfiguration.PickupDeliveryModeCode) {
 
-                //var cartLines: Proxy.Entities.CartLine[] = options.cartLineDiscounts
-                //    .map((cartLineDiscount: CartLineDiscount): Proxy.Entities.CartLine => {
-                //        return cartLineDiscount.cartLine;
-                //    });
-             
-                //return new AsyncQueue().enqueue((): IVoidAsyncResult => {
-                //   return this.cartManager.updateCartLinesOnCartAsync(cartLines);
-                //}).run();
+            // checks whether discounts are allowed
+            var error: Proxy.Entities.Error = DiscountsHelper.validateCanAddDiscounts(Session.instance.cart);
+            if (error) {
+                asyncQueue.enqueue((): IAsyncResult<any> => {
+                    return VoidAsyncResult.createRejected([error]);
+                });
 
-                //asyncQueue.enqueue((): IAsyncResult<any> => {
-                //    var cartManager: Model.Managers.ICartManager = Model.Managers.Factory
-                //        .getManager<Model.Managers.ICartManager>(Model.Managers.ICartManagerName);
-                //    var retryQueue: AsyncQueue = ReasonCodesHelper.handleRequiredReasonCodesAsyncQueue(
-                //        { cartLines: cartLines },
-                //        (context: ReasonCodesContext) => {
-                //            return cartManager.updateCartLinesOnCartAsync(context.cartLines);
-                //        },
-                //        Proxy.Entities.ReasonCodeSourceType.ItemDiscount);
+                return asyncQueue;
+            }
 
-                //    return asyncQueue.cancelOn(retryQueue.run());
-                //});
+            // check whether lines are present
+            if (!ArrayExtensions.hasElements(options.cartLineDiscounts)) {
+                asyncQueue.enqueue((): IAsyncResult<any> => {
+                    return VoidAsyncResult
+                        .createRejected([
+                            new Proxy.Entities.Error(ErrorTypeEnum
+                                .MISSING_CARTLINE_ON_APPLY_DISCOUNT)
+                        ]);
+                });
 
-           // } else {
-                //DEMO 4 END
+                return asyncQueue;
+            }
 
-                // checks whether discounts are allowed
-                var error: Proxy.Entities.Error = DiscountsHelper.validateCanAddDiscounts(Session.instance.cart);
-                if (error) {
-                    asyncQueue.enqueue((): IAsyncResult<any> => {
-                        return VoidAsyncResult.createRejected([error]);
-                    });
-
-                    return asyncQueue;
+            asyncQueue.enqueue((): IAsyncResult<ICancelableResult> => {
+                if (options.cartLineDiscounts
+                    .some((cld: CartLineDiscount): boolean => cld.cartLine.IsPriceOverridden)) {
+                    var error: Proxy.Entities.Error = new Proxy.Entities.Error(
+                        ErrorTypeEnum.PERMISSION_DENIED_CANNOT_APPLY_DISCOUNT_TO_LINE_WITH_OVERRIDDEN_PRICE);
+                    return VoidAsyncResult.createRejected([error]);
                 }
 
-                // check whether lines are present
-                if (!ArrayExtensions.hasElements(options.cartLineDiscounts)) {
-                    asyncQueue.enqueue((): IAsyncResult<any> => {
-                        return VoidAsyncResult
-                            .createRejected([
-                                new Proxy.Entities.Error(ErrorTypeEnum
-                                    .MISSING_CARTLINE_ON_APPLY_DISCOUNT)
-                            ]);
+                return VoidAsyncResult.createResolved();
+            });
+
+            asyncQueue.enqueue((): IAsyncResult<ICancelableResult> => {
+                var cartLines: Proxy.Entities.CartLine[] = options.cartLineDiscounts
+                    .map((cartLineDiscount: CartLineDiscount): Proxy.Entities.CartLine => {
+                        return cartLineDiscount.cartLine;
                     });
 
-                    return asyncQueue;
-                }
+                var preTriggerOptions: Triggers.IPreLineDiscountTriggerOptions =
+                    { cart: Session.instance.cart, cartLines: cartLines };
+                var preTriggerResult: IAsyncResult<ICancelableResult> =
+                    Triggers.TriggerManager.instance.execute(
+                        isPercent
+                        ? Triggers.CancelableTriggerType.PreLineDiscountPercent
+                        : Triggers.CancelableTriggerType.PreLineDiscountAmount,
+                        preTriggerOptions);
 
-                asyncQueue.enqueue((): IAsyncResult<ICancelableResult> => {
-                    if (options.cartLineDiscounts
-                        .some((cld: CartLineDiscount): boolean => cld.cartLine.IsPriceOverridden)) {
-                        var error: Proxy.Entities.Error = new Proxy.Entities.Error(
-                            ErrorTypeEnum.PERMISSION_DENIED_CANNOT_APPLY_DISCOUNT_TO_LINE_WITH_OVERRIDDEN_PRICE);
-                        return VoidAsyncResult.createRejected([error]);
+                return asyncQueue.cancelOn(preTriggerResult);
+            });
+
+            options.cartLineDiscounts.forEach((cartLineDiscount: CartLineDiscount) => {
+                // discount has to be null or undefined (thus ==). If it is zero, it means: clear discount
+                if (ObjectExtensions.isNullOrUndefined(cartLineDiscount.discountValue)) {
+                    cartLinesWithoutDiscount.push(cartLineDiscount.cartLine);
+                } else {
+                    cartLinesToUpdate.push(<Proxy.Entities.CartLine>{
+                        LineId: cartLineDiscount.cartLine.LineId,
+                        ProductId: cartLineDiscount.cartLine.ProductId,
+                        Quantity: cartLineDiscount.cartLine.Quantity,
+                        LineManualDiscountAmount: isPercent ? 0 : cartLineDiscount.discountValue,
+                        LineManualDiscountPercentage: isPercent ? cartLineDiscount.discountValue : 0,
+                        ReasonCodeLines: cartLineDiscount.cartLine.ReasonCodeLines
+                    });
+                }
+            });
+
+            // validate present discounts
+            if (ArrayExtensions.hasElements(cartLinesToUpdate)) {
+                asyncQueue.enqueue((): IAsyncResult<any> => {
+                    var errors: Proxy.Entities.Error[] = [];
+                    cartLinesToUpdate.forEach((cartLine: Proxy.Entities.CartLine) => {
+                        var error: Proxy.Entities.Error = isPercent
+                            ? DiscountsHelper
+                            .validateMaximumLineDiscountPercentage(cartLine.LineManualDiscountPercentage, cartLine)
+                            : DiscountsHelper
+                            .validateMaximumLineDiscountAmount(cartLine.LineManualDiscountAmount, cartLine);
+
+                        if (error) {
+                            errors.push(error);
+                        }
+                    });
+
+                    if (ArrayExtensions.hasElements(errors)) {
+                        return VoidAsyncResult.createRejected(errors);
                     }
 
                     return VoidAsyncResult.createResolved();
                 });
+            }
 
-                asyncQueue.enqueue((): IAsyncResult<ICancelableResult> => {
-                    var cartLines: Proxy.Entities.CartLine[] = options.cartLineDiscounts
-                        .map((cartLineDiscount: CartLineDiscount): Proxy.Entities.CartLine => {
-                            return cartLineDiscount.cartLine;
-                        });
+            // get discounts for lines
+            if (ArrayExtensions.hasElements(cartLinesWithoutDiscount)) {
+                asyncQueue.enqueue((): IAsyncResult<any> => {
+                    var activity: Activities.GetCartLineDiscountsActivity = new Activities
+                        .GetCartLineDiscountsActivity(
+                            { cartLines: cartLinesWithoutDiscount, isPercent: isPercent });
 
-                    var preTriggerOptions: Triggers.IPreLineDiscountTriggerOptions =
-                        { cart: Session.instance.cart, cartLines: cartLines };
-                    var preTriggerResult: IAsyncResult<ICancelableResult> =
-                        Triggers.TriggerManager.instance.execute(
-                            isPercent
-                            ? Triggers.CancelableTriggerType.PreLineDiscountPercent
-                            : Triggers.CancelableTriggerType.PreLineDiscountAmount,
-                            preTriggerOptions);
+                    activity
+                        .responseHandler = (response: Activities.GetCartLineDiscountsActivityResponse):
+                        IVoidAsyncResult => {
+                            var errors: Proxy.Entities.Error[] = [];
 
-                    return asyncQueue.cancelOn(preTriggerResult);
-                });
+                            response.discounts.forEach((discount: number, discountIndex: number) => {
+                                var cartLine: Proxy.Entities.CartLine = cartLinesWithoutDiscount[discountIndex];
+                                var error: Proxy.Entities.Error = isPercent
+                                    ? DiscountsHelper.validateMaximumLineDiscountPercentage(discount, cartLine)
+                                    : DiscountsHelper.validateMaximumLineDiscountAmount(discount, cartLine);
 
-                options.cartLineDiscounts.forEach((cartLineDiscount: CartLineDiscount) => {
-                    // discount has to be null or undefined (thus ==). If it is zero, it means: clear discount
-                    if (ObjectExtensions.isNullOrUndefined(cartLineDiscount.discountValue)) {
-                        cartLinesWithoutDiscount.push(cartLineDiscount.cartLine);
-                    } else {
-                        cartLinesToUpdate.push(<Proxy.Entities.CartLine>{
-                            LineId: cartLineDiscount.cartLine.LineId,
-                            ProductId: cartLineDiscount.cartLine.ProductId,
-                            Quantity: cartLineDiscount.cartLine.Quantity,
-                            LineManualDiscountAmount: isPercent ? 0 : cartLineDiscount.discountValue,
-                            LineManualDiscountPercentage: isPercent ? cartLineDiscount.discountValue : 0,
-                            ReasonCodeLines: cartLineDiscount.cartLine.ReasonCodeLines
-                        });
-                    }
-                });
-
-                // validate present discounts
-                if (ArrayExtensions.hasElements(cartLinesToUpdate)) {
-                    asyncQueue.enqueue((): IAsyncResult<any> => {
-                        var errors: Proxy.Entities.Error[] = [];
-                        cartLinesToUpdate.forEach((cartLine: Proxy.Entities.CartLine) => {
-                            var error: Proxy.Entities.Error = isPercent
-                                ? DiscountsHelper
-                                .validateMaximumLineDiscountPercentage(cartLine.LineManualDiscountPercentage, cartLine)
-                                : DiscountsHelper
-                                .validateMaximumLineDiscountAmount(cartLine.LineManualDiscountAmount, cartLine);
-
-                            if (error) {
-                                errors.push(error);
-                            }
-                        });
-
-                        if (ArrayExtensions.hasElements(errors)) {
-                            return VoidAsyncResult.createRejected(errors);
-                        }
-
-                        return VoidAsyncResult.createResolved();
-                    });
-                }
-
-                // get discounts for lines
-                if (ArrayExtensions.hasElements(cartLinesWithoutDiscount)) {
-                    asyncQueue.enqueue((): IAsyncResult<any> => {
-                        var activity: Activities.GetCartLineDiscountsActivity = new Activities
-                            .GetCartLineDiscountsActivity(
-                                { cartLines: cartLinesWithoutDiscount, isPercent: isPercent });
-
-                        activity
-                            .responseHandler = (response: Activities.GetCartLineDiscountsActivityResponse):
-                            IVoidAsyncResult => {
-                                var errors: Proxy.Entities.Error[] = [];
-
-                                response.discounts.forEach((discount: number, discountIndex: number) => {
-                                    var cartLine: Proxy.Entities.CartLine = cartLinesWithoutDiscount[discountIndex];
-                                    var error: Proxy.Entities.Error = isPercent
-                                        ? DiscountsHelper.validateMaximumLineDiscountPercentage(discount, cartLine)
-                                        : DiscountsHelper.validateMaximumLineDiscountAmount(discount, cartLine);
-
-                                    if (error) {
-                                        errors.push(error);
-                                    }
-                                });
-
-                                if (ArrayExtensions.hasElements(errors)) {
-                                    return VoidAsyncResult.createRejected(errors);
-                                }
-
-                                // updates discounts and add to lines to update collection
-                                cartLinesWithoutDiscount
-                                    .forEach((cartLine: Proxy.Entities.CartLine, cartLineIndex: number) => {
-                                        cartLine
-                                            .LineManualDiscountPercentage =
-                                            isPercent ? response.discounts[cartLineIndex] : 0;
-                                        cartLine
-                                            .LineManualDiscountAmount =
-                                            isPercent ? 0 : response.discounts[cartLineIndex];
-
-                                        cartLinesToUpdate.push(cartLine);
-                                    });
-
-                                return VoidAsyncResult.createResolved();
-                            };
-
-                        return activity.execute()
-                            .done(() => {
-                                if (!activity.response) {
-                                    asyncQueue.cancel();
-                                    return;
+                                if (error) {
+                                    errors.push(error);
                                 }
                             });
-                    });
-                }
 
-                // updates cart lines
-                asyncQueue.enqueue((): IAsyncResult<any> => {
-                    var cartManager: Model.Managers.ICartManager = Model.Managers.Factory
-                        .getManager<Model.Managers.ICartManager>(Model.Managers.ICartManagerName);
-                    var retryQueue: AsyncQueue = ReasonCodesHelper.handleRequiredReasonCodesAsyncQueue(
-                        { cartLines: cartLinesToUpdate },
-                        (context: ReasonCodesContext) => {
-                            return cartManager.updateCartLinesOnCartAsync(context.cartLines);
-                        },
-                        Proxy.Entities.ReasonCodeSourceType.ItemDiscount);
+                            if (ArrayExtensions.hasElements(errors)) {
+                                return VoidAsyncResult.createRejected(errors);
+                            }
 
-                    return asyncQueue.cancelOn(retryQueue.run());
-                });
+                            // updates discounts and add to lines to update collection
+                            cartLinesWithoutDiscount
+                                .forEach((cartLine: Proxy.Entities.CartLine, cartLineIndex: number) => {
+                                    cartLine
+                                        .LineManualDiscountPercentage =
+                                        isPercent ? response.discounts[cartLineIndex] : 0;
+                                    cartLine
+                                        .LineManualDiscountAmount =
+                                        isPercent ? 0 : response.discounts[cartLineIndex];
 
-                asyncQueue.enqueue((): IVoidAsyncResult => {
-                    var lineIds: string[] = options.cartLineDiscounts
-                        .map((cartLineDiscount: CartLineDiscount): string => {
-                            return cartLineDiscount.cartLine.LineId;
+                                    cartLinesToUpdate.push(cartLine);
+                                });
+
+                            return VoidAsyncResult.createResolved();
+                        };
+
+                    return activity.execute()
+                        .done(() => {
+                            if (!activity.response) {
+                                asyncQueue.cancel();
+                                return;
+                            }
                         });
-
-                    var updatedCartLines: Proxy.Entities.CartLine[] = CartHelper
-                        .getCartLinesByLineIds(Session.instance.cart, lineIds);
-                    var postTriggerOptions: Triggers.IPostLineDiscountTriggerOptions =
-                        { cart: Session.instance.cart, cartLines: updatedCartLines };
-                    return Triggers.TriggerManager.instance.execute(
-                        isPercent
-                        ? Triggers.NonCancelableTriggerType.PostLineDiscountPercent
-                        : Triggers.NonCancelableTriggerType.PostLineDiscountAmount,
-                        postTriggerOptions);
                 });
+            }
 
-                return asyncQueue;
-            //}//demo4
+            // updates cart lines
+            asyncQueue.enqueue((): IAsyncResult<any> => {
+                var cartManager: Model.Managers.ICartManager = Model.Managers.Factory
+                    .getManager<Model.Managers.ICartManager>(Model.Managers.ICartManagerName);
+                var retryQueue: AsyncQueue = ReasonCodesHelper.handleRequiredReasonCodesAsyncQueue(
+                    { cartLines: cartLinesToUpdate },
+                    (context: ReasonCodesContext) => {
+                        return cartManager.updateCartLinesOnCartAsync(context.cartLines);
+                    },
+                    Proxy.Entities.ReasonCodeSourceType.ItemDiscount);
+
+                return asyncQueue.cancelOn(retryQueue.run());
+            });
+
+            asyncQueue.enqueue((): IVoidAsyncResult => {
+                var lineIds: string[] = options.cartLineDiscounts
+                    .map((cartLineDiscount: CartLineDiscount): string => {
+                        return cartLineDiscount.cartLine.LineId;
+                    });
+
+                var updatedCartLines: Proxy.Entities.CartLine[] = CartHelper
+                    .getCartLinesByLineIds(Session.instance.cart, lineIds);
+                var postTriggerOptions: Triggers.IPostLineDiscountTriggerOptions =
+                    { cart: Session.instance.cart, cartLines: updatedCartLines };
+                return Triggers.TriggerManager.instance.execute(
+                    isPercent
+                    ? Triggers.NonCancelableTriggerType.PostLineDiscountPercent
+                    : Triggers.NonCancelableTriggerType.PostLineDiscountAmount,
+                    postTriggerOptions);
+            });
+
+            return asyncQueue;
         }
     }
 }

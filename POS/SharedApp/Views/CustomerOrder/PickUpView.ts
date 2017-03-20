@@ -50,7 +50,7 @@ module Commerce.ViewControllers {
             this.initializeCommonHeader();
         }
 
-        //DEMO4 //TODO:AM
+        //DEMO4 new //TODO:AM
         //Show Next Item to be picked up with minimum amounts
         public load(): void {
             let cartLines: Proxy.Entities.CartLine[] = this._cartViewModel.cart().CartLines;
@@ -63,8 +63,8 @@ module Commerce.ViewControllers {
             if (cartLinesNotInvoiced.length > 1) {
                 var xMin = Math.min.apply(null, cartLinesNotInvoiced.map(o => o.Price));
                 var minXObject = cartLinesNotInvoiced.filter(o => (o.Price === xMin))[0];
-
-                Commerce.NotificationHandler.displayErrorMessage(StringExtensions.format("Customer can pick up the next least expensive Item {0} for the price of ${1}", minXObject.ItemId,minXObject.Price * (minXObject.QuantityOrdered - minXObject.QuantityInvoiced)));
+                
+                ViewModelAdapter.displayMessage(StringExtensions.format("Customer can pick up the next least expensive Item {0} for the price of ${1}", minXObject.ItemId, minXObject.Price * (minXObject.QuantityOrdered - minXObject.QuantityInvoiced)), MessageType.Info, MessageBoxButtons.Default);
             }
         }
 
@@ -88,12 +88,6 @@ module Commerce.ViewControllers {
             if (!ArrayExtensions.hasElements(this._selectedCartLines)) {
                 return;
             }
-
-            //demo4 // todo:am
-            //add logic to override price
-
-
-            //end
 
             this._indeterminateWaitVisible(true);
             this._cartViewModel.pickUpCartLines(this._selectedCartLines)

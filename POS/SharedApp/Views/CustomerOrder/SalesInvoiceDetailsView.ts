@@ -66,7 +66,7 @@ module Commerce.ViewControllers {
         }
 
         private returnSalesInvoice(): void {
-            this.handleAsyncResult(this._viewModel.returnCartLines(this._salesOrderStatus))
+            this.handleAsyncResult(this._viewModel.returnCartLines(this._salesOrderStatus))//DEMO4 //passing parameter
                 .done((result) => {
                     if (!result.canceled) {
                         ViewModelAdapter.navigate("CartView");
